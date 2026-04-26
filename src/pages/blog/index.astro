@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const categories = [...new Set(allPosts.map(p => p.data.category))].filter(Boolean);
+---
+
+<BaseLayout
+  title="Blog - Web Design Tips & Christchurch Business Insights"
+  description="Expert tips on web design, SEO, digital marketing, and business growth for Christchurch and New Zealand businesses. By Byte Digital."
+>
+  <section style="padding-top:120px;padding-bottom:60px">
+    <div class="container">
+      <div class="section-label">Blog</div>
+      <h1 class="section-title">Insights & Guides for<br /><span class="gradient-text">Christchurch Businesses.</span></h1>
+      <p class="section-subtitle" style="margin-top:12px">Expert web design tips, SEO strategies, and digital marketing insights to help your Christchurch business grow online.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      {allPosts.map(post => (
+        <a href={`/blog/${post.id}`} style="display:block;padding:32px 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:opacity 0.2s" class="blog-post-link">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+            {post.data.category && (
+              <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--secondary)">{post.data.category}</span>
+            )}
+            <span style="font-size:13px;color:var(--text-dimmed)">{post.data.pubDate.toLocaleDateString('en-NZ', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+          </div>
+          <h2 style="font-size:22px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.3">{post.data.title}</h2>
+          <p style="font-size:15px;color:var(--text-muted);line-height:1.6;max-width:700px">{post.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-post-link:hover { opacity: 0.8; }
+  .blog-post-link:hover h2 { color: var(--secondary); }
+</style>

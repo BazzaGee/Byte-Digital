@@ -1,0 +1,126 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Sydenham';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Sydenham?',
+    answer: 'Sydenham business websites range from $2,500 to $12,000 depending on your needs. Creative businesses and startups often start around $2,500 to $4,000 for a stylish, effective site. Established businesses needing e-commerce, advanced functionality, or more sophisticated branding may invest $5,000 to $12,000. We work within your budget to maximise impact.',
+  },
+  {
+    question: 'Do you offer SEO services for Sydenham businesses?',
+    answer: 'Yes. Sydenham\'s inner-city location means competing with central Christchurch businesses for online visibility. Our SEO strategies help Sydenham businesses rank for both suburb-specific searches and broader Christchurch queries. We also leverage Sydenham\'s distinctive character in your SEO content, helping you stand out from generic competitors.',
+  },
+  {
+    question: 'How long does it take to build a website for a Sydenham business?',
+    answer: 'Most Sydenham websites are completed within three to six weeks. Creative businesses and startups with clear brand direction can be turned around quickly, while businesses needing custom features or extensive content development may take six to eight weeks. We pride ourselves on efficient delivery without compromising quality.',
+  },
+  {
+    question: 'How can my Sydenham creative business stand out online?',
+    answer: 'Sydenham\'s creative community demands websites that are visually striking and genuinely unique. We design bespoke websites that reflect your creative vision while ensuring they function flawlessly as business tools. Portfolio showcases, integrated social media, online booking for studios, and e-commerce for artists and makers — we build sites that let your creativity shine while driving commercial results.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Sydenham Christchurch",
+  "description": "Creative web design, SEO, and digital marketing services for businesses in Sydenham, Christchurch. Serving creative studios, hospitality, and the rediscovered industrial-chic business community.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Sydenham, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Addington', slug: 'addington' },
+  { name: 'Woolston', slug: 'woolston' },
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'Richmond', slug: 'richmond' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'St Albans', slug: 'st-albans' },
+  { name: 'Spreydon', slug: 'spreydon' },
+  { name: 'Merivale', slug: 'merivale' },
+  { name: 'Ferrymead', slug: 'ferrymead' },
+  { name: 'Somerfield', slug: 'somerfield' },
+];
+---
+
+<LocationPage
+  title="Web Design Sydenham Christchurch | Byte Digital"
+  description="Byte Digital offers creative web design, SEO, and digital marketing for Sydenham businesses. We help Christchurch's inner-city creative community build distinctive online presences."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Creative Digital Solutions for Sydenham's Evolving Community</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Sydenham has undergone one of Christchurch's most compelling transformations in recent years. Once defined primarily by its industrial and light manufacturing character, the inner-city suburb has been rediscovered by a wave of creative entrepreneurs, boutique hospitality operators, and innovative small businesses. The converted warehouses along Colombo Street South and the surrounding streets now house craft breweries, design studios, specialty coffee roasters, vintage retailers, and artisan food producers — creating one of Christchurch's most authentic and exciting commercial precincts.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          This industrial-chic renaissance demands a digital presence that is equally distinctive. Sydenham businesses cannot succeed with generic website templates or cookie-cutter digital marketing approaches. Your customers are drawn to your area specifically because it offers something different from the polished chain stores and franchise operations found elsewhere in Christchurch. Your website needs to communicate that same sense of originality, craft, and authenticity that brings people through your door.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Web Design for Sydenham's Creative Economy</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Sydenham's creative economy spans an impressive range of disciplines. Graphic designers, architects, photographers, filmmakers, furniture makers, fashion designers, and digital artists all operate from studios and workshops throughout the suburb. For these businesses, the website serves as both portfolio and sales tool — it needs to showcase creative work in its best possible light while simultaneously making it easy for potential clients to commission work, book services, or make purchases.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We design portfolio-focused websites that prioritise visual impact. Large, high-resolution image galleries, video integration, and elegant presentation layouts let your work take centre stage. But we also ensure the site functions as an effective business tool — clear service descriptions, straightforward enquiry processes, client testimonials, and case study write-ups provide the context and trust signals that convert admirers into paying clients. Beauty without function is decoration; we build websites that are both beautiful and commercially effective.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          For Sydenham's makers and artisans, e-commerce is increasingly essential. Whether you craft furniture, design clothing, produce specialty food products, or create art, selling online extends your market far beyond the customers who can visit your Sydenham studio. We build Shopify and WooCommerce stores that maintain the artisanal feel of your brand while providing the robust e-commerce functionality needed to manage orders, shipping, and customer relationships efficiently.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Hospitality and Retail in Sydenham</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Sydenham's hospitality scene has become a destination in its own right, drawing visitors from across Christchurch who come specifically to experience the area's unique bars, restaurants, and cafés. The craft brewery scene along Colombo Street South is particularly notable, with several award-winning breweries calling Sydenham home. These businesses compete not just with each other but with the entire Christchurch hospitality market, making digital marketing essential for standing out and filling tables.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We build hospitality websites that capture the atmosphere and personality of your venue. High-quality imagery, integrated menus, reservation systems, and social media feeds all work together to give potential visitors a taste of what to expect. For bars and breweries, event promotion functionality helps drive attendance for tap takeovers, live music, and seasonal celebrations. We also implement local SEO strategies that ensure your venue appears when people search for dining and drinking options in Sydenham or inner Christchurch.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Sydenham's retail scene, with its concentration of vintage, antique, and specialty stores, benefits enormously from visual social media marketing. Instagram is a natural platform for showcasing the unique finds and curated collections these stores offer. We create social media strategies that complement your website, driving traffic from Instagram to your online store or physical location through coordinated campaigns and consistent brand storytelling.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">SEO and Digital Marketing for Sydenham</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Local SEO for Sydenham businesses takes advantage of the suburb's proximity to the central city and its growing reputation as a creative destination. We target searches that include Sydenham-specific terms as well as broader Christchurch searches where your business should appear. A Sydenham craft brewery, for example, benefits from ranking for "craft beer Sydenham," "best brewery Christchurch," and "Colombo Street bars" — each capturing different segments of potential customers.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Content marketing for Sydenham businesses leverages the area's compelling narrative of transformation and creativity. Blog posts about the history of Sydenham's industrial buildings, profiles of local creatives, behind-the-scenes glimpses of the making process, and guides to visiting the Sydenham precinct all contribute to building your online authority while attracting visitors who are drawn to the area's unique character.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital is passionate about Sydenham's creative renaissance and the businesses driving it. Let us help you build a digital presence that matches your vision. Explore our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO solutions</a> today.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

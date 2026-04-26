@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburbs = [
+  { name: 'Addington', href: '/locations/addington', tagline: 'Near Christchurch Hospital & Showgrounds' },
+  { name: 'Cashmere', href: '/locations/cashmere', tagline: 'Hillside suburb with premium home services' },
+  { name: 'Fendalton', href: '/locations/fendalton', tagline: 'Upscale area near Hagley Park' },
+  { name: 'Ferrymead', href: '/locations/ferrymead', tagline: 'Historic harbour-side community' },
+  { name: 'Halswell', href: '/locations/halswell', tagline: 'Fast-growing family-friendly suburb' },
+  { name: 'Linwood', href: '/locations/linwood', tagline: 'East-side commercial hub' },
+  { name: 'Merivale', href: '/locations/merivale', tagline: 'Premium retail & professional services' },
+  { name: 'Mount Pleasant', href: '/locations/mount-pleasant', tagline: 'Coastal views & lifestyle businesses' },
+  { name: 'New Brighton', href: '/locations/new-brighton', tagline: 'Beachside shopping & services strip' },
+  { name: 'Papanui', href: '/locations/papanui', tagline: 'North Christchurch commercial centre' },
+  { name: 'Redcliffs', href: '/locations/redcliffs', tagline: 'Bayside community near Sumner' },
+  { name: 'Riccarton', href: '/locations/riccarton', tagline: 'Major retail hub near University' },
+  { name: 'Richmond', href: '/locations/richmond', tagline: 'Central city fringe businesses' },
+  { name: 'Somerfield', href: '/locations/somerfield', tagline: 'Family-oriented south-west community' },
+  { name: 'Spreydon', href: '/locations/spreydon', tagline: 'Established south Christchurch suburb' },
+  { name: 'St Albans', href: '/locations/st-albans', tagline: 'Vibrant community near Edgeware Village' },
+  { name: 'Sumner', href: '/locations/sumner', tagline: 'Coastal village with boutique businesses' },
+  { name: 'Sydenham', href: '/locations/sydenham', tagline: 'Industrial & creative business hub' },
+  { name: 'Wigram', href: '/locations/wigram', tagline: 'Modern subdivision with new businesses' },
+  { name: 'Woolston', href: '/locations/woolston', tagline: 'Heathcote River industrial precinct' },
+];
+
+const faqItems = [
+  {
+    question: 'Which areas in Christchurch do you serve?',
+    answer: 'We serve businesses across all of Christchurch and Canterbury, including Addington, Cashmere, Fendalton, Ferrymead, Halswell, Linwood, Merivale, Mount Pleasant, New Brighton, Papanui, Redcliffs, Riccarton, Richmond, Somerfield, Spreydon, St Albans, Sumner, Sydenham, Wigram, and Woolston. If your area is not listed, contact us — we still work with businesses across the wider Canterbury region and New Zealand.',
+  },
+  {
+    question: 'Do you offer different pricing for different Christchurch suburbs?',
+    answer: 'Our pricing is based on the scope and complexity of your project, not your location within Christchurch. Whether you are in Riccarton, Papanui, Halswell, or Sumner, you receive the same premium service and competitive rates. We do offer free consultations to all Christchurch businesses.',
+  },
+  {
+    question: 'Can you help my business rank in multiple Christchurch suburbs?',
+    answer: 'Yes. Our local SEO strategies are designed to help your business appear in search results across multiple Christchurch suburbs. We create location-specific landing pages, optimise your Google Business Profile for broader area coverage, and build local citation networks that signal relevance to Google across the Canterbury region.',
+  },
+  {
+    question: 'Do I need to meet you in person, or can we work remotely?',
+    answer: 'We are Christchurch-based and happy to meet in person at your business location or a central cafe. However, we also work effectively with remote clients across New Zealand. Most of our project management, design reviews, and communication happens via video calls, email, and our project portal.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Service Areas - Byte Digital Christchurch",
+  "description": "Byte Digital provides web design, SEO, and digital marketing services to businesses across 20+ Christchurch suburbs and the wider Canterbury region.",
+  "url": "https://bytedigital.co.nz/locations/",
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Christchurch Service Areas",
+    "numberOfItems": suburbs.length,
+    "itemListElement": suburbs.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `Web Design ${s.name}`,
+      "url": `https://bytedigital.co.nz${s.href}`,
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Areas We Serve | Christchurch Web Design & SEO"
+  description="Byte Digital provides web design, SEO, and digital marketing services to businesses across 20+ Christchurch suburbs including Riccarton, Papanui, Halswell, Merivale, Sumner, and more."
+  jsonLd={jsonLd}
+>
+  <section class="section" style="padding-top:140px">
+    <div class="container">
+      <div class="section-label" style="display:inline-flex">Our Reach</div>
+      <h1 class="section-title" style="text-align:center;margin-bottom:16px">
+        Web Design &amp; SEO Across <span class="gradient-text">Christchurch</span>
+      </h1>
+      <p class="section-subtitle" style="text-align:center;max-width:700px;margin:0 auto 64px">
+        We help businesses in 20+ Christchurch suburbs build websites that rank, convert, and grow revenue. Whether you are in Riccarton, Halswell, or Sumner — we know your local market.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px">
+        {suburbs.map(suburb => (
+          <a href={suburb.href} class="glass" style="display:block;padding:28px 24px;text-decoration:none;color:inherit;border-radius:16px;transition:transform 0.2s,border-color 0.2s;border:1px solid var(--border-subtle)">
+            <h3 style="font-size:18px;font-weight:600;margin:0 0 6px;font-family:'Space Grotesk',sans-serif">{suburb.name}</h3>
+            <p style="margin:0;font-size:14px;color:var(--text-muted)">{suburb.tagline}</p>
+          </a>
+        ))}
+      </div>
+      <div style="text-align:center;margin-top:48px">
+        <p style="color:var(--text-muted);margin-bottom:20px">Don't see your area? We serve the entire Canterbury region.</p>
+        <a href="/contact" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;font-size:15px;text-decoration:none">
+          Get a Free Consultation
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-dark);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:32px;padding:64px 0">
+        <div>
+          <h3 style="font-size:20px;font-weight:600;margin:0 0 12px">Our Local Advantage</h3>
+          <p style="color:var(--text-muted);font-size:15px;line-height:1.7;margin:0">
+            Unlike agencies working remotely from overseas, we are based right here in Christchurch. We understand the local market, the customer demographics, the seasonal patterns, and the competitive landscape that Canterbury businesses face. Every strategy we build is informed by on-the-ground knowledge of what works in your specific suburb and industry.
+          </p>
+        </div>
+        <div>
+          <h3 style="font-size:20px;font-weight:600;margin:0 0 12px">Suburb-Specific SEO</h3>
+          <p style="color:var(--text-muted);font-size:15px;line-height:1.7;margin:0">
+            Google increasingly prioritises local search results. A plumber in Riccarton needs different SEO to a dentist in Merivale. We create dedicated landing pages for each suburb, optimise your Google Business Profile with area-specific keywords, and build location citations that signal relevance to search engines for the exact neighbourhoods you serve.
+          </p>
+        </div>
+        <div>
+          <h3 style="font-size:20px;font-weight:600;margin:0 0 12px">Proven Results Across Canterbury</h3>
+          <p style="color:var(--text-muted);font-size:15px;line-height:1.7;margin:0">
+            Our clients across Christchurch suburbs consistently see measurable improvements. Average lead increases of 215%, page-one Google rankings within six months, and website load times under 1.2 seconds. Whether you are a tradie in Halswell or a retailer in Papanui, our strategies deliver real business results.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</BaseLayout>

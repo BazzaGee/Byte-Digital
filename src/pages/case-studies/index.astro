@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const studies = (await getCollection('case-studies')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title="Case Studies - Real Results for Christchurch Businesses"
+  description="See how Byte Digital has transformed websites and digital marketing for businesses across Christchurch and Canterbury. Real results, real growth."
+>
+  <section style="padding-top:120px;padding-bottom:60px">
+    <div class="container">
+      <div class="section-label">Case Studies</div>
+      <h1 class="section-title">Real Results for<br /><span class="gradient-text">Christchurch Businesses.</span></h1>
+      <p class="section-subtitle" style="margin-top:12px">See how we've helped local businesses across Christchurch and Canterbury transform their online presence and generate more leads.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="case-grid">
+        {studies.map(study => (
+          <a href={`/case-studies/${study.id}`} class="case-item" style="text-decoration:none">
+            <div class="case-visual glass" style="background:linear-gradient(135deg,rgba(139,120,230,0.05),transparent);align-items:center;justify-content:center">
+              <span style="color:var(--text-dimmed);font-size:14px">{study.data.client}</span>
+            </div>
+            <div>
+              <div class="case-badge purple">{study.data.industry}</div>
+              <h3>{study.data.title}</h3>
+              <p>{study.data.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

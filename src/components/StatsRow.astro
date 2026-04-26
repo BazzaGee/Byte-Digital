@@ -1,0 +1,35 @@
+---
+interface Stat {
+  target: number;
+  suffix: string;
+  decimals?: number;
+  label: string;
+}
+
+const stats: Stat[] = [
+  { target: 215, suffix: '%', label: 'Average Lead Increase' },
+  { target: 1.2, suffix: 's', decimals: 1, label: 'Average Load Time' },
+  { target: 98, suffix: '%', label: 'Client Satisfaction' },
+  { target: 50, suffix: '+', label: 'Local Businesses Served' },
+];
+---
+
+<section class="stats-row reveal">
+  <div class="container">
+    <div class="stats-row-grid">
+      {stats.map(stat => (
+        <div class="stat-card glass">
+          <div
+            class="stat-num"
+            data-target={stat.target}
+            data-suffix={stat.suffix}
+            data-decimals={stat.decimals ?? 0}
+          >
+            0{stat.suffix}
+          </div>
+          <div class="stat-label">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

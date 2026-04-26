@@ -1,0 +1,16 @@
+---
+export interface Props {
+  number: number;
+  color: 'purple' | 'mint';
+  title: string;
+  description: string;
+}
+
+const { number, color, title, description } = Astro.props;
+---
+
+<div class="process-step glass">
+  <div class={`process-num ${color}`}>{number}</div>
+  <h3>{title}</h3>
+  <p>{description}</p>
+</div>

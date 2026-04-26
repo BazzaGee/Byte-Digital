@@ -1,0 +1,126 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Ferrymead';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Ferrymead?',
+    answer: 'Ferrymead business websites typically range from $2,500 to $10,000. Boutique retail and hospitality businesses often need stylish, visually-driven sites in the $3,000 to $6,000 range, while businesses requiring e-commerce or more advanced functionality may invest up to $10,000. We tailor every project to your specific needs and budget.',
+  },
+  {
+    question: 'Do you offer SEO services for Ferrymead businesses?',
+    answer: 'Yes. Ferrymead\'s unique heritage character and riverside location provide excellent content angles for SEO. We target Ferrymead-specific searches as well as broader Christchurch queries relevant to your business. Our local SEO strategies help ensure Ferrymead businesses appear prominently in searches from customers across the eastern suburbs.',
+  },
+  {
+    question: 'How long does it take to build a website for my Ferrymead business?',
+    answer: 'Most Ferrymead business websites are completed within three to six weeks. Businesses with clear branding and content ready can be turned around more quickly, while those needing additional design development, photography, or custom features may take up to eight weeks.',
+  },
+  {
+    question: 'How can digital marketing help my Ferrymead heritage or tourism-related business?',
+    answer: 'Ferrymead\'s heritage identity and proximity to popular coastal areas like Sumner create unique digital marketing opportunities. We build websites that tell your story, showcase the heritage experience, and attract visitors from across Christchurch and beyond. Social media marketing on visually-driven platforms like Instagram is particularly effective for Ferrymead\'s boutique and tourism businesses.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Ferrymead Christchurch",
+  "description": "Professional web design, SEO, and digital marketing services for businesses in Ferrymead, Christchurch. Serving boutique businesses, heritage tourism, and the Heathcote River community.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Ferrymead, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Woolston', slug: 'woolston' },
+  { name: 'Sumner', slug: 'sumner' },
+  { name: 'Mount Pleasant', slug: 'mount-pleasant' },
+  { name: 'Redcliffs', slug: 'redcliffs' },
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Addington', slug: 'addington' },
+  { name: 'Richmond', slug: 'richmond' },
+  { name: 'New Brighton', slug: 'new-brighton' },
+  { name: 'St Albans', slug: 'st-albans' },
+];
+---
+
+<LocationPage
+  title="Web Design Ferrymead Christchurch | Byte Digital"
+  description="Byte Digital provides web design, SEO, and digital marketing for Ferrymead businesses. Helping boutique and heritage businesses in Christchurch's historic Heathcote River area grow online."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Solutions for Ferrymead's Unique Business Community</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Ferrymead holds a special place in Christchurch's history and identity. Nestled along the Heathcote River where it meets the estuary, this suburb combines rich heritage with a growing community of boutique businesses, creative studios, and lifestyle-oriented enterprises. The Ferrymead Heritage Park, one of New Zealand's premier living history museums, anchors the area's cultural identity and draws visitors from across the region. Meanwhile, the surrounding commercial area supports a diverse mix of businesses that benefit from Ferrymead's scenic location and proximity to both the eastern suburbs and the coastal communities of Sumner and Redcliffs.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital creates websites for Ferrymead businesses that capture the unique character of this special place. Whether you operate a boutique shop, a heritage tourism venture, a riverside café, or a professional service practice, your website should reflect the distinctive qualities that make Ferrymead special. We build bespoke digital presences that tell your story, showcase your offerings, and attract customers from across Christchurch who are drawn to Ferrymead's unique atmosphere.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Heritage Tourism and Ferrymead's Cultural Economy</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Ferrymead Heritage Park is not just a tourist attraction — it is a cornerstone of the local economy that supports and is supported by surrounding businesses. Visitors to the heritage park create foot traffic for nearby cafés, gift shops, and service businesses, while the area's heritage identity provides a compelling brand narrative for any business operating here. Ferrymead businesses that effectively leverage this heritage character in their digital marketing stand out from competitors in more generic commercial areas.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We build websites for Ferrymead's tourism and hospitality businesses that showcase the area's unique appeal. For cafés and restaurants, this means highlighting the riverside setting, the heritage ambiance, and the quality of your offerings through high-quality imagery and engaging content. For tour operators and experience providers, it means creating immersive online experiences that build anticipation and make booking effortless. Event promotion, seasonal specials, and integrated social media feeds all work together to keep your online presence dynamic and engaging.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The Ferrymead area also attracts a significant number of functions and events — weddings, corporate retreats, community gatherings — and businesses that cater to this market need websites that communicate their venue and service capabilities effectively. We build event-focused websites with galleries of past functions, capacity and facilities information, pricing guides, and online enquiry systems that make it easy for event organisers to get in touch and book your Ferrymead venue or service.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Boutique and Creative Businesses in Ferrymead</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Ferrymead's scenic location and more affordable commercial space have attracted a growing number of boutique and creative businesses. Art studios, craft workshops, specialty food producers, and independent retailers have all found a home in the area, drawn by the riverside environment and the proximity to both the estuary communities and the wider Christchurch market. These businesses need websites that balance visual appeal with commercial functionality.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We design e-commerce websites for Ferrymead's makers and boutique retailers that maintain the handcrafted, artisanal feel of their products while providing robust online shopping functionality. Beautiful product photography integration, elegant category navigation, and seamless checkout processes ensure your online store reflects the quality and care that goes into everything you create. We also integrate social media feeds and galleries that let your Ferrymead studio or workshop atmosphere shine through online.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          For Ferrymead's creative professionals — photographers, designers, artists, and stylists — we build portfolio websites that showcase work in its best possible light. Image galleries, video integration, client testimonials, and case study presentations provide the context that converts website visitors into paying clients. We understand that creative professionals need websites that feel like an extension of their creative vision, not a compromise forced by template constraints.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Strategic SEO and Marketing for Ferrymead</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          SEO for Ferrymead businesses leverages the area's unique characteristics as content advantages. The heritage narrative, the riverside location, and the proximity to popular coastal destinations all provide rich material for SEO content that differentiates your business from competitors. We create location-specific landing pages, blog posts, and service descriptions that naturally incorporate valuable keywords while telling a compelling story about your Ferrymead business.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Local SEO ensures Ferrymead businesses appear in searches from the surrounding eastern suburbs and from people specifically looking for Ferrymead experiences. Google Business Profile optimisation, local citation building, and review management all contribute to strong visibility in map results and local search rankings. For Ferrymead's tourism-related businesses, we also target broader Christchurch searches for attractions, activities, and dining options in the eastern suburbs.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital helps Ferrymead businesses build digital presences as distinctive as the suburb itself. View our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">search engine optimisation</a> to get started.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

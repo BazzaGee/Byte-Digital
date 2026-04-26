@@ -1,0 +1,126 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Fendalton';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Fendalton?',
+    answer: 'Fendalton business websites typically range from $4,000 to $18,000, reflecting the professional and premium nature of businesses in this affluent suburb. Specialist consultancies, medical practices, and boutique firms tend to require more sophisticated builds, while smaller service businesses can achieve excellent results in the lower range. We tailor every quote to your specific requirements and business goals.',
+  },
+  {
+    question: 'Do you offer SEO services for Fendalton businesses?',
+    answer: 'Yes. Fendalton businesses compete for some of Christchurch\'s most valuable customers, and our SEO strategies are designed to help you win that competition. We focus on building authority through quality content, optimising for high-value search terms, and ensuring your Google Business Profile stands out. Our Fendalton clients consistently achieve strong rankings for competitive local search terms.',
+  },
+  {
+    question: 'How long does it take to build a website for a Fendalton business?',
+    answer: 'We typically complete Fendalton business websites within four to eight weeks. More complex projects involving custom functionality, e-commerce, or extensive content creation may require eight to twelve weeks. We work closely with you throughout the process to ensure the final product meets the high standards expected by Fendalton\'s business community.',
+  },
+  {
+    question: 'Can you help my Fendalton medical practice attract more patients online?',
+    answer: 'Absolutely. We have significant experience building websites for medical and health practices in premium Christchurch suburbs like Fendalton. Our medical websites include practitioner profiles, service descriptions, online booking systems, and patient resources — all designed to build trust and make it easy for patients to engage with your practice. Combined with medical-focused SEO, we connect you with patients actively searching for your services.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Fendalton Christchurch",
+  "description": "Premium web design, SEO, and digital marketing services for businesses in Fendalton, Christchurch. Serving professional services, medical practices, and boutique businesses near Hagley Park.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Fendalton, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Merivale', slug: 'merivale' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'Cashmere', slug: 'cashmere' },
+  { name: 'St Albans', slug: 'st-albans' },
+  { name: 'Papanui', slug: 'papanui' },
+  { name: 'Addington', slug: 'addington' },
+  { name: 'Somerfield', slug: 'somerfield' },
+  { name: 'Halswell', slug: 'halswell' },
+  { name: 'Spreydon', slug: 'spreydon' },
+  { name: 'Woolston', slug: 'woolston' },
+];
+---
+
+<LocationPage
+  title="Web Design Fendalton Christchurch | Byte Digital"
+  description="Byte Digital creates premium websites for Fendalton businesses. Web design, SEO, and digital marketing for Christchurch's affluent suburb near Hagley Park."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Sophisticated Digital Solutions for Fendalton Businesses</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Fendalton sits among Christchurch's most prestigious suburbs, characterised by tree-lined streets, generous properties, and an established community of successful professionals and business owners. Bordered by the expansive Hagley Park to the east and the Avon River corridor, the suburb attracts residents and business operators who expect the highest standards in everything they engage with — including digital experiences. For businesses based in Fendalton, this means your website must reflect the same quality and professionalism your clients associate with the suburb itself.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The Fendalton commercial district, while more intimate than neighbouring Merivale or Riccarton, hosts a concentrated cluster of professional services, specialist medical practices, boutique consultancies, and premium home services. These businesses share a common challenge: their clients have high expectations and plenty of alternatives. When a Fendalton resident searches for a specialist, advisor, or service provider, they evaluate multiple options online before making contact. The business with the most professional, trustworthy, and user-friendly website almost always wins that initial engagement.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Professional Services Web Design in Fendalton</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Fendalton's proximity to Hagley Park and the central city makes it a preferred location for professional services firms. Solicitors, accountants, financial planners, and business consultants operate from offices throughout the suburb, serving both local residents and clients across Canterbury. For these businesses, a website must serve multiple functions simultaneously: establish credibility, showcase expertise, facilitate client enquiries, and provide a platform for ongoing thought leadership.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We design professional services websites that strike the right balance between authority and accessibility. Heavy corporate aesthetics that feel cold and impersonal do not work for Fendalton's relationship-driven professional services market. Instead, we create clean, elegant designs that communicate competence while remaining approachable. Your team profiles, service descriptions, case studies, and contact options are all carefully structured to guide potential clients towards making an enquiry.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Content strategy is particularly important for Fendalton's professional services businesses. Regular blog articles, insights, and resource pages demonstrate ongoing expertise and keep your website fresh in Google's eyes — both critical factors for maintaining strong search rankings. We help develop content calendars and create SEO-optimised articles that target the specific questions and concerns your Fendalton clients are searching for online.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Medical and Health Practice Websites</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Fendalton has a significant concentration of medical and health practices, from specialist surgeons and dermatologists to physiotherapists and mental health professionals. These practices serve an affluent, health-conscious local population that thoroughly researches providers before booking appointments. Your website needs to answer their questions, showcase your qualifications and experience, and make booking effortless.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We build medical practice websites that prioritise patient trust and convenience. Detailed practitioner profiles with credentials and areas of specialisation help patients feel confident in their choice. Clear service descriptions using patient-friendly language reduce confusion and support informed decision-making. Integrated online booking systems eliminate phone tag and make it easy for patients to book at their convenience, including outside business hours — which is when most health-related searches actually happen.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Medical SEO for Fendalton practices requires a specialised approach. We target condition-specific and treatment-specific keywords that potential patients use when searching for solutions. A specialist in Fendalton offering joint replacement services, for instance, benefits from content optimised for searches like "knee surgeon Christchurch" or "orthopaedic specialist Canterbury" — queries that indicate a patient ready to seek treatment. This targeted approach generates higher-quality leads than generic medical practice SEO.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Premium Home and Lifestyle Services</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Fendalton's affluent residential base creates strong demand for premium home and lifestyle services. Landscaping designers, interior decorators, home renovation specialists, pool builders, and high-end cleaning services all compete for this lucrative market. For these businesses, the website serves as a portfolio that demonstrates capability and taste — essential when your clients are investing significant sums in their homes.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We design portfolio-heavy websites that let your work speak for itself. High-resolution project galleries, before-and-after showcases, and client testimonials provide the social proof that Fendalton homeowners look for before engaging a service provider. Combined with targeted Google Ads campaigns focusing on premium keywords and careful audience targeting, we help Fendalton home service businesses consistently attract their ideal clients.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital understands what Fendalton businesses need to succeed online. Explore our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> and <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO solutions</a> to see how we can help your Fendalton business grow.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

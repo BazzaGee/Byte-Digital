@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Divider from '../components/Divider.astro';
+import CTASection from '../components/CTASection.astro';
+import StatsBar from '../components/StatsBar.astro';
+---
+
+<BaseLayout
+  title="About Byte Digital | Christchurch Web Design Agency"
+  description="Learn about Byte Digital — Christchurch's premium web design and digital marketing agency. Our mission, values, and the technology we use to help local businesses dominate online."
+>
+  <section style="padding-top:120px;padding-bottom:60px">
+    <div class="container">
+      <nav style="margin-bottom:24px;font-size:13px;color:var(--text-muted)">
+        <a href="/" style="color:var(--text-muted)">Home</a>
+        <span style="margin:0 8px">/</span>
+        <span style="color:var(--secondary)">About</span>
+      </nav>
+      <div class="section-label">About Us</div>
+      <h1 class="section-title">We build digital engines<br />for <span class="gradient-text">Christchurch businesses.</span></h1>
+      <p class="section-subtitle" style="margin-top:12px;max-width:700px">
+        Byte Digital is a Christchurch-based web design and digital marketing agency on a mission to help local businesses dominate online. We combine cutting-edge technology with deep understanding of the New Zealand market.
+      </p>
+    </div>
+  </section>
+
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <div class="section-label">Our Story</div>
+        <h2 style="font-size:32px;font-weight:700;color:#fff;margin-bottom:24px;line-height:1.2">Built for Christchurch, powered by technology.</h2>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
+          Byte Digital was born from a frustration that every Christchurch business owner knows too well. You pay good money for a website, and what do you get? A slow, generic WordPress site that looks like every other website in your industry, ranks nowhere on Google, and generates approximately zero new customers. Meanwhile, your competitors — the ones with the flashy websites and the top Google rankings — are taking the clients that should be yours.
+        </p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
+          We saw this happening to businesses across Christchurch and Canterbury every day. Roofers with 20 years of experience losing jobs to newcomers with better websites. Dental practices with world-class clinical skills invisible online while clinics with inferior services dominated search results. Pool companies, electricians, hair salons, tradies of every kind — all being held back not by the quality of their work, but by the quality of their digital presence.
+        </p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
+          The web design industry in New Zealand had a problem. Most agencies were still building WordPress sites with bloated plugins, page builders, and template themes that produced mediocre results. They charged premium prices for work that was fundamentally outdated, and their clients paid the price in poor performance, low search rankings, and missed opportunities. We knew there had to be a better way.
+        </p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
+          So we built Byte Digital to be the agency we wished existed when we were business owners ourselves. An agency that uses genuinely modern technology. An agency that measures success by leads generated and revenue increased, not just by how pretty a website looks. An agency that understands the Christchurch market intimately — the suburbs, the seasons, the search behaviour, the local competition. An agency that treats your business growth as its own.
+        </p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
+          We are not a large, impersonal agency that hands your project off to a junior developer. We are a focused team of web designers, developers, and digital strategists who work directly with every client. When you work with Byte Digital, you work with the same people from your first consultation through to your ongoing optimisation. No account managers passing messages. No overseas call centres. Just direct, honest communication with people who genuinely care about your results.
+        </p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
+          Every business we work with teaches us something new about what Christchurch and Canterbury businesses need from their digital presence. That collective knowledge feeds back into every project we take on, which means our clients benefit not just from our expertise, but from the lessons learned across dozens of local businesses and industries. We are not just building websites — we are building a deep, proprietary understanding of the New Zealand digital landscape that no generic agency can match.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <StatsBar />
+
+  <section class="section" style="background:var(--bg-dark)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">Our Values</div>
+        <h2 class="section-title" style="margin:0 auto">What drives us.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:900px;margin:0 auto">
+        <div class="glass" style="padding:32px;border-radius:28px">
+          <div class="svc-row-icon purple" style="margin-bottom:16px">
+            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+          </div>
+          <h3 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:12px">Results-Driven</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.7">
+            A beautiful website that generates no leads is an expensive decoration. We measure our success by the tangible impact on your business — more enquiries, more bookings, more revenue. Every design decision, every line of code, and every SEO strategy is evaluated against a single question: will this help our client get more customers? If the answer is no, it doesn't make the cut.
+          </p>
+        </div>
+        <div class="glass" style="padding:32px;border-radius:28px">
+          <div class="svc-row-icon mint" style="margin-bottom:16px">
+            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+          </div>
+          <h3 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:12px">Transparency</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.7">
+            No hidden fees, no confusing jargon, no inflated metrics. We tell you exactly what we are doing, why we are doing it, and what results to expect. You get full access to your analytics, ranking reports, and performance data. If something is not working, we will tell you straight away and fix it. We treat every client relationship as a partnership built on trust and mutual accountability.
+          </p>
+        </div>
+        <div class="glass" style="padding:32px;border-radius:28px">
+          <div class="svc-row-icon purple" style="margin-bottom:16px">
+            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+          </div>
+          <h3 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:12px">Innovation</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.7">
+            The web moves fast, and we move faster. We adopt new technologies early, test them rigorously, and implement the ones that deliver real advantages. While most NZ agencies are still building on WordPress, we work with frameworks like Astro, Next.js, and React that deliver dramatically better performance. Your website should be the most advanced piece of marketing your business owns, not the most outdated.
+          </p>
+        </div>
+        <div class="glass" style="padding:32px;border-radius:28px">
+          <div class="svc-row-icon mint" style="margin-bottom:16px">
+            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+          </div>
+          <h3 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:12px">Local Partnership</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.7">
+            We are Christchurch-based and Christchurch-focused. We understand the local market because we live in it. We know that a roofing company in Rangiora has different needs from a dental practice in the CBD. We understand New Zealand consumer behaviour, seasonal demand patterns, and the unique challenges of running a business in Canterbury. Your success is our reputation, and we take that seriously.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <div class="section-label">Technology</div>
+        <h2 style="font-size:32px;font-weight:700;color:#fff;margin-bottom:24px;line-height:1.2">Modern stack. Modern results.</h2>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
+          The technology behind your website matters more than most businesses realise. A site built on outdated technology is slower, less secure, harder to rank on Google, and more expensive to maintain. Yet the vast majority of New Zealand websites are still built on WordPress — a platform that was revolutionary in 2005 but has become bloated, slow, and a favourite target for hackers.
+        </p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
+          At Byte Digital, we build on modern frameworks that represent the state of the art in web development. Our primary framework is Astro, a technology that generates static pages for lightning-fast load times while still supporting dynamic, interactive features. For more complex applications — such as websites with user accounts, real-time booking systems, or custom calculators — we use Next.js and React, the same technologies used by companies like Netflix, Stripe, and Airbnb.
+        </p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
+          We pair these frameworks with headless content management systems like Sanity and Contentful, giving our clients full control over their website content without the performance penalties of traditional CMS platforms. Need to update a blog post, change a price, or add a new team member? You can do it yourself through an intuitive dashboard, and the changes go live instantly without any performance impact.
+        </p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
+          Our hosting infrastructure is built on modern cloud platforms with global content delivery networks, automatic SSL certificates, and built-in security features. Every website we deploy loads in under 1.5 seconds, scores 95+ on Google's PageSpeed Insights, and is protected against the most common web vulnerabilities. We also implement automated backups, uptime monitoring, and proactive security updates so you never have to worry about your website going down or getting compromised.
+        </p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
+          What does this mean for your business in practical terms? Faster websites convert more visitors into customers. Research by Google shows that a one-second delay in page load time can reduce conversions by 7%. For a business generating 100 leads per month from their website, that is seven potential customers lost every month simply because the site is slow. Our modern stack eliminates this problem entirely, giving you a competitive advantage that compounds over time as search engines increasingly prioritise performance in their rankings.
+        </p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
+          We also invest heavily in SEO technology, using professional-grade tools for keyword research, rank tracking, technical auditing, and competitor analysis. Our SEO strategies are data-driven and continuously optimised, adapting to Google's algorithm updates and shifts in search behaviour. This is not the set-and-forget SEO that most agencies sell — it is an ongoing, strategic process that delivers compounding results month after month.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+  <CTASection />
+</BaseLayout>

@@ -1,0 +1,48 @@
+---
+import TestimonialCard from './TestimonialCard.astro';
+
+const testimonials = [
+  {
+    quote: "Our phone literally started ringing more within the first week. The old site was embarrassing — Byte Digital made us look like the premium company we actually are. Best decision we've made for our Christchurch business.",
+    authorName: 'Marcus T.',
+    authorBusiness: 'Apex Prime Roofing, Christchurch',
+    authorInitial: 'M',
+    avatarColor: 'purple' as const,
+  },
+  {
+    quote: "Patients constantly tell us our website is what made them choose us over other clinics. The booking system alone has saved our front desk 10 hours a week. Absolutely incredible transformation.",
+    authorName: 'Dr. Sarah Kim',
+    authorBusiness: 'Lumina Dental Care, Christchurch',
+    authorInitial: 'S',
+    avatarColor: 'mint' as const,
+  },
+  {
+    quote: "I didn't think a website could change my business this much. We went from 3 quote requests a month to 30. Best investment I've ever made, hands down. Byte Digital knows what they're doing.",
+    authorName: 'James R.',
+    authorBusiness: 'CleanPro Pool Services, Canterbury',
+    authorInitial: 'J',
+    avatarColor: 'purple' as const,
+  },
+];
+---
+
+<section class="section dm-section dot-pattern reveal">
+  <div class="dm-bg" id="dm-testimonials"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="dm-header" style="text-align:center">
+      <div class="section-label" style="display:inline-flex">Testimonials</div>
+      <div class="section-title">Trusted by local businesses<br />who <span class="gradient-text">demand the best.</span></div>
+    </div>
+    <div class="testimonials-grid">
+      {testimonials.map(t => (
+        <TestimonialCard
+          quote={t.quote}
+          authorName={t.authorName}
+          authorBusiness={t.authorBusiness}
+          authorInitial={t.authorInitial}
+          avatarColor={t.avatarColor}
+        />
+      ))}
+    </div>
+  </div>
+</section>

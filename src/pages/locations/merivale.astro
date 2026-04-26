@@ -1,0 +1,129 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Merivale';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Merivale?',
+    answer: 'Merivale businesses typically invest between $4,000 and $20,000 in professional web design, reflecting the premium positioning most Merivale brands require. A high-end service such as a boutique law firm or specialist medical practice might need a more sophisticated build, while a premium retail store or café may fall in the mid-range. We provide transparent pricing upfront and never surprise clients with hidden costs.',
+  },
+  {
+    question: 'Do you offer SEO services for Merivale businesses?',
+    answer: 'Yes. Merivale is one of Christchurch\'s most affluent suburbs, and competition for high-value local customers is intense. Our SEO strategies for Merivale businesses focus on premium keyword targeting, authoritative content creation, and building the kind of online trust signals that attract discerning clients. We also optimise Google Business Profiles to ensure your Merivale business appears in local map results for relevant searches.',
+  },
+  {
+    question: 'How long does it take to build a website for my Merivale business?',
+    answer: 'Merivale business websites typically take four to eight weeks to complete. Premium builds with extensive custom design, branding work, or e-commerce functionality may take up to twelve weeks. We understand that Merivale businesses have high standards for their brand presentation, so we build in adequate time for refinement and feedback at every stage of the design process.',
+  },
+  {
+    question: 'Can you design a website that matches the premium feel of my Merivale brand?',
+    answer: 'Absolutely. We specialise in creating sophisticated, premium websites that reflect the quality positioning of Merivale businesses. Every design decision — from typography and colour palette to imagery and user experience — is crafted to communicate professionalism and exclusivity. We have worked with Merivale law firms, financial advisors, and boutique retailers to create digital presences that match their brand standards.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Merivale Christchurch",
+  "description": "Premium web design, SEO, and digital marketing services for businesses in Merivale, Christchurch. Serving high-end retail, professional services, and specialist businesses.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Merivale, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'Fendalton', slug: 'fendalton' },
+  { name: 'Papanui', slug: 'papanui' },
+  { name: 'St Albans', slug: 'st-albans' },
+  { name: 'Addington', slug: 'addington' },
+  { name: 'Cashmere', slug: 'cashmere' },
+  { name: 'Somerfield', slug: 'somerfield' },
+  { name: 'Spreydon', slug: 'spreydon' },
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Linwood', slug: 'linwood' },
+];
+---
+
+<LocationPage
+  title="Web Design Merivale Christchurch | Premium Websites | Byte Digital"
+  description="Byte Digital creates premium, high-converting websites for Merivale businesses. Web design, SEO, and digital marketing tailored to Christchurch's most affluent suburb."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Premium Web Design for Merivale's Finest Businesses</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Merivale occupies a unique position in Christchurch's commercial landscape. As one of the city's most affluent suburbs, it attracts a clientele that expects sophistication, quality, and attention to detail. The Papanui Road shopping strip is lined with high-end boutiques, specialist medical practices, legal firms, and premium food and beverage establishments — all competing for the same discerning customer base. In this environment, your digital presence cannot simply be adequate; it must be exceptional.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital understands the Merivale market intimately. We know that a law firm on Papanui Road needs a website that conveys authority and trust from the first pixel. We understand that a Merivale boutique selling designer fashion cannot afford a generic template that looks like a thousand other shops online. Every business in Merivale has invested in physical presentation — the storefront, the interior fit-out, the staff uniforms. Your website deserves that same level of investment and care.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">The Merivale Competitive Landscape</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Competition among Merivale businesses is not just about price — it is about perception. When a potential client searches for "financial advisor Christchurch" or "specialist surgeon Merivale," they are evaluating multiple options before making contact. The quality of your website becomes a proxy for the quality of your service. A dated, slow, or poorly designed website actively costs you high-value clients, regardless of how good your actual service is.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The Papanui Road corridor that forms Merivale's commercial spine is home to some of Christchurch's most established professional services firms. Accountants, solicitors, architects, and medical specialists cluster here because of the affluent local population. This creates intense competition for online visibility in professional service categories. Without a dedicated SEO and content strategy, even well-established Merivale practices can find themselves invisible online while newer, digitally-savvy competitors capture their ideal clients.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Merivale's retail sector faces its own digital challenges. With consumers increasingly researching purchases online before visiting stores, even premium brick-and-mortar retailers need strong e-commerce capabilities or at minimum a compelling web presence that showcases their inventory and brand story. The shift towards online shopping accelerated dramatically after the Christchurch earthquakes and has only intensified. Merivale retailers who have not adapted are losing market share to competitors with better digital strategies, including those outside Christchurch entirely.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Tailored Web Design for Professional Services</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Professional services dominate the Merivale business landscape, and we have extensive experience designing websites for this sector. Law firms, accounting practices, medical clinics, and financial advisory businesses each require specific features: appointment booking integration, credential showcases, client testimonials, and content that demonstrates expertise. We build all of these elements into websites that are both beautiful and functional.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          For Merivale medical and health practices, we create websites that build patient confidence. Clean, calming design aesthetics combined with practitioner profiles, service explanations, and easy online booking systems remove friction from the patient journey. We also implement medical SEO strategies that target condition-specific and treatment-specific searches — connecting your practice with patients actively looking for the services you provide in the Merivale area.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Legal and financial firms in Merivale benefit from our authority-building approach. We design websites that position you as the expert through thought leadership content, case study showcases, and a brand presence that communicates trust and competence. In professional services, your website is often the first impression a client forms of your practice — we make sure that impression is powerful and positive.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">E-Commerce and Digital Marketing for Merivale Retail</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Merivale's premium retail sector demands e-commerce solutions that match the in-store experience. We build Shopify and WooCommerce stores that feel as curated and considered as a physical boutique. High-quality product photography integration, elegant filtering and navigation, and seamless checkout processes ensure your online store reflects the premium nature of your products and brand.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Digital marketing for Merivale retailers goes beyond basic Facebook ads. We develop sophisticated multi-channel strategies that may include Google Shopping campaigns, Instagram visual marketing, email loyalty programs, and retargeting sequences that re-engage browsers who visited your site without purchasing. For fashion and lifestyle brands, we create lookbook-style content that drives aspiration and purchase intent.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Social media management is particularly valuable for Merivale's food and hospitality businesses. The café and restaurant scene along Papanui Road is vibrant, and a strong Instagram presence can drive significant foot traffic. We create social media strategies that showcase your food, atmosphere, and brand personality to attract both regular locals and visitors exploring the Merivale area.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Ready to elevate your Merivale digital presence? Explore our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or get in touch to discuss your project with our team.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

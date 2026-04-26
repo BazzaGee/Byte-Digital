@@ -1,0 +1,128 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Spreydon';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Spreydon?',
+    answer: 'Spreydon business websites typically range from $2,500 to $8,000. We offer solutions for every budget, from essential brochure websites for startups and small service businesses at $2,500 to more feature-rich builds including online booking, e-commerce, or custom functionality in the $5,000 to $8,000 range. Every quote is tailored to your specific needs.',
+  },
+  {
+    question: 'Do you offer SEO services for Spreydon businesses?',
+    answer: 'Yes. Spreydon businesses benefit from our targeted local SEO that captures customers searching in the southwest Christchurch area. We optimise for Spreydon-specific keywords as well as broader searches covering the Hornby and Halswell areas. Google Business Profile optimisation, review management, and local citation building are all part of our comprehensive local SEO approach.',
+  },
+  {
+    question: 'How long does it take to build a website for my Spreydon business?',
+    answer: 'We typically complete Spreydon business websites within three to five weeks. Simpler sites can be delivered more quickly, while businesses needing additional features like online booking or product catalogues may take five to seven weeks. We set clear deadlines at the start of every project and keep you informed of progress.',
+  },
+  {
+    question: 'How can my Spreydon business stand out in the southwest Christchurch market?',
+    answer: 'Standing out in the Spreydon and Hornby area requires a combination of strong local SEO, a professional website that builds trust, and targeted digital marketing. We help Spreydon businesses differentiate themselves through unique brand storytelling, showcasing local expertise, and creating content that resonates with the southwest Christchurch community. Google Ads can also provide immediate visibility while your organic presence builds.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Spreydon Christchurch",
+  "description": "Professional web design, SEO, and digital marketing services for businesses in Spreydon, Christchurch. Serving southwest Christchurch's diverse business community near Hornby.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Spreydon, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Halswell', slug: 'halswell' },
+  { name: 'Wigram', slug: 'wigram' },
+  { name: 'Addington', slug: 'addington' },
+  { name: 'Somerfield', slug: 'somerfield' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Hornby', slug: 'hornby' },
+  { name: 'Cashmere', slug: 'cashmere' },
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'Papanui', slug: 'papanui' },
+];
+
+const hornbySlug = 'hornby';
+---
+
+<LocationPage
+  title="Web Design Spreydon Christchurch | Byte Digital"
+  description="Byte Digital provides web design, SEO, and digital marketing for Spreydon businesses. Helping southwest Christchurch businesses grow their online presence and attract more customers."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Solutions for Spreydon's Growing Business Community</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Spreydon sits at the heart of southwest Christchurch, a well-established suburb that serves as a bridge between the inner city and the rapidly growing outer suburbs of Halswell and Wigram. With its diverse population, strong community networks, and improving commercial infrastructure, Spreydon is experiencing a period of transformation. New businesses are opening, existing businesses are growing, and the digital expectations of local consumers continue to rise. In this evolving landscape, a professional website is no longer a luxury — it is the foundation of sustainable business growth.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital works with Spreydon businesses to create websites that generate real results — more enquiries, more customers, and more revenue. We understand the southwest Christchurch market, the competitive dynamics of the area, and the specific digital strategies that work for businesses serving this community. Whether you run a trade business operating across southwest Christchurch, a local retail shop, or a professional service practice, we build the online presence you need to thrive.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Spreydon's Diverse Business Landscape</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Spreydon's business community reflects the diversity of its population. The area supports a wide range of enterprises, from long-established trades businesses and automotive workshops to newer cafés, health services, childcare centres, and specialty retail operations. The proximity to the massive Hornby commercial and industrial zone also creates opportunities for businesses that serve the B2B market or supply goods and services to the industrial sector.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          For Spreydon's trades businesses, the digital opportunity is substantial. Plumbers, electricians, builders, painters, and landscapers based in Spreydon serve customers across southwest Christchurch and beyond. However, many trades operators in this area still rely primarily on word-of-mouth referrals, missing out on the significant volume of customers who search for trade services online. A well-optimised trades website with clear service listings, project photos, and easy contact options captures these ready-to-hire customers before they call your competitor.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The retail and hospitality sector in Spreydon is also evolving. While the suburb has traditionally been served by larger centres like Hornby and Riccarton, local cafés, takeaways, and convenience stores are increasingly recognising the value of digital marketing. A Spreydon café with a strong Google presence and an appealing website can attract customers from surrounding suburbs who might otherwise default to more established dining precincts. We help these businesses punch above their weight online.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Southwest Christchurch SEO Strategy</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          SEO for Spreydon businesses requires a specific approach that accounts for the suburb's position within the broader southwest Christchurch market. Many local searches are neighbourhood-specific — "plumber Spreydon" or "café near Halswell Road" — while others cover the wider southwest area. We develop keyword strategies that capture searches at both the suburb and regional level, ensuring you appear for relevant queries regardless of how the searcher phrases their need.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Google Business Profile management is particularly important for Spreydon businesses. With the suburb's proximity to both central Christchurch and Hornby, local search results can be competitive. We optimise every element of your Google Business Profile — from business categories and service areas to photos, reviews, and regular posts — to maximise your visibility in map results and local search rankings. Our review generation strategies also help you accumulate the social proof that influences purchasing decisions.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Content marketing for Spreydon businesses focuses on addressing the specific needs and interests of the local community. Practical, helpful content that answers common questions — whether about home maintenance, health services, or local activities — builds trust and authority while improving search rankings. We create SEO-optimised content that serves your audience and supports your business goals simultaneously.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Affordable Digital Marketing for Spreydon</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We understand that Spreydon businesses, like many in southwest Christchurch, need to be strategic about their marketing budgets. Every dollar invested in digital marketing needs to deliver measurable returns. That is why we focus on strategies with the highest impact-to-cost ratio, starting with a professional, conversion-optimised website as the foundation and then layering on SEO, Google Ads, and social media marketing based on your budget and growth targets.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Google Ads offer Spreydon businesses an excellent way to generate immediate enquiries while organic SEO builds over time. We create tightly targeted campaigns that focus on your specific service area and the keywords most likely to convert. For a Spreydon-based builder, this might mean targeting "house renovation Christchurch" while excluding searches from outside Canterbury. This precision ensures your ad spend goes towards reaching genuine potential customers.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital is committed to helping Spreydon businesses grow through smart, effective digital marketing. Learn more about our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">search engine optimisation</a> to get started.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

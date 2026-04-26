@@ -1,0 +1,155 @@
+---
+import ServicePage from '../../layouts/ServicePage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const faqItems = [
+  {
+    question: 'What is local SEO and how is it different from regular SEO?',
+    answer: 'Local SEO focuses on optimising your online presence to attract customers from geographically specific searches. While regular SEO targets broad keyword rankings, local SEO targets queries like "dentist near me" or "electrician Christchurch" and aims to get your business into the Google Local Pack, Google Maps results, and local organic listings. For Christchurch businesses that serve a specific geographic area, local SEO is typically more valuable than broad organic SEO.'
+  },
+  {
+    question: 'How do I get my Christchurch business to show up on Google Maps?',
+    answer: 'Showing up on Google Maps requires optimising your Google Business Profile with complete and accurate information, selecting relevant business categories, adding high-quality photos, posting regular updates, gathering and responding to reviews, ensuring your NAP (name, address, phone) information is consistent across the web, and building local citations on authoritative Christchurch and NZ directories. Our local SEO service handles all of this systematically.'
+  },
+  {
+    question: 'How important are Google reviews for local SEO in Christchurch?',
+    answer: 'Extremely important. Google reviews are one of the strongest ranking factors for local search results. Businesses with higher ratings and more reviews consistently outrank competitors in the local pack. For Christchurch consumers, reviews serve as social proof that directly influences purchase decisions. Our service includes a review generation strategy that makes it easy for your satisfied customers to leave positive feedback.'
+  },
+  {
+    question: 'Can local SEO help my business rank in specific Christchurch suburbs?',
+    answer: 'Yes. Suburb-specific local SEO is one of the most effective strategies for Christchurch businesses. We create location pages and content that target searches for "plumber Halswell," "cafe Riccarton," or "builder Rolleston." This approach helps you capture highly qualified local traffic from customers who prefer to work with businesses close to their home or workplace.'
+  },
+  {
+    question: 'How long before my Christchurch business shows up in local search results?',
+    answer: 'Google Business Profile optimisation can produce noticeable improvements within two to four weeks, particularly if your profile was previously unoptimised. Suburb-level organic rankings typically take three to six months of consistent effort. Local pack domination for competitive Christchurch keywords usually requires six to twelve months of sustained local SEO work. We set realistic timelines and report on progress monthly.'
+  },
+  {
+    question: 'Do I need a physical location in Christchurch for local SEO to work?',
+    answer: 'Having a physical address in Christchurch provides the strongest local SEO advantage because it allows you to verify a Google Business Profile with a physical location. However, service-area businesses that operate across Christchurch without a storefront can still rank well in local results by defining their service area in their Google Business Profile and building location-specific landing pages for the suburbs they serve.'
+  }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Local SEO Christchurch",
+  "description": "Local SEO services for Christchurch businesses. Google Business Profile optimisation, Google Maps ranking, local citations, and suburb targeting by Byte Digital.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressRegion": "Canterbury", "addressCountry": "NZ" }
+  },
+  "areaServed": { "@type": "City", "name": "Christchurch" },
+  "sameAs": []
+};
+
+const relatedServices = [
+  { href: '/services/seo', label: 'SEO' },
+  { href: '/services/web-design', label: 'Web Design' },
+  { href: '/services/web-development', label: 'Web Development' },
+  { href: '/services/website-maintenance', label: 'Website Maintenance' },
+  { href: '/services/ecommerce', label: 'eCommerce' },
+  { href: '/services/branding', label: 'Branding' },
+  { href: '/services/logo-design', label: 'Logo Design' },
+  { href: '/services/wordpress-development', label: 'WordPress Development' }
+];
+---
+
+<ServicePage
+  title="Local SEO Christchurch | Google Maps Optimization NZ | Byte Digital"
+  description="Byte Digital delivers local SEO services for Christchurch businesses. Google Business Profile optimisation, Google Maps ranking, local citations, review management, and suburb targeting."
+  serviceTitle="Local SEO Christchurch"
+  serviceSubtitle="Dominate local search results and Google Maps to attract more customers from your area."
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-bottom:16px">Local SEO That Puts Your Christchurch Business on the Map</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">When someone in Christchurch searches for a service you offer, you want your business to appear prominently in the results. Not on page three. Not buried beneath competitors from Auckland or overseas. Right there in the Google Local Pack, on Google Maps, and at the top of the organic results. That is what local SEO achieves, and it is one of the highest-return digital marketing investments a local business can make.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">At Byte Digital, we specialise in helping Christchurch and Canterbury businesses dominate local search. We understand the nuances of Google's local algorithm, the importance of Christchurch-specific signals, and the strategies that move the needle for businesses serving a geographic market.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">What is Local SEO and Why Does It Matter for Christchurch?</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Local SEO is the practice of optimising your online presence to attract business from local searches. These are searches that include geographic qualifiers like "Christchurch," "Canterbury," or specific suburb names, as well as "near me" queries that Google interprets based on the searcher's location.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Consider how people in Christchurch actually search. They do not type "best plumber." They type "plumber Christchurch" or "emergency plumber Halswell" or "plumber near me." These localised queries represent intent that is far more likely to convert into a paying customer than generic searches. The person searching for "plumber Christchurch" has an immediate need and is ready to hire.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Google's local search results feature the Local Pack, a prominent display of three businesses with a map, ratings, and contact information. Appearing in the Local Pack captures a massive share of local search clicks, often exceeding the organic results below. For many Christchurch service businesses, Local Pack visibility delivers more phone calls and enquiries than any other marketing channel.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Google Business Profile Optimisation</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Your Google Business Profile, formerly known as Google My Business, is the cornerstone of local SEO. It is the information panel that appears when someone searches for your business or your services in Christchurch. A fully optimised profile can be the difference between appearing in the Local Pack and being invisible.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Our Google Business Profile optimisation service covers every element that influences local rankings:</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Business name verification and accuracy:</strong> Ensuring your business name, address, and phone number are correct and consistent</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Primary and secondary categories:</strong> Selecting the most relevant categories that align with what your Christchurch customers actually search for</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Business description:</strong> Writing a keyword-rich, compelling description that highlights your services, location, and unique value</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Services and products:</strong> Adding detailed service descriptions with relevant keywords for each offering</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Photos and videos:</strong> Uploading high-quality visual content that showcases your work, your team, and your Christchurch location</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Business hours and attributes:</strong> Accurate opening hours, holiday schedules, and relevant business attributes like wheelchair accessibility or free parking</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Google Posts:</strong> Regular updates about promotions, events, news, and content that keep your profile active and engaging</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Q&A section:</strong> Proactively adding and answering common questions to improve profile completeness</li>
+        </ul>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Google Maps Ranking Strategy</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Google Maps results are closely tied to your Google Business Profile, but ranking in Maps requires additional signals. We optimise for Maps ranking through:</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Geographic relevance signals:</strong> Ensuring your business is associated with the correct Christchurch coordinates and service areas</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Local citation building:</strong> Listing your business consistently across authoritative Christchurch and NZ directories, industry platforms, and mapping services</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Review velocity and quality:</strong> Encouraging a steady stream of genuine, positive reviews from your Christchurch customers</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Local link building:</strong> Earning backlinks from Christchurch-based websites, local news outlets, and Canterbury organisations</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Website localisation:</strong> Ensuring your website clearly signals your Christchurch location through address, phone, embedded maps, and local content</li>
+        </ul>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Christchurch Suburb Targeting</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Christchurch is a geographically spread city with distinct suburbs, each with its own community identity and search behaviour. A builder in Rolleston serves different customers than a builder in Sumner. A café in Riccarton competes with different establishments than one in Lyttelton. Suburb-level local SEO allows you to target these micro-markets with precision.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We create suburb-specific landing pages and content that target searches like "electrician Halswell," "dental clinic Linwood," or "personal trainer Fendalton." Each page is optimised for local keywords, includes suburb-relevant content, and provides a clear path for visitors to contact you. For service-area businesses, we map your coverage area and create pages for every Christchurch suburb you serve.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">This approach is particularly effective for trades, home services, healthcare providers, and professional services where customers strongly prefer local providers. A homeowner in Papanui is far more likely to click on a result that mentions Papanui specifically than a generic Christchurch listing.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Review Management and Reputation</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Online reviews are the lifeblood of local SEO and local consumer trust. Ninety percent of consumers read online reviews before visiting a business, and the average consumer reads ten reviews before feeling able to trust a business. For Christchurch businesses, reviews on your Google Business Profile directly influence both your ranking position and your conversion rate.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Our review management service includes:</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Review generation systems:</strong> Implementing email and SMS follow-up sequences that prompt satisfied customers to leave reviews</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Review response strategy:</strong> Professionally responding to all reviews, positive and negative, to demonstrate active engagement</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Reputation monitoring:</strong> Tracking reviews across Google, Facebook, and industry-specific platforms</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Negative review management:</strong> Providing guidance on addressing criticism constructively and turning negative experiences into positive outcomes</li>
+        </ul>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Local Citations and NAP Consistency</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">A local citation is any online mention of your business name, address, and phone number. Consistent NAP information across the web is a critical local ranking signal. Inconsistent citations, such as a different phone number on your website versus your Google Business Profile, confuse Google and can negatively impact your rankings.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We audit your existing citations across the web, correct inconsistencies, and build new citations on authoritative New Zealand and Christchurch-specific directories. This includes platforms like Yellow NZ, Localist, industry-specific directories, chamber of commerce listings, and local business associations. Every citation we build reinforces your Christchurch location signal and improves your local search visibility.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Local SEO for Service-Area Businesses</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Not every Christchurch business has a storefront. Plumbers, electricians, mobile beauty therapists, cleaners, and many other service providers operate across multiple suburbs without a physical customer-facing location. Local SEO for service-area businesses requires a tailored approach.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We optimise your Google Business Profile to clearly define your service area, create dedicated location pages for each suburb you serve, and build local content that establishes relevance for Christchurch-wide searches. This ensures you appear in local results across your entire service territory, not just at a single physical address.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why Choose Byte Digital for Local SEO in Christchurch</h2>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Deep local knowledge:</strong> We understand Christchurch's geography, suburbs, and search behaviour patterns</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Proven local results:</strong> We have helped Christchurch businesses achieve top-three local pack rankings in competitive industries</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Comprehensive approach:</strong> We address every local ranking factor from Google Business Profile to citations to reviews</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Reputation management:</strong> We help you build and maintain the online reviews that drive both rankings and conversions</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Transparent reporting:</strong> Monthly reports tracking local rankings, profile views, calls, and direction requests</li>
+        </ul>
+
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">If your Christchurch business is not showing up when local customers search for your services, you are losing enquiries every single day. Contact us for a free local SEO audit and discover exactly what it takes to dominate local search in your industry.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Related Services</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+        {relatedServices.map(s => (
+          <a href={s.href} class="btn-ghost" style="padding:10px 24px;font-size:13px">{s.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="faq">
+    <FAQAccordion items={faqItems} />
+  </Fragment>
+</ServicePage>

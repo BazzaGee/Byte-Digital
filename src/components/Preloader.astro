@@ -1,0 +1,36 @@
+---
+---
+<div id="preloader" class="preload-overlay">
+  <div class="preload-ring"></div>
+  <div class="preload-label">Loading experience</div>
+  <div id="preload-pct" class="preload-pct">0%</div>
+</div>
+
+<script>
+function initPreloader() {
+  const preloader = document.getElementById('preloader');
+  const pctEl = document.getElementById('preload-pct');
+  if (!preloader || !pctEl) return;
+
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 15 + 5;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      pctEl.textContent = '100%';
+      preloader.classList.add('done');
+      setTimeout(() => {
+        preloader.style.display = 'none';
+      }, 800);
+    } else {
+      pctEl.textContent = Math.round(progress) + '%';
+    }
+  }, 100);
+}
+
+document.addEventListener('DOMContentLoaded', initPreloader);
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  initPreloader();
+}
+</script>

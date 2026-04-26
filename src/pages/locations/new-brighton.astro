@@ -1,0 +1,131 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'New Brighton';
+const faqItems = [
+  {
+    question: 'How much does web design cost in New Brighton?',
+    answer: 'New Brighton business websites typically range from $2,500 to $10,000. Entertainment, hospitality, and retail businesses often need visually engaging sites in the $3,000 to $6,000 range, while businesses requiring e-commerce, booking systems, or extensive custom design may invest $6,000 to $10,000. We offer solutions for every budget.',
+  },
+  {
+    question: 'Do you offer SEO services for New Brighton businesses?',
+    answer: 'Yes. New Brighton\'s growing profile as a destination suburb means increasing search interest from across Christchurch. Our SEO strategies target both local community searches and broader Christchurch queries about beach activities, entertainment, and shopping. We help New Brighton businesses capture this growing online interest.',
+  },
+  {
+    question: 'How long does it take to build a website for my New Brighton business?',
+    answer: 'Most New Brighton business websites are completed within three to six weeks. Standard business sites can be delivered more quickly, while businesses needing additional features like online ordering for restaurants or product catalogues for retail may take up to eight weeks.',
+  },
+  {
+    question: 'How can digital marketing help my New Brighton business attract customers from across Christchurch?',
+    answer: 'New Brighton is experiencing a renaissance, and digital marketing is key to capitalising on this momentum. We build websites and marketing strategies that position New Brighton as a destination, leveraging the beach, pier, and entertainment precinct in your brand storytelling. Combined with targeted social media campaigns and local SEO, we help you attract visitors and customers from across the wider Christchurch area.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design New Brighton Christchurch",
+  "description": "Professional web design, SEO, and digital marketing services for businesses in New Brighton, Christchurch. Serving beachside entertainment, retail, hospitality, and the growing coastal community.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "New Brighton, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Redcliffs', slug: 'redcliffs' },
+  { name: 'Sumner', slug: 'sumner' },
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'Woolston', slug: 'woolston' },
+  { name: 'Ferrymead', slug: 'ferrymead' },
+  { name: 'Aranui', slug: 'aranui' },
+  { name: 'Richmond', slug: 'richmond' },
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'Merivale', slug: 'merivale' },
+];
+
+const aranuiSlug = 'aranui';
+---
+
+<LocationPage
+  title="Web Design New Brighton Christchurch | Byte Digital"
+  description="Byte Digital provides web design, SEO, and digital marketing for New Brighton businesses. Helping Christchurch's eastern beachside suburb build a strong online presence and attract customers."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Growth for New Brighton's Revitalised Community</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          New Brighton is in the midst of a genuine transformation. Once known primarily as Christchurch's eastern beachside suburb, it has evolved into one of the city's most exciting and dynamic destinations. The newly revitalised pier, the Brighton Mall redevelopment, the growing number of cafés, bars, and entertainment venues, and the ongoing investment in the beachfront precinct have all contributed to a sense of momentum and optimism. For businesses operating in New Brighton, this revival creates enormous opportunities — but only for those with the digital presence to capture the growing interest from across Christchurch.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital creates websites for New Brighton businesses that match the energy and ambition of this transforming suburb. Whether you operate a beachfront café, a retail store in Brighton Mall, an entertainment venue, or a service business serving the local community, your website needs to reflect the quality and appeal that New Brighton now offers. We build digital presences that position your business as a destination, not just another local option.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">New Brighton's Entertainment and Hospitality Scene</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          New Brighton's entertainment and hospitality sector has grown dramatically, with the beachfront area now offering a concentration of bars, restaurants, cafés, and event spaces that rival more established Christchurch dining precincts. The pier and surrounding areas draw weekend crowds from across the city, and the businesses that thrive are those that have built strong digital profiles that attract visitors before they even leave home.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We build hospitality websites for New Brighton that capture the vibrant, seaside atmosphere of the area. Integrated menus with appetising food photography, online reservation and ordering systems, event promotion for live music and themed nights, and social media integration all work together to create a compelling online presence. For bars and entertainment venues, we also create event-focused content and promotional campaigns that drive attendance on specific nights.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Social media marketing is particularly powerful for New Brighton's hospitality businesses. Instagram and TikTok are the natural platforms for showcasing the beachside lifestyle, the food and drink offerings, and the lively atmosphere that makes New Brighton an exciting destination. We create social media strategies that generate shareable content, build follower engagement, and drive both online awareness and physical visits to your New Brighton venue.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Retail in Brighton Mall and Beyond</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Brighton Mall serves as New Brighton's primary retail hub, and its ongoing redevelopment is attracting new businesses and increasing foot traffic. The mall houses a mix of essential services, fashion retailers, food outlets, and specialty stores serving both the local community and visitors from across eastern Christchurch. For retailers in Brighton Mall, the challenge is converting this increased foot traffic into lasting customer relationships supported by a strong online presence.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We build e-commerce enabled websites for New Brighton retailers that allow your customers to shop with you 24/7. Product catalogues with high-quality images, intuitive navigation, secure checkout processes, and integrated shipping options create an online shopping experience that extends your Brighton Mall store to the entire Christchurch market. For businesses that prefer to drive in-store traffic, we create product showcase pages and click-and-collect systems that bridge the gap between online discovery and in-store purchase.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The local service sector in New Brighton — hairdressers, beauty therapists, fitness centres, healthcare providers, and trades businesses — benefits enormously from Google Business Profile optimisation. When a New Brighton resident searches for a service they need, the businesses appearing in the top three map results capture the majority of those enquiries. We optimise every element of your Google listing to maximise your visibility in these critical local search results.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">SEO Strategy for New Brighton's Growing Market</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          SEO for New Brighton businesses capitalises on the suburb's growing profile and increasing search interest. We target searches that reflect the different ways people discover New Brighton: "things to do New Brighton," "New Brighton pier restaurants," "beach café Christchurch east," and suburb-specific service queries. Creating content around these search topics builds your authority while attracting genuinely interested visitors to your website.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Content marketing for New Brighton businesses leverages the suburb's transformation narrative. Blog posts about new venue openings, beach events, community initiatives, and the ongoing revitalisation of the area generate engagement while improving search rankings. This content positions your business as part of New Brighton's exciting evolution, creating a positive association that extends to your brand.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Google Ads provide immediate visibility for New Brighton businesses seeking to capitalise on the current momentum. We create targeted campaigns that reach Christchurch residents interested in beach activities, dining, shopping, and entertainment — directing them to your New Brighton business ahead of competitors. This is particularly effective during summer months and event periods when search interest in New Brighton peaks.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital is excited to be part of New Brighton's digital growth story. Explore our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO solutions</a> to get started.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

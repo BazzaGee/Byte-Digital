@@ -1,0 +1,157 @@
+---
+import ServicePage from '../../layouts/ServicePage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const faqItems = [
+  {
+    question: 'How much does logo design cost for a Christchurch business?',
+    answer: 'Our logo design packages start from $1,500 for a professional logo with three initial concepts, two rounds of revisions, and final file delivery in all required formats. Premium logo design with more extensive concept exploration, brand research, and additional applications starts from $3,500. Every project is scoped individually, and we provide a clear, itemised quote before work begins.'
+  },
+  {
+    question: 'How long does the logo design process take?',
+    answer: 'A typical logo design project takes three to four weeks from kickoff to final delivery. This includes an initial briefing session, research and concept development, presentation of initial concepts, revision rounds based on your feedback, and final file preparation. More complex projects involving extensive brand research or multiple logo variations may take five to six weeks.'
+  },
+  {
+    question: 'What file formats do I receive with my logo?',
+    answer: 'You receive your logo in every format you will ever need: SVG for web and scalable use, PNG with transparent backgrounds for digital applications, JPG for general use, EPS and AI for print production, and specific social media sizes. We also provide a brand style guide that documents your logo usage guidelines, colours, and typography so any designer or printer can work with your brand correctly.'
+  },
+  {
+    question: 'Can you redesign my existing Christchurch business logo?',
+    answer: 'Yes, logo redesigns are one of our most requested services. We analyse your current logo to identify what elements, if any, are worth preserving, and then create a refreshed design that modernises your brand while maintaining recognition with your existing Christchurch customer base. A redesign can range from a subtle evolution to a complete overhaul depending on your needs.'
+  },
+  {
+    question: 'Do I own the copyright to my logo?',
+    answer: 'Yes. Upon final payment, full copyright ownership of your logo transfers to you. We provide a copyright assignment document confirming your ownership. You receive all source files and are free to use, modify, and reproduce your logo without any restrictions or ongoing licensing fees.'
+  },
+  {
+    question: 'What makes a good logo for a Christchurch business?',
+    answer: 'A good logo is simple enough to be recognisable at a glance, versatile enough to work across all media from vehicle signage to social media profiles, memorable enough to stick in your customers\' minds, relevant enough to communicate something about your industry or values, and distinctive enough to stand out from your Christchurch competitors. It should work in a single colour and at very small sizes without losing clarity.'
+  }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Logo Design Christchurch",
+  "description": "Professional logo design services for Christchurch businesses. Custom logo creation, logo redesign, brand identity packages, and brand guidelines by Byte Digital.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressRegion": "Canterbury", "addressCountry": "NZ" }
+  },
+  "areaServed": { "@type": "City", "name": "Christchurch" },
+  "sameAs": []
+};
+
+const relatedServices = [
+  { href: '/services/branding', label: 'Branding' },
+  { href: '/services/web-design', label: 'Web Design' },
+  { href: '/services/web-development', label: 'Web Development' },
+  { href: '/services/seo', label: 'SEO' },
+  { href: '/services/local-seo', label: 'Local SEO' },
+  { href: '/services/ecommerce', label: 'eCommerce' },
+  { href: '/services/website-maintenance', label: 'Website Maintenance' },
+  { href: '/services/custom-applications', label: 'Custom Applications' }
+];
+---
+
+<ServicePage
+  title="Logo Design Christchurch | Brand Identity Design NZ | Byte Digital"
+  description="Byte Digital creates professional logos and brand identity for Christchurch businesses. Custom logo design, logo redesign, brand guidelines, and identity packages."
+  serviceTitle="Logo Design Christchurch"
+  serviceSubtitle="Distinctive, memorable logos that capture the essence of your Christchurch business."
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-bottom:16px">Professional Logo Design for Christchurch Businesses</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Your logo is the visual anchor of your brand. It appears on your <a href="/services/web-design" style="color:var(--secondary)">website</a>, your business cards, your vehicle signage, your social media profiles, your uniforms, and every piece of marketing material you produce. It is often the first thing a potential customer sees and the last thing they remember. A well-designed logo communicates professionalism, builds trust, and sets you apart from every other Christchurch business in your industry.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">At Byte Digital, we design logos that are more than decorative marks. We design logos that tell your story, connect with your Christchurch audience, and stand the test of time. Our design process is thorough, collaborative, and focused on creating a logo that genuinely represents your business, not a trendy symbol that will look dated in two years.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Our Logo Design Process</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Every logo we create follows a structured design process that ensures the final result is strategic, considered, and aligned with your brand identity.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Discovery and Brand Brief</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We begin with a comprehensive briefing session where we learn about your Christchurch business, your target market, your values, your competitors, and your vision for the brand. We explore what makes your business unique, what emotions you want your logo to evoke, and how you want to be perceived in the Christchurch market. This strategic foundation ensures every design decision serves a purpose.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Research and Competitive Analysis</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Before we start designing, we research your industry, your Christchurch competitors, and relevant design trends. We identify visual clichés to avoid, opportunities for differentiation, and design conventions that your customers expect. We also research colour psychology, typography trends, and symbolic meanings to inform our design direction. This research prevents us from creating a logo that looks like every other logo in your industry.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Concept Development</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We develop multiple logo concepts based on our research and your brief. Each concept explores a different creative direction, giving you genuine options to consider rather than minor variations of the same idea. We sketch, refine, and develop each concept into polished presentations that show how the logo works in context: on light and dark backgrounds, at different sizes, and alongside your business name.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Refinement and Revisions</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Based on your feedback on the initial concepts, we refine the selected direction through structured revision rounds. We adjust typography, fine-tune proportions, experiment with colour palettes, and perfect every detail until the logo is exactly right. We encourage honest, specific feedback because it produces the best results.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Final Delivery and Brand Guidelines</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Upon approval, we deliver your logo in every format required for print and digital use. We also create a brand usage guide that documents your logo's correct usage, minimum sizes, clear space requirements, approved colour values, and typography specifications. This guide ensures your logo is used consistently across all applications, protecting its integrity and impact.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">What Makes an Effective Logo</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Effective logos share several fundamental qualities that transcend design trends and industry specifics.</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Simplicity:</strong> The most memorable logos are the simplest. Think of the brands you recognise instantly: their logos are uncomplicated, clean, and easy to recall. A simple logo works at any size, from a favicon in a browser tab to signage on a Christchurch building.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Versatility:</strong> Your logo needs to work across diverse applications: full colour on your website, single colour on engraved materials, reversed on dark backgrounds, small on business cards, and large on vehicle wraps.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Relevance:</strong> A good logo communicates something about your business or industry without being literal. A plumbing logo does not need to show a wrench, and a Christchurch café logo does not need to show a coffee cup.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Memorability:</strong> An effective logo sticks in the viewer's mind after a single exposure. This requires a distinctive design that avoids visual clichés and generic symbols commonly used in your industry.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Timelessness:</strong> The best logos endure for decades. They avoid trendy design fads and gimmicks that will look dated within a few years. We design logos intended to represent your Christchurch business for the long term.</li>
+        </ul>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Logo Design vs Logo Redesign</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Whether you need a new logo or a redesign of your existing one depends on your situation. A new logo is the right choice for new Christchurch businesses, businesses that have never had a professional logo, or businesses undergoing a complete transformation. A logo redesign is appropriate for established Christchurch businesses with logos that feel outdated or inconsistent with their current brand, businesses that have evolved beyond their original visual identity, or companies that need to modernise without losing existing brand recognition.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">For established Christchurch businesses, we often recommend an evolutionary redesign that preserves recognisable elements while modernising the overall design. This approach maintains continuity with your existing customer base while presenting a fresh, professional image to new customers.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Typography and Colour in Logo Design</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Typography and colour are as important as the icon or symbol in your logo. The right typeface communicates your brand personality: serif fonts convey tradition and authority, sans-serif fonts suggest modernity and clarity, and display fonts express creativity and distinctiveness. We carefully select or customise typography that aligns with your brand positioning and ensures readability across all applications.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Colour choice is equally strategic. Different colours evoke different psychological responses. Blue conveys trust and professionalism, green suggests growth and sustainability, orange communicates energy and warmth, and black projects sophistication and authority. We develop colour palettes that support your brand message and work effectively in both digital and print environments. Every colour we specify includes precise values for CMYK, RGB, HEX, and Pantone matching.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Logo Applications for Christchurch Businesses</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Your logo needs to work across every touchpoint where your Christchurch business meets your customers. We design with all these applications in mind:</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px">Website and digital applications including favicons and app icons</li>
+          <li style="margin-bottom:12px">Business cards and stationery</li>
+          <li style="margin-bottom:12px">Vehicle signage and fleet branding</li>
+          <li style="margin-bottom:12px">Building signage and window graphics</li>
+          <li style="margin-bottom:12px">Uniforms and workwear</li>
+          <li style="margin-bottom:12px">Social media profiles and cover images</li>
+          <li style="margin-bottom:12px">Print advertising and brochures</li>
+          <li style="margin-bottom:12px">Promotional merchandise and packaging</li>
+          <li style="margin-bottom:12px">Email signatures and digital documents</li>
+        </ul>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Logo Design as Part of Your Brand Identity</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">A logo is just one element of your brand identity, but it is the most visible one. For Christchurch businesses that want a cohesive, professional brand presence, we offer comprehensive <a href="/services/branding" style="color:var(--secondary)">branding packages</a> that extend beyond the logo to include complete visual identity systems, brand messaging and tone of voice, brand guidelines documentation, and digital and print collateral design. Whether you need just a logo or a complete brand identity, we deliver work that positions your Christchurch business for success.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why Choose Byte Digital for Logo Design</h2>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Strategic process:</strong> Every design decision is informed by research and your business objectives</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Multiple concepts:</strong> Genuine creative options, not minor variations</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Christchurch market understanding:</strong> We design logos that resonate with local consumers</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Full ownership:</strong> You own the copyright and receive all source files</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Complete file delivery:</strong> Every format you need for print, digital, and signage</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Brand guidelines included:</strong> Documentation that protects consistent usage</li>
+        </ul>
+
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Your logo is too important to leave to an online logo generator or a cheap crowdsourcing site. Invest in professional design that represents your Christchurch business with the distinction it deserves. Get in touch to discuss your logo design project.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Related Services</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+        {relatedServices.map(s => (
+          <a href={s.href} class="btn-ghost" style="padding:10px 24px;font-size:13px">{s.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="faq">
+    <FAQAccordion items={faqItems} />
+  </Fragment>
+</ServicePage>

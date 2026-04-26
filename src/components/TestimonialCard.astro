@@ -1,0 +1,23 @@
+---
+export interface Props {
+  quote: string;
+  authorName: string;
+  authorBusiness: string;
+  authorInitial: string;
+  avatarColor: 'purple' | 'mint';
+}
+
+const { quote, authorName, authorBusiness, authorInitial, avatarColor } = Astro.props;
+---
+
+<div class="testimonial glass">
+  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+  <blockquote>{quote}</blockquote>
+  <div class="author">
+    <div class={`avatar ${avatarColor}`}>{authorInitial}</div>
+    <div class="author-info">
+      <h4>{authorName}</h4>
+      <span>{authorBusiness}</span>
+    </div>
+  </div>
+</div>

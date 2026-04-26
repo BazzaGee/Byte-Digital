@@ -1,0 +1,68 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Divider from '../components/Divider.astro';
+import CTASection from '../components/CTASection.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  author?: string;
+  category?: string;
+  tags?: string[];
+}
+
+const { title, description, pubDate, updatedDate, author = 'Byte Digital', category, tags = [] } = Astro.props;
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-NZ', { year: 'numeric', month: 'long', day: 'numeric' });
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "author": { "@type": "Organization", "name": author },
+  "publisher": { "@type": "Organization", "name": "Byte Digital", "url": "https://bytedigital.co.nz" },
+  "datePublished": pubDate.toISOString(),
+  "dateModified": (updatedDate || pubDate).toISOString(),
+  "mainEntityOfPage": { "@type": "WebPage", "@id": Astro.url.href },
+};
+---
+
+<BaseLayout title={title} description={description} ogType="article" jsonLd={jsonLd}>
+  <section style="padding-top:120px;padding-bottom:40px">
+    <div class="container">
+      <nav style="margin-bottom:24px;font-size:13px;color:var(--text-muted)">
+        <a href="/" style="color:var(--text-muted)">Home</a>
+        <span style="margin:0 8px">/</span>
+        <a href="/blog" style="color:var(--text-muted)">Blog</a>
+        <span style="margin:0 8px">/</span>
+        <span style="color:var(--secondary)">{title}</span>
+      </nav>
+      {category && (
+        <span style="display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--secondary);background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.2);margin-bottom:16px">{category}</span>
+      )}
+      <h1 style="font-size:clamp(32px,5vw,48px);font-weight:700;color:#fff;line-height:1.15;margin-bottom:16px;letter-spacing:-0.02em">{title}</h1>
+      <p style="font-size:18px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;max-width:700px">{description}</p>
+      <div style="display:flex;align-items:center;gap:16px;font-size:14px;color:var(--text-dimmed)">
+        <span>By {author}</span>
+        <span>·</span>
+        <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+        {updatedDate && <span>· Updated {formatDate(updatedDate)}</span>}
+      </div>
+    </div>
+  </section>
+  <Divider />
+  <article class="section">
+    <div class="container">
+      <div class="dm-header" style="margin-bottom:48px">
+        <slot />
+      </div>
+    </div>
+  </article>
+  <Divider />
+  <CTASection />
+</BaseLayout>

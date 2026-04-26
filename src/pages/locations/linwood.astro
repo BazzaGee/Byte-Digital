@@ -1,0 +1,128 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Linwood';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Linwood?',
+    answer: 'Linwood business websites typically range from $2,000 to $8,000. Small service businesses and startups can establish a strong online presence from $2,000 to $3,500, while businesses needing e-commerce, booking systems, or more comprehensive functionality generally invest $4,000 to $8,000. We provide clear pricing and work within your budget.',
+  },
+  {
+    question: 'Do you offer SEO services for Linwood businesses?',
+    answer: 'Yes. Linwood\'s position in east Christchurch means we target both local suburb searches and broader city-wide queries. Our SEO strategies help Linwood businesses compete effectively in Google search results, with particular focus on local SEO that captures customers in the Linwood, Aranui, and Burwood areas.',
+  },
+  {
+    question: 'How long does it take to build a website for my Linwood business?',
+    answer: 'Most Linwood business websites are completed within three to five weeks. Straightforward service and retail websites tend to be on the quicker end, while businesses requiring custom functionality, extensive product catalogues, or complex integrations may take five to seven weeks.',
+  },
+  {
+    question: 'How can my Linwood business attract more local customers online?',
+    answer: 'Local SEO is the most effective channel for attracting Linwood customers. We optimise your Google Business Profile to ensure your business appears in map results when people search for services in the east Christchurch area. Combined with a professional website and targeted Google Ads, we create a digital presence that consistently drives local enquiries and foot traffic.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Linwood Christchurch",
+  "description": "Professional web design, SEO, and digital marketing services for businesses in Linwood, Christchurch. Serving the diverse east Christchurch business community near Linwood Park.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Linwood, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Woolston', slug: 'woolston' },
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Richmond', slug: 'richmond' },
+  { name: 'Addington', slug: 'addington' },
+  { name: 'New Brighton', slug: 'new-brighton' },
+  { name: 'Aranui', slug: 'aranui' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'St Albans', slug: 'st-albans' },
+  { name: 'Mount Pleasant', slug: 'mount-pleasant' },
+  { name: 'Ferrymead', slug: 'ferrymead' },
+];
+
+const aranuiSlug = 'aranui';
+---
+
+<LocationPage
+  title="Web Design Linwood Christchurch | Byte Digital"
+  description="Byte Digital provides web design, SEO, and digital marketing for Linwood businesses. We help east Christchurch's diverse business community grow online and attract more customers."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Empowering Linwood's Diverse Business Community Online</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Linwood stands as one of Christchurch's most diverse and evolving suburbs. Located in the city's east, it encompasses a wide mix of residential areas, commercial strips, and community spaces centred around Linwood Park and the surrounding streets. The suburb's business landscape is equally varied — everything from long-established family businesses and ethnic restaurants to newer startups, trades operations, and community-focused enterprises. This diversity is Linwood's strength, but it also means businesses face unique challenges in standing out and reaching their specific target audiences online.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital creates websites for Linwood businesses that cut through the noise and connect with the right customers. We take the time to understand your specific market, your competitive landscape, and the unique value you offer. Whether you run a takeaway bar on Linwood Avenue, a plumbing business serving east Christchurch, or a community organisation that needs to communicate effectively online, we build digital solutions tailored to your reality — not generic templates that treat every business the same.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Web Design for Linwood's Retail and Hospitality Sector</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Linwood's retail and hospitality scene is characterised by its authenticity and variety. The Linwood Avenue and Aldwins Road corridors feature a mix of convenience retail, ethnic supermarkets and restaurants, cafés, bakeries, and specialty stores that serve the local community. Many of these businesses have built loyal followings through quality products and personal service, but have not yet fully embraced the digital tools that could help them reach more customers and operate more efficiently.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We build websites for Linwood's food businesses that make ordering easy and appetising. Online menus with mouth-watering photography, integrated ordering systems for delivery and pickup, and clear display of opening hours, location, and contact information transform a basic web presence into a customer acquisition tool. For restaurants and takeaway bars, we also implement Google Business Profile optimisation that ensures your establishment appears prominently when locals search for food options in the Linwood and east Christchurch area.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Linwood's ethnic restaurants and food stores have particularly strong potential online. Christchurch's increasingly diverse population actively searches for authentic cuisine from specific cultures, and a well-optimised website can capture these motivated diners. We create websites that showcase your unique culinary offerings, make your menu easily accessible, and provide all the information customers need to visit your Linwood establishment or order delivery.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Trades and Services for East Christchurch</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Linwood serves as a base for numerous trades and service businesses that operate across east Christchurch. Builders, electricians, plumbers, painters, gardeners, and clean-out services all work from Linwood premises, serving residential and commercial customers throughout the eastern suburbs and beyond. For these businesses, the website is a direct lead generation tool — the more effectively it communicates your services and builds trust, the more enquiries you receive.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We design trades websites that prioritise conversion. Your services are clearly listed and easy to understand. Real project photos demonstrate the quality of your work. Customer testimonials and any trade certifications or guarantees provide the trust signals that hesitant homeowners need before making contact. Your phone number and enquiry form are always prominently displayed, reducing the friction between a visitor finding your site and making that crucial first contact.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Local SEO is particularly valuable for Linwood trades businesses. Many homeowners prefer to hire tradespeople based in or near their area, associating local operators with better availability and lower travel costs. Our local SEO strategies ensure your Linwood-based business appears prominently for searches in Linwood, Aranui, Burwood, New Brighton, and surrounding eastern suburbs. We also optimise for broader Christchurch searches to capture customers who prioritise quality and availability over location.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Community-Focused Digital Marketing</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          What makes Linwood distinctive is its strong community focus. Local events, markets, sports clubs, and community organisations create a network of connection that businesses can leverage in their digital marketing. We help Linwood businesses build online presences that engage with this community through content marketing, social media, and email marketing that feels local and genuine rather than corporate and distant.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Facebook and Instagram remain powerful platforms for reaching Linwood's community. We create social media content and campaigns that resonate with local audiences, promote community involvement, and build the kind of personal connection that drives customer loyalty. For Linwood's smaller businesses, this community-oriented digital marketing approach often delivers better results than broader, less targeted advertising strategies.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital is here to help Linwood businesses of all types succeed online. Check out our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> and <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO solutions</a> to learn more about how we can grow your business.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

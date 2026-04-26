@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact Byte Digital | Free Website Consultation"
+  description="Get in touch with Byte Digital for a free website consultation. We help Christchurch and Canterbury businesses with web design, SEO, and digital marketing."
+>
+  <section style="padding-top:120px;padding-bottom:60px">
+    <div class="container">
+      <div class="section-label">Contact Us</div>
+      <h1 class="section-title">Let's build something<br /><span class="gradient-text">incredible together.</span></h1>
+      <p class="section-subtitle" style="margin-top:12px">Ready to dominate online? Get a free consultation and let's discuss how we can help your Christchurch business grow.</p>
+    </div>
+  </section>
+
+  <section class="section dot-pattern" style="padding-top:0">
+    <div class="container">
+      <div style="display:grid;gap:48px;max-width:900px;margin:0 auto">
+        <div class="glass" style="padding:40px;border-radius:28px">
+          <h3 style="font-size:22px;font-weight:700;color:#fff;margin-bottom:24px">Get Your Free Consultation</h3>
+          <form action="https://formsubmit.co/barry@bytedigital.co.nz" method="POST" style="display:flex;flex-direction:column;gap:20px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+              <div>
+                <label style="display:block;font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px">Name *</label>
+                <input type="text" name="name" required style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;transition:border-color 0.3s" onfocus="this.style.borderColor='#8B78E6'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'" />
+              </div>
+              <div>
+                <label style="display:block;font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px">Business Name</label>
+                <input type="text" name="business" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;transition:border-color 0.3s" onfocus="this.style.borderColor='#8B78E6'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'" />
+              </div>
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px">Email *</label>
+              <input type="email" name="email" required style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;transition:border-color 0.3s" onfocus="this.style.borderColor='#8B78E6'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px">Phone</label>
+              <input type="tel" name="phone" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;transition:border-color 0.3s" onfocus="this.style.borderColor='#8B78E6'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px">What do you need help with?</label>
+              <select name="service" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:var(--surface);color:var(--text-secondary);font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none">
+                <option value="">Select a service...</option>
+                <option value="web-design">Web Design</option>
+                <option value="web-development">Web Development</option>
+                <option value="seo">SEO Services</option>
+                <option value="digital-marketing">Digital Marketing</option>
+                <option value="ecommerce">eCommerce</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px">Tell us about your project</label>
+              <textarea name="message" rows="4" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;resize:vertical;transition:border-color 0.3s" onfocus="this.style.borderColor='#8B78E6'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'"></textarea>
+            </div>
+            <button type="submit" class="btn-cta" style="align-self:flex-start">Send Message <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></button>
+            <input type="hidden" name="_subject" value="New inquiry from bytedigital.co.nz" />
+          </form>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:32px">
+          <div>
+            <h4 style="font-size:14px;font-weight:700;color:#fff;margin-bottom:8px">Email</h4>
+            <a href="mailto:barry@bytedigital.co.nz" style="color:var(--secondary);font-size:16px">barry@bytedigital.co.nz</a>
+          </div>
+          <div>
+            <h4 style="font-size:14px;font-weight:700;color:#fff;margin-bottom:8px">Location</h4>
+            <p style="color:var(--text-muted);font-size:15px">Christchurch, Canterbury<br />New Zealand</p>
+          </div>
+          <div>
+            <h4 style="font-size:14px;font-weight:700;color:#fff;margin-bottom:8px">Service Area</h4>
+            <p style="color:var(--text-muted);font-size:15px">Christchurch, Canterbury, and all of New Zealand</p>
+          </div>
+          <div>
+            <h4 style="font-size:14px;font-weight:700;color:#fff;margin-bottom:8px">Response Time</h4>
+            <p style="color:var(--text-muted);font-size:15px">We respond to all enquiries within 24 hours. Most same day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

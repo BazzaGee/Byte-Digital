@@ -1,0 +1,274 @@
+---
+import GuidePage from '../../layouts/GuidePage.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Headless CMS vs Traditional CMS: NZ Business Guide",
+  "description": "Compare headless CMS solutions like Astro and Next.js against traditional WordPress. Learn which approach is best for your New Zealand business website in 2026.",
+  "author": { "@type": "Organization", "name": "Byte Digital" },
+  "publisher": { "@type": "Organization", "name": "Byte Digital", "url": "https://bytedigital.co.nz" },
+  "datePublished": "2026-04-01",
+  "dateModified": "2026-04-26",
+};
+---
+
+<GuidePage title="Headless CMS vs Traditional CMS: NZ Business Guide | Byte Digital" description="Compare headless CMS solutions like Astro and Next.js against traditional WordPress. Learn which approach is best for your New Zealand business website in 2026." jsonLd={jsonLd}>
+
+  <section class="section dot-pattern">
+    <div class="container">
+      <div class="dm-header">
+        <h2 style="font-size:clamp(24px,3vw,36px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:16px">Table of Contents</h2>
+        <ol style="padding-left:20px;color:var(--text-secondary);font-size:15px;line-height:2">
+          <li><a href="#what-is-headless-cms" style="color:var(--secondary)">What is a Headless CMS?</a></li>
+          <li><a href="#traditional-cms" style="color:var(--secondary)">Traditional CMS: WordPress, Wix, Squarespace</a></li>
+          <li><a href="#headless-platforms" style="color:var(--secondary)">Headless CMS: Astro, Next.js, Strapi, Sanity</a></li>
+          <li><a href="#performance-comparison" style="color:var(--secondary)">Performance Comparison</a></li>
+          <li><a href="#seo-advantages" style="color:var(--secondary)">SEO Advantages of Headless</a></li>
+          <li><a href="#security-comparison" style="color:var(--secondary)">Security Comparison</a></li>
+          <li><a href="#cost-comparison" style="color:var(--secondary)">Cost Comparison</a></li>
+          <li><a href="#when-headless" style="color:var(--secondary)">When to Choose Headless</a></li>
+          <li><a href="#when-traditional" style="color:var(--secondary)">When to Stick with Traditional</a></li>
+          <li><a href="#migration-guide" style="color:var(--secondary)">Migration Guide</a></li>
+        </ol>
+      </div>
+
+      <div style="max-width:800px;margin:0 auto">
+
+        <h2 id="what-is-headless-cms" style="font-size:clamp(22px,2.5vw,32px);font-weight:700;color:#fff;margin-top:48px;margin-bottom:20px">1. What is a Headless CMS?</h2>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">A headless CMS is a content management system that provides a backend for creating and managing content without a built-in frontend for displaying it. The "head" refers to the frontend — the part of a website that users see and interact with. In a headless architecture, the content management backend is decoupled from the presentation layer, and content is delivered via an API to any frontend you choose.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">To understand the difference, consider a traditional CMS like WordPress. WordPress bundles the content management system with a theming system that controls how content is displayed. When you install WordPress, you get both the dashboard where you create content and the PHP templates that render that content in the browser. These two components are tightly coupled — your content management and your content presentation are inseparable.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">In a headless CMS, you create and manage content in one place (the CMS), and that content is delivered via an API to a separate frontend built with whatever technology you choose. Your content could be displayed on a website, a mobile app, a digital kiosk, or any other platform — all from the same CMS. This separation provides tremendous flexibility and delivers significant performance, security, and scalability advantages.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">For New Zealand businesses, the headless approach is gaining rapid adoption because it addresses the most common pain points of traditional CMS platforms: slow performance, security vulnerabilities, rigid design constraints, and high maintenance costs. At Byte Digital, we build exclusively with headless architectures because we have seen firsthand the superior results they deliver for Christchurch businesses. For a broader perspective on how this fits into your overall digital strategy, see our <a href="/guides/digital-transformation" style="color:var(--secondary)">Digital Transformation Guide</a>.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">How Headless Architecture Works</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">In a headless setup, the workflow typically works as follows: content editors create and manage content in the headless CMS dashboard, which stores the content in a database. When a visitor requests a page, the frontend framework retrieves the content from the CMS via an API (usually GraphQL or REST). The framework then renders the page with the content and delivers it to the visitor. In many cases, this rendering happens at build time, producing static HTML files that are served directly to visitors without any server-side processing — resulting in near-instant page loads.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">This architecture is fundamentally different from traditional CMS platforms, where every page request triggers server-side processing: the CMS queries the database, executes PHP code, runs template logic, generates HTML, and sends it to the browser. This process introduces latency, security vulnerabilities, and scalability constraints that are eliminated by the headless approach.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Types of Headless CMS</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Headless CMS platforms fall into two categories. API-first CMS platforms like Sanity, Strapi, Contentful, and Storyblok provide a content management dashboard and API for content delivery. They handle content storage, media management, and content modelling but have no built-in frontend. You build the frontend separately using a framework like Astro, Next.js, or Nuxt.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Git-based CMS platforms like Contentlayer, Keystatic, or MDX files stored in a Git repository take a different approach. Content is stored as files (typically Markdown or MDX) in your project repository alongside your code. When content is updated, the changes are committed to Git, and the website is rebuilt automatically. This approach is simpler, faster, and completely free, making it ideal for smaller New Zealand businesses that want the benefits of headless without the overhead of a separate CMS platform.</p>
+
+        <h2 id="traditional-cms" style="font-size:clamp(22px,2.5vw,32px);font-weight:700;color:#fff;margin-top:48px;margin-bottom:20px">2. Traditional CMS: WordPress, Wix, Squarespace</h2>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Traditional CMS platforms have powered the web for over two decades and remain the most common choice for New Zealand business websites. Understanding their strengths and limitations is essential for making an informed decision.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">WordPress</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">WordPress powers approximately 43% of all websites globally and maintains a dominant market share in New Zealand. Its longevity and popularity stem from several factors: a vast ecosystem of themes and plugins, a huge community of developers, familiar admin interface, and relatively low barrier to entry. Virtually every web designer and developer in New Zealand has WordPress experience.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">However, WordPress's architecture, built on PHP and MySQL, was designed in the early 2000s for a web that no longer exists. Every page request requires server-side processing, database queries, and template rendering. This results in slower page loads compared to modern static sites. The plugin ecosystem, while extensive, introduces security vulnerabilities, compatibility issues, and performance overhead. Maintaining a WordPress site requires regular core updates, theme updates, and plugin updates, each of which can introduce bugs or break functionality.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">WordPress sites typically score lower on Google's Core Web Vitals — the metrics Google uses to evaluate page experience. A well-optimised WordPress site might achieve PageSpeed scores of 60 to 80, while a modern Astro site routinely scores 95 to 100. This performance gap directly impacts search rankings, user experience, and conversion rates.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">WordPress is the right choice for businesses that need extensive plugin functionality, have complex content management requirements handled best by an established admin interface, or have an existing WordPress ecosystem they want to extend rather than replace. It remains viable for blogs, content-heavy sites, and businesses that prioritise ease of content management above all else.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Wix and Squarespace</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Website builders like Wix and Squarespace provide an all-in-one solution that handles hosting, CMS, and design in a single platform. They are popular with New Zealand small businesses because they offer a quick, affordable path to getting a website live. The drag-and-drop editors require no technical knowledge, and the monthly pricing model provides predictable costs.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">The trade-offs are significant. Customisation is limited to what the platform provides. You cannot implement custom functionality, integrate with third-party services beyond what the platform supports, or optimise the underlying code for performance. SEO capabilities are basic, and the platform controls your hosting environment, meaning you cannot optimise server configuration. Platform lock-in is a real concern — migrating away from Wix or Squarespace to a different platform typically requires rebuilding the entire site from scratch.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Performance is often mediocre. Wix and Squarespace sites load bloated JavaScript that impacts Core Web Vitals scores. Google's own data shows that Wix sites, on average, have significantly lower Lighthouse scores than custom-built sites. For Christchurch businesses competing for local search rankings, this performance gap can mean the difference between appearing on the first page and being buried on page three.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Website builders are appropriate for businesses with minimal budgets, simple requirements, and low expectations for performance and SEO. They are not appropriate for businesses that need a website that drives significant organic traffic, generates leads, or provides a competitive advantage.</p>
+
+        <h2 id="headless-platforms" style="font-size:clamp(22px,2.5vw,32px);font-weight:700;color:#fff;margin-top:48px;margin-bottom:20px">3. Headless CMS: Astro, Next.js, Strapi, Sanity</h2>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">The headless ecosystem in 2026 offers a rich selection of frameworks and CMS platforms, each suited to different use cases. Here is a detailed look at the most relevant options for New Zealand businesses.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Astro: The Performance Leader</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Astro has rapidly become the framework of choice for content-focused websites, and for good reason. Astro's unique island architecture ships zero JavaScript by default, producing the fastest possible page loads. Interactive components are loaded on demand, only when needed. For the vast majority of business websites — which are primarily content displays with limited interactivity — Astro delivers the best possible performance.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Astro generates static HTML files at build time, which means pages are served directly from a CDN without any server-side processing. This results in Time to First Byte (TTFB) measurements of under 100 milliseconds and Largest Contentful Paint (LCP) scores that routinely meet Google's "good" threshold of 2.5 seconds. For Christchurch businesses targeting local search rankings, this performance advantage directly translates to higher positions in Google search results.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Astro supports content collections, Markdown/MDX authoring, and integration with any headless CMS. It has a growing ecosystem of integrations and a developer community that is rapidly expanding. For content-focused business websites, marketing sites, blogs, and documentation sites, Astro is the optimal choice in 2026.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Next.js: The Full-Featured Framework</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Next.js, built on React, is the appropriate choice when your website requires significant interactivity. If you need user accounts, real-time data, complex forms, dashboards, or dynamic content that changes based on user behaviour, Next.js provides the capabilities that Astro's static-first approach cannot match.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Next.js supports three rendering strategies: Static Site Generation (SSG) for content that does not change, Server-Side Rendering (SSR) for dynamic content, and Incremental Static Regeneration (ISR) for content that changes periodically but does not need to be generated on every request. This flexibility allows you to use the optimal rendering strategy for each page based on its requirements.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Next.js is the go-to choice for eCommerce platforms, SaaS applications, membership sites, and any web application where React's component model and state management capabilities are needed. For Christchurch businesses building complex web applications, Next.js paired with a headless CMS like Sanity or Strapi provides a powerful, scalable architecture.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Strapi: The Open-Source CMS</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Strapi is an open-source headless CMS built on Node.js. It provides a user-friendly admin interface for content management and a RESTful API (with GraphQL support) for content delivery. Strapi is self-hosted, which means you control the infrastructure and data — an important consideration for New Zealand businesses with data sovereignty requirements.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Strapi's content builder allows you to define custom content types and relationships without writing code. It supports user management, role-based access control, and media management. As an open-source platform, Strapi is free to use, though you need to factor in the cost of hosting the CMS server.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Sanity: The Developer-Favourite CMS</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Sanity is a cloud-hosted headless CMS that has gained a strong following among developers for its real-time collaboration features, flexible content modelling, and powerful query language (GROQ). Sanity's studio is built with React and can be embedded directly into your frontend project, providing a seamless content management experience.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Sanity offers a generous free tier suitable for small to medium websites, with paid plans for higher traffic and more advanced features. Its CDN delivers content globally with low latency, which is important for ensuring fast page loads regardless of where your content is requested from. For New Zealand businesses, Sanity's cloud infrastructure eliminates the need to manage CMS hosting.</p>
+
+        <h2 id="performance-comparison" style="font-size:clamp(22px,2.5vw,32px);font-weight:700;color:#fff;margin-top:48px;margin-bottom:20px">4. Performance Comparison</h2>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Performance is the most compelling reason to choose a headless approach. The differences are not marginal — they are dramatic and measurable. Here is a realistic comparison of what a typical New Zealand business website achieves on different platforms, based on Google's Lighthouse scores and Core Web Vitals metrics.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">PageSpeed Scores</h3>
+        <ul style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px;padding-left:24px">
+          <li style="margin-bottom:8px"><strong style="color:#fff">Astro (Static):</strong> 95 to 100 on mobile, 98 to 100 on desktop</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Next.js (SSG):</strong> 90 to 98 on mobile, 95 to 100 on desktop</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">WordPress (Optimised):</strong> 60 to 80 on mobile, 75 to 90 on desktop</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">WordPress (Typical):</strong> 30 to 60 on mobile, 50 to 75 on desktop</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Wix:</strong> 30 to 55 on mobile, 50 to 70 on desktop</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Squarespace:</strong> 40 to 65 on mobile, 55 to 75 on desktop</li>
+        </ul>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">These are not theoretical numbers. They represent real-world performance data from websites built on these platforms. The gap between Astro and WordPress is consistently 30 to 50 points, and this gap has real business implications. Every point of PageSpeed score improvement correlates with improved user engagement, lower bounce rates, and higher conversion rates.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Core Web Vitals</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Google's Core Web Vitals measure three aspects of user experience. Largest Contentful Paint (LCP) measures loading performance. Interaction to Next Paint (INP) measures interactivity. Cumulative Layout Shift (CLS) measures visual stability. Here is how the platforms compare:</p>
+        <ul style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px;padding-left:24px">
+          <li style="margin-bottom:8px"><strong style="color:#fff">Astro:</strong> LCP typically 0.5s to 1.2s, INP under 50ms, CLS near 0. All metrics pass with significant margin.</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Next.js (SSG):</strong> LCP typically 0.8s to 1.8s, INP under 100ms, CLS near 0. All metrics typically pass.</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">WordPress:</strong> LCP typically 2.0s to 5.0s, INP 100ms to 500ms, CLS 0.05 to 0.3. Often fails one or more metrics.</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Wix/Squarespace:</strong> LCP typically 3.0s to 6.0s, INP 200ms to 800ms, CLS 0.1 to 0.4. Frequently fails all three metrics.</li>
+        </ul>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">For Christchurch businesses competing in local search, Core Web Vitals are a direct ranking factor. A website that fails Core Web Vitals is actively disadvantaged in Google's algorithm compared to a competitor whose website passes all metrics. This is not a theoretical concern — it is a measurable, consistent impact on search visibility.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Real-World Loading Times</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Testing on a simulated 4G connection (which represents the experience of many mobile users in New Zealand, particularly in rural Canterbury areas), a typical Astro page loads in under 1.5 seconds. A well-optimised WordPress page loads in 3 to 5 seconds. A typical WordPress page with multiple plugins loads in 5 to 8 seconds. A Wix or Squarespace page typically loads in 4 to 7 seconds. The difference between a 1.5-second and a 6-second load time is the difference between a user who stays and engages and a user who clicks back to the search results and visits your competitor instead.</p>
+
+        <h2 id="seo-advantages" style="font-size:clamp(22px,2.5vw,32px);font-weight:700;color:#fff;margin-top:48px;margin-bottom:20px">5. SEO Advantages of Headless</h2>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Search engine optimisation is critical for Christchurch businesses, and the headless approach delivers significant SEO advantages over traditional CMS platforms. For a complete SEO strategy, read our <a href="/guides/seo-domination-handbook" style="color:var(--secondary)">Christchurch SEO Domination Handbook</a>.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Clean HTML Output</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Headless frameworks generate clean, semantic HTML that is easy for search engine crawlers to parse. There is no bloated markup from WordPress themes and plugins, no inline styles, and no unnecessary script tags. Every line of HTML serves a purpose. This clean output improves crawl efficiency, ensures that all content is properly indexed, and eliminates the crawling issues that plague WordPress sites with complex plugin stacks.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Superior Page Speed</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Page speed is a confirmed Google ranking factor. Headless sites consistently achieve faster load times, which directly improves search rankings. Google has indicated that page experience signals, including Core Web Vitals, carry increasing weight in the ranking algorithm. For Christchurch businesses targeting competitive local keywords, this performance advantage can be the deciding factor between ranking first and ranking fifth.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Schema Markup Control</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Headless frameworks give you complete control over structured data implementation. You can implement any schema type with precise configuration, ensuring that Google understands your content perfectly. WordPress sites often rely on SEO plugins for schema markup, which may implement schemas incorrectly or incompletely. With a headless approach, your developer can implement structured data exactly as required, without the limitations of plugin-based solutions.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Optimised URL Structure</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Headless frameworks allow complete control over URL structure, redirects, and routing. Clean, descriptive URLs that include target keywords are trivial to implement. Redirect management is handled at the framework level, ensuring that old URLs redirect properly when content is moved or restructured. WordPress sites often struggle with URL management, particularly when plugins change permalink structures or create unnecessary URL parameters.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Mobile-First Performance</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Since Google uses mobile-first indexing, the mobile performance of your website is what matters most for SEO. Headless sites excel at mobile performance because they ship minimal code and render pages efficiently. WordPress sites, with their plugin-dependent architectures and server-side rendering, often deliver a significantly worse mobile experience than their desktop counterpart.</p>
+
+        <h2 id="security-comparison" style="font-size:clamp(22px,2.5vw,32px);font-weight:700;color:#fff;margin-top:48px;margin-bottom:20px">6. Security Comparison</h2>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Website security is a serious concern for New Zealand businesses. A security breach can result in data loss, reputational damage, and significant remediation costs. The choice of CMS platform has a fundamental impact on your website's security posture.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">WordPress Security Challenges</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">WordPress is the most targeted CMS platform in the world. Its massive market share makes it an attractive target for automated attack bots. The primary security vulnerabilities include plugin vulnerabilities (the majority of WordPress hacks are caused by compromised plugins), theme vulnerabilities, outdated core software, weak credentials, and SQL injection attacks. WordPress powers approximately 43% of the web, and an estimated 70% of WordPress installations run at least one vulnerable component.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Securing a WordPress site requires ongoing effort: regular core updates, regular plugin updates, security monitoring, firewall configuration, malware scanning, regular backups, and strong access controls. WordPress security plugins like Wordfence or Sucuri add another layer of protection but also add performance overhead. The ongoing security maintenance cost for a WordPress site typically adds $50 to $200 per month to operating costs.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Headless Security Advantages</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Static sites generated by Astro eliminate the most common attack vectors entirely. There is no database to compromise, no server-side application to exploit, and no admin panel exposed to the internet. The attack surface is dramatically smaller — an attacker would need to compromise the CDN or the build server, both of which are managed by enterprise-grade providers with dedicated security teams.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Even when using a headless CMS like Strapi or Sanity, the CMS is separate from the frontend. A vulnerability in the CMS does not compromise the frontend, and vice versa. Content editors interact with the CMS through authenticated API endpoints, and the frontend serves pre-rendered static files that cannot be modified through the CMS.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">For New Zealand businesses subject to the Privacy Act 2020, the reduced attack surface of a headless architecture provides a stronger foundation for data protection compliance. Fewer vulnerabilities mean fewer risks of data breaches, which is particularly important for businesses that collect customer information through enquiry forms, newsletters, or eCommerce transactions.</p>
+
+        <h2 id="cost-comparison" style="font-size:clamp(22px,2.5vw,32px);font-weight:700;color:#fff;margin-top:48px;margin-bottom:20px">7. Cost Comparison</h2>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Cost is often the deciding factor when choosing between headless and traditional approaches. While headless solutions often have higher upfront development costs, the total cost of ownership over three to five years is frequently lower. For detailed pricing breakdowns, see our <a href="/guides/website-cost-guide-nz" style="color:var(--secondary)">Website Cost Guide New Zealand 2026</a>.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Upfront Development Costs</h3>
+        <ul style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px;padding-left:24px">
+          <li style="margin-bottom:8px"><strong style="color:#fff">WordPress (Template):</strong> $2,000 to $5,000 NZD</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">WordPress (Custom):</strong> $5,000 to $20,000 NZD</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Wix/Squarespace:</strong> $500 to $3,000 NZD (setup only; monthly fees ongoing)</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Astro (Custom):</strong> $5,000 to $20,000 NZD</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Next.js (Custom):</strong> $10,000 to $40,000 NZD</li>
+        </ul>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Annual Running Costs</h3>
+        <ul style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px;padding-left:24px">
+          <li style="margin-bottom:8px"><strong style="color:#fff">WordPress:</strong> $1,500 to $5,000 per year (hosting, maintenance, security, updates)</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Wix:</strong> $400 to $1,800 per year (platform subscription)</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Squarespace:</strong> $300 to $1,000 per year (platform subscription)</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Astro (Static):</strong> $200 to $1,000 per year (hosting on Vercel/Netlify/Cloudflare)</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Next.js:</strong> $500 to $3,000 per year (hosting depending on rendering strategy)</li>
+        </ul>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Three-Year Total Cost of Ownership</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Calculating the total cost over three years provides a more accurate picture of the true investment:</p>
+        <ul style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px;padding-left:24px">
+          <li style="margin-bottom:8px"><strong style="color:#fff">WordPress (Custom):</strong> $9,500 to $35,000 NZD (build plus 3 years of maintenance)</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Wix:</strong> $1,700 to $8,400 NZD (setup plus 3 years of subscription)</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Astro (Custom):</strong> $5,600 to $23,000 NZD (build plus 3 years of hosting)</li>
+        </ul>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">While the Astro upfront cost may be slightly higher than WordPress in some cases, the dramatically lower running costs mean the three-year total is often comparable or lower. And this calculation does not account for the revenue impact of superior performance, better SEO rankings, and higher conversion rates — all of which favour the headless approach.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Developer Availability in New Zealand</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">One consideration for New Zealand businesses is the availability of developers skilled in headless technologies. While WordPress developers are abundant, experienced Astro and Next.js developers are fewer but growing in number. However, the quality of work from experienced headless developers tends to be higher because the modern JavaScript ecosystem attracts developers who are deeply committed to best practices, performance, and clean code. The headless development community in New Zealand is particularly active in Auckland and Wellington, with a growing presence in Christchurch as the city's tech sector expands.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">When evaluating development partners, look for teams that demonstrate a deep understanding of performance optimisation, SEO best practices, and modern deployment workflows. Agencies like Byte Digital that specialise in headless architectures bring a level of expertise that generalist WordPress agencies cannot match, because headless development requires a broader and more current skill set.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Scalability Considerations</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">As your Christchurch business grows, your website needs to grow with it. WordPress sites often struggle with scalability — as content volume increases and plugin stacks grow, performance degrades, maintenance complexity increases, and hosting costs rise. The need to upgrade from shared hosting to VPS to dedicated hosting as traffic grows can significantly increase costs over time.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Headless sites built on modern frameworks scale naturally. Static sites served from a CDN like Cloudflare or Vercel handle traffic spikes effortlessly — whether you have 100 visitors or 100,000 visitors in a day, the per-request cost remains essentially zero. Content additions do not impact performance. There is no database to optimise, no server to upgrade, and no plugin conflicts to manage. For Christchurch businesses planning for growth, this scalability provides both cost certainty and performance reliability.</p>
+
+        <h2 id="when-headless" style="font-size:clamp(22px,2.5vw,32px);font-weight:700;color:#fff;margin-top:48px;margin-bottom:20px">8. When to Choose Headless</h2>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Headless is the right choice in the following scenarios:</p>
+        <ul style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px;padding-left:24px">
+          <li style="margin-bottom:8px"><strong style="color:#fff">Performance is a priority</strong> — If you want the fastest possible website for SEO, user experience, and conversion optimisation, headless is the clear choice. Astro sites consistently outperform all other platforms on every performance metric.</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">SEO is critical to your strategy</strong> — If organic search is a primary driver of business, the SEO advantages of headless architectures — faster pages, cleaner HTML, better Core Web Vitals, and complete schema control — deliver a measurable competitive advantage.</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Security is important</strong> — If you handle customer data, process transactions, or operate in a regulated industry, the reduced attack surface of static and headless architectures provides stronger security with less ongoing effort.</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">You want lower long-term costs</strong> — If you are planning for the long term, the lower maintenance and hosting costs of headless platforms typically offset any higher upfront development costs within two to three years.</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">You need custom design</strong> — Headless frameworks provide complete design freedom. You are not constrained by theme limitations, plugin dependencies, or platform-specific styling conventions.</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">You plan to scale</strong> — Headless architectures scale effortlessly. Static sites can handle millions of visits without performance degradation. Adding a mobile app, a smart display, or any other frontend is straightforward because the CMS is already decoupled.</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Content is your primary output</strong> — If your website is primarily a vehicle for content — blog posts, articles, guides, resources — Astro with a headless CMS provides the optimal combination of content management and performance.</li>
+        </ul>
+
+        <h2 id="when-traditional" style="font-size:clamp(22px,2.5vw,32px);font-weight:700;color:#fff;margin-top:48px;margin-bottom:20px">9. When to Stick with Traditional</h2>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Traditional CMS platforms remain appropriate in certain scenarios:</p>
+        <ul style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px;padding-left:24px">
+          <li style="margin-bottom:8px"><strong style="color:#fff">Budget is severely constrained</strong> — If your budget is under $3,000 and you need a website quickly, a WordPress template or website builder may be the only viable option. While the results will not match a custom headless build, it is better than no website at all.</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">You need extensive plugin functionality</strong> — If your website relies heavily on WordPress-specific plugins that have no equivalent in the headless ecosystem, the migration cost and complexity may not be justified.</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">Non-technical content editors need full control</strong> — If your team needs to be able to create pages with complex layouts, add forms, install plugins, and make design changes without developer assistance, WordPress's familiar admin interface and theme customiser may be more practical.</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">You have a significant WordPress investment</strong> — If you have an extensive WordPress site with hundreds of pages, complex plugin configurations, and a team trained on WordPress, the cost and disruption of migrating may not be justified by the benefits.</li>
+          <li style="margin-bottom:8px"><strong style="color:#fff">The website is not a business priority</strong> — If your website serves a purely informational purpose and does not need to generate leads, rank in search results, or provide a competitive advantage, the investment in a headless architecture may not be warranted.</li>
+        </ul>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">The Hybrid Approach</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">For some Christchurch businesses, a hybrid approach makes sense. You might use a headless framework like Astro for your primary marketing website — the pages that need to perform well in search and convert visitors — while using a traditional CMS like WordPress for a specific function such as a blog with frequent content updates by non-technical team members, or a members-only area with complex user management. This approach lets you leverage the strengths of each technology where they matter most.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Another hybrid approach is to use WordPress as a headless CMS itself. WordPress's admin interface is familiar to millions of content editors, and using the WordPress REST API to deliver content to a modern frontend built with Astro or Next.js gives you the best of both worlds: a familiar content management experience with a high-performance frontend. This is an increasingly popular approach for New Zealand businesses that want the editorial experience of WordPress without the performance and security drawbacks of traditional WordPress themes.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">The hybrid approach does introduce additional complexity in terms of development and maintenance, so it is important to weigh the benefits against the added overhead. For most Christchurch businesses, choosing one approach and committing to it fully delivers the best results. The decision should be based on your specific requirements, not a desire to hedge bets.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">The Developer Experience Advantage</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">One often-overlooked benefit of headless frameworks is the developer experience they provide. Modern frameworks like Astro and Next.js offer hot module replacement, type checking with TypeScript, component-based architecture, and extensive testing tools. These features allow developers to work faster, make fewer errors, and deliver higher-quality code. For Christchurch businesses, this translates to faster project delivery, fewer bugs, and lower development costs over time.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">WordPress development, by contrast, is often hampered by legacy code, inconsistent coding standards across plugins and themes, limited debugging tools, and a steep learning curve for custom functionality. These challenges slow development, increase the risk of bugs, and make it harder to maintain the codebase over time. While WordPress has improved its developer tools in recent years with the block editor and REST API, the development experience still lags behind modern JavaScript frameworks by a significant margin.
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Content Management Comparison</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">One of the most common concerns about headless CMS platforms is the content editing experience. WordPress has refined its editor over two decades and offers a familiar, intuitive interface that non-technical users can learn quickly. The Gutenberg block editor provides a visual, drag-and-drop content creation experience that most people find accessible.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Headless CMS platforms like Sanity and Strapi have invested heavily in their editing interfaces. Sanity's studio offers real-time collaboration, structured content editing, and a customisable interface that can be tailored to your specific content types. Strapi provides a clean, intuitive admin panel with a visual content builder. For content creators who primarily write text, Markdown-based approaches through Astro's content collections offer a simple, distraction-free writing experience.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">The key difference is that headless CMS platforms enforce structured content models, which means content is organised consistently and can be rendered predictably across different formats. This structured approach makes content more reusable, easier to maintain, and more suitable for multi-channel publishing — the same content can power your website, email campaigns, and mobile app without manual reformatting.</p>
+
+        <h2 id="migration-guide" style="font-size:clamp(22px,2.5vw,32px);font-weight:700;color:#fff;margin-top:48px;margin-bottom:20px">10. Migration Guide</h2>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">If you have decided to migrate from a traditional CMS to a headless architecture, careful planning is essential to protect your SEO rankings and ensure a smooth transition. Here is a step-by-step guide to migrating a New Zealand business website.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Phase 1: Audit and Planning</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Start with a comprehensive audit of your existing website. Document every page URL, its content, its search rankings, its backlinks, and its traffic. Use Google Analytics 4 and Google Search Console to identify your highest-value pages — these must be prioritised in the migration. Create a content inventory that maps every page from the old site to its corresponding page on the new site. This mapping will form the basis of your redirect strategy.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Phase 2: Content Migration</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Export your content from the existing CMS and import it into the new headless CMS. This process varies depending on the source and target platforms. WordPress content can typically be exported as XML and imported into most headless CMS platforms. During the migration, take the opportunity to improve content quality — update outdated information, improve SEO elements, and enhance formatting.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Phase 3: Design and Development</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Build the new frontend on your chosen framework, connecting it to the headless CMS via API. Implement all necessary redirects from old URLs to new URLs. Test thoroughly — every redirect must work correctly, every page must render properly, and all functionality must be preserved. Pay particular attention to form submissions, tracking codes, and any third-party integrations.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Phase 4: SEO Verification</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Before launching, verify that every SEO element is correctly implemented: title tags, meta descriptions, heading hierarchy, schema markup, XML sitemap, robots.txt, canonical tags, and internal links. Run the new site through Google PageSpeed Insights, Core Web Vitals testing, and a crawler like Screaming Frog to identify any issues. Compare the new site's technical SEO against the old site and ensure no elements have been missed.</p>
+
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-top:32px;margin-bottom:16px">Phase 5: Launch and Monitoring</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Launch the new site and monitor closely for the first four weeks. Watch Google Search Console for indexing issues, crawl errors, or coverage problems. Monitor rankings for your target keywords — some fluctuation is normal in the first two weeks, but rankings should stabilise within a month. Check that redirects are working correctly and that no old URLs are returning 404 errors. Monitor Core Web Vitals data in Search Console and verify that performance meets expectations.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">A typical migration timeline for a Christchurch business website is eight to sixteen weeks, depending on the size and complexity of the site. Budget $5,000 to $20,000 for the migration, depending on the scope. The investment is typically recovered within six to twelve months through improved performance, higher rankings, and increased conversions.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">If you are considering migrating your Christchurch business website to a modern headless architecture, <a href="mailto:barry@bytedigital.co.nz" style="color:var(--secondary)">contact Byte Digital</a> for a free migration assessment. We will evaluate your current site, identify opportunities for improvement, and provide a detailed migration plan with transparent pricing.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">Continue learning with our other guides:</p>
+        <ul style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px;padding-left:24px">
+          <li style="margin-bottom:8px"><a href="/guides/web-design-christchurch-2026" style="color:var(--secondary)">Complete Guide to Web Design in Christchurch 2026</a></li>
+          <li style="margin-bottom:8px"><a href="/guides/seo-domination-handbook" style="color:var(--secondary)">Christchurch SEO Domination Handbook</a></li>
+          <li style="margin-bottom:8px"><a href="/guides/website-cost-guide-nz" style="color:var(--secondary)">Website Cost Guide New Zealand 2026</a></li>
+          <li style="margin-bottom:8px"><a href="/guides/digital-transformation" style="color:var(--secondary)">Digital Transformation Guide for Christchurch Businesses</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">More Guides</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px">
+        <a href="/guides/web-design-christchurch-2026" style="display:block;padding:24px;border-radius:16px;background:var(--surface);border:1px solid var(--border-medium);transition:border-color 0.3s">
+          <h4 style="color:#fff;font-size:16px;font-weight:600;margin-bottom:8px">Complete Guide to Web Design Christchurch 2026</h4>
+          <p style="color:var(--text-muted);font-size:14px">The definitive guide to web design for Christchurch businesses.</p>
+        </a>
+        <a href="/guides/seo-domination-handbook" style="display:block;padding:24px;border-radius:16px;background:var(--surface);border:1px solid var(--border-medium);transition:border-color 0.3s">
+          <h4 style="color:#fff;font-size:16px;font-weight:600;margin-bottom:8px">Christchurch SEO Domination Handbook</h4>
+          <p style="color:var(--text-muted);font-size:14px">Master local SEO and dominate Christchurch search results.</p>
+        </a>
+        <a href="/guides/website-cost-guide-nz" style="display:block;padding:24px;border-radius:16px;background:var(--surface);border:1px solid var(--border-medium);transition:border-color 0.3s">
+          <h4 style="color:#fff;font-size:16px;font-weight:600;margin-bottom:8px">Website Cost Guide NZ 2026</h4>
+          <p style="color:var(--text-muted);font-size:14px">Transparent NZ pricing for every website type.</p>
+        </a>
+        <a href="/guides/digital-transformation" style="display:block;padding:24px;border-radius:16px;background:var(--surface);border:1px solid var(--border-medium);transition:border-color 0.3s">
+          <h4 style="color:#fff;font-size:16px;font-weight:600;margin-bottom:8px">Digital Transformation Guide</h4>
+          <p style="color:var(--text-muted);font-size:14px">Build a complete digital ecosystem for your business.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</GuidePage>

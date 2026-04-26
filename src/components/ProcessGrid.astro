@@ -1,0 +1,54 @@
+---
+import ProcessStep from './ProcessStep.astro';
+
+const steps = [
+  {
+    number: 1,
+    color: 'purple' as const,
+    title: 'Discovery Call',
+    description: "We learn your business, goals, audience, and competitors in Christchurch. This free 30-minute call shapes your entire digital strategy.",
+  },
+  {
+    number: 2,
+    color: 'mint' as const,
+    title: 'Design & Prototype',
+    description: 'We design your site in Figma with your feedback loop. You approve every pixel before a single line of code is written.',
+  },
+  {
+    number: 3,
+    color: 'purple' as const,
+    title: 'Build & Optimize',
+    description: 'We develop your site with clean code, blazing speed, and SEO best practices baked in from day one. No bloat, no compromises.',
+  },
+  {
+    number: 4,
+    color: 'mint' as const,
+    title: 'Launch & Grow',
+    description: 'We launch, monitor performance, and iterate. Ongoing support means your site keeps getting better and generating more leads.',
+  },
+];
+---
+
+<section id="process" class="section reveal" style="background:#0A0A0E;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:16px">
+      <div class="section-label" style="display:inline-flex">How We Work</div>
+    </div>
+    <div class="section-title" style="text-align:center">
+      From concept to launch<br />in <span class="gradient-text">four simple steps.</span>
+    </div>
+    <p class="section-subtitle" style="text-align:center;margin:0 auto">
+      We've streamlined our process to get you online fast without sacrificing quality.
+    </p>
+    <div class="process-grid">
+      {steps.map(step => (
+        <ProcessStep
+          number={step.number}
+          color={step.color}
+          title={step.title}
+          description={step.description}
+        />
+      ))}
+    </div>
+  </div>
+</section>

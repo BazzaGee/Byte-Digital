@@ -1,0 +1,126 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Richmond';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Richmond?',
+    answer: 'Richmond business websites typically range from $2,500 to $10,000. Retail businesses and cafés can establish a strong online presence from $2,500 to $5,000, while businesses needing e-commerce, booking systems, or more sophisticated functionality generally invest $5,000 to $10,000. We provide detailed quotes and work to deliver maximum value within your budget.',
+  },
+  {
+    question: 'Do you offer SEO services for Richmond businesses?',
+    answer: 'Yes. Richmond\'s central Christchurch location means your business competes with a wide range of local operators for online visibility. Our SEO strategies target Richmond-specific searches as well as broader Christchurch queries. We optimise your Google Business Profile, build quality backlinks, and create content that establishes your authority in the Richmond market.',
+  },
+  {
+    question: 'How long does it take to build a website for a Richmond business?',
+    answer: 'Most Richmond business websites are completed within three to six weeks. Standard business sites tend to be on the shorter end, while e-commerce builds or businesses requiring custom integrations may take up to eight weeks. We establish clear timelines and keep you updated at every stage.',
+  },
+  {
+    question: 'How can my Richmond Mall-area business compete online?',
+    answer: 'We build websites that complement your physical presence near Richmond Mall with strong digital visibility. Local SEO ensures you appear in searches for your products or services in the Richmond and central Christchurch area. Google Ads provide immediate visibility, while social media marketing drives engagement and foot traffic. We help you capture both online shoppers and in-store visitors.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Richmond Christchurch",
+  "description": "Professional web design, SEO, and digital marketing services for businesses in Richmond, Christchurch. Serving retail businesses, cafés, and service providers near Richmond Mall.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Richmond, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Addington', slug: 'addington' },
+  { name: 'Woolston', slug: 'woolston' },
+  { name: 'St Albans', slug: 'st-albans' },
+  { name: 'Somerfield', slug: 'somerfield' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'Merivale', slug: 'merivale' },
+  { name: 'Ferrymead', slug: 'ferrymead' },
+  { name: 'New Brighton', slug: 'new-brighton' },
+];
+---
+
+<LocationPage
+  title="Web Design Richmond Christchurch | Byte Digital"
+  description="Byte Digital provides web design, SEO, and digital marketing for Richmond businesses. Helping central Christchurch retail and service businesses near Richmond Mall grow online."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Growth for Richmond's Central Christchurch Businesses</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Richmond occupies a strategic position in Christchurch's geography, sitting between the central city and the eastern suburbs with easy access to both. This central location, combined with the commercial anchor of Richmond Mall, makes it one of the city's most accessible shopping and service destinations. The suburb's business community is broad and diverse, encompassing retail stores, hospitality venues, healthcare providers, trades businesses, and professional services — all serving a customer base that extends well beyond Richmond's own residential population.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital works with Richmond businesses to build websites that capture this extended market. Your ideal customers are not just Richmond residents — they are people from across central and eastern Christchurch who visit Richmond for shopping, dining, and services. A strong online presence ensures that when these potential customers search for what you offer, your Richmond business appears at the top of their results.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Richmond Mall and the Surrounding Retail Ecosystem</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Richmond Mall serves as the commercial heart of the suburb, housing a mix of national retailers and local independent businesses. The mall and surrounding retail precinct on Marchwiel Avenue and Stanmore Road see consistent foot traffic from residents across central and eastern Christchurch. However, retail competition is fierce, and the businesses that thrive are those that have extended their reach beyond walk-by customers through effective digital marketing.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          For Richmond's independent retailers, e-commerce integration is increasingly critical. Even if your primary sales happen in-store, a significant proportion of your potential customers research products online before visiting. We build websites that showcase your inventory, provide product information, and make it easy for customers to check availability or make purchases online. This omnichannel approach captures customers at every stage of their buying journey.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Richmond's hospitality scene — the cafés, restaurants, and takeaways serving the mall traffic and local community — benefits enormously from strong Google Business Profiles and local search visibility. When someone searches for "lunch near Richmond Mall" or "coffee Richmond Christchurch," the businesses appearing in the top map results capture the majority of those customers. We optimise every element of your online presence to ensure you appear prominently for these high-intent local searches.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Professional Services and Healthcare in Richmond</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Richmond's accessible central location makes it a popular base for professional services and healthcare providers. Medical centres, dental practices, physiotherapists, legal firms, and accounting practices all serve clients who value the suburb's convenience and proximity to the central city. For these businesses, a website must communicate professionalism, build trust, and make the process of engaging your services as straightforward as possible.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We build medical and health practice websites for Richmond that prioritise patient experience. Clear service descriptions, practitioner profiles with credentials, online booking systems, and patient resources all contribute to a website that serves your patients while generating new bookings. For Richmond's medical practices, we also implement medical SEO strategies that target condition-specific and treatment-specific searches, connecting you with patients actively looking for the services you provide.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Professional services firms in Richmond benefit from websites that demonstrate expertise and facilitate client engagement. We design sites that showcase your services, team credentials, and track record while providing multiple convenient ways for potential clients to make contact. Secure enquiry forms, direct phone links, and even online consultation booking all reduce the friction between a potential client discovering your firm and making that first appointment.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">SEO and Digital Marketing Strategy for Richmond</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Richmond's central location creates both opportunities and challenges for local SEO. The suburb benefits from proximity to the central city, which increases search volume for local services, but it also means competing with CBD-based businesses for some search queries. Our SEO strategies navigate this landscape by targeting Richmond-specific keywords where they provide the best return, and broader Christchurch searches where your business has a competitive advantage.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Content marketing is a powerful tool for Richmond businesses looking to build authority and attract organic search traffic. We create blog posts, service pages, and resource articles that answer the questions your potential customers are actually asking. A Richmond dental practice, for example, might publish content about teeth whitening options, while a local accountant could create guides on tax planning for small businesses. This content drives relevant traffic, builds trust, and supports your search rankings over time.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital is your partner for digital growth in Richmond. Explore our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO solutions</a> to learn how we can help your Richmond business thrive online.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

@@ -1,0 +1,126 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'St Albans';
+const faqItems = [
+  {
+    question: 'How much does web design cost in St Albans?',
+    answer: 'St Albans business websites typically range from $2,500 to $12,000. Cafés and small retail shops often need simpler, stylish sites in the $2,500 to $5,000 range, while professional services or businesses with booking systems and e-commerce may require $5,000 to $12,000. We provide clear, upfront quotes tailored to your specific business needs.',
+  },
+  {
+    question: 'Do you offer SEO services for St Albans businesses?',
+    answer: 'Yes. St Albans has a unique local character that sets it apart from other Christchurch suburbs, and our SEO strategies leverage this distinctiveness. We target local searches that capture customers looking specifically in the St Albans and Edgeware Village areas, as well as broader Christchurch searches for your services. Local SEO is particularly effective for St Albans hospitality and retail businesses.',
+  },
+  {
+    question: 'How long does it take to build a website for my St Albans business?',
+    answer: 'Most St Albans websites are completed within three to six weeks. Simpler brochure-style sites for cafés or boutiques can be turned around more quickly, while businesses needing more complex functionality may take six to eight weeks. We work efficiently while ensuring every detail meets the quality standard St Albans customers expect.',
+  },
+  {
+    question: 'How can my St Albans café attract more customers online?',
+    answer: 'We build café websites that go beyond a simple menu page. Our approach includes mouth-watering food photography integration, online ordering capability, event promotion sections for live music or themed nights, and Instagram feed integration that keeps your site fresh. Combined with local SEO targeting St Albans dining searches and social media management, we create a digital presence that drives foot traffic to your café.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design St Albans Christchurch",
+  "description": "Professional web design, SEO, and digital marketing services for businesses in St Albans, Christchurch. Serving cafés, retail, creative businesses, and the Edgeware Village community.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "St Albans, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Merivale', slug: 'merivale' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'Fendalton', slug: 'fendalton' },
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'Richmond', slug: 'richmond' },
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Papanui', slug: 'papanui' },
+  { name: 'Addington', slug: 'addington' },
+  { name: 'Cashmere', slug: 'cashmere' },
+  { name: 'Somerfield', slug: 'somerfield' },
+];
+---
+
+<LocationPage
+  title="Web Design St Albans Christchurch | Byte Digital"
+  description="Byte Digital offers web design, SEO, and digital marketing for St Albans businesses. We help cafés, retail, and creative businesses in Edgeware Village grow online."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Web Design That Captures St Albans' Unique Character</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          St Albans is one of Christchurch's most character-rich suburbs, known for its strong community spirit, leafy residential streets, and the increasingly popular Edgeware Village shopping precinct. Unlike the more commercial corridors of Riccarton or Merivale, St Albans has cultivated an authentic, neighbourhood-centred business scene where independent cafés, artisan shops, creative studios, and wellness practitioners thrive alongside long-established local services. This unique character demands a digital presence that feels equally genuine and distinctive.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital creates websites for St Albans businesses that reflect their individual personality and the community-focused ethos of the suburb. A generic template simply does not work for a St Albans business whose appeal lies in its authenticity and local connection. We design bespoke websites that tell your story, showcase what makes you different from chain competitors, and build the kind of online trust that turns first-time visitors into loyal local customers.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Edgeware Village: A Digital Opportunity</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Edgeware Village has emerged as one of Christchurch's most interesting dining and retail destinations, with a growing collection of independent cafés, bars, restaurants, and specialty stores. The village atmosphere draws regulars from across St Albans and neighbouring suburbs, but its relative compactness means individual businesses need strong digital marketing to extend their reach beyond walk-by traffic. Many Edgeware Village businesses now derive a significant portion of their customers from online discovery.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          For Edgeware Village cafés and restaurants, we build websites that become effective digital shopfronts. Online menus that look as appetising as the food itself, integrated reservation or ordering systems, event promotion for live music nights or seasonal specials, and Instagram feeds that show the latest happenings — all of these features work together to drive both online engagement and physical visits. We also implement Google Business Profile optimisation that ensures your café or restaurant appears prominently when people search for dining options in St Albans or nearby suburbs.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Edgeware Village's retail businesses benefit from our approach to visual storytelling. Boutiques, vintage shops, and specialty stores have compelling products that deserve beautiful online presentation. We design e-commerce enabled websites and lookbook-style pages that capture the unique inventory and atmosphere these stores offer. Combined with social media marketing that targets the demographics most likely to visit Edgeware Village, we help extend your customer base well beyond the St Albans neighbourhood.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Supporting St Albans' Creative and Wellness Community</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          St Albans has become a magnet for creative professionals and wellness practitioners. Yoga studios, massage therapists, counsellors, photographers, graphic designers, and artisan craftspeople have all found a home in this community-oriented suburb. These businesses often rely on personal connection and word-of-mouth referrals, but a strong website amplifies those referrals and makes your services discoverable to people who have not yet heard of you through the local grapevine.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We design websites for wellness practitioners that create a sense of calm and trust from the first visit. Soothing colour palettes, clear service descriptions, practitioner profiles that highlight your qualifications and approach, and easy online booking all contribute to converting website visitors into booked clients. For creative professionals, we build portfolio-focused websites that showcase your work through elegant galleries, case studies, and client testimonials that demonstrate your capabilities.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The community-focused nature of St Albans businesses means that content marketing and social media are particularly effective digital channels. Blog posts about local events, community initiatives, or behind-the-scenes glimpses of your business resonate strongly with the St Albans audience. We help develop content strategies that build genuine engagement rather than just broadcasting promotional messages, fostering the kind of community connection that drives long-term customer loyalty.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Local SEO for St Albans Businesses</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Local SEO is arguably the most impactful digital marketing channel for St Albans businesses. When someone searches "best café St Albans" or "yoga classes near me" while in or near the suburb, the businesses that appear in the top three map results capture the vast majority of those customers. Our local SEO strategies ensure your business is among those top results through comprehensive Google Business Profile management, local citation building, review generation, and on-page optimisation.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We also target broader Christchurch searches with St Albans-specific landing pages. A St Albans-based landscaper, for instance, benefits from ranking for both "landscaper St Albans" and "landscaper Christchurch" — capturing both the hyper-local customer and the wider Christchurch market. This dual approach maximises your search visibility and ensures no potential customer is missed.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital is passionate about helping St Albans businesses thrive. Whether you run an Edgeware Village café or a home-based creative practice, we build the digital presence you need to grow. Check out our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO solutions</a> to learn more.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

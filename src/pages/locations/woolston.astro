@@ -1,0 +1,126 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Woolston';
+const faqItems = [
+  {
+    question: 'How much does web design cost for Woolston businesses?',
+    answer: 'Woolston business websites typically range from $2,000 to $8,000. Trades businesses and manufacturers often need straightforward, lead-focused sites in the $2,000 to $4,000 range, while businesses requiring e-commerce, product catalogues, or more advanced functionality may invest $4,000 to $8,000. We focus on delivering websites that generate a measurable return on your investment.',
+  },
+  {
+    question: 'Do you offer SEO services for Woolston businesses?',
+    answer: 'Yes. Woolston\'s industrial and trades focus means we target specific, high-intent search terms that potential customers use when looking for manufacturing, trade, and industrial services in Christchurch. Our SEO strategies focus on practical results — more enquiries from customers who are ready to engage your services.',
+  },
+  {
+    question: 'How long does it take to build a website for my Woolston business?',
+    answer: 'Most Woolston business websites are completed within three to five weeks. Trades and manufacturing businesses with clear service offerings can often be launched more quickly, while businesses needing custom features or extensive product catalogues may take five to seven weeks.',
+  },
+  {
+    question: 'Can you help my Woolston manufacturing business find new customers online?',
+    answer: 'Absolutely. Many Woolston manufacturers still rely primarily on traditional channels for finding customers. We build websites that showcase your manufacturing capabilities, quality standards, and past projects to attract both local and national buyers. Combined with targeted SEO and Google Ads, we help you reach decision-makers searching for manufacturing partners in Christchurch and beyond.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Woolston Christchurch",
+  "description": "Professional web design, SEO, and digital marketing services for businesses in Woolston, Christchurch. Serving trades, manufacturing, industrial services, and the Heathcote River business community.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Woolston, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Addington', slug: 'addington' },
+  { name: 'Ferrymead', slug: 'ferrymead' },
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'Richmond', slug: 'richmond' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'St Albans', slug: 'st-albans' },
+  { name: 'Mount Pleasant', slug: 'mount-pleasant' },
+  { name: 'Sumner', slug: 'sumner' },
+  { name: 'Spreydon', slug: 'spreydon' },
+];
+---
+
+<LocationPage
+  title="Web Design Woolston Christchurch | Byte Digital"
+  description="Byte Digital provides web design, SEO, and digital marketing for Woolston businesses. We help trades, manufacturing, and industrial businesses generate leads and find customers online."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Solutions for Woolston's Industrial Heartland</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Woolston has been Christchurch's industrial backbone for well over a century. Stretching along the Heathcote River and bordered by the busy Woolston industrial precinct, this suburb hums with the activity of manufacturing plants, engineering workshops, timber yards, automotive businesses, and trade suppliers. It is a place where things get made, fixed, and moved — the kind of practical, results-oriented environment where business owners care less about flashy marketing and more about generating real enquiries and tangible commercial outcomes.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital speaks the language of Woolston businesses. We know that a website for an engineering firm needs to showcase capabilities and certifications, not just look pretty. We understand that a plumbing supplies company needs a website that helps trade customers find the right products quickly. We build websites for Woolston's industrial and trades sector that focus on what matters most: getting found online, building credibility, and converting visitors into paying customers.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Web Design for Woolston's Manufacturing Sector</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Manufacturing is the lifeblood of Woolston's economy. From metal fabrication and engineering to food processing, timber manufacturing, and custom fabrication, the suburb hosts a diverse range of production businesses. For many of these companies, the internet represents a largely untapped source of new customers. While they may have served the Christchurch market for decades through industry networks and referrals, the reality is that more and more buyers — including B2B procurement officers — start their search for suppliers online.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We build manufacturing websites that effectively communicate your capabilities to potential buyers. Clear service and product listings, technical specifications where appropriate, quality certifications and compliance information, and project case studies all provide the information buyers need to shortlist suppliers. We also include features like downloadable capability statements, enquiry forms for custom quotes, and client testimonials that build confidence in your ability to deliver.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          For Woolston manufacturers looking to expand beyond Christchurch, national SEO strategies can open up new markets across New Zealand. By targeting industry-specific search terms rather than location-specific ones, we help your products and services reach buyers throughout the country. A Woolston-based metal fabricator, for example, could rank nationally for "custom metal fabrication NZ" — attracting project enquiries from Auckland, Wellington, and everywhere in between.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Lead Generation for Woolston's Trades Businesses</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Woolston's concentration of trades businesses — from plumbers and electricians to builders, painters, and automotive specialists — creates a competitive local market where online visibility directly impacts workload and revenue. When a Christchurch homeowner searches for a tradesperson, the businesses appearing on the first page of Google capture the vast majority of those enquiries. If your Woolston trades business is not there, your competitors are getting the work.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Our trades websites are built specifically for lead generation. Every design decision is optimised to guide visitors towards making an enquiry: clear service descriptions, prominent contact information, project galleries that demonstrate quality workmanship, and trust signals like trade certifications and customer reviews. We also ensure your website loads quickly on mobile devices, since the majority of trades-related searches happen on smartphones from people who need a problem solved immediately.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Google Ads provide an excellent lead generation channel for Woolston trades businesses. We create targeted campaigns that appear when potential customers search for your specific services in Christchurch and surrounding areas. Because trades services are high-intent purchases — people search for a plumber when they need one, not when they are casually browsing — the conversion rates from well-targeted Google Ads are typically excellent. We manage your campaigns to maximise return on ad spend and deliver consistent enquiry volumes.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">The Changing Face of Woolston</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          While industry remains Woolston's core identity, the suburb is gradually diversifying. The Heathcote River corridor has attracted cafés, craft breweries, and creative businesses that add a new dimension to the local economy. The Tannery complex, with its boutique shops and eateries, has become a destination in its own right. These newer businesses need websites that balance Woolston's industrial heritage with a more contemporary, lifestyle-oriented brand identity.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We help Woolston's newer hospitality and retail businesses build digital presences that attract visitors from across Christchurch. Social media marketing, particularly on Instagram, is highly effective for showcasing the unique atmosphere of Woolston's emerging venues. Combined with local SEO that targets searches for dining, entertainment, and shopping options in the Woolston and Heathcote area, we help these newer businesses establish themselves alongside the suburb's established commercial operators.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital delivers practical digital solutions for Woolston's practical businesses. View our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO packages</a> to see how we can help your Woolston business grow.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

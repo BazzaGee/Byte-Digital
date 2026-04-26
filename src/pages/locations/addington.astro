@@ -1,0 +1,126 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Addington';
+const faqItems = [
+  {
+    question: 'How much does web design cost for Addington businesses?',
+    answer: 'Addington business websites typically range from $2,500 to $10,000 depending on the complexity and features required. Trades businesses and small service providers often start around $2,500 to $4,000, while businesses needing e-commerce, booking systems, or more sophisticated functionality may invest $5,000 to $10,000. We work with Addington businesses to find the right solution for their budget and growth goals.',
+  },
+  {
+    question: 'Do you offer SEO services for Addington businesses?',
+    answer: 'Yes. Addington is home to a diverse mix of trades, industrial services, and small businesses, and our SEO strategies are built around reaching the customers searching for these services in Christchurch and beyond. We focus on practical, results-driven SEO that generates real enquiries rather than vanity metrics. This includes optimising for trade-specific keywords, local service area targeting, and Google Business Profile management.',
+  },
+  {
+    question: 'How long does it take to build a website for my Addington business?',
+    answer: 'Most Addington business websites are completed within three to six weeks. Trades businesses with straightforward service-focused sites can often be launched more quickly, while businesses with more complex requirements like online quoting or booking systems may take longer. We prioritise getting your website live and generating enquiries as efficiently as possible.',
+  },
+  {
+    question: 'Can you help my Addington trade business get more leads online?',
+    answer: 'Definitely. Trades businesses in Addington are some of our most successful clients. We build lead-generation focused websites with clear service descriptions, project showcases, trust signals like reviews and certifications, and multiple easy ways for potential customers to make contact. Combined with local SEO and Google Ads, our trade clients consistently see significant increases in enquiry volume.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Addington Christchurch",
+  "description": "Professional web design, SEO, and digital marketing services for businesses in Addington, Christchurch. Serving trades, industrial services, and small businesses near Addington Raceway.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Addington, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Woolston', slug: 'woolston' },
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'Spreydon', slug: 'spreydon' },
+  { name: 'Merivale', slug: 'merivale' },
+  { name: 'Richmond', slug: 'richmond' },
+  { name: 'Fendalton', slug: 'fendalton' },
+  { name: 'Papanui', slug: 'papanui' },
+  { name: 'Halswell', slug: 'halswell' },
+];
+---
+
+<LocationPage
+  title="Web Design Addington Christchurch | Byte Digital"
+  description="Byte Digital provides web design, SEO, and digital marketing for Addington businesses. We help trades, industrial services, and small businesses generate more leads and grow online."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Solutions Built for Addington's Business Community</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Addington has earned its reputation as one of Christchurch's most practical, hardworking suburbs. Tucked between the central city and the southwestern suburbs, this area has transformed from its racing and industrial roots into a bustling small business hub. The Addington Raceway and the surrounding commercial precinct house a wide variety of enterprises — from plumbing and electrical contractors to warehousing operations, automotive workshops, and emerging hospitality venues. What unites these businesses is a common need: a strong online presence that generates real, measurable results.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital has worked with numerous Addington-based businesses to build websites that work as hard as they do. We understand that for a trades business operating out of an Addington workshop, a website is not about looking pretty — it is about getting the phone to ring. For a small manufacturer or distributor, it is about showcasing capabilities to buyers who may never visit your premises. We build practical, lead-focused websites that serve your business objectives.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Web Design for Addington's Trades and Services Sector</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The trades and services sector is the backbone of Addington's business community. Plumbers, electricians, builders, painters, landscapers, and HVAC specialists all operate from this area, serving customers across Christchurch. For these businesses, the website needs to accomplish specific tasks: clearly list services, demonstrate expertise through project galleries, provide instant quoting or booking options, and make contacting you as easy as possible.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We build trades websites with a clear hierarchy that guides visitors from their initial search straight to an enquiry. Your services are prominently displayed, backed by real project photos, customer testimonials, and any relevant certifications or affiliations. Every element is designed to build trust and reduce the mental distance between a potential customer discovering your business and making that first phone call or filling out a contact form.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Mobile responsiveness is critical for Addington trades businesses. When a homeowner has a burst pipe or a broken heater, they are searching on their phone for an emergency plumber or electrician near them. If your website does not load quickly on mobile or your phone number is buried somewhere difficult to find, that customer calls your competitor instead. We ensure your contact information is always one tap away, your site loads in under three seconds on mobile, and your enquiry forms are simple enough to complete in thirty seconds.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Addington's Growing Commercial Diversity</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          While trades remain the core of Addington's business community, the suburb has diversified significantly in recent years. New hospitality venues, creative studios, fitness businesses, and specialty retail operations have all established themselves in the area, drawn by relatively affordable commercial space and proximity to the central city. These newer businesses face different digital challenges than the established trades — they need to build brand awareness, establish credibility, and attract customers who may not be familiar with Addington as a destination.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          For Addington's hospitality and retail newcomers, we create websites that put the business on the map — literally and figuratively. Integrated Google Maps, high-quality imagery, online menus or product catalogues, and social media integration all work together to create a compelling first impression. We also implement local SEO strategies that help these businesses appear in searches for their specific category within Christchurch, capturing customers who might otherwise only consider central city options.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The proximity of Addington to Christchurch's central business district also creates opportunities for businesses targeting corporate clients. Co-working spaces, B2B service providers, and corporate caterers based in Addington can leverage their location advantage in their digital marketing. We help position these businesses as convenient, professional alternatives to CBD-based competitors while emphasising the accessibility and parking benefits that Addington offers.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">SEO and Lead Generation for Addington</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Search engine optimisation for Addington businesses focuses on capturing high-intent local searches. When someone in Christchurch searches for "emergency electrician Christchurch" or "commercial plumber Canterbury," we want your Addington business to appear at the top of those results. Our local SEO strategies include comprehensive keyword research targeting service-specific and location-specific terms, Google Business Profile optimisation, local citation building, and review generation strategies.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Google Ads provides an excellent complement to organic SEO for Addington businesses seeking immediate results. We create targeted pay-per-click campaigns that appear when potential customers search for your specific services. For trades businesses, this means you only pay when someone actively looking for your service clicks through to your website. Our campaigns are tightly targeted to Christchurch and surrounding areas, ensuring your advertising budget is not wasted on clicks from outside your service region.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital takes a holistic approach to digital growth for Addington businesses. Your website, SEO, Google Ads, and social media all work together as an integrated system designed to generate consistent leads and enquiries. We provide monthly reporting so you can see exactly how your investment is performing and where opportunities for further growth exist. Discover more about our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">search engine optimisation</a> packages.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

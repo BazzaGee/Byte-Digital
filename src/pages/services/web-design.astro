@@ -1,0 +1,164 @@
+---
+import ServicePage from '../../layouts/ServicePage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const faqItems = [
+  {
+    question: 'How long does a custom web design project take in Christchurch?',
+    answer: 'A typical custom website design project takes between four and eight weeks from kickoff to launch. This includes discovery, wireframing, visual design, development, content integration, and thorough testing across devices and browsers. More complex projects with custom functionality may extend to ten or twelve weeks. We always provide a detailed timeline before work begins so you know exactly what to expect.'
+  },
+  {
+    question: 'How much does web design cost for a Christchurch business?',
+    answer: 'Our web design packages for Christchurch businesses start from $3,500 for a professionally designed brochure site and scale up based on complexity. A full e-commerce build or custom web application typically ranges from $8,000 to $25,000 plus. Every project is scoped individually, and we provide transparent, itemised quotes so there are never surprises. We believe in delivering genuine value, not cutting corners on quality.'
+  },
+  {
+    question: 'Do you design mobile-first websites?',
+    answer: 'Absolutely. Over sixty-five percent of web traffic in New Zealand comes from mobile devices, and in Christchurch that figure climbs even higher during commuting hours. Every website we design starts with the mobile experience and progressively enhances for larger screens. This approach ensures your site loads fast, looks sharp, and converts visitors regardless of whether they are browsing on a phone in Hagley Park or on a desktop at their Riccarton office.'
+  },
+  {
+    question: 'Will my website rank well on Google after launch?',
+    answer: 'Every site we build is engineered with technical SEO best practices baked in from the ground up: semantic HTML, structured data, fast load times, mobile responsiveness, and clean URL architecture. However, ranking competitively in Christchurch search results typically requires ongoing SEO efforts beyond launch, including content creation, link building, and local optimisation. We offer dedicated SEO services that complement our web design work to give your site the best chance of ranking.'
+  },
+  {
+    question: 'Can you redesign my existing Christchurch business website?',
+    answer: 'Yes, website redesigns make up a significant portion of our work. We audit your existing site to understand what works, what does not, and where visitors drop off. We then rebuild the design with a focus on conversion, modern aesthetics, and performance while preserving any SEO authority your current domain has built. Many Christchurch businesses come to us after outgrowing their original template-based sites.'
+  },
+  {
+    question: 'What technologies do you use for web design?',
+    answer: 'We use modern, performance-first technologies including Astro, Next.js, and React for front-end development. For content management, we work with headless CMS platforms like Sanity, Strapi, and Contentful, as well as traditional options like WordPress when appropriate. Our technology choices are driven by your business requirements, not by what happens to be trendy. The result is always a fast, maintainable website that serves your Christchurch customers effectively.'
+  },
+  {
+    question: 'Do you offer ongoing support after my website launches?',
+    answer: 'Yes. We offer flexible website care plans that include security monitoring, performance optimisation, content updates, and technical support. Many Christchurch businesses prefer to focus on running their operations rather than worrying about plugin updates and server maintenance. Our care plans give you peace of mind knowing your website stays secure, fast, and up to date.'
+  }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Christchurch",
+  "description": "Custom web design services for Christchurch businesses. Conversion-focused, modern, mobile-first website design by Byte Digital.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressRegion": "Canterbury", "addressCountry": "NZ" }
+  },
+  "areaServed": { "@type": "City", "name": "Christchurch" },
+  "sameAs": []
+};
+
+const relatedServices = [
+  { href: '/services/web-development', label: 'Web Development' },
+  { href: '/services/seo', label: 'SEO' },
+  { href: '/services/local-seo', label: 'Local SEO' },
+  { href: '/services/ecommerce', label: 'eCommerce' },
+  { href: '/services/wordpress-development', label: 'WordPress Development' },
+  { href: '/services/branding', label: 'Branding' },
+  { href: '/services/logo-design', label: 'Logo Design' },
+  { href: '/services/website-maintenance', label: 'Website Maintenance' }
+];
+---
+
+<ServicePage
+  title="Web Design Christchurch | Custom Website Design | Byte Digital"
+  description="Byte Digital delivers custom, conversion-focused web design for Christchurch businesses. Modern, mobile-first websites built to rank on Google and turn visitors into customers."
+  serviceTitle="Web Design Christchurch"
+  serviceSubtitle="Custom websites that look stunning, load fast, and convert visitors into paying customers."
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-bottom:16px">Professional Web Design for Christchurch Businesses</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Your website is the single most important marketing asset your Christchurch business owns. It works around the clock, seven days a week, representing your brand to potential customers who are actively searching for what you offer. Yet too many Canterbury businesses settle for template-based websites that look identical to their competitors, load slowly, and fail to convert visitors into enquiries.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">At Byte Digital, we build custom websites from the ground up for Christchurch businesses that demand more. Every design decision is intentional, every interaction is purposeful, and every page is engineered to guide your visitors toward taking action, whether that is picking up the phone, filling out a form, or making a purchase.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why Christchurch Businesses Need Professional Web Design</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Christchurch's business landscape has transformed dramatically since the earthquakes reshaped the city. The rebuild attracted new businesses, new residents, and new expectations. Today's Canterbury consumers research online before they buy anything, from a coffee in the CBD to a roofing contractor in Halswell. If your website does not immediately communicate trust, professionalism, and relevance, those potential customers click to your competitor within seconds.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Consider the numbers. New Zealanders conduct over two hundred million Google searches every month. In Christchurch alone, thousands of people search for services like yours daily. A poorly designed website does not just look bad. It actively costs you revenue by failing to capture the attention and trust of these searchers.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">The Hidden Cost of Cheap Website Design</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Many Christchurch business owners have been burned by cheap website design services. You might pay a few hundred dollars for a templated site, only to discover it loads slowly, looks generic, cannot be found on Google, and requires expensive add-ons for basic functionality. Unlike agencies still using dated WordPress templates and stock photography, we build every pixel from scratch to serve your specific business goals.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">A professional website is an investment, not an expense. The businesses that thrive online in Christchurch are the ones that treat their website as a revenue-generating tool, not a digital brochure they set up once and forget about.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Our Web Design Process</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We follow a structured, transparent design process that keeps you involved at every stage. No black boxes, no surprises.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Discovery and Strategy</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Every project begins with a deep-dive into your Christchurch business. We learn about your target customers, your competitors, your unique value proposition, and your conversion goals. We research your industry, analyse your current website data if available, and identify the specific actions you want visitors to take. This strategic foundation ensures every design choice serves a measurable business purpose.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Wireframing and Information Architecture</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Before we touch a single colour or font, we map out the structure of your website. We create wireframes that define the layout of every key page, the navigation flow, and the placement of conversion elements like contact forms, phone numbers, and calls to action. This step is crucial because it ensures visitors can find what they need quickly and intuitively, regardless of whether they are a first-time visitor or a returning customer from Rangiora or Lincoln.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Visual Design</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">With the structure in place, we craft the visual identity of your website. We design custom layouts, select typography that reflects your brand personality, build colour palettes that evoke the right emotional response, and create or curate imagery that feels authentic to your Christchurch business. Every visual element is designed to build trust and guide the eye toward conversion points.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We do not use generic stock templates or page builders that produce cookie-cutter results. Every design is unique to your brand, your industry, and your Christchurch market.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Development and Testing</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Our development team transforms the approved designs into a fast, responsive, SEO-friendly website. We use modern frameworks and best practices to ensure your site performs exceptionally across all devices and browsers. Before launch, we conduct rigorous testing including cross-browser compatibility, mobile responsiveness, form functionality, load speed analysis, and accessibility checks.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Conversion-Focused Design Philosophy</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">A beautiful website that does not generate enquiries is decoration, not a business asset. Our conversion-focused design philosophy means every element on every page exists for a reason.</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Clear value propositions</strong> above the fold so visitors immediately understand what you do and why they should choose you</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Strategic calls to action</strong> placed where visitors are most likely to convert, not hidden in footers or buried in text</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Trust signals</strong> including testimonials, certifications, case studies, and local Christchurch credentials that build confidence</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Intuitive navigation</strong> that helps visitors find information in three clicks or fewer</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Fast load times</strong> because every second of delay reduces conversions by seven percent</li>
+        </ul>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Mobile-First Design for Christchurch Consumers</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Mobile internet usage in New Zealand has surpassed desktop, and Christchurch is no exception. Whether someone is searching for a plumber on their phone while dealing with a burst pipe in Spreydon, or browsing restaurants on their tablet before heading into the city, your website must deliver a flawless mobile experience.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Our mobile-first approach means we design for the smallest screen first and then enhance the experience for larger displays. This methodology ensures your site is touch-friendly, loads quickly on cellular connections, and presents information in a readable, scannable format regardless of screen size.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">SEO-Ready Web Design</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We design websites with search engine optimisation built into the foundation, not bolted on as an afterthought. Every site we deliver includes semantic HTML markup, proper heading hierarchy, optimised image structures, clean URL architecture, schema markup for rich snippets, and fast page load speeds. These technical fundamentals give your <a href="/services/seo" style="color:var(--secondary)">SEO Christchurch</a> strategy a significant head start.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We also design content frameworks that make it easy for you to publish SEO-friendly blog posts, service pages, and location-specific landing pages as your Christchurch business grows.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Industries We Serve in Christchurch</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We have designed websites for a diverse range of Christchurch and Canterbury businesses across numerous industries, including but not limited to:</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px">Construction and trades, including plumbing, electrical, and landscaping</li>
+          <li style="margin-bottom:12px">Healthcare and medical practices throughout Canterbury</li>
+          <li style="margin-bottom:12px">Professional services including accounting, law, and consulting</li>
+          <li style="margin-bottom:12px">Retail and <a href="/services/ecommerce" style="color:var(--secondary)">eCommerce</a> businesses</li>
+          <li style="margin-bottom:12px">Hospitality, cafes, and restaurants across Christchurch</li>
+          <li style="margin-bottom:12px">Real estate and property development</li>
+          <li style="margin-bottom:12px">Education and training providers</li>
+          <li style="margin-bottom:12px">Non-profit organisations and community groups</li>
+        </ul>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why Choose Byte Digital for Web Design in Christchurch</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We are not a faceless agency working to a template factory. We are a Christchurch-based digital team that understands the local market, the local customers, and the unique challenges New Zealand businesses face online.</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Local knowledge:</strong> We understand Christchurch's suburbs, demographics, and consumer behaviour patterns</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Custom designs:</strong> Every website is built from scratch, never from a generic template</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Conversion focus:</strong> We design to generate enquiries and sales, not just to look pretty</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Modern technology:</strong> We use current frameworks that ensure speed, security, and scalability</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Transparent pricing:</strong> No hidden fees, no surprises, clear communication throughout</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Ongoing support:</strong> We offer flexible <a href="/services/website-maintenance" style="color:var(--secondary)">website maintenance</a> plans to keep your site performing</li>
+        </ul>
+
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Your Christchurch business deserves a website that works as hard as you do. Let us show you what a professionally designed, conversion-optimised website can do for your bottom line. Get in touch today for a free, no-obligation consultation about your web design project.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Related Services</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+        {relatedServices.map(s => (
+          <a href={s.href} class="btn-ghost" style="padding:10px 24px;font-size:13px">{s.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="faq">
+    <FAQAccordion items={faqItems} />
+  </Fragment>
+</ServicePage>

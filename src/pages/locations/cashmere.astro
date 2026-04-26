@@ -1,0 +1,126 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Cashmere';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Cashmere?',
+    answer: 'Cashmere business websites typically start at $4,000 and can range up to $18,000 for more complex projects. The premium nature of Cashmere\'s market means businesses often require sophisticated design, advanced functionality, and brand storytelling that justifies this investment. We provide transparent, detailed quotes that align with your specific requirements and expected return on investment.',
+  },
+  {
+    question: 'Do you offer SEO services for Cashmere businesses?',
+    answer: 'Yes. Cashmere businesses serve one of Christchurch\'s most affluent populations, and our SEO strategies target the high-value search terms these customers use. We focus on building authority, creating premium content, and optimising for both local Cashmere searches and broader Christchurch queries where Cashmere businesses should appear.',
+  },
+  {
+    question: 'How long does it take to build a website for my Cashmere business?',
+    answer: 'Cashmere business websites typically take four to eight weeks to complete. Premium builds with extensive custom design, e-commerce functionality, or complex integrations may require up to twelve weeks. We invest the time needed to ensure your website reflects the quality standard expected by Cashmere\'s discerning clientele.',
+  },
+  {
+    question: 'How do I market to Cashmere\'s affluent residential market online?',
+    answer: 'Marketing to Cashmere\'s affluent demographic requires a sophisticated approach. We focus on premium visual design, authoritative content that demonstrates expertise, targeted social media campaigns on platforms like Instagram and LinkedIn, and SEO strategies that position you as the premium choice. Quality over quantity is the guiding principle — fewer, higher-quality leads that convert at higher rates deliver better results than high-volume, low-quality traffic.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Cashmere Christchurch",
+  "description": "Premium web design, SEO, and digital marketing services for businesses in Cashmere, Christchurch. Serving affluent residential services, professional practices, and boutique businesses on the Port Hills.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Cashmere, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Fendalton', slug: 'fendalton' },
+  { name: 'Merivale', slug: 'merivale' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'Somerfield', slug: 'somerfield' },
+  { name: 'St Albans', slug: 'st-albans' },
+  { name: 'Addington', slug: 'addington' },
+  { name: 'Halswell', slug: 'halswell' },
+  { name: 'Spreydon', slug: 'spreydon' },
+  { name: 'Papanui', slug: 'papanui' },
+  { name: 'Wigram', slug: 'wigram' },
+];
+---
+
+<LocationPage
+  title="Web Design Cashmere Christchurch | Premium Websites | Byte Digital"
+  description="Byte Digital creates premium websites for Cashmere businesses. Web design, SEO, and digital marketing tailored to Christchurch's prestigious Port Hills suburb."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Premium Digital Presence for Cashmere Businesses</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Cashmere occupies a special place in Christchurch's geography and psyche. Nestled against the Port Hills with sweeping views across the Canterbury Plains to the Southern Alps, it is one of the city's most sought-after residential suburbs. The homes here are among Christchurch's most valuable, the residents are predominantly professionals, executives, and established families, and the local businesses that serve this community must meet correspondingly high standards. A Cashmere business cannot afford to look second-rate online — in this market, perception is reality.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital creates websites for Cashmere businesses that match the premium expectations of this unique market. Whether you operate a professional practice from a home office overlooking the city, run a boutique service from the Cashmere Village shops, or provide premium home services to Cashmere's substantial property portfolio, your website must convey quality, reliability, and attention to detail from the first interaction. We build digital presences that do exactly that.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">The Cashmere Market: Quality Over Quantity</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          What makes the Cashmere market distinctive is not just its affluence but the expectations that come with it. Cashmere residents research thoroughly before engaging a business. They read reviews, compare websites, and evaluate the professionalism of every potential provider before making contact. A poorly designed website does not just fail to impress — it actively signals that your business may not meet the standards they require. In this context, your website is arguably your most important business asset.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The Cashmere Village shopping area serves as the suburb's commercial hub, with a curated selection of cafes, eateries, and specialty stores. While foot traffic in the village is steady, the businesses that thrive here are those that have successfully extended their reach beyond walk-by customers through strong digital marketing. A Cashmere Village café with a compelling Instagram presence and a well-designed website attracts visitors from across Christchurch who specifically seek out the unique experience the Port Hills location offers.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The hillside geography of Cashmere also creates specific business opportunities. Property maintenance, landscaping, drainage engineering, and building services are in constant demand in a suburb with steep sections, expansive properties, and homes that range from heritage villas to architecturally significant contemporary builds. Businesses in these trades that can demonstrate their expertise with hillside properties through quality websites and project portfolios command premium rates and steady work.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Web Design That Reflects Cashmere's Quality Standard</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Our design process for Cashmere businesses begins with understanding your brand positioning and the specific audience you serve. A premium landscaping company targeting Cashmere homeowners requires a different visual approach than a specialist consultant serving corporate clients, even though both operate in the same affluent market. We develop custom design concepts that align with your brand identity while appealing to the aesthetic sensibilities of Cashmere's discerning consumers.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Photography and visual content are particularly important for Cashmere business websites. High-quality images that showcase your work, your premises, or your products create an immediate impression of professionalism and quality. We advise on website photography that elevates your brand and can connect you with Christchurch's excellent commercial photographers if needed. For service-based businesses, professional headshots and workspace imagery build the personal connection that Cashmere clients value.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Website performance is another critical factor for Cashmere businesses. Affluent consumers are often the most time-poor — they expect websites to load instantly, navigate intuitively, and provide the information they need without unnecessary friction. Slow loading times, confusing navigation, or broken mobile experiences are deal-breakers for this audience. We optimise every aspect of performance to ensure your Cashmere website provides a seamless, premium experience on any device.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Strategic Digital Marketing for Cashmere</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          SEO for Cashmere businesses requires targeting high-value, specific search terms rather than broad generic keywords. A Cashmere architect, for instance, benefits from ranking for "luxury home architect Christchurch" rather than just "architect Christchurch" — the more specific query indicates a client with a significant project and corresponding budget. We research and target these premium keywords through comprehensive on-page SEO, content creation, and authority building.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Content marketing is particularly effective for Cashmere's professional and home services market. In-depth articles that demonstrate expertise — such as a guide to renovating a heritage Cashmere villa, or an explainer on earthquake strengthening for hillside properties — attract high-intent searchers and position your business as the authoritative choice. We create SEO-optimised content that serves both your audience's information needs and your business's lead generation goals.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital delivers premium digital solutions for Cashmere's premium businesses. View our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">search engine optimisation</a> to learn more about what we can achieve for your Cashmere business.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

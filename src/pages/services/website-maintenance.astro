@@ -1,0 +1,150 @@
+---
+import ServicePage from '../../layouts/ServicePage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const faqItems = [
+  {
+    question: 'What does website maintenance actually include?',
+    answer: 'Our website maintenance service includes daily off-site backups, core software and plugin updates applied after testing, security monitoring and malware scanning, uptime monitoring with instant alerts, performance monitoring and optimisation, content updates such as text changes, image additions, and blog posts, SSL certificate management, domain and DNS monitoring, and monthly health reports that summarise your website\'s status and any actions taken.'
+  },
+  {
+    question: 'Why can\'t I just maintain my website myself?',
+    answer: 'You absolutely can handle basic content updates yourself. However, website maintenance goes well beyond updating text and images. It involves managing software updates that can break functionality, monitoring for security vulnerabilities, optimising database performance, keeping backups tested and restorable, and ensuring your site remains compatible with the latest browser versions. For most Christchurch business owners, this technical work is better handled by specialists so you can focus on running your business.'
+  },
+  {
+    question: 'How much does website maintenance cost in Christchurch?',
+    answer: 'Our website care plans start from $150 per month for essential maintenance covering backups, updates, and security monitoring. Standard plans at $350 per month add performance optimisation, content updates, and priority support. Premium plans for complex websites or eCommerce stores start at $650 per month and include advanced monitoring, more content update hours, and dedicated response times. We tailor plans to your specific needs.'
+  },
+  {
+    question: 'What happens if my website gets hacked?',
+    answer: 'If your website is on one of our care plans, we address security incidents immediately as part of your service. This includes restoring from a clean backup if necessary, identifying and removing malware, patching the vulnerability that allowed the breach, and implementing additional security measures to prevent recurrence. For websites not on a care plan, we offer emergency remediation services, though response time depends on our current workload.'
+  },
+  {
+    question: 'How often do you update my website?',
+    answer: 'We monitor your website daily for available updates and apply them on a tested schedule, typically weekly. Critical security updates are applied immediately. Before any update, we take a full backup so we can restore instantly if anything goes wrong. We also test updates in a staging environment when available to identify potential conflicts before they reach your live site.'
+  },
+  {
+    question: 'Do you maintain websites built by other agencies?',
+    answer: 'Yes, we take on maintenance for websites built by other agencies and developers. This is actually one of our most common onboarding scenarios. Many Christchurch businesses come to us when their previous developer becomes unresponsive or when they realise their site has not been properly maintained. We conduct a thorough audit of your existing site, identify any issues, and bring it up to our maintenance standards.'
+  }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Website Maintenance Christchurch",
+  "description": "Website maintenance and care plans for Christchurch businesses. Security monitoring, performance optimization, content updates, and ongoing support by Byte Digital.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressRegion": "Canterbury", "addressCountry": "NZ" }
+  },
+  "areaServed": { "@type": "City", "name": "Christchurch" },
+  "sameAs": []
+};
+
+const relatedServices = [
+  { href: '/services/web-design', label: 'Web Design' },
+  { href: '/services/web-development', label: 'Web Development' },
+  { href: '/services/wordpress-development', label: 'WordPress Development' },
+  { href: '/services/seo', label: 'SEO' },
+  { href: '/services/ecommerce', label: 'eCommerce' },
+  { href: '/services/custom-applications', label: 'Custom Applications' },
+  { href: '/services/local-seo', label: 'Local SEO' },
+  { href: '/services/branding', label: 'Branding' }
+];
+---
+
+<ServicePage
+  title="Website Maintenance Christchurch | Website Care Plans NZ | Byte Digital"
+  description="Byte Digital provides professional website maintenance and care plans for Christchurch businesses. Security monitoring, updates, performance optimization, content updates, and ongoing support."
+  serviceTitle="Website Maintenance Christchurch"
+  serviceSubtitle="Keep your website secure, fast, and up to date with professional care plans."
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-bottom:16px">Professional Website Maintenance for Christchurch Businesses</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Launching a website is not the finish line. It is the starting point. A website is a living digital asset that requires ongoing attention to remain secure, fast, functional, and effective. Without regular maintenance, even the best website will gradually deteriorate: plugins become outdated and vulnerable, content becomes stale, performance degrades, and search rankings slip.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">At Byte Digital, we provide comprehensive website maintenance and care plans for Christchurch businesses that want their website to perform reliably, month after month, without needing to think about the technical details. We handle the updates, security, backups, and optimisation so you can focus on running your business.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why Website Maintenance Matters</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">A neglected website is a liability. Here is what happens when websites are not properly maintained:</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Security Vulnerabilities</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Unpatched software is the primary entry point for website hackers. WordPress plugins, themes, server software, and third-party libraries all release security updates regularly. Failing to apply these updates leaves your website exposed. In New Zealand, thousands of websites are compromised every year, and the damage extends beyond the website itself to customer data, business reputation, and Google search rankings. A hacked website can be blacklisted by Google, removing it from search results entirely until the issue is resolved.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Performance Degradation</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Websites accumulate technical debt over time. Databases grow, caches become stale, images remain unoptimised, and new plugins add overhead. Without regular performance maintenance, your Christchurch website gradually slows down. Every second of additional load time reduces conversions, increases bounce rates, and hurts your <a href="/services/seo" style="color:var(--secondary)">search engine rankings</a>. Google has confirmed that page speed is a ranking factor, and slow sites consistently rank below faster competitors.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Broken Functionality</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Software updates can break website functionality. A plugin update might conflict with your theme, a PHP version change might cause errors, or a browser update might display your site incorrectly. Regular maintenance includes testing after updates to catch and fix these issues before your visitors encounter them.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Content Staleness</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Outdated content signals neglect to both visitors and search engines. Old blog posts, expired promotions, incorrect business hours, and broken links erode trust and credibility. Regular content updates keep your Christchurch website fresh, relevant, and engaging for both new and returning visitors.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">What Our Website Care Plans Include</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We offer flexible care plans structured around the specific needs of your Christchurch business. Every plan includes core maintenance services, with additional tiers offering more comprehensive coverage.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Daily Backups</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We maintain daily automated backups of your entire website, including files, database, and any media. Backups are stored off-site in a separate location from your hosting, ensuring they survive any server failure. We test backup restoration regularly to confirm integrity. If anything goes wrong, from a failed update to a security incident, we can restore your site to its previous state quickly and completely.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Software Updates</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We monitor for updates to your CMS, themes, plugins, and server software, and apply them on a tested schedule. Before any update, we take a full backup. After updating, we test your site to confirm everything functions correctly. Critical security updates are applied immediately, regardless of the regular schedule.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Security Monitoring</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Our security monitoring includes automated malware scanning that checks your website daily for malicious code, file integrity monitoring that alerts us if core files are modified, login attempt monitoring that detects brute force attacks, firewall rule management that blocks known threats, and SSL certificate monitoring that ensures your HTTPS certificate remains valid and properly configured.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Performance Optimisation</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We continuously monitor and optimise your website's performance. This includes regular database cleanup to remove post revisions, spam comments, and transient data, image optimisation for new uploads, cache management and configuration, code minification updates, Core Web Vitals monitoring against Google's benchmarks, and recommendations for performance improvements when opportunities are identified.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Uptime Monitoring</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Your website should be available around the clock. We monitor uptime from multiple global locations, with instant alerts if your site becomes unreachable. For Christchurch businesses that rely on their website for lead generation or sales, every minute of downtime is lost revenue. We aim to resolve any uptime issues within minutes, not hours.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Content Updates</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Depending on your plan, we handle content updates including text changes, new page creation, image additions and replacements, blog post publishing, event listings, and seasonal content updates. You simply send us the content, and we take care of formatting, optimisation, and publishing. This is particularly valuable for Christchurch businesses that need to keep their website current but do not have dedicated marketing staff.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Monthly Health Reports</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Every month, you receive a comprehensive health report that covers uptime statistics and any downtime incidents, security scan results and any threats detected, performance metrics including load times and Core Web Vitals, updates applied and any issues resolved, content changes made, and recommendations for improvements or upgrades. These reports give you full visibility into your website's health without requiring you to monitor anything yourself.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Priority Technical Support</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Care plan clients receive priority access to our technical support team. If something breaks, you need an answer, or you want to discuss a potential enhancement, you go to the front of the queue. No ticket systems, no overseas call centres, no waiting days for a response. You communicate directly with the Christchurch-based team that manages your website.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">The Cost of Not Maintaining Your Website</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Website maintenance is often one of the first things businesses cut when budgets tighten. This is a false economy. The cost of recovering from a hacked website, fixing broken functionality after a failed update, rebuilding search rankings lost to performance issues, or losing customers to a broken contact form far exceeds the cost of proactive maintenance.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Think of website maintenance like servicing your vehicle. Skipping regular maintenance might save money in the short term, but it dramatically increases the risk of a costly breakdown at the worst possible time. Your website is the same.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why Choose Byte Digital for Website Maintenance</h2>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Proactive, not reactive:</strong> We identify and resolve issues before they affect your website or your visitors</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Comprehensive coverage:</strong> Security, performance, updates, backups, and content in one service</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Transparent reporting:</strong> Monthly reports that show exactly what was done and the current state of your site</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Christchurch-based team:</strong> Direct communication with local professionals who understand your business</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Flexible plans:</strong> Scale up or down based on your needs, no long-term contracts required</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Multi-platform support:</strong> We maintain WordPress, modern frameworks, and custom applications</li>
+        </ul>
+
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Protect your investment and keep your Christchurch website performing at its best. Contact us to discuss a care plan tailored to your needs.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Related Services</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+        {relatedServices.map(s => (
+          <a href={s.href} class="btn-ghost" style="padding:10px 24px;font-size:13px">{s.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="faq">
+    <FAQAccordion items={faqItems} />
+  </Fragment>
+</ServicePage>

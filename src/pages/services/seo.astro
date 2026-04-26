@@ -1,0 +1,157 @@
+---
+import ServicePage from '../../layouts/ServicePage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const faqItems = [
+  {
+    question: 'How long does it take to see results from SEO in Christchurch?',
+    answer: 'SEO is a long-term strategy. Most Christchurch businesses begin seeing meaningful improvements in organic traffic within three to six months, with significant results typically materialising between six and twelve months. The timeline depends on your industry competitiveness, your current domain authority, the quality of your existing content, and the consistency of our SEO efforts. We set realistic expectations from the start and provide monthly reporting so you can track progress.'
+  },
+  {
+    question: 'What makes SEO different for Christchurch businesses?',
+    answer: 'Local SEO requires a different approach than national or international campaigns. For Christchurch businesses, ranking for location-specific keywords like "plumber Christchurch" or "cafe Riccarton" demands local citations, Google Business Profile optimisation, Christchurch-focused content, local backlinks from Canterbury organisations, and consistent NAP (name, address, phone) information across the web. We specialise in helping Christchurch businesses dominate local search results.'
+  },
+  {
+    question: 'Do you guarantee first-page Google rankings?',
+    answer: 'No reputable SEO provider can guarantee specific rankings because Google\'s algorithm considers over two hundred ranking factors and is constantly evolving. What we do guarantee is a data-driven, transparent approach to SEO that consistently improves your organic visibility, traffic, and lead generation over time. We focus on sustainable, white-hat SEO practices that protect your Christchurch business from algorithm penalties.'
+  },
+  {
+    question: 'What does your SEO service include?',
+    answer: 'Our comprehensive SEO service covers technical SEO audits and fixes, on-page optimisation including meta tags, headings, and content structure, keyword research targeted at Christchurch search behaviour, content strategy and creation, link building from authoritative NZ sources, Google Business Profile management, local citation building, schema markup implementation, and monthly performance reporting with actionable recommendations.'
+  },
+  {
+    question: 'How much does SEO cost for a Christchurch business?',
+    answer: 'Our SEO retainers start from $950 per month for focused local campaigns targeting Christchurch and Canterbury. More competitive industries or nationwide targeting typically require investment between $1,500 and $3,500 per month. We structure our pricing transparently based on the scope of work required, and we never lock you into long-term contracts without performance milestones.'
+  },
+  {
+    question: 'Can I do SEO myself or should I hire a professional?',
+    answer: 'Basic SEO like optimising page titles and writing quality content can absolutely be done in-house. However, technical SEO, competitive analysis, strategic link building, and ongoing algorithm monitoring require specialised expertise. Most Christchurch business owners find that their time is better spent running their operations while a professional SEO team handles the technical and strategic work. We are happy to audit your current efforts and identify where professional support would deliver the greatest return.'
+  }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "SEO Christchurch",
+  "description": "Search engine optimization services for Christchurch businesses. Technical SEO, on-page optimization, content strategy, and link building by Byte Digital.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressRegion": "Canterbury", "addressCountry": "NZ" }
+  },
+  "areaServed": { "@type": "City", "name": "Christchurch" },
+  "sameAs": []
+};
+
+const relatedServices = [
+  { href: '/services/web-design', label: 'Web Design' },
+  { href: '/services/web-development', label: 'Web Development' },
+  { href: '/services/local-seo', label: 'Local SEO' },
+  { href: '/services/website-maintenance', label: 'Website Maintenance' },
+  { href: '/services/ecommerce', label: 'eCommerce' },
+  { href: '/services/wordpress-development', label: 'WordPress Development' },
+  { href: '/services/branding', label: 'Branding' },
+  { href: '/services/custom-applications', label: 'Custom Applications' }
+];
+---
+
+<ServicePage
+  title="SEO Christchurch | Search Engine Optimization NZ | Byte Digital"
+  description="Byte Digital provides expert SEO services for Christchurch businesses. Technical SEO, content strategy, link building, and local search optimization to drive organic traffic and enquiries."
+  serviceTitle="SEO Christchurch"
+  serviceSubtitle="Data-driven search engine optimisation that puts your Christchurch business in front of ready-to-buy customers."
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-bottom:16px">Search Engine Optimisation That Delivers Results for Christchurch Businesses</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Search engine optimisation is the most cost-effective way to generate consistent, high-quality leads for your Christchurch business. Unlike paid advertising that stops the moment you stop paying, organic traffic from Google continues flowing month after month, compounding in value over time. The businesses that rank at the top of Google for their target keywords in Christchurch are not there by accident. They are there because they invested in professional SEO.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">At Byte Digital, we provide comprehensive SEO services designed specifically for Christchurch and Canterbury businesses. We combine technical expertise, content strategy, and local SEO knowledge to help you rank higher, attract more qualified traffic, and convert more visitors into paying customers.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why SEO Matters for Christchurch Businesses</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Every day, thousands of people in Christchurch search Google for products and services like yours. They search for "mechanic Christchurch," "accountant Canterbury," "house painter Halswell," and hundreds of other local queries. These searchers are not casually browsing. They have a specific need, and they are ready to take action.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">The businesses that appear at the top of these search results capture the vast majority of clicks and enquiries. Research shows that the first result on Google receives roughly thirty-two percent of all clicks, while the second receives around eighteen percent, and the numbers drop sharply from there. If your Christchurch business is not on the first page, you are effectively invisible to the majority of your potential customers.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Organic search is also the most trusted traffic source. New Zealand consumers trust Google's organic results far more than paid advertisements. A high ranking signals authority and relevance, which translates directly into higher conversion rates compared to traffic from ads or social media.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Technical SEO: The Foundation of Rankings</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Technical SEO is the invisible infrastructure that determines whether Google can crawl, index, and rank your website effectively. Without a solid technical foundation, even the best content will struggle to rank. Our technical SEO audit examines every aspect of your website's performance and identifies issues that may be holding you back.</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Site speed and Core Web Vitals:</strong> We optimise load times, interactivity, and visual stability to meet or exceed Google's performance benchmarks. A fast website ranks higher and converts better.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Crawlability and indexing:</strong> We ensure Google can efficiently discover and index all your important pages through proper XML sitemaps, robots.txt configuration, and internal linking structure.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Mobile responsiveness:</strong> With mobile-first indexing, Google primarily evaluates the mobile version of your site. We ensure your mobile experience is flawless.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Structured data and schema markup:</strong> We implement schema markup that helps Google understand your content and display rich snippets, star ratings, and enhanced search results.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">URL architecture:</strong> Clean, descriptive URLs that include target keywords and follow a logical hierarchy improve both user experience and search engine understanding.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">SSL and security:</strong> HTTPS is a ranking signal, and secure sites build trust with visitors. We ensure your site meets modern security standards.</li>
+        </ul>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Many Christchurch websites suffer from technical debt accumulated over years of patches and updates. Our technical SEO service cleans up this debt and establishes a foundation that supports sustainable ranking growth. If your current site was built with outdated technology, we can also discuss how our <a href="/services/web-development" style="color:var(--secondary)">web development</a> services can modernise your platform.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">On-Page SEO: Optimising Every Page for Maximum Impact</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">On-page SEO refers to the optimisation of individual web pages to rank higher and earn more relevant traffic. Every page on your website represents an opportunity to rank for specific keywords that your Christchurch customers are searching for. Our on-page optimisation process includes:</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Keyword research and mapping:</strong> We identify the search terms your Christchurch customers actually use, not just the ones you think they use. We map these keywords to specific pages to avoid keyword cannibalisation and ensure comprehensive coverage.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Meta title and description optimisation:</strong> Compelling titles and descriptions that include target keywords and encourage click-through from search results.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Heading hierarchy:</strong> Proper use of H1, H2, and H3 tags that structure content logically for both users and search engines.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Content optimisation:</strong> Ensuring your content is comprehensive, naturally incorporates target keywords, answers user intent, and provides genuine value to Christchurch searchers.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Image optimisation:</strong> Descriptive alt text, compressed file sizes, and appropriate dimensions that improve accessibility and page speed.</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Internal linking:</strong> Strategic links between your pages that distribute authority, guide visitors to relevant content, and help Google understand your site structure.</li>
+        </ul>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Content Strategy: Creating Content That Ranks and Converts</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Content is the fuel that powers your SEO engine. Without quality content targeting the right keywords, your website has nothing for Google to rank. Our content strategy service goes beyond simple blog posts. We develop comprehensive content plans that position your Christchurch business as an authority in your industry.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We create content that addresses the specific questions and pain points of your target customers. For a Christchurch plumber, this might include detailed guides on common plumbing issues in Canterbury homes, seasonal maintenance checklists, and comparison articles on different water heating systems. For a local restaurant, it might include menu highlights, event announcements, and behind-the-scenes content that builds connection with the local community.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Every piece of content we produce is researched, written with search intent in mind, optimised for target keywords, and designed to drive conversions. We also create location-specific content that targets Christchurch suburbs and surrounding Canterbury towns, helping you capture search traffic from across the region.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Link Building: Earning Authority for Your Christchurch Website</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Backlinks remain one of the most influential ranking factors in Google's algorithm. A backlink from a reputable, relevant website is essentially a vote of confidence that signals to Google your content is valuable and trustworthy. However, not all links are created equal. Low-quality links from spammy directories can actually harm your rankings.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Our link building strategy focuses on earning high-quality, contextual backlinks from authoritative New Zealand websites. This includes:</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Local business directories and citations</strong> relevant to the Christchurch and Canterbury business community</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Industry associations and organisations</strong> that provide authoritative links within your sector</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Guest content placement</strong> on reputable NZ blogs, news sites, and industry publications</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Digital PR and outreach</strong> that earns links through newsworthy content and local story angles</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Resource link building</strong> by creating genuinely useful content that other websites naturally want to reference</li>
+        </ul>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We never engage in black-hat link schemes, private blog networks, or link buying. These practices can result in severe Google penalties that take months or years to recover from. Our approach is sustainable, ethical, and designed for long-term ranking stability.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Local SEO Integration</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">For Christchurch businesses serving a local market, local SEO is inseparable from broader organic SEO. Our SEO service includes comprehensive <a href="/services/local-seo" style="color:var(--secondary)">local SEO optimisation</a> that ensures your business appears prominently in local search results, Google Maps, and the local pack for queries relevant to your services and location.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">This includes Google Business Profile optimisation, local citation management, review strategy, location-specific landing pages for Christchurch suburbs, and localised content that resonates with Canterbury consumers.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Monthly Reporting and Transparent Communication</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We believe you should always know exactly what your SEO investment is delivering. Every month, we provide a comprehensive report that includes keyword ranking tracking, organic traffic trends, lead and conversion data, backlink acquisition summary, content published, and actionable recommendations for the following month.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We are also available for regular strategy calls to discuss progress, adjust priorities based on business changes, and answer any questions you have about your SEO campaign. Transparency is not a buzzword for us. It is a core operating principle.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why Choose Byte Digital for SEO in Christchurch</h2>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Christchurch-focused strategy:</strong> We understand the local market, search behaviour, and competitive landscape</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Data-driven approach:</strong> Every decision is backed by keyword research, analytics data, and competitive analysis</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">White-hat practices only:</strong> We protect your website from algorithm penalties with sustainable SEO techniques</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Holistic service:</strong> We combine technical, on-page, content, and off-page SEO for comprehensive results</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Transparent reporting:</strong> Monthly reports that show exactly what we did and what results it delivered</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">No long-term lock-ins:</strong> We earn your continued business through results, not contracts</li>
+        </ul>
+
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">If your Christchurch business is not generating the organic traffic and leads it deserves, let us conduct a free SEO audit. We will identify the specific opportunities and issues affecting your search visibility and provide a clear roadmap for improvement.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Related Services</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+        {relatedServices.map(s => (
+          <a href={s.href} class="btn-ghost" style="padding:10px 24px;font-size:13px">{s.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="faq">
+    <FAQAccordion items={faqItems} />
+  </Fragment>
+</ServicePage>

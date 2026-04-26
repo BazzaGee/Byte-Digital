@@ -1,0 +1,21 @@
+---
+const stats = [
+  { value: '50+', label: 'Businesses served' },
+  { value: '215%', label: 'Avg lead increase' },
+  { value: '0.8s', label: 'Avg load time' },
+  { value: '#1', label: 'Local search ranking' },
+];
+---
+
+<section class="stats-bar reveal">
+  <div class="container">
+    <div class="stats-grid">
+      {stats.map(stat => (
+        <div class="stat-item">
+          <span class="gradient-text stat-value">{stat.value}</span>
+          <p>{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

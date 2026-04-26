@@ -1,0 +1,126 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Somerfield';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Somerfield?',
+    answer: 'Somerfield business websites typically range from $2,500 to $10,000 depending on the complexity of the project. Established retail businesses and service providers often need comprehensive sites in the $4,000 to $8,000 range, while smaller businesses or startups can achieve a strong online presence starting around $2,500. We provide detailed quotes with no hidden costs.',
+  },
+  {
+    question: 'Do you offer SEO services for Somerfield businesses?',
+    answer: 'Yes. Somerfield\'s central location and proximity to Barrington Mall mean strong competition for local customers. Our SEO strategies target both suburb-specific searches and broader Christchurch queries relevant to your services. We optimise your Google Business Profile, build local citations, and create content that establishes your authority in the Somerfield market.',
+  },
+  {
+    question: 'How long does it take to build a website for my Somerfield business?',
+    answer: 'Most Somerfield business websites are completed within three to six weeks. The timeline depends on the number of pages, complexity of features, and how quickly you can provide content and imagery. We establish clear milestones and keep you updated throughout the process to ensure your project stays on track.',
+  },
+  {
+    question: 'How can my Barrington Mall area business attract more customers online?',
+    answer: 'We build websites that complement your physical presence at Barrington Mall with strong online visibility. This includes optimised Google Business Profiles, local SEO targeting the Barrington and Somerfield areas, and digital marketing campaigns that drive both online engagement and foot traffic. We help you capture customers searching for your products or services before they ever reach the mall.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Somerfield Christchurch",
+  "description": "Professional web design, SEO, and digital marketing services for businesses in Somerfield, Christchurch. Serving established neighbourhood businesses near Barrington Mall.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Somerfield, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Cashmere', slug: 'cashmere' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'Addington', slug: 'addington' },
+  { name: 'Spreydon', slug: 'spreydon' },
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Fendalton', slug: 'fendalton' },
+  { name: 'Merivale', slug: 'merivale' },
+  { name: 'Halswell', slug: 'halswell' },
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'Wigram', slug: 'wigram' },
+];
+---
+
+<LocationPage
+  title="Web Design Somerfield Christchurch | Byte Digital"
+  description="Byte Digital provides web design, SEO, and digital marketing for Somerfield businesses. Helping established neighbourhood businesses near Barrington Mall grow online."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Growth for Somerfield's Established Businesses</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Somerfield occupies a central position in Christchurch's suburban landscape, an established neighbourhood known for its mature trees, well-maintained properties, and strong sense of community. The suburb's commercial life centres around Barrington Mall and the surrounding shops on Barrington Street and Colombo Street, creating a convenient hub where residents can access retail, dining, health, and professional services without leaving the neighbourhood. For businesses operating in this established market, digital presence is no longer optional — it is the factor that determines whether locals choose you or a competitor a few kilometres away.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital helps Somerfield businesses build the kind of digital presence that captures local customers and drives steady growth. We understand the Somerfield market — a community that values convenience, quality, and local relationships. Your website needs to communicate these same qualities while making it effortless for potential customers to find you, learn about your services, and take the next step towards engaging your business.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Barrington Mall and the Somerfield Retail Ecosystem</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Barrington Mall serves as the commercial anchor for Somerfield and surrounding suburbs, drawing regular shoppers from Beckenham, Spreydon, and Hoon Hay. The mall houses a mix of national retailers and local independent businesses, all competing for the attention and spending of a loyal local customer base. In this environment, the businesses that succeed are those that combine an excellent in-store experience with a strong online presence that keeps them top-of-mind between visits.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          For Somerfield's independent retailers, the digital challenge is twofold: competing with the marketing power of mall chain stores and reaching customers who increasingly research purchases online before buying. We build e-commerce enabled websites that allow your customers to browse products, check availability, and make purchases at their convenience — even when the mall is closed. For businesses that prefer to drive foot traffic rather than sell online, we create product showcase pages and integrated social media feeds that generate interest and bring people through your door.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The health and wellness sector is particularly strong in the Somerfield area, with medical centres, pharmacies, physiotherapists, dentists, and allied health practitioners all serving the local community. These businesses increasingly need websites that do more than list their address and phone number. Patients expect to find practitioner profiles, service descriptions, online booking systems, and patient resources. We build health-focused websites that meet these expectations while optimising for the specific health-related searches that Somerfield residents perform.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Web Design for Somerfield's Professional and Service Businesses</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Somerfield's central location and established residential base support a healthy professional services sector. Accountants, lawyers, real estate agents, financial advisors, and insurance brokers all operate in the area, serving both the local community and clients across Christchurch. For these businesses, a website must project professionalism, build trust, and make the path to initial contact as smooth as possible.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We design professional services websites for Somerfield that balance sophistication with accessibility. Clean layouts, clear service descriptions, team profiles that put faces to names, and prominent contact options all work together to convert website visitors into clients. We also integrate useful features like downloadable resources, appointment scheduling, and secure enquiry forms that respect the confidentiality expectations of professional services clients.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Home and property services are another significant sector in Somerfield. The suburb's well-established housing stock creates consistent demand for plumbing, electrical, painting, gardening, and renovation services. We build lead-focused websites for these trades that showcase previous work, display certifications, and make getting a quote straightforward. Combined with local SEO targeting Somerfield and surrounding suburbs, these websites generate a steady stream of enquiries from local homeowners.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Local SEO and Digital Marketing for Somerfield</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Local SEO for Somerfield businesses capitalises on the suburb's central location and strong community ties. When residents search for services, they often include location qualifiers like "near Barrington Mall" or "Somerfield Christchurch." Our SEO strategies ensure your business appears for these location-specific searches as well as broader Christchurch queries. We optimise your Google Business Profile with accurate information, high-quality photos, and regular posts that keep your listing fresh and engaging.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Content marketing works particularly well for Somerfield's community-oriented market. Blog posts about local events, neighbourhood guides, and useful tips related to your services build engagement with the Somerfield community and improve your search rankings simultaneously. A Somerfield veterinary clinic, for example, might publish seasonal pet care guides that attract local pet owners searching for animal health information — building both authority and awareness.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital understands Somerfield and knows how to help its businesses succeed online. Explore our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO solutions</a> to get started.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

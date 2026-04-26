@@ -1,0 +1,128 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Papanui';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Papanui?',
+    answer: 'Papanui business websites typically range from $2,500 to $10,000. Family-owned retail shops and small service businesses can get started around $2,500 to $4,000, while businesses requiring e-commerce, online booking, or more advanced functionality generally invest $5,000 to $10,000. We work within your budget to deliver the best possible result for your Papanui business.',
+  },
+  {
+    question: 'Do you offer SEO services for Papanui businesses?',
+    answer: 'Yes. Papanui is one of Christchurch\'s largest northern suburbs, and we implement SEO strategies that capture both the local Papanui market and the broader north Christchurch area. Our local SEO includes Google Business Profile optimisation, Papanui-specific keyword targeting, and content that addresses the needs and search habits of the local community.',
+  },
+  {
+    question: 'How long does it take to build a website for my Papanui business?',
+    answer: 'Most Papanui business websites are completed within three to six weeks. Standard service and retail websites tend to be on the shorter end, while businesses needing custom features like online booking, product catalogues, or membership systems may take up to eight weeks. We establish clear timelines at the start of every project.',
+  },
+  {
+    question: 'Can you help my Papanui business compete with Northlands Mall retailers online?',
+    answer: 'Yes. Many independent Papanui businesses lose online visibility to the larger retailers at Northlands Mall. We build websites that highlight your unique advantages — personalised service, local expertise, and products you cannot find at the mall. Combined with local SEO and targeted digital marketing, we help drive both online traffic and foot traffic to your Papanui location.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Papanui Christchurch",
+  "description": "Professional web design, SEO, and digital marketing services for businesses in Papanui, Christchurch. Serving family businesses, retail, and service providers near Northlands Mall.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Papanui, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'Merivale', slug: 'merivale' },
+  { name: 'Fendalton', slug: 'fendalton' },
+  { name: 'St Albans', slug: 'st-albans' },
+  { name: 'Bishopdale', slug: 'bishopdale' },
+  { name: 'Addington', slug: 'addington' },
+  { name: 'Spreydon', slug: 'spreydon' },
+  { name: 'Cashmere', slug: 'cashmere' },
+  { name: 'Wigram', slug: 'wigram' },
+  { name: 'Halswell', slug: 'halswell' },
+];
+
+const bishopdaleSlug = 'bishopdale';
+---
+
+<LocationPage
+  title="Web Design Papanui Christchurch | Byte Digital"
+  description="Byte Digital provides web design, SEO, and digital marketing for Papanui businesses. We help family businesses, retailers, and service providers near Northlands Mall grow online."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Helping Papanui Businesses Win Online</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Papanui stands as the commercial heart of northern Christchurch, a bustling suburb that combines the massive Northlands Shopping Centre with a thriving independent business corridor along Main North Road. With a population of over 35,000 people and serving as the primary retail and service hub for surrounding suburbs like Bishopdale, Casebrook, and Redwood, Papanui represents a significant market for businesses that can effectively reach its community. Yet many local business owners still underestimate the power of a strong digital presence in capturing this ready-made customer base.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital works with Papanui businesses of all types and sizes to build websites that generate real commercial results. From family-owned retail shops competing for visibility against Northlands Mall chains to trades businesses serving the extensive suburban housing stock, we understand the specific dynamics of this market. Our web design and digital marketing strategies are built around the unique characteristics of the Papanui community and the competitive landscape you face every day.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">The Papanui Commercial Landscape</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Northlands Shopping Centre casts a long shadow over Papanui's independent business community. As one of Christchurch's largest malls, it draws enormous foot traffic and houses dozens of national and international retail chains. For independent Papanui businesses, the challenge is not just competing with other local operators — it is competing with the marketing budgets, brand recognition, and online presence of major retailers. Your website becomes the primary tool for levelling this playing field.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The Main North Road strip offers a different but equally competitive environment. Automotive businesses, food outlets, professional services, and specialty retailers all compete for the attention of the thousands of vehicles and pedestrians that pass daily. Many of these businesses have operated successfully for years on location and word-of-mouth alone. However, as consumer behaviour increasingly shifts to online-first discovery, these established Papanui businesses risk becoming invisible to a new generation of customers who search for everything on Google before leaving the house.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Papanui's family-oriented demographic creates specific opportunities for businesses targeting household services. With one of Christchurch's highest proportions of families with children, demand for services like childcare, tutoring, family healthcare, home maintenance, and children's activities is consistently strong. Businesses in these categories that appear prominently in local search results capture a steady stream of enquiries from parents actively looking for these services.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Web Design Tailored to Papanui's Market</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Papanui's diverse business mix means that cookie-cutter web design fails completely. The local baker needs a warm, inviting website that showcases fresh products and daily specials. The automotive workshop needs a clean, professional site that lists services, displays certifications, and makes booking a service easy. The family dentist needs a reassuring, informative site that helps nervous parents feel confident about bringing their children in for treatment. We design each website specifically for the business it represents and the customers it serves.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          For Papanui's retail businesses, we build websites that serve as effective extensions of your physical store. Product catalogues, online purchasing capabilities, click-and-collect options, and store locator integration all work together to provide a seamless experience for customers who may discover you online and visit in person, or vice versa. This omnichannel approach is essential in a suburb where major mall retailers already offer these conveniences.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Mobile-first design is particularly important for Papanui businesses. The suburb's family-oriented population means lots of busy parents who do their searching and shopping on phones between school runs, activities, and work commitments. If your website is not optimised for mobile — and we mean truly optimised, not just technically responsive — you are losing a significant portion of your potential customer base. We design every Papanui website mobile-first, ensuring the experience is flawless on any device.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Marketing for Papanui's Family Market</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Facebook remains one of the most effective advertising platforms for reaching Papanui's family demographic. We create targeted Facebook and Instagram ad campaigns that reach parents and families in the Papanui area based on location, interests, and behaviours. For a Papanui tutoring business, this might mean targeting parents of school-age children within a 10-kilometre radius. For a local gym, it means reaching health-conscious adults in the northern Christchurch suburbs.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Google Ads provides immediate visibility for Papanui businesses that need enquiries right now. When someone searches "mechanic Papanui" or "childcare north Christchurch" at the exact moment they need that service, a well-placed Google ad captures that high-intent customer. Our Google Ads management for Papanui clients focuses on maximising return on investment by targeting the most valuable keywords, optimising ad copy, and ensuring your landing pages convert clicks into enquiries.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Learn more about how we can help your Papanui business through our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> and <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO packages</a>. Get in touch for a free consultation about your digital strategy.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

@@ -1,0 +1,163 @@
+---
+import ServicePage from '../../layouts/ServicePage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const faqItems = [
+  {
+    question: 'Which eCommerce platform is best for my Christchurch business?',
+    answer: 'The best platform depends on your product range, sales volume, technical requirements, and budget. Shopify is ideal for businesses that want a managed, all-in-one solution with NZ payment integration. WooCommerce is powerful for businesses already using WordPress who need full customisation control. For high-performance, custom-built stores, we recommend headless commerce with platforms like Snipcart or Medusa.js integrated into a modern front-end. We assess your specific needs and recommend the platform that delivers the best long-term value.'
+  },
+  {
+    question: 'How much does an eCommerce website cost in Christchurch?',
+    answer: 'Our eCommerce development projects typically range from $5,000 for a streamlined Shopify store with a curated product range to $25,000 or more for complex, custom-built platforms with advanced functionality. The cost depends on the number of products, required features like custom product configurators or subscription billing, integration needs with accounting or inventory systems, and the level of design customisation required.'
+  },
+  {
+    question: 'Can you integrate NZ payment gateways into my online store?',
+    answer: 'Yes. We integrate all major payment gateways used by New Zealand businesses, including Stripe, Windcave, Payment Express (PX Post), POLi, and PayPal. We also set up popular buy-now-pay-later options like Afterpay and Zip that are widely used by NZ consumers. All integrations are configured for NZD currency and comply with NZ payment processing regulations.'
+  },
+  {
+    question: 'Will my eCommerce store rank on Google?',
+    answer: 'Yes, every eCommerce store we build is optimised for search engines from the ground up. This includes SEO-friendly product URLs, optimised meta tags for every product and category, structured data markup for rich product snippets, fast load times, mobile-optimised product pages, and XML sitemaps that ensure Google indexes all your products. We can also provide ongoing SEO services to help your store rank competitively for product-related searches in New Zealand.'
+  },
+  {
+    question: 'Can you integrate my online store with Xero or other NZ accounting software?',
+    answer: 'Absolutely. We regularly integrate eCommerce stores with Xero for automated invoicing, inventory synchronisation, and financial reporting. We also integrate with other NZ business tools including Vend for point-of-sale, Shippit for shipping management, and various CRM systems. These integrations eliminate manual data entry and streamline your operations.'
+  },
+  {
+    question: 'How do you handle shipping for NZ eCommerce stores?',
+    answer: 'We configure shipping rules based on NZ Post, CourierPost, and Freightways rate tables, including weight-based, price-based, and location-based calculations. We set up free shipping thresholds, rural delivery surcharges, and express shipping options. For businesses with specific logistics needs, we can integrate with third-party shipping APIs that provide real-time rate calculations and tracking.'
+  }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "eCommerce Website Christchurch",
+  "description": "eCommerce website development services for Christchurch businesses. Shopify, WooCommerce, headless commerce, NZ payment integration, and shipping configuration by Byte Digital.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressRegion": "Canterbury", "addressCountry": "NZ" }
+  },
+  "areaServed": { "@type": "City", "name": "Christchurch" },
+  "sameAs": []
+};
+
+const relatedServices = [
+  { href: '/services/web-design', label: 'Web Design' },
+  { href: '/services/web-development', label: 'Web Development' },
+  { href: '/services/seo', label: 'SEO' },
+  { href: '/services/local-seo', label: 'Local SEO' },
+  { href: '/services/custom-applications', label: 'Custom Applications' },
+  { href: '/services/wordpress-development', label: 'WordPress Development' },
+  { href: '/services/website-maintenance', label: 'Website Maintenance' },
+  { href: '/services/branding', label: 'Branding' }
+];
+---
+
+<ServicePage
+  title="eCommerce Website Christchurch | Online Store Development NZ | Byte Digital"
+  description="Byte Digital builds high-converting eCommerce websites for Christchurch businesses. Shopify, WooCommerce, headless commerce with NZ payment gateways and shipping integration."
+  serviceTitle="eCommerce Website Christchurch"
+  serviceSubtitle="Online stores that sell. Fast, secure, and optimised for New Zealand shoppers."
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-bottom:16px">eCommerce Development Built for New Zealand Shoppers</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">New Zealand's eCommerce market has grown dramatically, with online retail now accounting for a significant and increasing share of total retail spending. Christchurch consumers are buying more online than ever before, and businesses that fail to offer a seamless, trustworthy online shopping experience are leaving revenue on the table. Whether you are launching your first online store or upgrading an existing one, your eCommerce website needs to convert visitors into customers efficiently.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">At Byte Digital, we build eCommerce websites for Christchurch businesses that are fast, secure, easy to manage, and optimised for conversions. We understand the unique requirements of selling online in New Zealand, from payment gateways and shipping logistics to consumer expectations and regulatory compliance.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">eCommerce Platforms We Work With</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We do not believe in one-size-fits-all eCommerce solutions. The right platform for your Christchurch business depends on your product catalogue, sales volume, growth plans, and operational requirements.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Shopify</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Shopify is the most popular eCommerce platform in New Zealand, and for good reason. It is a fully managed platform that handles hosting, security, and PCI compliance, leaving you free to focus on selling. We build custom Shopify themes and configure stores with NZ-specific payment gateways, shipping rules, and tax settings. Shopify is ideal for businesses that want a reliable, scalable store without managing technical infrastructure.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">WooCommerce</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">WooCommerce runs on WordPress and offers unmatched customisation flexibility. It is open-source, which means there are no platform fees beyond hosting and payment processing. We build custom WooCommerce stores with tailored functionality, advanced product types, subscription capabilities, and seamless integration with your existing <a href="/services/wordpress-development" style="color:var(--secondary)">WordPress website</a>. WooCommerce is ideal for businesses that need complete control over their store's functionality and data.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Headless Commerce</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">For businesses that demand maximum performance, we build headless commerce solutions that separate the front-end presentation layer from the back-end commerce engine. This architecture delivers sub-second page loads, superior SEO performance, and the flexibility to present your products across any channel: web, mobile, social media, or in-store kiosks. We integrate headless commerce with modern front-ends built on Astro or Next.js for the best possible user experience.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">NZ-Specific eCommerce Configuration</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Selling online in New Zealand requires specific configurations that generic eCommerce setups often overlook. Every store we build is configured for the NZ market from day one.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">NZ Payment Gateway Integration</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We integrate payment solutions that New Zealand consumers trust and use regularly:</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Stripe:</strong> Widely adopted by NZ businesses, supports all major credit and debit cards, Apple Pay, and Google Pay</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Windcave:</strong> One of NZ's most established payment gateways, supporting credit cards, internet banking, and POLi</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Payment Express (PX Post):</strong> A direct bank integration popular with established NZ retailers</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Afterpay and Zip:</strong> Buy-now-pay-later options that are increasingly expected by NZ online shoppers</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Account2Account:</strong> Internet banking payments that reduce transaction fees for high-value purchases</li>
+        </ul>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">All payment integrations are configured for NZD currency, include appropriate GST handling, and comply with NZ payment processing standards.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">NZ Shipping and Fulfilment</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Shipping configuration can make or break the eCommerce experience for New Zealand customers. We set up comprehensive shipping rules that account for:</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px">NZ Post and CourierPost rate tables with weight-based and size-based calculations</li>
+          <li style="margin-bottom:12px">Rural delivery surcharges that apply to addresses outside main centres</li>
+          <li style="margin-bottom:12px">Free shipping thresholds that incentivise higher order values</li>
+          <li style="margin-bottom:12px">Express and overnight shipping options for urgent orders</li>
+          <li style="margin-bottom:12px">Click and collect for Christchurch customers who want to pick up in store</li>
+          <li style="margin-bottom:12px">International shipping for businesses that ship beyond New Zealand</li>
+        </ul>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Conversion-Optimised eCommerce Design</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Driving traffic to your online store is only half the battle. Converting those visitors into paying customers requires thoughtful, data-informed design. Every eCommerce site we build incorporates conversion optimisation best practices:</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Product page optimisation:</strong> High-quality imagery, detailed descriptions, clear pricing with GST included, prominent add-to-cart buttons, trust badges, and social proof</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Streamlined checkout:</strong> Minimal form fields, guest checkout options, progress indicators, and multiple payment methods to reduce cart abandonment</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Smart search and filtering:</strong> Intuitive product search with auto-suggestions, category filtering, and sorting options that help shoppers find products quickly</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Cart recovery:</strong> Automated email sequences that re-engage shoppers who added items but did not complete their purchase</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Mobile shopping experience:</strong> Touch-friendly product browsing, thumb-reachable CTAs, and mobile-optimised checkout flows</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Trust signals:</strong> NZ-based business indicators, secure checkout badges, clear returns policies, and real customer reviews</li>
+        </ul>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Product Management and Inventory</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Managing products, inventory, and orders should be straightforward, not a full-time job. We build eCommerce stores with intuitive admin interfaces that make product management efficient. We integrate with inventory management systems, set up automated stock alerts, configure bulk import and export capabilities for large catalogues, and ensure your store syncs seamlessly with any physical retail systems you operate.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">For Christchurch retailers with physical stores, we can integrate your online and in-store inventory so stock levels are always accurate across all channels. We also integrate with Xero for automated financial reconciliation, eliminating manual data entry and reducing accounting overhead.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">eCommerce SEO and Marketing</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">An eCommerce store that cannot be found on Google is a shop with no signage. Every store we build includes foundational <a href="/services/seo" style="color:var(--secondary)">SEO optimisation</a>: clean product URLs, optimised meta titles and descriptions, schema markup for products and reviews, XML sitemaps, and fast page loads. We also set up Google Analytics 4 and Google Tag Manager with custom eCommerce tracking so you understand exactly how visitors interact with your store and where drop-offs occur.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">For ongoing eCommerce growth, we offer SEO retainers that target product-specific keywords, create content that drives organic traffic, build authoritative backlinks, and optimise your product pages based on search data and conversion analytics.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">eCommerce Security and Compliance</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Online shoppers need to trust that their personal and payment information is secure. Every eCommerce store we build includes SSL encryption, PCI-compliant payment processing, secure authentication for admin access, regular security updates, input validation and sanitisation, and protection against common web vulnerabilities. We also configure data privacy settings in compliance with New Zealand's Privacy Act 2020.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why Christchurch Businesses Choose Byte Digital for eCommerce</h2>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">NZ market expertise:</strong> We configure stores specifically for New Zealand consumers, payments, and shipping</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Conversion focus:</strong> We design to maximise sales, not just to look attractive</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Platform flexibility:</strong> We recommend and build on the best platform for your specific business needs</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Integration capability:</strong> We connect your store with the NZ business tools you already use</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Ongoing support:</strong> Our <a href="/services/website-maintenance" style="color:var(--secondary)">website care plans</a> keep your store secure, updated, and performing optimally</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Scalable architecture:</strong> Your store grows with your business without requiring a rebuild</li>
+        </ul>
+
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Whether you are selling handcrafted goods from a workshop in Woolston or running a large retail operation in the Christchurch CBD, we build eCommerce stores that sell. Get in touch to discuss your online store project.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Related Services</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+        {relatedServices.map(s => (
+          <a href={s.href} class="btn-ghost" style="padding:10px 24px;font-size:13px">{s.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="faq">
+    <FAQAccordion items={faqItems} />
+  </Fragment>
+</ServicePage>

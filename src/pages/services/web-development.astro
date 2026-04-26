@@ -1,0 +1,153 @@
+---
+import ServicePage from '../../layouts/ServicePage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const faqItems = [
+  {
+    question: 'What web development technologies does Byte Digital use?',
+    answer: 'We work with a modern tech stack including Astro, Next.js, React, Node.js, and TypeScript for front-end and full-stack development. For content management, we integrate headless CMS platforms like Sanity, Strapi, and Contentful. We also build on WordPress when it is the right fit for the project. Our technology choices are always driven by your specific business requirements and long-term goals, not by personal preference.'
+  },
+  {
+    question: 'How long does web development take for a Christchurch business?',
+    answer: 'Timelines vary based on complexity. A standard business website with custom features typically takes six to ten weeks. A custom web application or integrated e-commerce platform may take three to six months. We provide detailed project roadmaps with clear milestones so you always know where your project stands and what is coming next.'
+  },
+  {
+    question: 'Can you build custom web applications for my Christchurch business?',
+    answer: 'Yes. Custom web application development is one of our core strengths. We have built booking systems, client portals, inventory management tools, CRM integrations, and workflow automation platforms for businesses across Christchurch and Canterbury. If you have a process that could be improved with a bespoke digital solution, we can design, develop, and deploy it.'
+  },
+  {
+    question: 'Do you work with headless CMS platforms?',
+    answer: 'Headless CMS architecture is our preferred approach for content-driven websites. We have extensive experience with Sanity, Strapi, Contentful, and Ghost. A headless CMS gives you full control over your content while delivering blazing-fast front-end performance through static generation and edge caching. This architecture is particularly effective for Christchurch businesses that publish frequently or need multi-channel content delivery.'
+  },
+  {
+    question: 'Can you integrate third-party APIs into my website?',
+    answer: 'Absolutely. We regularly integrate payment gateways like Stripe and Windcave, CRM systems like HubSpot and Salesforce, email marketing platforms like Mailchimp and ActiveCampaign, accounting software like Xero, booking systems, mapping services, social media platforms, and custom internal APIs. If it has an API, we can connect it to your website or application.'
+  },
+  {
+    question: 'What happens after my website or application launches?',
+    answer: 'We provide post-launch support that covers bug fixes, security patches, performance monitoring, and minor adjustments during an initial warranty period. Beyond that, we offer ongoing website care plans that include continuous monitoring, content updates, feature enhancements, and priority technical support. Your web application is a living product, and we treat it as such.'
+  }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Development Christchurch",
+  "description": "Modern web development services for Christchurch businesses. Full-stack development with Astro, Next.js, React, headless CMS, and custom API integrations by Byte Digital.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressRegion": "Canterbury", "addressCountry": "NZ" }
+  },
+  "areaServed": { "@type": "City", "name": "Christchurch" },
+  "sameAs": []
+};
+
+const relatedServices = [
+  { href: '/services/web-design', label: 'Web Design' },
+  { href: '/services/seo', label: 'SEO' },
+  { href: '/services/ecommerce', label: 'eCommerce' },
+  { href: '/services/custom-applications', label: 'Custom Applications' },
+  { href: '/services/wordpress-development', label: 'WordPress Development' },
+  { href: '/services/website-maintenance', label: 'Website Maintenance' },
+  { href: '/services/local-seo', label: 'Local SEO' },
+  { href: '/services/logo-design', label: 'Logo Design' }
+];
+---
+
+<ServicePage
+  title="Web Development Christchurch | Modern Web Development NZ | Byte Digital"
+  description="Byte Digital provides modern web development services for Christchurch businesses. Full-stack solutions with Astro, Next.js, React, headless CMS, and API integrations."
+  serviceTitle="Web Development Christchurch"
+  serviceSubtitle="Robust, scalable web solutions built with modern frameworks and engineered for performance."
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-bottom:16px">Modern Web Development for Christchurch Businesses</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Web development is where strategy meets execution. Your <a href="/services/web-design" style="color:var(--secondary)">web design</a> defines how your site looks, but your web development determines how it performs, how it scales, and how effectively it converts visitors into customers for your Christchurch business.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">At Byte Digital, we build websites and web applications using modern frameworks and development practices that deliver exceptional speed, reliability, and user experience. We are not interested in cobbling together WordPress plugins or relying on bloated page builders that slow your site to a crawl. We write clean, maintainable code that serves your business today and scales with it tomorrow.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Our Technology Stack</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">The tools we use matter. They affect your site's speed, security, maintainability, and ability to rank on Google. We choose technologies based on performance and suitability for your specific Christchurch business requirements.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Front-End Development</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We primarily build front-ends with Astro and Next.js, two of the most performant frameworks available today. Astro's island architecture allows us to ship zero JavaScript by default, resulting in near-instant page loads. Next.js provides server-side rendering and API routes for dynamic, data-driven applications. For interactive interfaces, we use React components that hydrate progressively, delivering a smooth experience without bloating your page weight.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">This approach is particularly important for Christchurch businesses competing for local search visibility, because Google's Core Web Vitals, which measure load speed and interactivity, directly influence search rankings. Unlike agencies still using dated WordPress templates that load three to five seconds, our sites consistently achieve sub-one-second load times.</p>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Headless CMS Integration</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">A headless CMS decouples your content management from your front-end presentation, giving you the best of both worlds: an intuitive content editing experience for your team and lightning-fast page delivery for your visitors. We work extensively with:</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Sanity:</strong> A real-time, structured content platform ideal for businesses that need flexible content modelling and live preview</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Strapi:</strong> An open-source headless CMS that gives you full ownership and control over your content infrastructure</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Contentful:</strong> An enterprise-grade headless CMS for larger Christchurch organisations with complex content requirements</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Ghost:</strong> A publishing-focused platform excellent for blogs, news sites, and content-heavy businesses</li>
+        </ul>
+
+        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Back-End Development and APIs</h3>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">When your project requires server-side logic, custom databases, or third-party integrations, we build robust back-end solutions using Node.js, Express, and TypeScript. We design RESTful APIs and GraphQL endpoints that power your web applications, mobile apps, and internal tools from a single, maintainable codebase.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">For <a href="/services/custom-applications" style="color:var(--secondary)">custom web applications</a>, we architect database schemas, implement authentication and authorisation systems, build notification services, and create admin dashboards that give your Christchurch team full visibility and control over your digital operations.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Custom API Integrations for New Zealand Businesses</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Modern Christchurch businesses rely on a growing ecosystem of software tools. Your website needs to connect seamlessly with the platforms your team uses daily. We build reliable integrations with:</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Payment gateways:</strong> Stripe, Windcave, and Payment Express for NZ-specific payment processing</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">CRM systems:</strong> HubSpot, Salesforce, and Pipedrive to sync leads directly from your website</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Email marketing:</strong> Mailchimp, ActiveCampaign, and Klaviyo for automated customer communication</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Accounting:</strong> Xero integration for invoicing, inventory sync, and financial reporting</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Booking and scheduling:</strong> Calendly, Acuity, and custom booking systems</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Shipping and logistics:</strong> NZ Post, CourierPost, and Freightways for <a href="/services/ecommerce" style="color:var(--secondary)">eCommerce</a> fulfilment</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Analytics and tracking:</strong> Google Analytics 4, Google Tag Manager, and custom event tracking</li>
+        </ul>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Performance Engineering</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Website performance is not optional. Google has confirmed that page speed is a ranking factor, and research consistently shows that faster websites convert at significantly higher rates. We engineer performance into every layer of your web application:</p>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Static site generation</strong> and edge caching to serve pre-built pages from CDN nodes close to your Christchurch visitors</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Image optimisation</strong> with automatic format conversion to WebP and AVIF, responsive sizing, and lazy loading</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Code splitting</strong> to ensure visitors only download the JavaScript they actually need</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Font optimisation</strong> to prevent layout shifts and eliminate render-blocking resources</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Database query optimisation</strong> for dynamic applications that need to respond in under two hundred milliseconds</li>
+        </ul>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Security Best Practices</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Cybersecurity threats targeting New Zealand businesses are increasing. We build security into our development process from day one, not as a patch applied after launch. Every web application we develop includes input validation, CSRF protection, secure authentication, encrypted data transmission, regular dependency audits, and adherence to OWASP security guidelines. For ongoing protection, our <a href="/services/website-maintenance" style="color:var(--secondary)">website maintenance</a> plans include continuous security monitoring and prompt patching.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Scalable Architecture for Growing Christchurch Businesses</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Your website or application should grow with your business, not hold it back. We architect solutions that handle increased traffic, additional features, and expanding content requirements without requiring a complete rebuild. Whether you are a startup in the Christchurch Innovation Precinct or an established Canterbury enterprise serving customers nationwide, our development approach ensures your digital infrastructure scales cleanly and cost-effectively.</p>
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We use cloud infrastructure from providers like Vercel, Netlify, and AWS, which automatically scale based on demand. This means your site handles traffic spikes, whether from a viral social media post or a seasonal rush, without degradation in performance.</p>
+
+        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why Christchurch Businesses Choose Byte Digital</h2>
+        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
+          <li style="margin-bottom:12px"><strong style="color:#fff">Modern frameworks</strong> that outperform traditional CMS platforms in speed, security, and developer experience</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Full-stack capability</strong> from front-end interfaces to back-end APIs and database architecture</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Headless CMS expertise</strong> that gives you content freedom without sacrificing performance</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">NZ-specific integrations</strong> with payment gateways, shipping providers, and business tools used by Kiwi companies</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Clean, documented code</strong> that any developer can work with, protecting you from vendor lock-in</li>
+          <li style="margin-bottom:12px"><strong style="color:#fff">Local support</strong> from a Christchurch team that understands your market and your customers</li>
+        </ul>
+
+        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">If your Christchurch business needs a website that goes beyond templates and page builders, or a web application that automates processes and drives efficiency, we would love to talk. Reach out for a free consultation about your web development project.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Related Services</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+        {relatedServices.map(s => (
+          <a href={s.href} class="btn-ghost" style="padding:10px 24px;font-size:13px">{s.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="faq">
+    <FAQAccordion items={faqItems} />
+  </Fragment>
+</ServicePage>

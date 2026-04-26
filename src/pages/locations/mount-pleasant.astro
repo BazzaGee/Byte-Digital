@@ -1,0 +1,126 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Mt Pleasant';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Mt Pleasant?',
+    answer: 'Mt Pleasant business websites typically range from $3,000 to $12,000. Lifestyle and wellness businesses often invest $3,000 to $6,000 in professional websites that convey quality and trust. More complex builds with e-commerce, online booking, or extensive custom design may range from $6,000 to $12,000. We provide transparent pricing based on your specific requirements.',
+  },
+  {
+    question: 'Do you offer SEO services for Mt Pleasant businesses?',
+    answer: 'Yes. Mt Pleasant businesses benefit from our local SEO strategies that target both the immediate coastal community and the broader Christchurch market. We optimise for Mt Pleasant-specific searches, coastal Christchurch queries, and the lifestyle-related keywords that your target audience uses when searching for services.',
+  },
+  {
+    question: 'How long does it take to build a website for my Mt Pleasant business?',
+    answer: 'Mt Pleasant business websites typically take four to six weeks to complete. Businesses with clear branding and content can be delivered more quickly, while those needing custom design development or additional features like online booking may take up to eight weeks.',
+  },
+  {
+    question: 'How can I market my Mt Pleasant lifestyle business to a wider Christchurch audience?',
+    answer: 'Mt Pleasant\'s coastal lifestyle brand is an asset that extends well beyond the suburb itself. We build websites and digital marketing strategies that leverage this lifestyle appeal to attract customers from across Christchurch. Instagram and Facebook marketing targeting lifestyle-oriented demographics, combined with SEO that positions you as the premium coastal choice, consistently delivers results for Mt Pleasant businesses.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Mt Pleasant Christchurch",
+  description: "Professional web design, SEO, and digital marketing services for businesses in Mt Pleasant, Christchurch. Serving coastal lifestyle businesses, wellness practitioners, and boutique retailers near Sumner Beach.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Mt Pleasant, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Sumner', slug: 'sumner' },
+  { name: 'Redcliffs', slug: 'redcliffs' },
+  { name: 'Ferrymead', slug: 'ferrymead' },
+  { name: 'Woolston', slug: 'woolston' },
+  { name: 'Cashmere', slug: 'cashmere' },
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'New Brighton', slug: 'new-brighton' },
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'St Albans', slug: 'st-albans' },
+];
+---
+
+<LocationPage
+  title="Web Design Mt Pleasant Christchurch | Byte Digital"
+  description="Byte Digital creates premium websites for Mt Pleasant businesses. Web design, SEO, and digital marketing for Christchurch's coastal lifestyle community near Sumner Beach."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Excellence for Mt Pleasant's Coastal Community</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Mt Pleasant occupies one of Christchurch's most enviable positions, perched on the hillside above the estuary with sweeping views across the water to the Port Hills and beyond. The suburb's name perfectly captures its appeal — this is a place where residents and business owners have consciously chosen a lifestyle defined by proximity to the coast, outdoor recreation, and a strong sense of community. The Mt Pleasant business community reflects these values, with a concentration of wellness practitioners, boutique retailers, cafés, and lifestyle-oriented service providers that cater to an affluent, health-conscious local population.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          For Mt Pleasant businesses, the digital challenge and opportunity is the same: your website must convey the quality, authenticity, and lifestyle appeal that defines the suburb. Visitors to your website should feel something of what it is like to walk through your Mt Pleasant store, sit in your café, or receive treatment at your practice. Byte Digital builds websites that create exactly this kind of emotional connection while simultaneously driving commercial results.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">The Mt Pleasant Lifestyle Brand</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Mt Pleasant has cultivated a distinctive brand identity centred on coastal living, wellness, and quality. The suburb's residents are disproportionately health-conscious, environmentally aware, and willing to invest in products and services that align with their values. Businesses that succeed here tend to share these qualities — they are authentic, quality-focused, and deeply connected to their community. Your digital presence needs to reflect these values consistently across every touchpoint.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          This lifestyle brand extends well beyond Mt Pleasant's boundaries. People from across Christchurch visit the area for its coastal walks, beach access, and café culture. Businesses that effectively market their Mt Pleasant location and lifestyle appeal attract customers from the entire city, not just the local neighbourhood. We build websites and digital marketing strategies that leverage this broader appeal, positioning your Mt Pleasant business as a destination worth travelling to.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The proximity to Sumner Beach and the coastal walkway creates additional marketing opportunities. Businesses that incorporate the coastal lifestyle into their digital storytelling — through photography, content, and social media — create an aspirational brand that resonates with Christchurch's outdoor-oriented population. A Mt Pleasant yoga studio that showcases classes with ocean views, for instance, has a powerful marketing advantage over inland competitors. We help you identify and amplify these unique selling points in your digital presence.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Web Design for Mt Pleasant's Wellness Sector</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The wellness sector is a pillar of Mt Pleasant's business community. Yoga studios, pilates studios, massage therapists, naturopaths, counsellors, and holistic health practitioners all serve the suburb's health-conscious population. For these businesses, a website must create an immediate sense of calm, trust, and professionalism — the digital equivalent of walking into a well-designed treatment room.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We design wellness websites with a focus on creating the right emotional tone from the first visit. Thoughtful typography, calming colour palettes, and clean layouts that allow breathing room all contribute to a user experience that aligns with the wellness philosophy. Practitioner profiles that highlight qualifications and personal approach build trust. Service descriptions written in accessible, reassuring language help potential clients understand what to expect. And integrated online booking systems remove friction from the decision to book.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          SEO for Mt Pleasant wellness practices targets the specific health-related searches that potential clients perform. A Mt Pleasant osteopath, for instance, benefits from ranking for searches like "osteopath Christchurch," "back pain treatment Mt Pleasant," and "sports injury specialist Sumner area." We create content that addresses these health concerns while naturally incorporating relevant keywords, building both your search authority and your reputation as a knowledgeable practitioner.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Marketing for Mt Pleasant</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Instagram is the most effective social media platform for Mt Pleasant businesses. The visual nature of the platform perfectly suits the suburb's scenic beauty and lifestyle appeal. We create Instagram strategies that showcase your business within the Mt Pleasant context — your café with a view, your studio bathed in natural light, your products photographed in coastal settings. This visual storytelling builds brand awareness and drives both online engagement and physical visits.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Google Ads can deliver immediate results for Mt Pleasant businesses seeking to grow their customer base. We create targeted campaigns that reach people searching for your specific services in the Christchurch area. For a Mt Pleasant hairdresser, this might mean targeting "hair salon Christchurch" and "stylist Sumner" with ad copy that highlights your coastal location and the premium experience you offer. The specificity of this targeting ensures your ad spend reaches the most relevant potential customers.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital understands the Mt Pleasant market and builds digital presences that do justice to your coastal business. Explore our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO packages</a> to get started.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

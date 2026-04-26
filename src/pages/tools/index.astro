@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Free Website Tools | Byte Digital"
+  description="Free tools for Christchurch businesses: website cost calculator, free website audit, and SEO ROI calculator."
+>
+  <section style="padding-top:120px;padding-bottom:60px">
+    <div class="container">
+      <div class="section-label">Free Tools</div>
+      <h1 class="section-title">Tools to grow your<br /><span class="gradient-text">Christchurch business.</span></h1>
+      <p class="section-subtitle" style="margin-top:12px">Free, no-obligation tools to help you understand your website needs and potential ROI.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div style="display:grid;gap:24px;max-width:700px;margin:0 auto">
+        <a href="/tools/website-cost-calculator" style="display:block;padding:32px;border-radius:28px;background:rgba(19,19,26,0.75);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.08);transition:all 0.3s;text-decoration:none" onmouseover="this.style.borderColor='rgba(139,120,230,0.3)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none'">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px">
+            <div style="width:48px;height:48px;border-radius:14px;background:rgba(139,120,230,0.1);border:1px solid rgba(139,120,230,0.2);display:flex;align-items:center;justify-content:center;color:var(--primary)">$</div>
+            <div>
+              <h3 style="font-size:20px;font-weight:700;color:#fff">Website Cost Calculator</h3>
+              <p style="font-size:14px;color:var(--text-muted)">Get an instant price estimate for your project</p>
+            </div>
+          </div>
+        </a>
+        <a href="/tools/free-website-audit" style="display:block;padding:32px;border-radius:28px;background:rgba(19,19,26,0.75);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.08);transition:all 0.3s;text-decoration:none" onmouseover="this.style.borderColor='rgba(94,234,212,0.3)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none'">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px">
+            <div style="width:48px;height:48px;border-radius:14px;background:rgba(94,234,212,0.1);border:1px solid rgba(94,234,212,0.2);display:flex;align-items:center;justify-content:center;color:var(--secondary)">&#9745;</div>
+            <div>
+              <h3 style="font-size:20px;font-weight:700;color:#fff">Free Website Audit</h3>
+              <p style="font-size:14px;color:var(--text-muted)">Check your site's performance, SEO, and security</p>
+            </div>
+          </div>
+        </a>
+        <a href="/tools/seo-roi-calculator" style="display:block;padding:32px;border-radius:28px;background:rgba(19,19,26,0.75);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.08);transition:all 0.3s;text-decoration:none" onmouseover="this.style.borderColor='rgba(139,120,230,0.3)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none'">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px">
+            <div style="width:48px;height:48px;border-radius:14px;background:rgba(139,120,230,0.1);border:1px solid rgba(139,120,230,0.2);display:flex;align-items:center;justify-content:center;color:var(--primary)">&#8593;</div>
+            <div>
+              <h3 style="font-size:20px;font-weight:700;color:#fff">SEO ROI Calculator</h3>
+              <p style="font-size:14px;color:var(--text-muted)">See the potential return from SEO investment</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

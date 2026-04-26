@@ -1,0 +1,126 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Sumner';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Sumner?',
+    answer: 'Sumner business websites typically range from $3,500 to $15,000. The premium coastal market means businesses often need sophisticated design to match the quality expected by Sumner\'s affluent residents and visitors. Boutique retail and hospitality businesses may invest $3,500 to $8,000, while businesses needing advanced e-commerce or extensive custom design may invest $8,000 to $15,000.',
+  },
+  {
+    question: 'Do you offer SEO services for Sumner businesses?',
+    answer: 'Yes. Sumner\'s dual market of local residents and tourist visitors requires a sophisticated SEO approach. We target local searches from Christchurch residents looking to visit Sumner, tourist-related searches from visitors planning trips, and service-specific searches from the local community. This multi-layered strategy ensures your Sumner business appears across all relevant search contexts.',
+  },
+  {
+    question: 'How long does it take to build a website for a Sumner business?',
+    answer: 'Sumner business websites typically take four to eight weeks. The premium nature of the market means businesses often require more design refinement and brand development, which we build into our timelines. Businesses with clear branding direction can be turned around more quickly.',
+  },
+  {
+    question: 'How can digital marketing help my Sumner café or restaurant attract more customers?',
+    answer: 'Sumner\'s café and restaurant scene is one of Christchurch\'s most competitive, and digital marketing is essential for standing out. We build websites with integrated menus, reservation systems, and stunning food photography. Combined with Instagram marketing that showcases your food and the beachside setting, Google Business Profile optimisation, and targeted local SEO, we create a digital presence that fills tables and drives consistent foot traffic.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Sumner Christchurch",
+  "description": "Premium web design, SEO, and digital marketing services for businesses in Sumner, Christchurch. Serving beachside cafés, boutique retail, tourism businesses, and the coastal community.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Sumner, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Mt Pleasant', slug: 'mount-pleasant' },
+  { name: 'Redcliffs', slug: 'redcliffs' },
+  { name: 'Ferrymead', slug: 'ferrymead' },
+  { name: 'New Brighton', slug: 'new-brighton' },
+  { name: 'Cashmere', slug: 'cashmere' },
+  { name: 'Merivale', slug: 'merivale' },
+  { name: 'Woolston', slug: 'woolston' },
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'Riccarton', slug: 'riccarton' },
+];
+---
+
+<LocationPage
+  title="Web Design Sumner Christchurch | Byte Digital"
+  description="Byte Digital creates premium websites for Sumner businesses. Web design, SEO, and digital marketing for Christchurch's iconic beachside suburb."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Premium Digital Presence for Sumner's Iconic Beachside Businesses</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Sumner is Christchurch's most iconic beachside suburb — a place where the Canterbury coastline meets a vibrant village atmosphere that draws visitors from across the city and beyond. The sweeping beach, the historic pier, Cave Rock, and the backdrop of the Port Hills create a setting that is both naturally beautiful and commercially powerful. Sumner's main street pulses with cafés, restaurants, boutique shops, and galleries, all competing for the attention of locals, day-trippers, and tourists. In this visually rich, highly competitive environment, your digital presence must be as compelling as your physical location.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital creates websites for Sumner businesses that capture the essence of this special place while delivering measurable commercial results. We understand that Sumner operates in a unique market — part local community, part tourist destination, part lifestyle brand. Your website needs to serve all three audiences effectively, looking equally attractive to a resident searching for a local service, a Christchurch family planning a beach day, or an international tourist researching their Canterbury itinerary.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Sumner's Café and Restaurant Scene</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Sumner's dining scene is one of Christchurch's most celebrated, with beachfront cafés, craft breweries, artisan bakeries, and restaurants that range from casual fish and chips to sophisticated dinner destinations. The competition for customers is intense, particularly during the summer months when visitor numbers surge. In this environment, a strong digital presence is not optional — it is the factor that determines whether a visitor chooses your establishment over the one next door.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We build restaurant and café websites for Sumner that serve as powerful digital shopfronts. High-quality food photography takes centre stage, making your dishes look as appealing online as they do on the plate. Online menus that are easy to navigate and always up to date reduce customer frustration. Integrated reservation or booking systems capture enquiries directly, rather than losing them to phone tag or third-party booking platforms that charge commissions. For takeaway-focused businesses, we integrate online ordering systems that make placing an order effortless.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Instagram is the single most important marketing channel for Sumner's hospitality businesses. The visual nature of the platform perfectly suits the beachside setting, and potential customers actively browse Instagram when deciding where to eat and drink. We create Instagram strategies that showcase your food, your atmosphere, and your Sumner location through professional-quality content and consistent brand storytelling. Combined with your website, this creates a powerful online presence that drives both immediate visits and long-term brand awareness.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Boutique Retail and Tourism in Sumner</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Sumner's boutique retail scene offers a curated shopping experience that reflects the suburb's coastal sophistication. Surf shops, fashion boutiques, gift stores, art galleries, and specialty food shops all compete for the spending of both locals and visitors. For these businesses, the website serves multiple functions: showcasing products for customers who cannot visit in person, providing practical information like opening hours and location, and building the brand story that makes your store a destination rather than just a shop.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We design e-commerce enabled websites for Sumner retailers that extend your sales reach well beyond foot traffic. A tourist who discovers your Sumner boutique during a summer visit can continue purchasing from you online throughout the year. We build Shopify and WooCommerce stores that maintain the boutique feel of your physical store while providing the functionality needed to manage inventory, process orders, and ship products efficiently.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Sumner's tourism businesses — from surf schools and kayak hire operators to walking tour guides and accommodation providers — need websites that capture bookings from visitors planning their Christchurch itinerary. We build tourism-focused websites with online booking integration, clear activity descriptions, pricing information, and gallery sections that showcase the experiences you offer. SEO targeting tourist-related search terms like "things to do in Christchurch" and "Sumner Beach activities" drives a steady stream of potential customers to your site.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">SEO and Digital Strategy for Sumner</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          SEO for Sumner businesses requires a multi-layered approach that addresses different search intents. Local residents searching for "café Sumner" need different content and signals than tourists searching "best beach Christchurch" or "day trip from Christchurch." We develop comprehensive SEO strategies that create relevant landing pages and content for each audience segment, ensuring your Sumner business appears regardless of how or why someone is searching.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Google Business Profile optimisation is critical for Sumner's hospitality and retail businesses. With so many choices concentrated in a small area, the businesses appearing in Google Maps results when someone searches "restaurants near me" in Sumner capture a disproportionate share of those customers. We optimise your profile with professional photos, accurate business information, regular posts, and a review generation strategy that builds the social proof visitors rely on when choosing between options.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital builds premium digital presences for Sumner's premium businesses. Explore our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO solutions</a> to elevate your Sumner business online.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

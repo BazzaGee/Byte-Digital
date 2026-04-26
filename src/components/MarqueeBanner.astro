@@ -1,0 +1,32 @@
+---
+const phrases = [
+  { text: 'More Phone Calls', highlight: false },
+  { text: 'Higher Rankings', highlight: 'mint' },
+  { text: 'Outshine Competitors', highlight: false },
+  { text: 'Build Trust', highlight: 'purple' },
+  { text: 'More Bookings', highlight: false },
+  { text: 'Fast Loading', highlight: 'mint' },
+  { text: '24/7 Leads', highlight: false },
+  { text: 'Local SEO', highlight: 'purple' },
+  { text: 'Mobile First', highlight: 'mint' },
+  { text: 'AI Optimized', highlight: 'purple' },
+];
+---
+
+<div class="marquee-banner">
+  <div class="marquee-content">
+    {phrases.map((p, i) => (
+      <Fragment>
+        <span class={p.highlight ? `m-${p.highlight}` : ''}>{p.text}</span>
+        {i < phrases.length - 1 && <span> · </span>}
+      </Fragment>
+    ))}
+    <span> · </span>
+    {phrases.map((p, i) => (
+      <Fragment>
+        <span class={p.highlight ? `m-${p.highlight}` : ''}>{p.text}</span>
+        {i < phrases.length - 1 && <span> · </span>}
+      </Fragment>
+    ))}
+  </div>
+</div>

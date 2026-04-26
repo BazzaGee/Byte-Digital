@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import Divider from '../../components/Divider.astro';
+---
+
+<BaseLayout
+  title="Website Cost Calculator NZ | How Much Does a Website Cost? | Byte Digital"
+  description="Calculate your website cost instantly. Free NZ website cost estimator for Christchurch businesses. Get a transparent price estimate for web design, development, and SEO."
+>
+  <section style="padding-top:120px;padding-bottom:60px">
+    <div class="container">
+      <nav style="margin-bottom:24px;font-size:13px;color:var(--text-muted)">
+        <a href="/" style="color:var(--text-muted)">Home</a>
+        <span style="margin:0 8px">/</span>
+        <a href="/tools" style="color:var(--text-muted)">Tools</a>
+        <span style="margin:0 8px">/</span>
+        <span style="color:var(--secondary)">Website Cost Calculator</span>
+      </nav>
+      <div class="section-label">Free Tool</div>
+      <h1 class="section-title">Website Cost<br /><span class="gradient-text">Calculator</span></h1>
+      <p class="section-subtitle" style="margin-top:12px">Get an instant estimate for your website project. No obligations, no sales pitch.</p>
+    </div>
+  </section>
+
+  <section class="section dot-pattern" style="padding-top:0">
+    <div class="container">
+      <div class="dm-header" style="max-width:700px;margin:0 auto">
+        <div style="display:flex;flex-direction:column;gap:28px" id="calculator-form">
+          
+          <div>
+            <label style="display:block;font-size:14px;font-weight:600;color:#fff;margin-bottom:10px">What type of website do you need?</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px" id="website-type">
+              <button type="button" class="calc-option" data-value="brochure" onclick="selectOption(this,'website-type')">
+                <strong style="color:#fff;font-size:14px;display:block;margin-bottom:2px">Brochure Website</strong>
+                <span style="color:var(--text-muted);font-size:12px">Simple, informative site</span>
+              </button>
+              <button type="button" class="calc-option" data-value="business" onclick="selectOption(this,'website-type')">
+                <strong style="color:#fff;font-size:14px;display:block;margin-bottom:2px">Business Website</strong>
+                <span style="color:var(--text-muted);font-size:12px">Lead generation focus</span>
+              </button>
+              <button type="button" class="calc-option" data-value="ecommerce" onclick="selectOption(this,'website-type')">
+                <strong style="color:#fff;font-size:14px;display:block;margin-bottom:2px">eCommerce Store</strong>
+                <span style="color:var(--text-muted);font-size:12px">Online shop with payments</span>
+              </button>
+              <button type="button" class="calc-option" data-value="custom" onclick="selectOption(this,'website-type')">
+                <strong style="color:#fff;font-size:14px;display:block;margin-bottom:2px">Custom Application</strong>
+                <span style="color:var(--text-muted);font-size:12px">Bespoke web app</span>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label style="display:block;font-size:14px;font-weight:600;color:#fff;margin-bottom:10px">How many pages do you need?</label>
+            <input type="range" id="page-count" min="1" max="20" value="5" style="width:100%;accent-color:var(--secondary)" oninput="updateCalculation()" />
+            <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-muted);margin-top:4px">
+              <span>1 page</span>
+              <span id="page-count-display" style="color:var(--secondary);font-weight:600">5 pages</span>
+              <span>20 pages</span>
+            </div>
+          </div>
+
+          <div>
+            <label style="display:block;font-size:14px;font-weight:600;color:#fff;margin-bottom:10px">Additional features</label>
+            <div style="display:flex;flex-direction:column;gap:8px" id="features">
+              <label style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:border-color 0.3s" class="feature-option">
+                <input type="checkbox" value="seo" onchange="updateCalculation()" style="accent-color:var(--secondary);width:18px;height:18px" />
+                <span style="color:var(--text-secondary);font-size:14px">SEO Optimization (+$1,500)</span>
+              </label>
+              <label style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:border-color 0.3s" class="feature-option">
+                <input type="checkbox" value="booking" onchange="updateCalculation()" style="accent-color:var(--secondary);width:18px;height:18px" />
+                <span style="color:var(--text-secondary);font-size:14px">Booking/Contact System (+$800)</span>
+              </label>
+              <label style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:border-color 0.3s" class="feature-option">
+                <input type="checkbox" value="blog" onchange="updateCalculation()" style="accent-color:var(--secondary);width:18px;height:18px" />
+                <span style="color:var(--text-secondary);font-size:14px">Blog/News Section (+$500)</span>
+              </label>
+              <label style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:border-color 0.3s" class="feature-option">
+                <input type="checkbox" value="analytics" onchange="updateCalculation()" style="accent-color:var(--secondary);width:18px;height:18px" />
+                <span style="color:var(--text-secondary);font-size:14px">Analytics Dashboard (+$300)</span>
+              </label>
+              <label style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:border-color 0.3s" class="feature-option">
+                <input type="checkbox" value="maintenance" onchange="updateCalculation()" style="accent-color:var(--secondary);width:18px;height:18px" />
+                <span style="color:var(--text-secondary);font-size:14px">6-Month Maintenance Plan (+$1,200)</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label style="display:block;font-size:14px;font-weight:600;color:#fff;margin-bottom:10px">Design complexity</label>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px" id="design-level">
+              <button type="button" class="calc-option" data-value="standard" onclick="selectOption(this,'design-level')">
+                <span style="color:#fff;font-size:13px;font-weight:600">Standard</span>
+              </button>
+              <button type="button" class="calc-option" data-value="premium" onclick="selectOption(this,'design-level')">
+                <span style="color:#fff;font-size:13px;font-weight:600">Premium</span>
+              </button>
+              <button type="button" class="calc-option" data-value="bespoke" onclick="selectOption(this,'design-level')">
+                <span style="color:#fff;font-size:13px;font-weight:600">Bespoke</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="calc-results" style="display:none;padding:32px;border-radius:24px;background:linear-gradient(135deg,rgba(139,120,230,0.08),rgba(94,234,212,0.08));border:1px solid rgba(94,234,212,0.15);text-align:center">
+            <p style="font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">Estimated Cost</p>
+            <div id="calc-price" style="font-size:clamp(48px,8vw,72px);font-weight:700;background:linear-gradient(135deg,#8B78E6,#5EEAD4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:8px">$0</div>
+            <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">+GST. Final quote provided after free consultation.</p>
+            <a href="/contact" class="btn-cta" style="font-size:14px">Get Your Exact Quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+  <CTASection />
+</BaseLayout>
+
+<style>
+  .calc-option {
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: left;
+  }
+  .calc-option:hover { border-color: rgba(139,120,230,0.3); }
+  .calc-option.selected {
+    border-color: var(--secondary);
+    background: rgba(94,234,212,0.08);
+  }
+  .feature-option:hover { border-color: rgba(139,120,230,0.3) !important; }
+</style>
+
+<script>
+const basePrices: Record<string, number> = {
+  brochure: 2500,
+  business: 4500,
+  ecommerce: 6500,
+  custom: 10000,
+};
+
+const designMultipliers: Record<string, number> = {
+  standard: 1,
+  premium: 1.4,
+  bespoke: 1.8,
+};
+
+const featurePrices: Record<string, number> = {
+  seo: 1500,
+  booking: 800,
+  blog: 500,
+  analytics: 300,
+  maintenance: 1200,
+};
+
+const pagePrice = 200;
+
+let selectedType = '';
+let selectedDesign = '';
+
+(window as any).selectOption = function(btn: HTMLElement, groupName: string) {
+  const parent = btn.parentElement;
+  parent.querySelectorAll('.calc-option').forEach((b: Element) => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  if (groupName === 'website-type') selectedType = btn.getAttribute('data-value') || '';
+  if (groupName === 'design-level') selectedDesign = btn.getAttribute('data-value') || '';
+  (window as any).updateCalculation();
+};
+
+(window as any).updateCalculation = function() {
+  const pageCount = parseInt((document.getElementById('page-count') as HTMLInputElement)?.value || '1');
+  const display = document.getElementById('page-count-display');
+  if (display) display.textContent = pageCount + (pageCount === 1 ? ' page' : ' pages');
+
+  if (!selectedType || !selectedDesign) {
+    document.getElementById('calc-results')!.style.display = 'none';
+    return;
+  }
+
+  const base = basePrices[selectedType] || 0;
+  const design = designMultipliers[selectedDesign] || 1;
+  const pageCost = Math.max(0, (pageCount - 3)) * pagePrice;
+
+  let featureCost = 0;
+  document.querySelectorAll('#features input[type="checkbox"]:checked').forEach((cb: Element) => {
+    featureCost += featurePrices[(cb as HTMLInputElement).value] || 0;
+  });
+
+  const total = Math.round(base * design + pageCost + featureCost);
+
+  const results = document.getElementById('calc-results');
+  const price = document.getElementById('calc-price');
+  if (results) results.style.display = 'block';
+  if (price) price.textContent = '$' + total.toLocaleString('en-NZ');
+};
+</script>

@@ -1,0 +1,134 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Halswell';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Halswell?',
+    answer: 'Halswell business websites typically range from $2,500 to $10,000. New and growing businesses can establish a professional online presence from $2,500 to $5,000, while established businesses needing e-commerce, advanced functionality, or more sophisticated design may invest $5,000 to $10,000. We work within your budget to deliver the best possible result.',
+  },
+  {
+    question: 'Do you offer SEO services for Halswell businesses?',
+    answer: 'Yes. Halswell\'s rapid growth means increasing competition for local customers online. Our SEO strategies target Halswell-specific searches and broader southwest Christchurch queries. We help businesses establish strong search visibility in this growing market before competition intensifies as the suburb matures.',
+  },
+  {
+    question: 'How long does it take to build a website for a Halswell business?',
+    answer: 'Most Halswell business websites are completed within three to six weeks. Startups and new businesses may need additional time for brand development, while established businesses with clear branding and content can often be launched more quickly.',
+  },
+  {
+    question: 'How can my Halswell business stand out in a rapidly growing area?',
+    answer: 'Halswell\'s growth means hundreds of new residents are constantly looking for local services. We help your business stand out by building a professional website that establishes credibility, optimising your Google Business Profile for maximum local visibility, and implementing targeted digital marketing that reaches Halswell\'s specific demographics. First-mover advantage in local search rankings is particularly valuable in rapidly growing suburbs like Halswell.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Halswell Christchurch",
+  "description": "Professional web design, SEO, and digital marketing services for businesses in Halswell, Christchurch. Serving new and growing businesses in southwest Christchurch's rapidly expanding suburb.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Halswell, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Wigram', slug: 'wigram' },
+  { name: 'Spreydon', slug: 'spreydon' },
+  { name: 'Somerfield', slug: 'somerfield' },
+  { name: 'Cashmere', slug: 'cashmere' },
+  { name: 'Addington', slug: 'addington' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'Hornby', slug: 'hornby' },
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'Fendalton', slug: 'fendalton' },
+];
+
+const hornbySlug = 'hornby';
+---
+
+<LocationPage
+  title="Web Design Halswell Christchurch | Byte Digital"
+  description="Byte Digital provides web design, SEO, and digital marketing for Halswell businesses. Helping southwest Christchurch's rapidly growing suburb build strong online presences and attract new customers."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Foundations for Halswell's Expanding Market</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Halswell has emerged as one of Christchurch's most significant growth corridors, transforming from a quiet outer suburb into a thriving residential and commercial hub. The Halswell Junction shopping precinct has expanded rapidly, new housing developments continue to bring hundreds of new families to the area, and the business community has grown to match — with new cafés, retail stores, professional services, and trades businesses all establishing themselves to serve the expanding population. For businesses in Halswell, this growth represents a remarkable opportunity, but one that requires a strong digital presence to fully capture.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital works with Halswell businesses to build websites and digital marketing strategies that capitalise on this growth. We understand that Halswell's market dynamics are unique — a mix of long-established residents and new arrivals, an increasingly sophisticated commercial precinct, and a customer base that expects the same quality and convenience they would find in more central suburbs. Your website needs to demonstrate that your Halswell business meets these expectations.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">The Halswell Growth Story</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          What distinguishes Halswell from other Christchurch growth suburbs is the scale and pace of its development. The Halswell Junction area has become one of southwest Christchurch's premier commercial destinations, with major retailers, supermarkets, and a growing collection of independent businesses. The surrounding residential developments continue to expand, creating a self-sustaining cycle of population growth that drives commercial demand. For businesses, this means a constantly refreshing customer base that is actively looking for local providers.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          New Halswell residents present a particular opportunity for local businesses. When families and individuals move to the area, they immediately need to find local providers for virtually every service — from healthcare and childcare to home maintenance and dining. The businesses that appear prominently in online search results during this decision-making period often capture these customers for years. Establishing strong local search visibility now, while Halswell is still developing, is far easier and more cost-effective than trying to break into a mature, competitive market later.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Halswell's demographic profile creates specific business opportunities. The suburb attracts a mix of young families drawn by newer housing options and more affordable prices than inner suburbs, along with established residents who have lived in the area for decades. Businesses that can serve both segments — or that specifically target one effectively — can build strong market positions. A Halswell family restaurant, for instance, serves both the new families looking for convenient dining and the established locals who have supported local businesses for years.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Web Design for Halswell's Diverse Business Community</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Halswell's business community spans virtually every sector. The Halswell Junction retail precinct supports national chain stores alongside independent retailers, while the surrounding area hosts trades businesses, professional services, healthcare providers, childcare centres, fitness facilities, and hospitality venues. Each of these business types has different website requirements, and we design accordingly.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          For Halswell's retail businesses, we build websites that extend your reach beyond the Halswell Junction foot traffic. Product catalogues, online shopping capabilities, click-and-collect options, and integrated social media all work together to create a comprehensive online presence that serves customers whether they visit your store or shop from home. This omnichannel approach is essential in an area where competition from both local operators and national chains with established online stores is intense.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Halswell's trades and service businesses benefit enormously from local search visibility. Plumbers, electricians, builders, landscapers, and cleaners based in Halswell serve customers across the southwest Christchurch area and beyond. We build lead-focused websites with clear service listings, project galleries, trust signals like certifications and reviews, and prominent contact options that convert searchers into customers. Combined with local SEO targeting Halswell and surrounding suburbs, these websites generate consistent enquiry volumes.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Healthcare and wellness businesses are increasingly important in Halswell's family-oriented market. Medical centres, dental practices, physiotherapists, pharmacies, and childcare centres all serve the local community and need websites that communicate professionalism, build trust, and facilitate easy access to services. We build healthcare-focused websites with practitioner profiles, online booking systems, service descriptions, and patient resources that serve both your patients and your practice growth goals.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">SEO and Digital Marketing for Halswell</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Local SEO for Halswell businesses targets the specific search patterns of the local community. New residents searching for services often include location qualifiers like "Halswell" or "southwest Christchurch" in their queries. We optimise your website and Google Business Profile to appear prominently for these searches, ensuring your Halswell business captures customers at the exact moment they are looking for the services you provide.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Google Ads offer immediate visibility for Halswell businesses that need to generate enquiries quickly. We create targeted campaigns that reach potential customers in Halswell and surrounding southwest Christchurch suburbs based on their search behaviour. For a new Halswell dental practice, this might mean running ads targeting "dentist Halswell" and "dental checkup Christchurch south" to build a patient base while organic SEO develops over several months.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Content marketing for Halswell businesses creates long-term search authority while providing genuine value to the community. Blog posts about local events, guides to living in Halswell, and helpful content related to your services all contribute to stronger search rankings and deeper community engagement. A Halswell-based accountant, for example, might publish tax planning guides specifically for small businesses in growth suburbs — content that is both useful and search-optimised.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital is your partner for digital growth in Halswell. Check out our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> and <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO packages</a> to get started.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

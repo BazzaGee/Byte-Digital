@@ -1,0 +1,97 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  canonicalURL?: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+  jsonLd?: object;
+}
+
+const {
+  title,
+  description,
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  ogImage = '/images/og-default.svg',
+  ogType = 'website',
+  noindex = false,
+  jsonLd,
+} = Astro.props;
+
+const siteName = 'Byte Digital';
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<meta name="geo.region" content="NZ-CAN" />
+<meta name="geo.placename" content="Christchurch" />
+<meta name="geo.position" content="-43.5321;172.6362" />
+<meta name="ICBM" content="-43.5321, 172.6362" />
+
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="en_NZ" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@bytedigitalnz" />
+<meta name="twitter:creator" content="@bytedigitalnz" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+{jsonLd && (
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+)}
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://bytedigital.co.nz/#organization",
+  "name": "Byte Digital",
+  "description": "Premium web design, digital marketing, and SEO services for businesses in Christchurch, Canterbury, and New Zealand.",
+  "url": "https://bytedigital.co.nz",
+  "logo": "https://bytedigital.co.nz/images/logo.svg",
+  "email": "barry@bytedigital.co.nz",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Christchurch",
+    "addressRegion": "Canterbury",
+    "addressCountry": "NZ"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -43.5321,
+    "longitude": 172.6362
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Christchurch"
+  },
+  "priceRange": "$2500+",
+  "telephone": "+64 21 123 4567",
+  "sameAs": [
+    "https://www.facebook.com/bytedigitalnz",
+    "https://www.instagram.com/bytedigitalnz",
+    "https://www.linkedin.com/company/bytedigitalnz"
+  ]
+})} />

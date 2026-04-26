@@ -1,0 +1,92 @@
+---
+---
+
+<section id="scroll-video" class="scroll-section">
+  <div class="scroll-sticky">
+    <canvas id="frame-canvas"></canvas>
+    <div class="vignette"></div>
+    <div class="dark-overlay" id="dark-overlay"></div>
+
+    <div class="content-layer" id="content-layer">
+      <div class="scroll-card" id="card-0">
+        <div class="card-tag"><div class="pulse-dot"></div>Byte Digital</div>
+        <h2>We build websites<br />that <span class="gradient">book jobs.</span></h2>
+        <p class="card-desc">Cutting-edge design meets local business ambition. Scroll to see the difference we make for Christchurch businesses.</p>
+      </div>
+
+      <div class="scroll-card" id="card-1">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">of visitors leave a site that loads in over 3 seconds</div>
+        <p class="card-desc" style="margin-top:16px">Your customers are impatient. We make sure they never leave.</p>
+      </div>
+
+      <div class="scroll-card" id="card-2">
+        <div class="card-tag"><div class="pulse-dot"></div>Our Approach</div>
+        <h2>Conversion-<br /><span class="gradient">First Design</span></h2>
+        <p class="card-desc">Every button, image, and text block is scientifically placed to turn visitors into paying customers for your Christchurch business.</p>
+      </div>
+
+      <div class="scroll-card" id="card-3">
+        <div class="stat-number">0.8s</div>
+        <div class="stat-label">average load time for our client sites</div>
+        <div class="icon-row">
+          <div class="icon-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            <span>Speed</span>
+          </div>
+          <div class="icon-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+            <span>Mobile</span>
+          </div>
+          <div class="icon-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <span>SEO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-card" id="card-4">
+        <div class="card-tag"><div class="pulse-dot"></div>Local SEO</div>
+        <h2>Ranked <span class="gradient">#1</span><br />in Christchurch</h2>
+        <p class="card-desc">Our code is perfectly structured so Google knows exactly where you are and what you do. Dominate local search.</p>
+      </div>
+
+      <div class="scroll-card" id="card-5">
+        <div class="stat-number">215%</div>
+        <div class="stat-label">average increase in inbound leads</div>
+        <p class="card-desc" style="margin-top:16px">Real results for real local businesses across Christchurch and Canterbury. No fluff, just growth.</p>
+      </div>
+
+      <div class="scroll-card" id="card-6">
+        <h2>Ready to <span class="gradient">grow?</span></h2>
+        <p class="card-desc" style="margin-bottom:24px">Let's build the digital engine that drives your Christchurch business forward.</p>
+        <a href="/contact" class="cta-pill">
+          Get Your Free Proposal
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" id="scroll-indicator">
+      <div class="mouse"><div class="wheel"></div></div>
+    </div>
+    <div class="scroll-hint-text" id="scroll-hint">Scroll to explore</div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <div class="frame-counter" id="frame-counter">000 / 144</div>
+  </div>
+  <div class="scroll-spacer"></div>
+</section>
+
+<script>
+import { initScrollVideo } from './scripts/scroll-video';
+import { initDotMatrixCanvas } from './scripts/dot-matrix-canvas';
+
+document.addEventListener('DOMContentLoaded', () => {
+  initScrollVideo();
+  initDotMatrixCanvas('dm-services');
+  initDotMatrixCanvas('dm-testimonials');
+  initDotMatrixCanvas('dm-cta');
+});
+</script>

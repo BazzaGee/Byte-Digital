@@ -1,0 +1,128 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Wigram';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Wigram?',
+    answer: 'Wigram business websites typically range from $2,500 to $8,000. New businesses and startups can establish a professional online presence from $2,500 to $4,000, while established businesses needing more advanced features like e-commerce or booking systems may invest $4,000 to $8,000. We provide clear, transparent pricing for every project.',
+  },
+  {
+    question: 'Do you offer SEO services for Wigram businesses?',
+    answer: 'Yes. Wigram\'s rapid growth means increasing competition among local businesses for online visibility. Our SEO strategies target Wigram-specific searches as well as broader south Christchurch queries. We help new and established Wigram businesses build the search authority needed to capture the area\'s growing customer base.',
+  },
+  {
+    question: 'How long does it take to build a website for a Wigram business?',
+    answer: 'Most Wigram business websites are completed within three to six weeks. Newer businesses with everything to build from scratch may take slightly longer due to brand development needs, while established businesses with existing branding can often be turned around more quickly.',
+  },
+  {
+    question: 'How can my new Wigram business attract customers in a growing area?',
+    answer: 'Wigram\'s rapid residential growth creates a constant stream of new residents who are actively looking for local services — everything from dentists and childcare to trades and retail. We build websites and digital marketing strategies that position your business as the go-to option for Wigram\'s new community, combining local SEO, Google Business Profile optimisation, and targeted digital advertising to reach these new customers.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Wigram Christchurch",
+  "description": "Professional web design, SEO, and digital marketing services for businesses in Wigram, Christchurch. Serving new and growing businesses in south Christchurch's rapidly developing suburb.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Wigram, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Halswell', slug: 'halswell' },
+  { name: 'Spreydon', slug: 'spreydon' },
+  { name: 'Addington', slug: 'addington' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'Somerfield', slug: 'somerfield' },
+  { name: 'Sydenham', slug: 'sydenham' },
+  { name: 'Hornby', slug: 'hornby' },
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'Papanui', slug: 'papanui' },
+  { name: 'Cashmere', slug: 'cashmere' },
+];
+
+const hornbySlug = 'hornby';
+---
+
+<LocationPage
+  title="Web Design Wigram Christchurch | Byte Digital"
+  description="Byte Digital provides web design, SEO, and digital marketing for Wigram businesses. Helping new and growing businesses in south Christchurch's rapidly developing suburb succeed online."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Solutions for Wigram's Growing Business Community</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Wigram is one of Christchurch's fastest-growing suburbs, a place where new housing developments are reshaping the landscape and a steady influx of new residents is creating fresh demand for local businesses. The suburb's air force heritage — the former Wigram Air Force Base has been thoughtfully redeveloped into a modern residential and commercial precinct — provides a distinctive character that sets it apart from other new development areas. For businesses establishing themselves in Wigram, this combination of growth and heritage creates a unique opportunity: a captive, expanding customer base that is actively looking for local services.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital helps Wigram businesses build the digital foundations needed to capture this growing market. Whether you are a new startup setting up in The Hub shopping centre, an established business expanding to serve the Wigram community, or a home-based enterprise looking to grow, we create websites that generate enquiries, build brand awareness, and convert Wigram's new residents into loyal customers.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">The Wigram Growth Opportunity</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          What makes Wigram unique among Christchurch's growing suburbs is the pace and scale of its development. Hundreds of new households are being established in the area each year, and every new family or individual that moves to Wigram immediately needs to find local providers for everyday services — doctors, dentists, childcare centres, hairdressers, gyms, food outlets, and trades services. The businesses that appear prominently in online search results when these new residents start looking for local options capture customers for years to come.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          This creates a time-sensitive opportunity for Wigram businesses. Establishing strong search visibility now, while the area is still developing and competition is less intense than in established suburbs, positions you as the default choice as the community matures. Businesses that wait until Wigram is fully built out will face a much more competitive digital landscape and will have missed the window to establish first-mover advantage in local search rankings.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The Wigram community also has specific demographic characteristics that create opportunities for targeted businesses. The suburb attracts a mix of young families, first-home buyers, and downsizers from larger properties — each group with distinct needs and spending patterns. Businesses that understand and cater to these specific demographics through their website content, services, and digital marketing can build strong, loyal customer bases.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Web Design for Wigram's New Businesses</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Many businesses operating in Wigram are relatively new themselves, established to serve the growing community. For these businesses, a website is often one of the first investments made, and getting it right from the start is crucial. A poorly designed or ineffective website does not just fail to attract customers — it can actively damage your brand perception in a new community where you are still building reputation and trust.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We design websites for Wigram businesses that establish credibility from the first visit. Professional design, clear service descriptions, authentic imagery, and prominent contact options all contribute to a website that builds trust with new potential customers. For businesses that have been operating for a while but lack an online presence, we create websites that reflect your experience and track record while introducing your brand to the Wigram market effectively.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The Hub at Wigram serves as the suburb's commercial centre, housing a growing collection of retail, dining, and service businesses. For businesses in The Hub, we build websites that complement your physical presence with strong online visibility. Google Business Profile optimisation ensures your business appears in local map results, while targeted SEO captures searches from Wigram residents looking for the products and services you offer.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Marketing for Wigram's Market</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Google Ads provide immediate visibility for Wigram businesses, particularly those targeting specific services that new residents urgently need. A new Wigram dental practice, for instance, can appear at the top of search results for "dentist Wigram Christchurch" from day one through a well-targeted Google Ads campaign, generating patient enquiries while organic SEO builds over time. This combination of paid and organic search is particularly effective in growth suburbs like Wigram.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Facebook advertising is highly effective for reaching Wigram's specific demographic mix. We create targeted campaigns that reach new Wigram residents based on their location, household composition, and interests. For a Wigram childcare centre, this means reaching families with young children who have recently moved to the area. For a local gym, it means reaching health-conscious adults in the Wigram and surrounding south Christchurch suburbs.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital is committed to helping Wigram businesses grow alongside this exciting suburb. Explore our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO solutions</a> to build your digital presence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

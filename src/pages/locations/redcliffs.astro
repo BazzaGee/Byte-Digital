@@ -1,0 +1,126 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const suburb = 'Redcliffs';
+const faqItems = [
+  {
+    question: 'How much does web design cost in Redcliffs?',
+    answer: 'Redcliffs business websites typically range from $2,500 to $10,000. Family-oriented businesses and local service providers often need professional sites in the $2,500 to $5,000 range, while businesses requiring e-commerce, online booking, or more sophisticated design may invest $5,000 to $10,000. We provide quotes that align with your business goals and expected return.',
+  },
+  {
+    question: 'Do you offer SEO services for Redcliffs businesses?',
+    answer: 'Yes. Redcliffs businesses benefit from local SEO strategies that target both the immediate coastal community and the broader Christchurch market. We optimise for Redcliffs-specific searches, coastal suburb queries, and the family and lifestyle-related keywords that your target audience uses when searching online.',
+  },
+  {
+    question: 'How long does it take to build a website for a Redcliffs business?',
+    answer: 'Most Redcliffs business websites are completed within three to six weeks. The timeline depends on the complexity of the build and how quickly content and branding assets are available. We work efficiently while ensuring the final product meets the quality standard your Redcliffs customers expect.',
+  },
+  {
+    question: 'How can I attract more customers from the Sumner and coastal area to my Redcliffs business?',
+    answer: 'Redcliffs benefits enormously from its proximity to Sumner, with many visitors to the beachside suburb also exploring Redcliffs. We build websites and digital marketing strategies that capture this passing traffic through local SEO targeting the broader coastal area, Google Business Profile optimisation, and content that positions Redcliffs as a destination in its own right rather than just Sumner\'s quieter neighbour.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design Redcliffs Christchurch",
+  "description": "Professional web design, SEO, and digital marketing services for businesses in Redcliffs, Christchurch. Serving family-oriented businesses, coastal services, and the beachside community near Sumner.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Christchurch",
+      "addressRegion": "Canterbury",
+      "addressCountry": "NZ",
+    },
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Redcliffs, Christchurch",
+  },
+};
+
+const otherLocations = [
+  { name: 'Sumner', slug: 'sumner' },
+  { name: 'Mt Pleasant', slug: 'mount-pleasant' },
+  { name: 'Ferrymead', slug: 'ferrymead' },
+  { name: 'New Brighton', slug: 'new-brighton' },
+  { name: 'Woolston', slug: 'woolston' },
+  { name: 'Linwood', slug: 'linwood' },
+  { name: 'Cashmere', slug: 'cashmere' },
+  { name: 'Merivale', slug: 'merivale' },
+  { name: 'Riccarton', slug: 'riccarton' },
+  { name: 'Sydenham', slug: 'sydenham' },
+];
+---
+
+<LocationPage
+  title="Web Design Redcliffs Christchurch | Byte Digital"
+  description="Byte Digital provides web design, SEO, and digital marketing for Redcliffs businesses. Helping family-oriented and coastal businesses in Christchurch's Redcliffs community grow online."
+  suburb={suburb}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Digital Solutions for Redcliffs' Coastal Community</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Redcliffs sits at the eastern end of Christchurch's coastal corridor, a family-oriented suburb nestled between the estuary and the base of the Port Hills. While it is often mentioned in the same breath as neighbouring Sumner, Redcliffs has its own distinct character — quieter, more residential, with a strong sense of community and a business landscape that reflects the needs of families who have chosen this coastal enclave as their home. The Redcliffs Village shops serve as the suburb's commercial hub, with a mix of essential services, cafés, and small retail businesses that cater primarily to the local community.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital works with Redcliffs businesses to build websites that serve their community effectively while also reaching the broader Christchurch market. We understand that Redcliffs businesses operate in a unique position — serving a loyal local base while also benefiting from the visitor traffic that flows along the coastal road between Sumner and Ferrymead. Your website needs to speak to both audiences: locals who need convenient access to your services, and visitors who are discovering your business for the first time.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Family-Focused Business in Redcliffs</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Redcliffs' demographic profile skews heavily towards families, and this shapes the local business landscape in important ways. Childcare centres, primary school-related services, family healthcare providers, children's activity providers, and home maintenance businesses all enjoy strong demand from the local community. These businesses need websites that quickly communicate trustworthiness, professionalism, and a genuine understanding of family needs.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We design websites for Redcliffs' family-oriented businesses that put parents at ease. For childcare centres and children's activity providers, this means creating warm, inviting designs with clear information about programmes, staff qualifications, facilities, and enrolment processes. For family healthcare providers, it means building professional, accessible websites with practitioner profiles, service descriptions, and online booking that makes managing family health convenient.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Home services are a significant sector in Redcliffs, where the mix of established properties and newer builds creates consistent demand for trades, maintenance, and renovation services. Plumbers, electricians, builders, painters, gardeners, and cleaners all serve the local community from Redcliffs bases. We build lead-focused websites for these trades that showcase qualifications, display real project work, and make getting a quote as straightforward as possible — all optimised for mobile since most trade-related searches happen on phones.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">Redcliffs' Local Retail and Hospitality</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          The Redcliffs Village shopping area provides essential retail and hospitality services to the local community. The cafés and eateries here have a devoted local following but face the challenge of expanding their customer base beyond the immediate neighbourhood. A strong online presence helps Redcliffs cafés and restaurants attract visitors from Sumner, Mt Pleasant, and the broader eastern suburbs who are looking for dining options beyond the more crowded Sumner strip.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          We build hospitality websites for Redcleads venues that showcase the more relaxed, community-focused atmosphere that sets them apart from busier beachside spots. Online menus, café photography, information about opening hours and location, and integration with Google Maps all work together to attract both regular locals and new visitors. Google Business Profile optimisation is particularly important, ensuring your Redcliffs café or restaurant appears when people search for dining options in the coastal suburbs.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Redcliffs Park and the surrounding coastal walkways create opportunities for outdoor and fitness-related businesses. Personal trainers, fitness bootcamps, sports coaching, and outdoor education providers can all leverage the area's natural amenities in their marketing. We build websites that showcase these outdoor settings through photography and content, creating an aspirational brand that attracts health-conscious clients from across the eastern suburbs.
+        </p>
+
+        <h2 style="font-size:28px;font-weight:700;margin-bottom:16px">SEO and Growth for Redcliffs Businesses</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Local SEO for Redcliffs businesses focuses on capturing searches from the immediate community while also appearing for broader coastal Christchurch queries. When a Redcliffs family searches for "dentist near me" or a Sumner visitor looks for "coffee Redcliffs," we want your business to appear prominently. Our SEO strategies include Google Business Profile optimisation, local citation building, review management, and on-page SEO that targets the specific keywords your customers use.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Content marketing for Redcliffs businesses can leverage the suburb's unique positioning. Blog posts about Redcliffs Park activities, the coastal walkway, community events, and family life in the eastern suburbs create engagement with the local community while improving search rankings. A Redcliffs-based business that consistently produces useful, locally-relevant content builds authority and trust that translates into commercial results over time.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px">
+          Byte Digital is here to help Redcliffs businesses thrive online. View our <a href="/services/web-design" style="color:var(--secondary);text-decoration:underline">web design services</a> or <a href="/services/seo" style="color:var(--secondary);text-decoration:underline">SEO packages</a> to learn more.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 0;background:var(--bg-dark)">
+    <div class="container">
+      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Other Christchurch Locations We Serve</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}`} style="padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;text-decoration:none;transition:all 0.2s">{loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+</LocationPage>

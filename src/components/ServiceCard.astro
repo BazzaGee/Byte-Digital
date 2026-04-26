@@ -1,0 +1,17 @@
+---
+export interface Props {
+  icon: string;
+  iconColor: 'purple' | 'mint';
+  title: string;
+  description: string;
+  href: string;
+}
+
+const { icon, iconColor, title, description, href } = Astro.props;
+---
+
+<a href={href} class="svc-card glass" style="text-decoration:none;color:inherit">
+  <div class={`svc-icon ${iconColor}`} set:html={icon} />
+  <h3>{title}</h3>
+  <p>{description}</p>
+</a>

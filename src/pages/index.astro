@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import StatsRow from '../components/StatsRow.astro';
+import MarqueeBanner from '../components/MarqueeBanner.astro';
+import WhyModernWebsite from '../components/WhyModernWebsite.astro';
+import ScrollVideo from '../components/ScrollVideo.astro';
+import Divider from '../components/Divider.astro';
+import StatsBar from '../components/StatsBar.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import ProcessGrid from '../components/ProcessGrid.astro';
+import TestimonialsGrid from '../components/TestimonialsGrid.astro';
+import CaseStudyGrid from '../components/CaseStudyGrid.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import CTASection from '../components/CTASection.astro';
+
+const faqItems = [
+  {
+    question: 'How long does it take to build a website?',
+    answer: "Most projects are completed within 2-4 weeks from the initial design approval. Simple sites can be done in as little as 7 days. We never rush, but we're efficient — you'll have a clear timeline from day one.",
+  },
+  {
+    question: 'How much does a website cost?',
+    answer: 'Our projects range from $2,500 for a single-page site to $10,000+ for full-service builds with SEO, booking systems, and ongoing support. Every project is custom-quoted after our free discovery call — no surprises, ever.',
+  },
+  {
+    question: 'Do you only work with Christchurch businesses?',
+    answer: "Christchurch and Canterbury are our specialty, but we work with businesses across all of New Zealand. Our local focus means we know exactly what works to drive local leads and rankings in the NZ market.",
+  },
+  {
+    question: 'Will my site rank on Google?',
+    answer: "Absolutely. SEO isn't an afterthought for us — it's baked into every site we build. Clean code, fast load times, proper schema markup, and optimized content give you a massive head start in local search rankings.",
+  },
+  {
+    question: 'What if I already have a website?',
+    answer: "Even better — we can audit your current site, identify what's hurting your conversions, and either rebuild it from scratch or optimize what you have. Most clients see results within the first month of a redesign.",
+  },
+  {
+    question: 'Do you offer ongoing support?',
+    answer: "Yes. We offer monthly maintenance plans that include updates, security monitoring, performance optimization, content changes, and detailed analytics reports. Your site stays fast, secure, and current.",
+  },
+  {
+    question: 'What technologies do you use?',
+    answer: 'We use modern frameworks like Astro, Next.js, and React for lightning-fast performance. Every site is built with SEO best practices, responsive design, and accessibility standards from the ground up.',
+  },
+  {
+    question: 'Can you help with digital marketing beyond websites?',
+    answer: "Absolutely. We offer full digital marketing services including SEO, Google Ads, email marketing campaigns, chatbots, marketing automation, and social media strategy. We build complete digital systems, not just websites.",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Byte Digital - Christchurch Web Design & Digital Marketing Agency",
+  "description": "Premium web design, SEO, and digital marketing services for businesses in Christchurch, Canterbury, and New Zealand. We build lightning-fast, high-converting websites.",
+  "url": "https://bytedigital.co.nz",
+  "mainEntity": {
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer,
+      },
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Christchurch Web Design & Digital Marketing Agency"
+  description="Premium web design, SEO, and digital marketing for businesses in Christchurch, Canterbury & NZ. Lightning-fast websites, local SEO, digital automation. Free consultation."
+  jsonLd={jsonLd}
+>
+  <Hero />
+  <StatsRow />
+  <MarqueeBanner />
+  <WhyModernWebsite />
+  <ScrollVideo />
+  <Divider />
+  <StatsBar />
+  <ServicesGrid />
+  <ProcessGrid />
+  <TestimonialsGrid />
+  <CaseStudyGrid />
+  <section id="locations" class="section reveal" style="background:#0A0A0E;border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <div class="section-label">Our Reach</div>
+      <div class="section-title">Serving businesses across <span class="gradient-text">Christchurch.</span></div>
+      <p class="section-subtitle" style="margin-bottom:48px">Local knowledge. Local results. We build websites that dominate in your suburb.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:32px">
+        <a href="/locations/riccarton" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Riccarton</a>
+        <a href="/locations/papanui" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Papanui</a>
+        <a href="/locations/halswell" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Halswell</a>
+        <a href="/locations/merivale" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Merivale</a>
+        <a href="/locations/sumner" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Sumner</a>
+        <a href="/locations/linwood" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Linwood</a>
+        <a href="/locations/fendalton" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Fendalton</a>
+        <a href="/locations/new-brighton" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">New Brighton</a>
+        <a href="/locations/cashmere" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Cashmere</a>
+        <a href="/locations/st-albans" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">St Albans</a>
+        <a href="/locations/sydenham" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Sydenham</a>
+        <a href="/locations/wigram" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Wigram</a>
+      </div>
+      <div style="text-align:center">
+        <a href="/locations" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
+          All 20 Service Areas
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  <FAQAccordion items={faqItems} />
+  <CTASection />
+</BaseLayout>
+
+<script>
+import { initCounterAnimation } from '../components/scripts/counter-animation';
+import { initScrollReveal } from '../components/scripts/scroll-reveal';
+
+document.addEventListener('DOMContentLoaded', () => {
+  initCounterAnimation();
+  initScrollReveal();
+});
+</script>
