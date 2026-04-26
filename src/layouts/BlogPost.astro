@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Divider from '../components/Divider.astro';
 import CTASection from '../components/CTASection.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
 
 export interface Props {
   title: string;
@@ -11,9 +12,10 @@ export interface Props {
   author?: string;
   category?: string;
   tags?: string[];
+  slug?: string;
 }
 
-const { title, description, pubDate, updatedDate, author = 'Byte Digital', category, tags = [] } = Astro.props;
+const { title, description, pubDate, updatedDate, author = 'Byte Digital', category, tags = [], slug } = Astro.props;
 
 const formatDate = (date: Date) => {
   return date.toLocaleDateString('en-NZ', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -30,6 +32,25 @@ const jsonLd = {
   "dateModified": (updatedDate || pubDate).toISOString(),
   "mainEntityOfPage": { "@type": "WebPage", "@id": Astro.url.href },
 };
+
+import { getCollection } from 'astro:content';
+import { getRelatedPosts, allServices } from '../utils/content-relations';
+
+const allBlogPosts = (await getCollection('blog')).map(p => ({
+  slug: p.slug,
+  title: p.data.title,
+  description: p.data.description,
+  category: p.data.category,
+  tags: p.data.tags,
+  pubDate: p.data.pubDate,
+})).sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+
+const relatedPosts = slug
+  ? allBlogPosts
+      .filter(p => p.slug !== slug && p.category === category)
+      .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime())
+      .slice(0, 3)
+  : allBlogPosts.slice(0, 3);
 ---
 
 <BaseLayout title={title} description={description} ogType="article" jsonLd={jsonLd}>
@@ -63,6 +84,9 @@ const jsonLd = {
       </div>
     </div>
   </article>
+  {relatedPosts.length > 0 && (
+    <RelatedPosts posts={relatedPosts} />
+  )}
   <Divider />
   <CTASection />
 </BaseLayout>

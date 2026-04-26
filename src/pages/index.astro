@@ -13,6 +13,27 @@ import TestimonialsGrid from '../components/TestimonialsGrid.astro';
 import CaseStudyGrid from '../components/CaseStudyGrid.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 import CTASection from '../components/CTASection.astro';
+import BlogCard from '../components/BlogCard.astro';
+import GuideCard from '../components/GuideCard.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import { getCollection } from 'astro:content';
+
+const latestPosts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3)
+  .map(p => ({
+    slug: p.id,
+    title: p.data.title,
+    description: p.data.description,
+    category: p.data.category,
+    pubDate: p.data.pubDate,
+  }));
+
+const featuredGuides = [
+  { title: 'Web Design Christchurch 2026', description: 'Everything you need to know about web design trends and best practices for Christchurch businesses.', href: '/guides/web-design-christchurch-2026' },
+  { title: 'Website Cost Guide NZ', description: 'A transparent breakdown of website costs in New Zealand, from simple sites to complex builds.', href: '/guides/website-cost-guide-nz' },
+  { title: 'SEO Domination Handbook', description: 'The complete handbook for ranking your business on Google in competitive local markets.', href: '/guides/seo-domination-handbook' },
+];
 
 const faqItems = [
   {
@@ -85,6 +106,104 @@ const jsonLd = {
   <ProcessGrid />
   <TestimonialsGrid />
   <CaseStudyGrid />
+
+  <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <SectionHeader
+        label="From The Blog"
+        title="Latest <span class='gradient-text'>Insights</span>"
+        subtitle="Web design tips, SEO strategies, and digital marketing insights for Christchurch businesses."
+      />
+      <div class="blog-card-grid">
+        {latestPosts.map(post => (
+          <BlogCard
+            title={post.title}
+            description={post.description}
+            category={post.category}
+            slug={post.slug}
+            pubDate={post.pubDate}
+          />
+        ))}
+      </div>
+      <div style="text-align:center;margin-top:40px">
+        <a href="/blog" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
+          View All Posts
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="container">
+      <SectionHeader
+        label="Free Guides"
+        title="In-Depth <span class='gradient-text'>Resources</span>"
+        subtitle="Comprehensive guides to help you make informed decisions about your web presence."
+      />
+      <div class="guide-card-grid">
+        {featuredGuides.map(guide => (
+          <GuideCard
+            title={guide.title}
+            description={guide.description}
+            href={guide.href}
+          />
+        ))}
+      </div>
+      <div style="text-align:center;margin-top:40px">
+        <a href="/guides/website-cost-guide-nz" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
+          View All Guides
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <SectionHeader
+        label="Free Tools"
+        title="Interactive <span class='gradient-text'>Calculators & Audits</span>"
+        subtitle="Get instant answers about your website's potential cost, ROI, and performance."
+      />
+      <div class="tools-grid">
+        <a href="/tools/website-cost-calculator" class="tool-card glass">
+          <div class="tool-card-icon purple">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3>Website Cost Calculator</h3>
+          <p>Get an instant estimate for your website project based on your specific requirements.</p>
+          <span class="tool-card-link">
+            Calculate now
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+          </span>
+        </a>
+        <a href="/tools/free-website-audit" class="tool-card glass">
+          <div class="tool-card-icon mint">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3>Free Website Audit</h3>
+          <p>Find out exactly what's holding your website back with a free, comprehensive audit.</p>
+          <span class="tool-card-link">
+            Get your audit
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+          </span>
+        </a>
+        <a href="/tools/seo-roi-calculator" class="tool-card glass">
+          <div class="tool-card-icon purple">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <h3>SEO ROI Calculator</h3>
+          <p>Estimate the return on investment from professional SEO services for your business.</p>
+          <span class="tool-card-link">
+            Calculate ROI
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section id="locations" class="section reveal" style="background:#0A0A0E;border-top:1px solid rgba(255,255,255,0.04)">
     <div class="container">
       <div class="section-label">Our Reach</div>

@@ -1,12 +1,49 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+import { allServices } from '../utils/content-relations';
 ---
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 - Page Not Found | Byte Digital</title>
-</head>
-<body>
-  <h1>404 - Page Not Found</h1>
-</body>
-</html>
+
+<BaseLayout
+  title="404 - Page Not Found | Byte Digital"
+  description="The page you're looking for doesn't exist. Browse our services, blog, or guides to find what you need."
+>
+  <section style="padding-top:160px;padding-bottom:100px;min-height:60vh;display:flex;align-items:center">
+    <div class="container" style="text-align:center">
+      <div style="font-size:clamp(80px,15vw,160px);font-weight:700;line-height:1;margin-bottom:16px;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">404</div>
+      <h1 style="font-size:clamp(28px,4vw,48px);font-weight:700;color:#fff;margin-bottom:16px;line-height:1.2">Page not found</h1>
+      <p style="font-size:18px;color:var(--text-muted);max-width:500px;margin:0 auto 48px;line-height:1.7">
+        The page you're looking for doesn't exist or has been moved. Here are some ways to find what you need.
+      </p>
+      <div class="not-found-grid">
+        <a href="/services/web-design" class="not-found-card glass" style="text-decoration:none;color:inherit">
+          <svg width="24" height="24" fill="none" stroke="var(--primary)" stroke-width="2" viewBox="0 0 24 24" style="margin-bottom:12px"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <h3>Web Design</h3>
+          <p>Custom websites for Christchurch businesses.</p>
+        </a>
+        <a href="/services/seo" class="not-found-card glass" style="text-decoration:none;color:inherit">
+          <svg width="24" height="24" fill="none" stroke="var(--secondary)" stroke-width="2" viewBox="0 0 24 24" style="margin-bottom:12px"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <h3>SEO Services</h3>
+          <p>Rank higher on Google in Christchurch.</p>
+        </a>
+        <a href="/services/local-seo" class="not-found-card glass" style="text-decoration:none;color:inherit">
+          <svg width="24" height="24" fill="none" stroke="var(--primary)" stroke-width="2" viewBox="0 0 24 24" style="margin-bottom:12px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <h3>Local SEO</h3>
+          <p>Dominate local search in your area.</p>
+        </a>
+        <a href="/blog" class="not-found-card glass" style="text-decoration:none;color:inherit">
+          <svg width="24" height="24" fill="none" stroke="var(--secondary)" stroke-width="2" viewBox="0 0 24 24" style="margin-bottom:12px"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <h3>Blog</h3>
+          <p>Web design tips and business insights.</p>
+        </a>
+      </div>
+      <div style="margin-top:48px">
+        <a href="/" class="btn-cta" style="display:inline-flex;text-decoration:none">
+          Back to Homepage
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  <CTASection />
+</BaseLayout>

@@ -1,0 +1,42 @@
+---
+import SectionHeader from './SectionHeader.astro';
+
+export interface Props {
+  studies: Array<{ slug: string; title: string; client: string; industry: string; description: string }>;
+  maxItems?: number;
+}
+
+const { studies, maxItems = 2 } = Astro.props;
+const displayStudies = studies.slice(0, maxItems);
+
+if (displayStudies.length === 0) return;
+---
+
+<section class="section reveal">
+  <div class="container">
+    <SectionHeader
+      label="Our Work"
+      title="Related <span class='gradient-text'>Case Studies</span>"
+      subtitle="Real results from real Christchurch businesses."
+    />
+    <div class="related-case-grid">
+      {displayStudies.map(study => (
+        <a href={`/case-studies/${study.slug}`} class="related-case-card glass">
+          <span class="related-case-industry">{study.industry}</span>
+          <h3 class="related-case-title">{study.title}</h3>
+          <p class="related-case-desc">{study.description}</p>
+          <span class="related-case-link">
+            View case study
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+          </span>
+        </a>
+      ))}
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <a href="/case-studies" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
+        View All Case Studies
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+      </a>
+    </div>
+  </div>
+</section>

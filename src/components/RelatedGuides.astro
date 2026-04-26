@@ -1,0 +1,39 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import GuideCard from './GuideCard.astro';
+
+export interface Props {
+  guides: Array<{ title: string; description: string; href: string }>;
+  maxItems?: number;
+}
+
+const { guides, maxItems = 2 } = Astro.props;
+const displayGuides = guides.slice(0, maxItems);
+
+if (displayGuides.length === 0) return;
+---
+
+<section class="section reveal">
+  <div class="container">
+    <SectionHeader
+      label="Free Guides"
+      title="In-Depth <span class='gradient-text'>Resources</span>"
+      subtitle="Comprehensive guides to help you make informed decisions."
+    />
+    <div class="guide-card-grid">
+      {displayGuides.map(guide => (
+        <GuideCard
+          title={guide.title}
+          description={guide.description}
+          href={guide.href}
+        />
+      ))}
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <a href="/guides/website-cost-guide-nz" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
+        View All Guides
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+      </a>
+    </div>
+  </div>
+</section>

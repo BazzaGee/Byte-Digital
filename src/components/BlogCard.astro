@@ -1,0 +1,28 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  category: string;
+  slug: string;
+  pubDate?: Date;
+}
+
+const { title, description, category, slug, pubDate } = Astro.props;
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-NZ', { year: 'numeric', month: 'short', day: 'numeric' });
+};
+---
+
+<a href={`/blog/${slug}`} class="blog-card glass reveal">
+  <div class="blog-card-meta">
+    <span class="blog-card-category">{category}</span>
+    {pubDate && <span class="blog-card-date">{formatDate(pubDate)}</span>}
+  </div>
+  <h3 class="blog-card-title">{title}</h3>
+  <p class="blog-card-excerpt">{description}</p>
+  <span class="blog-card-link">
+    Read more
+    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+  </span>
+</a>

@@ -1,6 +1,12 @@
 ---
 import ServicePage from '../../layouts/ServicePage.astro';
 import FAQAccordion from '../../components/FAQAccordion.astro';
+import RelatedPosts from '../../components/RelatedPosts.astro';
+import RelatedCaseStudies from '../../components/RelatedCaseStudies.astro';
+import RelatedGuides from '../../components/RelatedGuides.astro';
+import RelatedServices from '../../components/RelatedServices.astro';
+import { getCollection } from 'astro:content';
+import { getRelatedPosts, getRelatedGuides, getRelatedCaseStudies } from '../../utils/content-relations';
 
 const faqItems = [
   {
@@ -44,16 +50,27 @@ const jsonLd = {
   "sameAs": []
 };
 
-const relatedServices = [
-  { href: '/services/web-design', label: 'Web Design' },
-  { href: '/services/seo', label: 'SEO' },
-  { href: '/services/ecommerce', label: 'eCommerce' },
-  { href: '/services/custom-applications', label: 'Custom Applications' },
-  { href: '/services/wordpress-development', label: 'WordPress Development' },
-  { href: '/services/website-maintenance', label: 'Website Maintenance' },
-  { href: '/services/local-seo', label: 'Local SEO' },
-  { href: '/services/logo-design', label: 'Logo Design' }
-];
+const allBlogPosts = (await getCollection('blog')).map(p => ({
+  slug: p.slug,
+  title: p.data.title,
+  description: p.data.description,
+  category: p.data.category,
+  tags: p.data.tags,
+  pubDate: p.data.pubDate,
+})).sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+
+const allCaseStudies = (await getCollection('case-studies')).map(p => ({
+  slug: p.slug,
+  title: p.data.title,
+  client: p.data.client,
+  industry: p.data.industry,
+  description: p.data.description,
+  tags: p.data.tags,
+}));
+
+const relatedPosts = getRelatedPosts('web-development', allBlogPosts, 3);
+const relatedGuides = getRelatedGuides('web-development', 2);
+const relatedCaseStudies = getRelatedCaseStudies('web-development', allCaseStudies, 2);
 ---
 
 <ServicePage
@@ -136,16 +153,21 @@ const relatedServices = [
     </div>
   </section>
 
-  <section style="padding:60px 0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
-    <div class="container">
-      <h3 style="font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;text-align:center">Related Services</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
-        {relatedServices.map(s => (
-          <a href={s.href} class="btn-ghost" style="padding:10px 24px;font-size:13px">{s.label}</a>
-        ))}
-      </div>
-    </div>
-  </section>
+  <Fragment slot="related-case-studies">
+    <RelatedCaseStudies studies={relatedCaseStudies} />
+  </Fragment>
+
+  <Fragment slot="related-posts">
+    <RelatedPosts posts={relatedPosts} />
+  </Fragment>
+
+  <Fragment slot="related-guides">
+    <RelatedGuides guides={relatedGuides} />
+  </Fragment>
+
+  <Fragment slot="related-services">
+    <RelatedServices serviceSlug="web-development" />
+  </Fragment>
 
   <Fragment slot="faq">
     <FAQAccordion items={faqItems} />

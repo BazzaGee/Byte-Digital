@@ -1,0 +1,36 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import { allServices } from '../utils/content-relations';
+
+export interface Props {
+  serviceSlug: string;
+}
+
+const { serviceSlug } = Astro.props;
+const currentService = allServices.find(s => s.slug === serviceSlug);
+const relatedServices = allServices
+  .filter(s => s.slug !== serviceSlug)
+  .slice(0, 4);
+---
+
+<section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+  <div class="container">
+    <SectionHeader
+      label="Explore More"
+      title="Related <span class='gradient-text'>Services</span>"
+      subtitle="We offer a full suite of digital services to grow your business."
+    />
+    <div class="related-services-grid">
+      {relatedServices.map(svc => (
+        <a href={svc.href} class="related-service-card glass">
+          <div class="related-service-icon" set:html={svc.icon} />
+          <div>
+            <h3 class="related-service-title">{svc.title}</h3>
+            <p class="related-service-desc">{svc.description}</p>
+          </div>
+          <svg class="related-service-arrow" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

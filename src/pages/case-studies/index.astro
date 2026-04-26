@@ -34,4 +34,24 @@ const studies = (await getCollection('case-studies')).sort((a, b) => b.data.pubD
       </div>
     </div>
   </section>
+
+  <section class="section" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">Our Services</div>
+        <h2 class="section-title" style="margin:0 auto">Explore What We <span class="gradient-text">Offer.</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">Every service is designed to help your Christchurch business grow.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:700px;margin:0 auto">
+        <a href="/services/web-design" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Web Design</a>
+        <a href="/services/seo" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">SEO</a>
+        <a href="/services/local-seo" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Local SEO</a>
+        <a href="/services/ecommerce" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">eCommerce</a>
+        <a href="/services/web-development" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Web Development</a>
+        <a href="/services/wordpress-development" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">WordPress</a>
+        <a href="/services/branding" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Branding</a>
+        <a href="/services/website-maintenance" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Maintenance</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

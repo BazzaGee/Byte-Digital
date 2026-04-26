@@ -3,6 +3,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Divider from '../components/Divider.astro';
 import CTASection from '../components/CTASection.astro';
 import StatsBar from '../components/StatsBar.astro';
+import RelatedCaseStudies from '../components/RelatedCaseStudies.astro';
+import { getCollection } from 'astro:content';
+
+const allCaseStudies = (await getCollection('case-studies')).map(p => ({
+  slug: p.slug,
+  title: p.data.title,
+  client: p.data.client,
+  industry: p.data.industry,
+  description: p.data.description,
+  tags: p.data.tags,
+})).slice(0, 3);
 ---
 
 <BaseLayout
@@ -126,6 +137,8 @@ import StatsBar from '../components/StatsBar.astro';
       </div>
     </div>
   </section>
+
+  <RelatedCaseStudies studies={allCaseStudies} />
 
   <Divider />
   <CTASection />

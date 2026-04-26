@@ -32,6 +32,10 @@ const { title, description, serviceTitle, serviceSubtitle, ogType = 'website', j
     </div>
   </section>
   <slot />
+  <slot name="related-case-studies" />
+  <slot name="related-posts" />
+  <slot name="related-guides" />
+  <slot name="related-services" />
   <Divider />
   <slot name="faq" />
   <CTASection />
