@@ -1,18 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 ---
 
 <BaseLayout
   title="Contact Byte Digital | Free Website Consultation"
   description="Get in touch with Byte Digital for a free website consultation. We help Christchurch and Canterbury businesses with web design, SEO, and digital marketing."
 >
-  <section style="padding-top:120px;padding-bottom:60px">
-    <div class="container">
-      <div class="section-label">Contact Us</div>
-      <h1 class="section-title">Let's build something<br /><span class="gradient-text">incredible together.</span></h1>
-      <p class="section-subtitle" style="margin-top:12px">Ready to dominate online? Get a free consultation and let's discuss how we can help your Christchurch business grow.</p>
-    </div>
-  </section>
+  <PageHero
+    label="Contact Us"
+    title="Let's build something<br /><span class='gradient-text'>incredible together.</span>"
+    subtitle="Ready to dominate online? Get a free consultation and let's discuss how we can help your Christchurch business grow."
+  />
 
   <section class="section dot-pattern" style="padding-top:0">
     <div class="container">

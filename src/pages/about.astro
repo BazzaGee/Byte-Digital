@@ -4,6 +4,8 @@ import Divider from '../components/Divider.astro';
 import CTASection from '../components/CTASection.astro';
 import StatsBar from '../components/StatsBar.astro';
 import RelatedCaseStudies from '../components/RelatedCaseStudies.astro';
+import DMDivider from '../components/DMDivider.astro';
+import PageHero from '../components/PageHero.astro';
 import { getCollection } from 'astro:content';
 
 const allCaseStudies = (await getCollection('case-studies')).map(p => ({
@@ -20,20 +22,17 @@ const allCaseStudies = (await getCollection('case-studies')).map(p => ({
   title="About Byte Digital | Christchurch Web Design Agency"
   description="Learn about Byte Digital — Christchurch's premium web design and digital marketing agency. Our mission, values, and the technology we use to help local businesses dominate online."
 >
-  <section style="padding-top:120px;padding-bottom:60px">
-    <div class="container">
-      <nav style="margin-bottom:24px;font-size:13px;color:var(--text-muted)">
-        <a href="/" style="color:var(--text-muted)">Home</a>
-        <span style="margin:0 8px">/</span>
-        <span style="color:var(--secondary)">About</span>
-      </nav>
-      <div class="section-label">About Us</div>
-      <h1 class="section-title">We build digital engines<br />for <span class="gradient-text">Christchurch businesses.</span></h1>
-      <p class="section-subtitle" style="margin-top:12px;max-width:700px">
-        Byte Digital is a Christchurch-based web design and digital marketing agency on a mission to help local businesses dominate online. We combine cutting-edge technology with deep understanding of the New Zealand market.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    label="About Us"
+    title="We build digital engines<br />for <span class='gradient-text'>Christchurch businesses.</span>"
+    subtitle="Byte Digital is a Christchurch-based web design and digital marketing agency on a mission to help local businesses dominate online. We combine cutting-edge technology with deep understanding of the New Zealand market."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'About' },
+    ]}
+    dotMatrix={true}
+    dmId="dm-about-hero"
+  />
 
   <section class="section dot-pattern">
     <div class="container">
@@ -63,8 +62,9 @@ const allCaseStudies = (await getCollection('case-studies')).map(p => ({
   </section>
 
   <StatsBar />
+  <DMDivider id="dm-about-values" />
 
-  <section class="section" style="background:var(--bg-dark)">
+  <section class="section reveal" style="background:var(--bg-dark)">
     <div class="container">
       <div style="text-align:center;margin-bottom:48px">
         <div class="section-label">Our Values</div>

@@ -2,26 +2,23 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTASection from '../../components/CTASection.astro';
 import Divider from '../../components/Divider.astro';
+import PageHero from '../../components/PageHero.astro';
 ---
 
 <BaseLayout
   title="Website Cost Calculator NZ | How Much Does a Website Cost? | Byte Digital"
   description="Calculate your website cost instantly. Free NZ website cost estimator for Christchurch businesses. Get a transparent price estimate for web design, development, and SEO."
 >
-  <section style="padding-top:120px;padding-bottom:60px">
-    <div class="container">
-      <nav style="margin-bottom:24px;font-size:13px;color:var(--text-muted)">
-        <a href="/" style="color:var(--text-muted)">Home</a>
-        <span style="margin:0 8px">/</span>
-        <a href="/tools" style="color:var(--text-muted)">Tools</a>
-        <span style="margin:0 8px">/</span>
-        <span style="color:var(--secondary)">Website Cost Calculator</span>
-      </nav>
-      <div class="section-label">Free Tool</div>
-      <h1 class="section-title">Website Cost<br /><span class="gradient-text">Calculator</span></h1>
-      <p class="section-subtitle" style="margin-top:12px">Get an instant estimate for your website project. No obligations, no sales pitch.</p>
-    </div>
-  </section>
+  <PageHero
+    label="Free Tool"
+    title="Website Cost<br /><span class='gradient-text'>Calculator</span>"
+    subtitle="Get an instant estimate for your website project. No obligations, no sales pitch."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Tools', href: '/tools' },
+      { label: 'Website Cost Calculator' },
+    ]}
+  />
 
   <section class="section dot-pattern" style="padding-top:0">
     <div class="container">

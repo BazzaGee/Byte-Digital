@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 import CTASection from '../components/CTASection.astro';
 import Divider from '../components/Divider.astro';
+import PageHero from '../components/PageHero.astro';
 
 export interface Props {
   title: string;
@@ -15,20 +16,15 @@ const { title, description, suburb, jsonLd } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description} jsonLd={jsonLd}>
-  <section style="padding-top:120px;padding-bottom:60px">
-    <div class="container">
-      <nav style="margin-bottom:24px;font-size:13px;color:var(--text-muted)">
-        <a href="/" style="color:var(--text-muted)">Home</a>
-        <span style="margin:0 8px">/</span>
-        <span style="color:var(--secondary)">Web Design {suburb}</span>
-      </nav>
-      <div class="section-label">Christchurch Locations</div>
-      <h1 class="section-title">Web Design & Digital Marketing in {suburb}</h1>
-      <p class="section-subtitle" style="margin-top:12px">
-        Byte Digital provides premium web design, SEO, and digital marketing services to businesses in {suburb}, Christchurch. We help local businesses dominate online search and convert more visitors into customers.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    label="Christchurch Locations"
+    title={`Web Design & Digital Marketing in ${suburb}`}
+    subtitle={`Byte Digital provides premium web design, SEO, and digital marketing services to businesses in ${suburb}, Christchurch. We help local businesses dominate online search and convert more visitors into customers.`}
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: `Web Design ${suburb}` },
+    ]}
+  />
   <slot />
   <section style="background:var(--bg-dark);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
     <div class="container" style="padding:64px 0">

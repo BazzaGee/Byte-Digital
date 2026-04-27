@@ -1,0 +1,17 @@
+---
+export interface Props {
+  id?: string;
+}
+
+const { id = 'dm-divider-' + Math.random().toString(36).slice(2, 8) } = Astro.props;
+---
+
+<div class="dm-divider" id={id}></div>
+
+<script>
+import { initDotMatrixCanvas } from './scripts/dot-matrix-canvas';
+document.addEventListener('DOMContentLoaded', () => {
+  const el = document.getElementById('{id}');
+  if (el) initDotMatrixCanvas('{id}');
+});
+</script>

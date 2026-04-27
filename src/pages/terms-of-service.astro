@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+import PageHero from '../components/PageHero.astro';
 ---
 
 <BaseLayout
@@ -7,19 +9,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="Byte Digital's terms of service. Read our terms and conditions for web design, development, SEO, and digital marketing services."
   noindex={true}
 >
-  <section style="padding-top:120px;padding-bottom:60px">
-    <div class="container">
-      <nav style="margin-bottom:24px;font-size:13px;color:var(--text-muted)">
-        <a href="/" style="color:var(--text-muted)">Home</a>
-        <span style="margin:0 8px">/</span>
-        <span style="color:var(--secondary)">Terms of Service</span>
-      </nav>
-      <h1 class="section-title">Terms of Service</h1>
-      <p style="color:var(--text-muted);font-size:15px;margin-top:8px">Last updated: 26 April 2026</p>
-    </div>
-  </section>
+  <PageHero
+    title="Terms of Service"
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Terms of Service' },
+    ]}
+  >
+    <p style="color:var(--text-muted);font-size:15px;position:relative;z-index:1;margin-top:8px">Last updated: 26 April 2026</p>
+  </PageHero>
 
-  <section class="section" style="padding-top:0">
+  <section class="section reveal dot-pattern" style="padding-top:0">
     <div class="container">
       <div style="max-width:800px;margin:0 auto">
         <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:32px">
@@ -121,6 +121,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           Email: <a href="mailto:barry@bytedigital.co.nz" style="color:var(--secondary)">barry@bytedigital.co.nz</a>
         </p>
       </div>
-    </div>
   </section>
+  <CTASection />
 </BaseLayout>

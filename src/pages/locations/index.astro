@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FAQAccordion from '../../components/FAQAccordion.astro';
+import CTASection from '../../components/CTASection.astro';
+import PageHero from '../../components/PageHero.astro';
 
 const suburbs = [
   { name: 'Addington', href: '/locations/addington', tagline: 'Near Christchurch Hospital & Showgrounds' },
@@ -69,15 +71,14 @@ const jsonLd = {
   description="Byte Digital provides web design, SEO, and digital marketing services to businesses across 20+ Christchurch suburbs including Riccarton, Papanui, Halswell, Merivale, Sumner, and more."
   jsonLd={jsonLd}
 >
-  <section class="section" style="padding-top:140px">
+  <PageHero
+    label="Our Reach"
+    title="Web Design &amp; SEO Across <span class='gradient-text'>Christchurch</span>"
+    subtitle="We help businesses in 20+ Christchurch suburbs build websites that rank, convert, and grow revenue. Whether you are in Riccarton, Halswell, or Sumner — we know your local market."
+  />
+
+  <section class="section reveal" style="padding-top:0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
     <div class="container">
-      <div class="section-label" style="display:inline-flex">Our Reach</div>
-      <h1 class="section-title" style="text-align:center;margin-bottom:16px">
-        Web Design &amp; SEO Across <span class="gradient-text">Christchurch</span>
-      </h1>
-      <p class="section-subtitle" style="text-align:center;max-width:700px;margin:0 auto 64px">
-        We help businesses in 20+ Christchurch suburbs build websites that rank, convert, and grow revenue. Whether you are in Riccarton, Halswell, or Sumner — we know your local market.
-      </p>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px">
         {suburbs.map(suburb => (
           <a href={suburb.href} class="glass" style="display:block;padding:28px 24px;text-decoration:none;color:inherit;border-radius:16px;transition:transform 0.2s,border-color 0.2s;border:1px solid var(--border-subtle)">
@@ -122,4 +123,5 @@ const jsonLd = {
   </section>
 
   <FAQAccordion items={faqItems} />
+  <CTASection />
 </BaseLayout>

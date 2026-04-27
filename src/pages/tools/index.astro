@@ -1,19 +1,19 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import PageHero from '../../components/PageHero.astro';
 ---
 
 <BaseLayout
   title="Free Website Tools | Byte Digital"
   description="Free tools for Christchurch businesses: website cost calculator, free website audit, and SEO ROI calculator."
 >
-  <section style="padding-top:120px;padding-bottom:60px">
-    <div class="container">
-      <div class="section-label">Free Tools</div>
-      <h1 class="section-title">Tools to grow your<br /><span class="gradient-text">Christchurch business.</span></h1>
-      <p class="section-subtitle" style="margin-top:12px">Free, no-obligation tools to help you understand your website needs and potential ROI.</p>
-    </div>
-  </section>
-  <section class="section" style="padding-top:0">
+  <PageHero
+    label="Free Tools"
+    title="Tools to grow your<br /><span class='gradient-text'>Christchurch business.</span>"
+    subtitle="Free, no-obligation tools to help you understand your website needs and potential ROI."
+  />
+  <section class="section reveal" style="padding-top:0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
     <div class="container">
       <div style="display:grid;gap:24px;max-width:700px;margin:0 auto">
         <a href="/tools/website-cost-calculator" style="display:block;padding:32px;border-radius:28px;background:rgba(19,19,26,0.75);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.08);transition:all 0.3s;text-decoration:none" onmouseover="this.style.borderColor='rgba(139,120,230,0.3)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none'">
@@ -44,6 +44,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
         </a>
       </div>
-    </div>
   </section>
+  <CTASection />
 </BaseLayout>

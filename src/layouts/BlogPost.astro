@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import Divider from '../components/Divider.astro';
 import CTASection from '../components/CTASection.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
+import PageHero from '../components/PageHero.astro';
 
 export interface Props {
   title: string;
@@ -54,28 +55,24 @@ const relatedPosts = slug
 ---
 
 <BaseLayout title={title} description={description} ogType="article" jsonLd={jsonLd}>
-  <section style="padding-top:120px;padding-bottom:40px">
-    <div class="container">
-      <nav style="margin-bottom:24px;font-size:13px;color:var(--text-muted)">
-        <a href="/" style="color:var(--text-muted)">Home</a>
-        <span style="margin:0 8px">/</span>
-        <a href="/blog" style="color:var(--text-muted)">Blog</a>
-        <span style="margin:0 8px">/</span>
-        <span style="color:var(--secondary)">{title}</span>
-      </nav>
-      {category && (
-        <span style="display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--secondary);background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.2);margin-bottom:16px">{category}</span>
-      )}
-      <h1 style="font-size:clamp(32px,5vw,48px);font-weight:700;color:#fff;line-height:1.15;margin-bottom:16px;letter-spacing:-0.02em">{title}</h1>
-      <p style="font-size:18px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;max-width:700px">{description}</p>
-      <div style="display:flex;align-items:center;gap:16px;font-size:14px;color:var(--text-dimmed)">
-        <span>By {author}</span>
-        <span>·</span>
-        <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
-        {updatedDate && <span>· Updated {formatDate(updatedDate)}</span>}
-      </div>
+  <PageHero
+    title={title}
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Blog', href: '/blog' },
+      { label: title },
+    ]}
+  >
+    {category && (
+      <span style="display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--secondary);background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.2);margin-bottom:16px;position:relative;z-index:1">{category}</span>
+    )}
+    <div style="display:flex;align-items:center;gap:16px;font-size:14px;color:var(--text-dimmed);position:relative;z-index:1;margin-top:8px">
+      <span>By {author}</span>
+      <span style="color:var(--border-medium)">·</span>
+      <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+      {updatedDate && <><span style="color:var(--border-medium)">·</span><span>Updated {formatDate(updatedDate)}</span></>}
     </div>
-  </section>
+  </PageHero>
   <Divider />
   <article class="section">
     <div class="container">

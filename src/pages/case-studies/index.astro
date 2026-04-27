@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import PageHero from '../../components/PageHero.astro';
 import { getCollection } from 'astro:content';
 
 const studies = (await getCollection('case-studies')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -9,14 +11,12 @@ const studies = (await getCollection('case-studies')).sort((a, b) => b.data.pubD
   title="Case Studies - Real Results for Christchurch Businesses"
   description="See how Byte Digital has transformed websites and digital marketing for businesses across Christchurch and Canterbury. Real results, real growth."
 >
-  <section style="padding-top:120px;padding-bottom:60px">
-    <div class="container">
-      <div class="section-label">Case Studies</div>
-      <h1 class="section-title">Real Results for<br /><span class="gradient-text">Christchurch Businesses.</span></h1>
-      <p class="section-subtitle" style="margin-top:12px">See how we've helped local businesses across Christchurch and Canterbury transform their online presence and generate more leads.</p>
-    </div>
-  </section>
-  <section class="section" style="padding-top:0">
+  <PageHero
+    label="Case Studies"
+    title="Real Results for<br /><span class='gradient-text'>Christchurch Businesses.</span>"
+    subtitle="See how we've helped local businesses across Christchurch and Canterbury transform their online presence and generate more leads."
+  />
+  <section class="section reveal" style="padding-top:0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
     <div class="container">
       <div class="case-grid">
         {studies.map(study => (
@@ -52,6 +52,6 @@ const studies = (await getCollection('case-studies')).sort((a, b) => b.data.pubD
         <a href="/services/branding" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Branding</a>
         <a href="/services/website-maintenance" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Maintenance</a>
       </div>
-    </div>
   </section>
+  <CTASection />
 </BaseLayout>

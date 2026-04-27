@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogCard from '../../components/BlogCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import PageHero from '../../components/PageHero.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -12,15 +14,13 @@ const categories = [...new Set(allPosts.map(p => p.data.category))].filter(Boole
   title="Blog - Web Design Tips & Christchurch Business Insights"
   description="Expert tips on web design, SEO, digital marketing, and business growth for Christchurch and New Zealand businesses. By Byte Digital."
 >
-  <section style="padding-top:120px;padding-bottom:60px">
-    <div class="container">
-      <div class="section-label">Blog</div>
-      <h1 class="section-title">Insights & Guides for<br /><span class="gradient-text">Christchurch Businesses.</span></h1>
-      <p class="section-subtitle" style="margin-top:12px">Expert web design tips, SEO strategies, and digital marketing insights to help your Christchurch business grow online.</p>
-    </div>
-  </section>
+  <PageHero
+    label="Blog"
+    title="Insights & Guides for<br /><span class='gradient-text'>Christchurch Businesses.</span>"
+    subtitle="Expert web design tips, SEO strategies, and digital marketing insights to help your Christchurch business grow online."
+  />
 
-  <section class="section" style="padding-top:0">
+  <section class="section reveal" style="padding-top:0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
     <div class="container">
       <div class="filter-bar" id="filter-bar">
         <button class="filter-pill active" data-category="all">All</button>
@@ -43,6 +43,7 @@ const categories = [...new Set(allPosts.map(p => p.data.category))].filter(Boole
       </div>
     </div>
   </section>
+  <CTASection />
 </BaseLayout>
 
 <script>

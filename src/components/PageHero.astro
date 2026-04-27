@@ -1,0 +1,50 @@
+---
+export interface Props {
+  label?: string;
+  title: string;
+  subtitle?: string;
+  breadcrumbs?: Array<{ label: string; href?: string }>;
+  dotMatrix?: boolean;
+  dmId?: string;
+  compact?: boolean;
+}
+
+const { label, title, subtitle, breadcrumbs = [], dotMatrix = false, dmId = 'dm-page-hero', compact = false } = Astro.props;
+---
+
+<section class="page-hero {(dotMatrix ? 'dm-section' : '')}" style="overflow:hidden">
+  {dotMatrix && <div class="dm-bg" id={dmId}></div>}
+  <div class="page-hero-glow page-hero-glow1"></div>
+  <div class="page-hero-glow page-hero-glow2"></div>
+  <div class="container" style="position:relative;z-index:1">
+    {breadcrumbs.length > 0 && (
+      <nav class="page-hero-breadcrumb">
+        {breadcrumbs.map((crumb, i) => (
+          <>
+            {i > 0 && <span style="margin:0 8px;color:var(--text-dimmed)">/</span>}
+            {crumb.href ? (
+              <a href={crumb.href}>{crumb.label}</a>
+            ) : (
+              <span style="color:var(--secondary)">{crumb.label}</span>
+            )}
+          </>
+        ))}
+      </nav>
+    )}
+    {label && <div class="section-label">{label}</div>}
+    <h1 class="page-hero-title" set:html={title} />
+    {subtitle && <p class="page-hero-subtitle">{subtitle}</p>}
+    <slot />
+  </div>
+</section>
+
+{dotMatrix && (
+  <script>
+  import { initDotMatrixCanvas } from './scripts/dot-matrix-canvas';
+  document.addEventListener('DOMContentLoaded', () => {
+    const id = '{dmId}';
+    const el = document.getElementById(id);
+    if (el) initDotMatrixCanvas(id);
+  });
+  </script>
+)}

@@ -2,26 +2,23 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTASection from '../../components/CTASection.astro';
 import Divider from '../../components/Divider.astro';
+import PageHero from '../../components/PageHero.astro';
 ---
 
 <BaseLayout
   title="Free Website Audit Tool NZ | Check Your Site Health | Byte Digital"
   description="Run a free website audit. Check performance, SEO, mobile friendliness, security, and accessibility. Get actionable recommendations for your Christchurch business website."
 >
-  <section style="padding-top:120px;padding-bottom:60px">
-    <div class="container">
-      <nav style="margin-bottom:24px;font-size:13px;color:var(--text-muted)">
-        <a href="/" style="color:var(--text-muted)">Home</a>
-        <span style="margin:0 8px">/</span>
-        <a href="/tools" style="color:var(--text-muted)">Tools</a>
-        <span style="margin:0 8px">/</span>
-        <span style="color:var(--secondary)">Free Website Audit</span>
-      </nav>
-      <div class="section-label">Free Tool</div>
-      <h1 class="section-title">Free Website<br /><span class="gradient-text">Audit Tool</span></h1>
-      <p class="section-subtitle" style="margin-top:12px">Enter your URL and get an instant health check. Find out what's holding your site back.</p>
-    </div>
-  </section>
+  <PageHero
+    label="Free Tool"
+    title="Free Website<br /><span class='gradient-text'>Audit Tool</span>"
+    subtitle="Enter your URL and get an instant health check. Find out what's holding your site back."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Tools', href: '/tools' },
+      { label: 'Free Website Audit' },
+    ]}
+  />
 
   <section class="section dot-pattern" style="padding-top:0">
     <div class="container">

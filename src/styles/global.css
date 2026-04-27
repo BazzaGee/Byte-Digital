@@ -2010,3 +2010,95 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--text-muted);
   line-height: 1.5;
 }
+
+/* ============================================
+   PAGE HERO (Sub-page header with atmosphere)
+   ============================================ */
+.page-hero {
+  padding-top: 120px;
+  padding-bottom: 60px;
+  position: relative;
+  background-image: radial-gradient(rgba(139,120,230,0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.page-hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.page-hero-glow1 {
+  width: 400px;
+  height: 400px;
+  background: var(--primary);
+  filter: blur(120px);
+  opacity: 0.1;
+  top: 10%;
+  left: 10%;
+}
+.page-hero-glow2 {
+  width: 350px;
+  height: 350px;
+  background: var(--secondary);
+  filter: blur(120px);
+  opacity: 0.08;
+  bottom: 10%;
+  right: 10%;
+}
+.page-hero-breadcrumb {
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--text-muted);
+  position: relative;
+  z-index: 1;
+}
+.page-hero-breadcrumb a {
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.page-hero-breadcrumb a:hover {
+  color: var(--secondary);
+}
+.page-hero-title {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 12px;
+  max-width: 900px;
+  position: relative;
+  z-index: 1;
+}
+.page-hero-subtitle {
+  font-size: clamp(16px, 1.5vw, 20px);
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 600px;
+  margin-top: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   DM DIVIDER (Sparse dot-matrix accent band)
+   ============================================ */
+.dm-divider {
+  position: relative;
+  height: 80px;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.dm-divider .dm-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.dm-divider canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
