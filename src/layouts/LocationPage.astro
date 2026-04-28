@@ -4,6 +4,7 @@ import FAQAccordion from '../components/FAQAccordion.astro';
 import CTASection from '../components/CTASection.astro';
 import Divider from '../components/Divider.astro';
 import PageHero from '../components/PageHero.astro';
+import SectionAccent from '../components/SectionAccent.astro';
 
 export interface Props {
   title: string;
@@ -26,8 +27,11 @@ const { title, description, suburb, jsonLd } = Astro.props;
     ]}
   />
   <slot />
-  <section style="background:var(--bg-dark);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
-    <div class="container" style="padding:64px 0">
+  <SectionAccent wide />
+  <section class="section reveal section-glow" style="background:var(--bg-dark);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
+    <div class="glow-orb purple bottom-left"></div>
+    <div class="glow-orb mint top-right"></div>
+    <div class="container" style="padding:64px 0;position:relative;z-index:1">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:32px">
         <div>
           <h2 style="font-size:24px;font-weight:600;margin:0;font-family:'Space Grotesk',sans-serif">Also Serving Nearby Areas</h2>

@@ -1,0 +1,19 @@
+---
+export interface Props {
+  stats: Array<{
+    value: string;
+    label: string;
+  }>;
+}
+
+const { stats } = Astro.props;
+---
+
+<div class="content-stats">
+  {stats.map(stat => (
+    <div class="content-stat-item">
+      <div class="content-stat-value">{stat.value}</div>
+      <div class="content-stat-label">{stat.label}</div>
+    </div>
+  ))}
+</div>

@@ -5,6 +5,8 @@ import RelatedPosts from '../../components/RelatedPosts.astro';
 import RelatedCaseStudies from '../../components/RelatedCaseStudies.astro';
 import RelatedGuides from '../../components/RelatedGuides.astro';
 import RelatedServices from '../../components/RelatedServices.astro';
+import IconList from '../../components/IconList.astro';
+import CalloutBox from '../../components/CalloutBox.astro';
 import { getCollection } from 'astro:content';
 import { getRelatedPosts, getRelatedGuides, getRelatedCaseStudies } from '../../utils/content-relations';
 
@@ -51,7 +53,7 @@ const jsonLd = {
 };
 
 const allBlogPosts = (await getCollection('blog')).map(p => ({
-  slug: p.slug,
+  slug: p.id,
   title: p.data.title,
   description: p.data.description,
   category: p.data.category,
@@ -60,7 +62,7 @@ const allBlogPosts = (await getCollection('blog')).map(p => ({
 })).sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
 
 const allCaseStudies = (await getCollection('case-studies')).map(p => ({
-  slug: p.slug,
+  slug: p.id,
   title: p.data.title,
   client: p.data.client,
   industry: p.data.industry,
@@ -80,88 +82,114 @@ const relatedCaseStudies = getRelatedCaseStudies('branding', allCaseStudies, 2);
   serviceSubtitle="Build a brand that resonates, differentiates, and drives loyalty in the Christchurch market."
   jsonLd={jsonLd}
 >
-  <section class="section dot-pattern">
+  <section class="section section-glow dm-edge-top">
+    <div class="glow-orb purple top-left"></div>
+    <div class="glow-orb mint bottom-right"></div>
     <div class="container">
-      <div style="max-width:800px;margin:0 auto">
+      <div class="service-content" style="position:relative;z-index:1">
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-bottom:16px">Strategic Branding for Christchurch Businesses</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Your brand is not your logo. Your brand is not your colour palette. Your brand is the total experience people have with your Christchurch business: every interaction, every impression, every expectation fulfilled or broken. It is what people say about you when you are not in the room. In a city where consumers have more choices than ever, a strong brand is the most powerful competitive advantage a Christchurch business can possess.</p>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">At Byte Digital, we build brands from the inside out. We start with strategy, defining who you are, who you serve, and what makes you different. Then we translate that strategy into a visual identity and messaging framework that communicates your brand consistently across every touchpoint, from your <a href="/services/web-design" style="color:var(--secondary)">website</a> to your storefront.</p>
+        <h2 class="heading-accent">Strategic Branding for Christchurch Businesses</h2>
+        <p>Your brand is not your logo. Your brand is not your colour palette. Your brand is the total experience people have with your Christchurch business: every interaction, every impression, every expectation fulfilled or broken. It is what people say about you when you are not in the room. In a city where consumers have more choices than ever, a strong brand is the most powerful competitive advantage a Christchurch business can possess.</p>
+        <p>At Byte Digital, we build brands from the inside out. We start with strategy, defining who you are, who you serve, and what makes you different. Then we translate that strategy into a visual identity and messaging framework that communicates your brand consistently across every touchpoint, from your <a href="/services/web-design">website</a> to your storefront.</p>
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why Branding Matters for Christchurch Businesses</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Christchurch is a city that has undergone enormous change. The rebuild transformed the landscape and attracted new businesses, new residents, and heightened consumer expectations. In this competitive environment, businesses that invest in professional branding consistently outperform those that do not.</p>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Consider the Christchurch businesses you remember and trust. They have clear identities. You know what they stand for, what to expect from them, and how they are different from their competitors. That clarity does not happen by accident. It is the result of deliberate branding.</p>
-        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
-          <li style="margin-bottom:12px"><strong style="color:#fff">Recognition:</strong> A consistent brand makes your Christchurch business instantly recognisable across all channels and touchpoints</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Trust:</strong> Professional branding signals credibility and reliability, which are essential for winning new customers in competitive markets</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Differentiation:</strong> A strong brand clearly communicates what makes your business unique, helping customers choose you over competitors</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Premium positioning:</strong> Businesses with strong brands command higher prices and attract higher-quality customers</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Customer loyalty:</strong> Brands that connect emotionally with their audience build lasting relationships that transcend price competition</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Employee alignment:</strong> A clear brand gives your team a shared sense of purpose and direction</li>
+        <h2 class="heading-accent">Why Branding Matters for Christchurch Businesses</h2>
+        <p>Christchurch is a city that has undergone enormous change. The rebuild transformed the landscape and attracted new businesses, new residents, and heightened consumer expectations. In this competitive environment, businesses that invest in professional branding consistently outperform those that do not.</p>
+        <p>Consider the Christchurch businesses you remember and trust. They have clear identities. You know what they stand for, what to expect from them, and how they are different from their competitors. That clarity does not happen by accident. It is the result of deliberate branding.</p>
+        <h3>Why Branding Matters</h3>
+        <ul>
+          <li><strong>Recognition:</strong> A consistent brand makes your Christchurch business instantly recognisable across all channels and touchpoints</li>
+          <li><strong>Trust:</strong> Professional branding signals credibility and reliability, which are essential for winning new customers in competitive markets</li>
+          <li><strong>Differentiation:</strong> A strong brand clearly communicates what makes your business unique, helping customers choose you over competitors</li>
+          <li><strong>Premium positioning:</strong> Businesses with strong brands command higher prices and attract higher-quality customers</li>
+          <li><strong>Customer loyalty:</strong> Brands that connect emotionally with their audience build lasting relationships that transcend price competition</li>
+          <li><strong>Employee alignment:</strong> A clear brand gives your team a shared sense of purpose and direction</li>
         </ul>
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Brand Strategy: The Foundation</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Visual design without strategy is decoration. We begin every branding project with a thorough strategy phase that defines the intellectual framework for your brand.</p>
+        <h2 class="heading-accent">Brand Strategy: The Foundation</h2>
+        <p>Visual design without strategy is decoration. We begin every branding project with a thorough strategy phase that defines the intellectual framework for your brand.</p>
 
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Brand Discovery</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We conduct in-depth interviews with key stakeholders in your Christchurch business to understand your history, values, aspirations, and culture. We explore your origin story, the problems you solve, the customers you serve best, and the qualities that make your business genuinely different. This discovery process often uncovers brand assets and positioning opportunities that business owners had not previously recognised.</p>
+        <h3>Brand Discovery</h3>
+        <p>We conduct in-depth interviews with key stakeholders in your Christchurch business to understand your history, values, aspirations, and culture. We explore your origin story, the problems you solve, the customers you serve best, and the qualities that make your business genuinely different. This discovery process often uncovers brand assets and positioning opportunities that business owners had not previously recognised.</p>
 
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Market and Competitor Analysis</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We research the Christchurch and Canterbury market landscape, analysing your competitors' branding, messaging, and positioning. We identify gaps in the market, visual conventions to embrace or avoid, and opportunities for differentiation. This analysis ensures your brand is positioned to stand out in the Christchurch market rather than blending in with the competition.</p>
+        <h3>Market and Competitor Analysis</h3>
+        <p>We research the Christchurch and Canterbury market landscape, analysing your competitors' branding, messaging, and positioning. We identify gaps in the market, visual conventions to embrace or avoid, and opportunities for differentiation. This analysis ensures your brand is positioned to stand out in the Christchurch market rather than blending in with the competition.</p>
 
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Target Audience Definition</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Effective branding requires a deep understanding of who you are talking to. We develop detailed audience profiles based on demographics, psychographics, behaviour patterns, and decision-making processes specific to your Christchurch market. We identify what motivates your ideal customers, what concerns them, where they spend their time, and how they make purchasing decisions. This understanding shapes every aspect of your brand, from visual style to messaging tone.</p>
+        <h3>Target Audience Definition</h3>
+        <p>Effective branding requires a deep understanding of who you are talking to. We develop detailed audience profiles based on demographics, psychographics, behaviour patterns, and decision-making processes specific to your Christchurch market. We identify what motivates your ideal customers, what concerns them, where they spend their time, and how they make purchasing decisions. This understanding shapes every aspect of your brand, from visual style to messaging tone.</p>
 
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Brand Positioning</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Your brand positioning defines the specific space your Christchurch business occupies in the minds of your customers relative to competitors. We develop a clear, compelling positioning statement that articulates who you serve, what you offer, how you are different, and why that difference matters. This statement becomes the filter through which all brand decisions are made.</p>
+        <h3>Brand Positioning</h3>
+        <p>Your brand positioning defines the specific space your Christchurch business occupies in the minds of your customers relative to competitors. We develop a clear, compelling positioning statement that articulates who you serve, what you offer, how you are different, and why that difference matters. This statement becomes the filter through which all brand decisions are made.</p>
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Visual Identity Design</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">With the strategic foundation in place, we design the visual elements that bring your brand to life. Your visual identity is more than a <a href="/services/logo-design" style="color:var(--secondary)">logo</a>; it is a complete system of visual elements that work together to create a cohesive, memorable impression.</p>
+      </div>
+    </div>
+  </section>
 
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Logo and Wordmark</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">The centrepiece of your visual identity, designed to be distinctive, versatile, and timeless. We create a primary logo, secondary logo variations, and a wordmark or logotype that work across all applications from digital screens to building signage in the Christchurch CBD.</p>
+  <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <div class="service-content">
 
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Colour Palette</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">A strategically developed colour palette that supports your brand personality and works across print and digital media. We specify primary, secondary, and accent colours with precise values for every application: CMYK for print, RGB and HEX for digital, and Pantone for consistency across production methods.</p>
+        <h2 class="heading-accent">Visual Identity Design</h2>
+        <p>With the strategic foundation in place, we design the visual elements that bring your brand to life. Your visual identity is more than a <a href="/services/logo-design">logo</a>; it is a complete system of visual elements that work together to create a cohesive, memorable impression.</p>
 
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Typography System</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">A curated selection of typefaces for headings, body text, and accent use that complement your logo and convey your brand personality. We provide guidelines for font pairing, sizing hierarchy, line spacing, and usage rules that ensure typographic consistency across all materials.</p>
+        <h3>Logo and Wordmark</h3>
+        <p>The centrepiece of your visual identity, designed to be distinctive, versatile, and timeless. We create a primary logo, secondary logo variations, and a wordmark or logotype that work across all applications from digital screens to building signage in the Christchurch CBD.</p>
 
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Visual Language and Graphic Elements</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Beyond the logo, your brand needs a visual language that can be applied across all communications. This includes photography and illustration styles, iconography, patterns, textures, and graphic devices that create visual consistency and brand recognition. We develop these elements so your Christchurch business has a complete visual toolkit, not just a logo.</p>
+        <h3>Colour Palette</h3>
+        <p>A strategically developed colour palette that supports your brand personality and works across print and digital media. We specify primary, secondary, and accent colours with precise values for every application: CMYK for print, RGB and HEX for digital, and Pantone for consistency across production methods.</p>
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Brand Messaging and Voice</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Visual identity is only half the equation. What your brand says and how it says it are equally important. We develop a messaging framework that ensures every word your Christchurch business publishes communicates consistently and persuasively.</p>
-        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
-          <li style="margin-bottom:12px"><strong style="color:#fff">Brand tagline:</strong> A concise, memorable phrase that captures your brand essence and value proposition</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Brand story:</strong> A compelling narrative about your Christchurch business that connects emotionally with your audience</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Value propositions:</strong> Clear, benefit-focused statements for each of your key services or products</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Brand voice guidelines:</strong> A documented tone of voice that defines how your brand communicates, including personality traits, language preferences, and examples</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Key messages:</strong> Core messages that consistently communicate your brand positioning across all channels</li>
+        <h3>Typography System</h3>
+        <p>A curated selection of typefaces for headings, body text, and accent use that complement your logo and convey your brand personality. We provide guidelines for font pairing, sizing hierarchy, line spacing, and usage rules that ensure typographic consistency across all materials.</p>
+
+        <h3>Visual Language and Graphic Elements</h3>
+        <p>Beyond the logo, your brand needs a visual language that can be applied across all communications. This includes photography and illustration styles, iconography, patterns, textures, and graphic devices that create visual consistency and brand recognition. We develop these elements so your Christchurch business has a complete visual toolkit, not just a logo.</p>
+
+        <h2 class="heading-accent">Brand Messaging and Voice</h2>
+        <p>Visual identity is only half the equation. What your brand says and how it says it are equally important. We develop a messaging framework that ensures every word your Christchurch business publishes communicates consistently and persuasively.</p>
+        <h3>Brand Messaging and Voice</h3>
+        <ul>
+          <li><strong>Brand tagline:</strong> A concise, memorable phrase that captures your brand essence and value proposition</li>
+          <li><strong>Brand story:</strong> A compelling narrative about your Christchurch business that connects emotionally with your audience</li>
+          <li><strong>Value propositions:</strong> Clear, benefit-focused statements for each of your key services or products</li>
+          <li><strong>Brand voice guidelines:</strong> A documented tone of voice that defines how your brand communicates, including personality traits, language preferences, and examples</li>
+          <li><strong>Key messages:</strong> Core messages that consistently communicate your brand positioning across all channels</li>
         </ul>
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Brand Guidelines</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">A brand is only as strong as its consistency. We create comprehensive brand guidelines that document every aspect of your brand identity and provide clear rules for its application. These guidelines serve as a reference for anyone who works with your brand: your internal team, external designers, marketing agencies, printers, and media partners.</p>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Our brand guidelines include logo usage rules and clear space requirements, colour specifications for all applications, typography guidelines, image and photography direction, layout principles and grid systems, tone of voice documentation, and examples of correct and incorrect brand usage. This documentation protects your brand investment and ensures consistent presentation across every touchpoint.</p>
+        <h2 class="heading-accent">Brand Guidelines</h2>
+        <p>A brand is only as strong as its consistency. We create comprehensive brand guidelines that document every aspect of your brand identity and provide clear rules for its application. These guidelines serve as a reference for anyone who works with your brand: your internal team, external designers, marketing agencies, printers, and media partners.</p>
+        <p>Our brand guidelines include logo usage rules and clear space requirements, colour specifications for all applications, typography guidelines, image and photography direction, layout principles and grid systems, tone of voice documentation, and examples of correct and incorrect brand usage. This documentation protects your brand investment and ensures consistent presentation across every touchpoint.</p>
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Rebranding: Evolving Your Christchurch Brand</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Rebranding is not about abandoning your heritage. It is about ensuring your brand accurately represents who your Christchurch business is today and where it is heading. We approach rebranding with sensitivity and strategic intent, preserving brand equity that has been built over years while refreshing elements that no longer serve your business.</p>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We conduct a brand audit to assess the current state of your brand, identify what is working and what is not, and determine the scope of change needed. Whether you need a subtle visual refresh or a complete brand overhaul, we manage the transition carefully to maintain recognition with your existing Christchurch customer base while attracting new audiences.</p>
+      </div>
+    </div>
+  </section>
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Branding Across Digital and Print</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Your brand needs to be consistently applied across every channel where your Christchurch customers encounter it. We design brand applications for digital channels including your website, social media profiles, email templates, and digital advertising, as well as print materials including business cards, letterheads, brochures, packaging, signage, and vehicle livery. Consistency across these touchpoints builds the familiarity and trust that drive customer loyalty.</p>
+  <section class="section section-glow dm-edge-bottom">
+    <div class="glow-orb purple bottom-left"></div>
+    <div class="glow-orb mint top-right"></div>
+    <div class="container">
+      <div class="service-content" style="position:relative;z-index:1">
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why Choose Byte Digital for Branding</h2>
-        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
-          <li style="margin-bottom:12px"><strong style="color:#fff">Strategy-first approach:</strong> We define your brand strategically before designing anything visually</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Christchurch market knowledge:</strong> We understand the local competitive landscape and consumer behaviour</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Comprehensive delivery:</strong> Strategy, visual identity, messaging, and guidelines in one integrated service</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Digital-native thinking:</strong> We design brands that work as effectively on screens as they do in print</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Collaborative process:</strong> We involve you at every stage, ensuring the final brand truly represents your business</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Practical guidelines:</strong> Brand documentation that your team can actually use, not something that sits on a shelf</li>
-        </ul>
+        <h2 class="heading-accent">Rebranding: Evolving Your Christchurch Brand</h2>
+        <p>Rebranding is not about abandoning your heritage. It is about ensuring your brand accurately represents who your Christchurch business is today and where it is heading. We approach rebranding with sensitivity and strategic intent, preserving brand equity that has been built over years while refreshing elements that no longer serve your business.</p>
+        <p>We conduct a brand audit to assess the current state of your brand, identify what is working and what is not, and determine the scope of change needed. Whether you need a subtle visual refresh or a complete brand overhaul, we manage the transition carefully to maintain recognition with your existing Christchurch customer base while attracting new audiences.</p>
 
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Your Christchurch business has a story to tell and a position to own. Let us help you build a brand that captures both. Contact us for a branding consultation.</p>
+        <h2 class="heading-accent">Branding Across Digital and Print</h2>
+        <p>Your brand needs to be consistently applied across every channel where your Christchurch customers encounter it. We design brand applications for digital channels including your website, social media profiles, email templates, and digital advertising, as well as print materials including business cards, letterheads, brochures, packaging, signage, and vehicle livery. Consistency across these touchpoints builds the familiarity and trust that drive customer loyalty.</p>
+
+        <h2 class="heading-accent">Why Choose Byte Digital for Branding</h2>
+        <IconList title="Why Choose Byte Digital" items={[
+          { highlight: 'Strategy-first approach:', text: ' We define your brand strategically before designing anything visually' },
+          { highlight: 'Christchurch market knowledge:', text: ' We understand the local competitive landscape and consumer behaviour' },
+          { highlight: 'Comprehensive delivery:', text: ' Strategy, visual identity, messaging, and guidelines in one integrated service' },
+          { highlight: 'Digital-native thinking:', text: ' We design brands that work as effectively on screens as they do in print' },
+          { highlight: 'Collaborative process:', text: ' We involve you at every stage, ensuring the final brand truly represents your business' },
+          { highlight: 'Practical guidelines:', text: ' Brand documentation that your team can actually use, not something that sits on a shelf' },
+        ]} />
+
+        <CalloutBox type="highlight" title="Free Consultation">
+          <p>Ready to build a brand that sets your Christchurch business apart? Book a free, no-obligation branding consultation and let's discuss your vision.</p>
+        </CalloutBox>
+
+        <p>Your Christchurch business has a story to tell and a position to own. Let us help you build a brand that captures both. Contact us for a branding consultation.</p>
 
       </div>
     </div>

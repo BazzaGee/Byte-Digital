@@ -9,7 +9,7 @@ import PageHero from '../components/PageHero.astro';
 import { getCollection } from 'astro:content';
 
 const allCaseStudies = (await getCollection('case-studies')).map(p => ({
-  slug: p.slug,
+  slug: p.id,
   title: p.data.title,
   client: p.data.client,
   industry: p.data.industry,
@@ -34,29 +34,19 @@ const allCaseStudies = (await getCollection('case-studies')).map(p => ({
     dmId="dm-about-hero"
   />
 
-  <section class="section dot-pattern">
+  <section class="section section-glow dm-edge-top">
+    <div class="glow-orb purple top-left"></div>
+    <div class="glow-orb mint bottom-right"></div>
     <div class="container">
-      <div style="max-width:800px;margin:0 auto">
+      <div class="service-content" style="position:relative;z-index:1">
         <div class="section-label">Our Story</div>
-        <h2 style="font-size:32px;font-weight:700;color:#fff;margin-bottom:24px;line-height:1.2">Built for Christchurch, powered by technology.</h2>
-        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
-          Byte Digital was born from a frustration that every Christchurch business owner knows too well. You pay good money for a website, and what do you get? A slow, generic WordPress site that looks like every other website in your industry, ranks nowhere on Google, and generates approximately zero new customers. Meanwhile, your competitors — the ones with the flashy websites and the top Google rankings — are taking the clients that should be yours.
-        </p>
-        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
-          We saw this happening to businesses across Christchurch and Canterbury every day. Roofers with 20 years of experience losing jobs to newcomers with better websites. Dental practices with world-class clinical skills invisible online while clinics with inferior services dominated search results. Pool companies, electricians, hair salons, tradies of every kind — all being held back not by the quality of their work, but by the quality of their digital presence.
-        </p>
-        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
-          The web design industry in New Zealand had a problem. Most agencies were still building WordPress sites with bloated plugins, page builders, and template themes that produced mediocre results. They charged premium prices for work that was fundamentally outdated, and their clients paid the price in poor performance, low search rankings, and missed opportunities. We knew there had to be a better way.
-        </p>
-        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
-          So we built Byte Digital to be the agency we wished existed when we were business owners ourselves. An agency that uses genuinely modern technology. An agency that measures success by leads generated and revenue increased, not just by how pretty a website looks. An agency that understands the Christchurch market intimately — the suburbs, the seasons, the search behaviour, the local competition. An agency that treats your business growth as its own.
-        </p>
-        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
-          We are not a large, impersonal agency that hands your project off to a junior developer. We are a focused team of web designers, developers, and digital strategists who work directly with every client. When you work with Byte Digital, you work with the same people from your first consultation through to your ongoing optimisation. No account managers passing messages. No overseas call centres. Just direct, honest communication with people who genuinely care about your results.
-        </p>
-        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
-          Every business we work with teaches us something new about what Christchurch and Canterbury businesses need from their digital presence. That collective knowledge feeds back into every project we take on, which means our clients benefit not just from our expertise, but from the lessons learned across dozens of local businesses and industries. We are not just building websites — we are building a deep, proprietary understanding of the New Zealand digital landscape that no generic agency can match.
-        </p>
+        <h2 class="heading-accent">Built for Christchurch, powered by technology.</h2>
+        <p>Byte Digital was born from a frustration that every Christchurch business owner knows too well. You pay good money for a website, and what do you get? A slow, generic WordPress site that looks like every other website in your industry, ranks nowhere on Google, and generates approximately zero new customers. Meanwhile, your competitors — the ones with the flashy websites and the top Google rankings — are taking the clients that should be yours.</p>
+        <p>We saw this happening to businesses across Christchurch and Canterbury every day. Roofers with 20 years of experience losing jobs to newcomers with better websites. Dental practices with world-class clinical skills invisible online while clinics with inferior services dominated search results. Pool companies, electricians, hair salons, tradies of every kind — all being held back not by the quality of their work, but by the quality of their digital presence.</p>
+        <p>The web design industry in New Zealand had a problem. Most agencies were still building WordPress sites with bloated plugins, page builders, and template themes that produced mediocre results. They charged premium prices for work that was fundamentally outdated, and their clients paid the price in poor performance, low search rankings, and missed opportunities. We knew there had to be a better way.</p>
+        <p>So we built Byte Digital to be the agency we wished existed when we were business owners ourselves. An agency that uses genuinely modern technology. An agency that measures success by leads generated and revenue increased, not just by how pretty a website looks. An agency that understands the Christchurch market intimately — the suburbs, the seasons, the search behaviour, the local competition. An agency that treats your business growth as its own.</p>
+        <p>We are not a large, impersonal agency that hands your project off to a junior developer. We are a focused team of web designers, developers, and digital strategists who work directly with every client. When you work with Byte Digital, you work with the same people from your first consultation through to your ongoing optimisation. No account managers passing messages. No overseas call centres. Just direct, honest communication with people who genuinely care about your results.</p>
+        <p>Every business we work with teaches us something new about what Christchurch and Canterbury businesses need from their digital presence. That collective knowledge feeds back into every project we take on, which means our clients benefit not just from our expertise, but from the lessons learned across dozens of local businesses and industries. We are not just building websites — we are building a deep, proprietary understanding of the New Zealand digital landscape that no generic agency can match.</p>
       </div>
     </div>
   </section>
@@ -111,29 +101,19 @@ const allCaseStudies = (await getCollection('case-studies')).map(p => ({
     </div>
   </section>
 
-  <section class="section dot-pattern">
+  <section class="section section-glow dm-edge-bottom">
+    <div class="glow-orb purple bottom-left"></div>
+    <div class="glow-orb mint top-right"></div>
     <div class="container">
-      <div style="max-width:800px;margin:0 auto">
+      <div class="service-content" style="position:relative;z-index:1">
         <div class="section-label">Technology</div>
-        <h2 style="font-size:32px;font-weight:700;color:#fff;margin-bottom:24px;line-height:1.2">Modern stack. Modern results.</h2>
-        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
-          The technology behind your website matters more than most businesses realise. A site built on outdated technology is slower, less secure, harder to rank on Google, and more expensive to maintain. Yet the vast majority of New Zealand websites are still built on WordPress — a platform that was revolutionary in 2005 but has become bloated, slow, and a favourite target for hackers.
-        </p>
-        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
-          At Byte Digital, we build on modern frameworks that represent the state of the art in web development. Our primary framework is Astro, a technology that generates static pages for lightning-fast load times while still supporting dynamic, interactive features. For more complex applications — such as websites with user accounts, real-time booking systems, or custom calculators — we use Next.js and React, the same technologies used by companies like Netflix, Stripe, and Airbnb.
-        </p>
-        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
-          We pair these frameworks with headless content management systems like Sanity and Contentful, giving our clients full control over their website content without the performance penalties of traditional CMS platforms. Need to update a blog post, change a price, or add a new team member? You can do it yourself through an intuitive dashboard, and the changes go live instantly without any performance impact.
-        </p>
-        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
-          Our hosting infrastructure is built on modern cloud platforms with global content delivery networks, automatic SSL certificates, and built-in security features. Every website we deploy loads in under 1.5 seconds, scores 95+ on Google's PageSpeed Insights, and is protected against the most common web vulnerabilities. We also implement automated backups, uptime monitoring, and proactive security updates so you never have to worry about your website going down or getting compromised.
-        </p>
-        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
-          What does this mean for your business in practical terms? Faster websites convert more visitors into customers. Research by Google shows that a one-second delay in page load time can reduce conversions by 7%. For a business generating 100 leads per month from their website, that is seven potential customers lost every month simply because the site is slow. Our modern stack eliminates this problem entirely, giving you a competitive advantage that compounds over time as search engines increasingly prioritise performance in their rankings.
-        </p>
-        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">
-          We also invest heavily in SEO technology, using professional-grade tools for keyword research, rank tracking, technical auditing, and competitor analysis. Our SEO strategies are data-driven and continuously optimised, adapting to Google's algorithm updates and shifts in search behaviour. This is not the set-and-forget SEO that most agencies sell — it is an ongoing, strategic process that delivers compounding results month after month.
-        </p>
+        <h2 class="heading-accent">Modern stack. Modern results.</h2>
+        <p>The technology behind your website matters more than most businesses realise. A site built on outdated technology is slower, less secure, harder to rank on Google, and more expensive to maintain. Yet the vast majority of New Zealand websites are still built on WordPress — a platform that was revolutionary in 2005 but has become bloated, slow, and a favourite target for hackers.</p>
+        <p>At Byte Digital, we build on modern frameworks that represent the state of the art in web development. Our primary framework is Astro, a technology that generates static pages for lightning-fast load times while still supporting dynamic, interactive features. For more complex applications — such as websites with user accounts, real-time booking systems, or custom calculators — we use Next.js and React, the same technologies used by companies like Netflix, Stripe, and Airbnb.</p>
+        <p>We pair these frameworks with headless content management systems like Sanity and Contentful, giving our clients full control over their website content without the performance penalties of traditional CMS platforms. Need to update a blog post, change a price, or add a new team member? You can do it yourself through an intuitive dashboard, and the changes go live instantly without any performance impact.</p>
+        <p>Our hosting infrastructure is built on modern cloud platforms with global content delivery networks, automatic SSL certificates, and built-in security features. Every website we deploy loads in under 1.5 seconds, scores 95+ on Google's PageSpeed Insights, and is protected against the most common web vulnerabilities. We also implement automated backups, uptime monitoring, and proactive security updates so you never have to worry about your website going down or getting compromised.</p>
+        <p>What does this mean for your business in practical terms? Faster websites convert more visitors into customers. Research by Google shows that a one-second delay in page load time can reduce conversions by 7%. For a business generating 100 leads per month from their website, that is seven potential customers lost every month simply because the site is slow. Our modern stack eliminates this problem entirely, giving you a competitive advantage that compounds over time as search engines increasingly prioritise performance in their rankings.</p>
+        <p>We also invest heavily in SEO technology, using professional-grade tools for keyword research, rank tracking, technical auditing, and competitor analysis. Our SEO strategies are data-driven and continuously optimised, adapting to Google's algorithm updates and shifts in search behaviour. This is not the set-and-forget SEO that most agencies sell — it is an ongoing, strategic process that delivers compounding results month after month.</p>
       </div>
     </div>
   </section>

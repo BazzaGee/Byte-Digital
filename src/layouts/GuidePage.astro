@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import CTASection from '../components/CTASection.astro';
 import Divider from '../components/Divider.astro';
 import PageHero from '../components/PageHero.astro';
+import SectionAccent from '../components/SectionAccent.astro';
 
 export interface Props {
   title: string;
@@ -24,7 +25,18 @@ const { title, description, jsonLd } = Astro.props;
       { label: 'Guides' },
     ]}
   />
-  <slot />
+  <SectionAccent wide />
+  <article class="section dm-edge-top section-glow">
+    <div class="glow-orb purple top-left"></div>
+    <div class="glow-orb mint bottom-right"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div class="dm-header" style="margin-bottom:48px">
+        <div class="article-prose">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </article>
   <Divider />
   <CTASection />
 </BaseLayout>

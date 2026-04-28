@@ -5,6 +5,10 @@ import RelatedPosts from '../../components/RelatedPosts.astro';
 import RelatedCaseStudies from '../../components/RelatedCaseStudies.astro';
 import RelatedGuides from '../../components/RelatedGuides.astro';
 import RelatedServices from '../../components/RelatedServices.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import IconList from '../../components/IconList.astro';
+import CalloutBox from '../../components/CalloutBox.astro';
+import ContentStats from '../../components/ContentStats.astro';
 import { getCollection } from 'astro:content';
 import { getRelatedPosts, getRelatedGuides, getRelatedCaseStudies } from '../../utils/content-relations';
 
@@ -51,7 +55,7 @@ const jsonLd = {
 };
 
 const allBlogPosts = (await getCollection('blog')).map(p => ({
-  slug: p.slug,
+  slug: p.id,
   title: p.data.title,
   description: p.data.description,
   category: p.data.category,
@@ -60,7 +64,7 @@ const allBlogPosts = (await getCollection('blog')).map(p => ({
 })).sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
 
 const allCaseStudies = (await getCollection('case-studies')).map(p => ({
-  slug: p.slug,
+  slug: p.id,
   title: p.data.title,
   client: p.data.client,
   industry: p.data.industry,
@@ -80,68 +84,107 @@ const relatedCaseStudies = getRelatedCaseStudies('custom-applications', allCaseS
   serviceSubtitle="Bespoke software solutions that automate processes and solve real business problems."
   jsonLd={jsonLd}
 >
-  <section class="section dot-pattern">
+  <section class="section section-glow dm-edge-top">
+    <div class="glow-orb purple top-left"></div>
+    <div class="glow-orb mint bottom-right"></div>
     <div class="container">
-      <div style="max-width:800px;margin:0 auto">
+      <div class="service-content" style="position:relative;z-index:1">
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-bottom:16px">Bespoke Web Applications for Christchurch Businesses</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Off-the-shelf software is designed for the average business. If your Christchurch business is anything like the ones we work with, you are not average. You have unique processes, specific customer needs, and operational challenges that generic software cannot solve effectively. Custom web application development gives you a digital tool designed precisely for your business, your team, and your customers.</p>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">At Byte Digital, we build custom web applications that solve real business problems. Whether you need a booking system that eliminates phone tag, a CRM that actually fits your sales process, or a workflow automation platform that saves your team hours every week, we design, develop, and deploy bespoke software that works the way your Christchurch business works.</p>
+        <h2 class="heading-accent">Bespoke Web Applications for Christchurch Businesses</h2>
+        <p>Off-the-shelf software is designed for the average business. If your Christchurch business is anything like the ones we work with, you are not average. You have unique processes, specific customer needs, and operational challenges that generic software cannot solve effectively.</p>
+        <p>Custom web application development gives you a digital tool designed precisely for your business, your team, and your customers. At Byte Digital, we build custom web applications that solve real business problems — whether you need a booking system that eliminates phone tag, a CRM that actually fits your sales process, or a workflow automation platform that saves your team hours every week.</p>
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Types of Custom Web Applications We Build</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Every business has processes that could be faster, more accurate, or more scalable with the right software. Here are the types of custom applications we most frequently build for Christchurch and Canterbury businesses.</p>
-
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Booking and Scheduling Systems</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Online booking is no longer a nice-to-have for Christchurch service businesses. Customers expect to book appointments, consultations, and services online at their convenience. We build custom booking systems that integrate with your calendar, manage availability, handle cancellations and rescheduling, send automated reminders via email and SMS, process payments at booking, and provide admin dashboards for your team. Whether you run a healthcare practice in Merivale, a beauty salon in Sydenham, or a fitness studio in Addington, we build booking flows that convert and reduce administrative workload.</p>
-
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">CRM Integrations and Customer Portals</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Managing customer relationships effectively is critical for Christchurch businesses that rely on repeat business and referrals. We build custom CRM integrations that connect your website to platforms like HubSpot, Salesforce, or Pipedrive, ensuring every enquiry, interaction, and transaction is captured and organised. For businesses that need something more tailored, we build custom CRM platforms with features specific to your industry, complete with client portals that allow your customers to view their account history, track orders, submit requests, and communicate with your team directly.</p>
-
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Workflow Automation Platforms</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Many Christchurch businesses waste significant time on manual processes that could be automated. We build workflow automation platforms that handle form processing and data entry, document generation and management, approval chains and notification systems, inventory tracking and reorder alerts, invoice generation and payment tracking, staff scheduling and task assignment. By automating these processes, your team can focus on high-value activities that grow your business rather than repetitive administrative tasks.</p>
-
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Chatbot and AI Integration</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">AI-powered chatbots and virtual assistants can handle customer enquiries around the clock, qualify leads, provide instant responses to common questions, and escalate complex issues to your team. We integrate AI capabilities from providers like OpenAI and Google into custom web applications that serve your Christchurch customers intelligently. This includes customer service chatbots that resolve common enquiries without human intervention, lead qualification bots that capture information and route enquiries to the right team member, and internal AI tools that help your team work more efficiently with data analysis, content generation, and intelligent search.</p>
-
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Data Dashboards and Reporting Tools</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Making data-driven decisions requires access to clear, actionable information. We build custom dashboards that aggregate data from multiple sources into a single, intuitive interface. Whether you need to track sales performance, monitor project timelines, analyse customer behaviour, or manage financial KPIs, our custom reporting tools present your Christchurch business data in ways that drive better decisions.</p>
-
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Our Development Process</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Building a custom web application is a significant investment, and we treat it with the rigour it deserves. Our process is designed to minimise risk, maximise clarity, and deliver a solution that genuinely solves your business problem.</p>
-
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Discovery and Requirements</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We start by understanding your business processes, pain points, and objectives in detail. We map out current workflows, identify inefficiencies, and define exactly what the application needs to do. This phase includes stakeholder interviews, process documentation, feature prioritisation, and technical feasibility assessment. The output is a detailed requirements document and project roadmap that we both agree on before development begins.</p>
-
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">UX Design and Prototyping</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Before writing a single line of code, we design the user experience. We create wireframes and interactive prototypes that show exactly how the application will work. This allows you to test the flow, provide feedback, and refine the design before development, which is significantly cheaper and faster than making changes after code is written. We focus on creating interfaces that are intuitive for your Christchurch team and your customers.</p>
-
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Agile Development</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We develop in iterative sprints, typically two weeks long, with regular check-ins and demos. This approach means you see progress continuously, can provide feedback early, and can adjust priorities as the project evolves. We use modern development technologies including React, Next.js, Node.js, and TypeScript, with databases like PostgreSQL and MongoDB selected based on your data requirements.</p>
-
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Testing and Quality Assurance</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Every feature goes through thorough testing before deployment. This includes functional testing to verify features work as specified, user acceptance testing with your actual team, performance testing under expected and peak loads, security testing to identify vulnerabilities, and cross-browser and cross-device compatibility testing.</p>
-
-        <h3 style="color:#fff;font-weight:700;font-size:22px;margin-top:36px;margin-bottom:16px">Deployment and Training</h3>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We deploy your application to production with zero-downtime strategies, provide comprehensive documentation and training for your Christchurch team, and offer a post-launch support period to address any issues that arise. We also set up monitoring and alerting systems that proactively identify and resolve potential problems before they affect your users.</p>
-
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Technology Choices for Custom Applications</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We select technologies based on your project requirements, team capabilities, and long-term goals. Our core stack includes React and Next.js for interactive front-ends, Node.js and Express for back-end APIs, PostgreSQL for relational data, MongoDB for flexible document storage, Redis for caching and session management, and cloud infrastructure on AWS, Vercel, or Netlify for reliable, scalable hosting. We also integrate with NZ-specific services and APIs that your Christchurch business relies on.</p>
-
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">The ROI of Custom Software for Christchurch Businesses</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Custom software is an investment that delivers measurable returns. Christchurch businesses that invest in bespoke applications typically see reduced administrative costs through automation, improved customer satisfaction through better service delivery, increased revenue through streamlined conversion processes, better data visibility for strategic decision-making, competitive advantage through capabilities that off-the-shelf software cannot provide, and scalability that accommodates growth without friction.</p>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">The cost of doing nothing, continuing to rely on spreadsheets, manual processes, and software that does not quite fit, often exceeds the investment in a custom solution within the first year.</p>
-
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why Choose Byte Digital for Custom Applications</h2>
-        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
-          <li style="margin-bottom:12px"><strong style="color:#fff">Business-first approach:</strong> We solve business problems, not just write code</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Full IP ownership:</strong> You own the source code, no vendor lock-in</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Modern technology:</strong> Current, maintainable stack that any developer can work with</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Agile process:</strong> Iterative development with continuous visibility and feedback</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">NZ integrations:</strong> Experience connecting with NZ payment, shipping, accounting, and business platforms</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Ongoing support:</strong> Maintenance and enhancement services after launch</li>
+        <h3>What we build</h3>
+        <ul>
+          <li><strong>Booking and scheduling systems</strong> — online booking with calendar integration, automated reminders, and payment processing</li>
+          <li><strong>CRM integrations and customer portals</strong> — connecting HubSpot, Salesforce, or custom platforms with your website</li>
+          <li><strong>Workflow automation platforms</strong> — form processing, document generation, approval chains, and inventory tracking</li>
+          <li><strong>Chatbot and AI integration</strong> — customer service bots, lead qualification, and intelligent search using OpenAI and Google</li>
+          <li><strong>Data dashboards and reporting tools</strong> — aggregated data from multiple sources in a single, intuitive interface</li>
         </ul>
 
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">If your Christchurch business has a process, problem, or opportunity that off-the-shelf software cannot address, let us explore a custom solution together. Contact us for a free discovery consultation.</p>
+      </div>
+
+      <div class="service-content-wide" style="position:relative;z-index:1">
+        <FeatureGrid columns={2} items={[
+          {
+            icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+            title: 'Booking Systems',
+            description: 'Calendar integration, automated reminders, payment processing, and admin dashboards.',
+            color: 'purple'
+          },
+          {
+            icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+            title: 'CRM & Portals',
+            description: 'Custom CRM platforms with client portals for account history, orders, and communication.',
+            color: 'mint'
+          },
+          {
+            icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+            title: 'Workflow Automation',
+            description: 'Form processing, approval chains, invoicing, scheduling, and inventory management.',
+            color: 'white'
+          },
+          {
+            icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+            title: 'AI & Chatbots',
+            description: 'Customer service bots, lead qualification, and intelligent search powered by OpenAI and Google.',
+            color: 'purple'
+          },
+        ]} />
+      </div>
+
+      <div class="service-content" style="position:relative;z-index:1">
+
+        <h2 class="heading-accent">Our Development Process</h2>
+        <p>Building a custom web application is a significant investment, and we treat it with the rigour it deserves. Our process minimises risk, maximises clarity, and delivers a solution that genuinely solves your business problem.</p>
+
+        <h3>1. Discovery and Requirements</h3>
+        <p>We start by understanding your business processes, pain points, and objectives in detail. We map out current workflows, identify inefficiencies, and define exactly what the application needs to do. The output is a detailed requirements document and project roadmap that we both agree on before development begins.</p>
+
+        <h3>2. UX Design and Prototyping</h3>
+        <p>Before writing a single line of code, we create wireframes and interactive prototypes that show exactly how the application will work. This allows you to test the flow and refine the design before development — significantly cheaper and faster than making changes after code is written.</p>
+
+        <h3>3. Agile Development</h3>
+        <p>We develop in iterative two-week sprints with regular check-ins and demos. You see progress continuously, can provide feedback early, and can adjust priorities as the project evolves. Our stack includes React, Next.js, Node.js, and TypeScript, with PostgreSQL and MongoDB selected based on your data requirements.</p>
+
+        <h3>4. Testing and Deployment</h3>
+        <p>Every feature goes through thorough testing — functional, user acceptance, performance, security, and cross-device compatibility. We deploy with zero-downtime strategies and set up monitoring and alerting systems that proactively identify potential problems.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal dm-edge-bottom" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <div class="service-content">
+
+        <h2 class="heading-accent">Technology and ROI</h2>
+        <p>We select technologies based on your project requirements and long-term goals. Our core stack includes <strong>React and Next.js</strong> for interactive front-ends, <strong>Node.js and TypeScript</strong> for back-end APIs, <strong>PostgreSQL and MongoDB</strong> for data storage, and <strong>AWS, Vercel, or Netlify</strong> for cloud hosting. We also integrate with NZ-specific services — payment gateways, shipping APIs, accounting software, and business platforms your Christchurch operation relies on.</p>
+
+        <p>Custom software is an investment that delivers measurable returns. Christchurch businesses that invest in bespoke applications typically see reduced administrative costs, improved customer satisfaction, increased revenue through streamlined conversions, better data visibility, and competitive advantage through capabilities that off-the-shelf software cannot provide.</p>
+
+        <ContentStats stats={[
+          { value: '$10k–$50k+', label: 'Typical investment range' },
+          { value: '8–12 weeks', label: 'Booking system timeline' },
+          { value: '100%', label: 'Source code ownership' }
+        ]} />
+
+        <CalloutBox type="highlight" title="Free Discovery Consultation">
+          <p style="margin:0">Not sure if a custom web application is right for your Christchurch business? Book a free discovery consultation. We will review your current processes, identify automation opportunities, and provide a no-obligation recommendation.</p>
+        </CalloutBox>
+
+        <h2 class="heading-accent">Why Choose Byte Digital</h2>
+        <ul>
+          <li><strong>Business-first approach:</strong> We solve business problems, not just write code</li>
+          <li><strong>Full IP ownership:</strong> You own the source code, no vendor lock-in</li>
+          <li><strong>Modern technology:</strong> Current, maintainable stack that any developer can work with</li>
+          <li><strong>Agile process:</strong> Iterative development with continuous visibility and feedback</li>
+          <li><strong>NZ integrations:</strong> Experience with NZ payment, shipping, and accounting platforms</li>
+          <li><strong>Ongoing support:</strong> Maintenance and enhancement services after launch</li>
+        </ul>
+
+        <p>If your Christchurch business has a process, problem, or opportunity that off-the-shelf software cannot address, let us explore a custom solution together.</p>
 
       </div>
     </div>

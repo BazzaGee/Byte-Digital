@@ -1,0 +1,28 @@
+---
+export interface Props {
+  title: string;
+  items: Array<{
+    icon?: string;
+    text: string;
+    highlight?: string;
+  }>;
+}
+
+const { title, items } = Astro.props;
+---
+
+<div class="icon-list">
+  <h3 class="icon-list-title">{title}</h3>
+  <ul class="icon-list-items">
+    {items.map(item => (
+      <li>
+        {item.icon ? (
+          <span class="icon-list-icon" set:html={item.icon} />
+        ) : (
+          <svg class="icon-list-check" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+        )}
+        <span>{item.highlight ? <><strong>{item.highlight}</strong>{item.text.replace(item.highlight, '')}</> : item.text}</span>
+      </li>
+    ))}
+  </ul>
+</div>

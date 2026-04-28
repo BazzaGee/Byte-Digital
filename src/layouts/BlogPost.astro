@@ -38,7 +38,7 @@ import { getCollection } from 'astro:content';
 import { getRelatedPosts, allServices } from '../utils/content-relations';
 
 const allBlogPosts = (await getCollection('blog')).map(p => ({
-  slug: p.slug,
+  slug: p.id,
   title: p.data.title,
   description: p.data.description,
   category: p.data.category,
@@ -74,10 +74,14 @@ const relatedPosts = slug
     </div>
   </PageHero>
   <Divider />
-  <article class="section">
-    <div class="container">
+  <article class="section dm-edge-top section-glow">
+    <div class="glow-orb purple top-left"></div>
+    <div class="glow-orb mint bottom-right"></div>
+    <div class="container" style="position:relative;z-index:1">
       <div class="dm-header" style="margin-bottom:48px">
-        <slot />
+        <div class="article-prose">
+          <slot />
+        </div>
       </div>
     </div>
   </article>

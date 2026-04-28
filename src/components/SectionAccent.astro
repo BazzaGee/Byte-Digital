@@ -1,0 +1,11 @@
+---
+export interface Props {
+  wide?: boolean;
+}
+
+const { wide = false } = Astro.props;
+---
+
+<div class="section-accent">
+  <div class={"section-accent-track" + (wide ? " wide" : "")}></div>
+</div>

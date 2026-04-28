@@ -34,6 +34,7 @@ const { label, title, subtitle, breadcrumbs = [], dotMatrix = false, dmId = 'dm-
     {label && <div class="section-label">{label}</div>}
     <h1 class="page-hero-title" set:html={title} />
     {subtitle && <p class="page-hero-subtitle">{subtitle}</p>}
+    <span class="hero-accent-line"></span>
     <slot />
   </div>
 </section>

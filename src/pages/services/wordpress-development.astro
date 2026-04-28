@@ -5,6 +5,8 @@ import RelatedPosts from '../../components/RelatedPosts.astro';
 import RelatedCaseStudies from '../../components/RelatedCaseStudies.astro';
 import RelatedGuides from '../../components/RelatedGuides.astro';
 import RelatedServices from '../../components/RelatedServices.astro';
+import IconList from '../../components/IconList.astro';
+import CalloutBox from '../../components/CalloutBox.astro';
 import { getCollection } from 'astro:content';
 import { getRelatedPosts, getRelatedGuides, getRelatedCaseStudies } from '../../utils/content-relations';
 
@@ -51,7 +53,7 @@ const jsonLd = {
 };
 
 const allBlogPosts = (await getCollection('blog')).map(p => ({
-  slug: p.slug,
+  slug: p.id,
   title: p.data.title,
   description: p.data.description,
   category: p.data.category,
@@ -60,7 +62,7 @@ const allBlogPosts = (await getCollection('blog')).map(p => ({
 })).sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
 
 const allCaseStudies = (await getCollection('case-studies')).map(p => ({
-  slug: p.slug,
+  slug: p.id,
   title: p.data.title,
   client: p.data.client,
   industry: p.data.industry,
@@ -80,79 +82,95 @@ const relatedCaseStudies = getRelatedCaseStudies('wordpress-development', allCas
   serviceSubtitle="Custom WordPress solutions that are fast, secure, and built to grow with your business."
   jsonLd={jsonLd}
 >
-  <section class="section dot-pattern">
+  <section class="section section-glow dm-edge-top">
+    <div class="glow-orb purple top-left"></div>
+    <div class="glow-orb mint bottom-right"></div>
     <div class="container">
-      <div style="max-width:800px;margin:0 auto">
+      <div class="service-content" style="position:relative;z-index:1">
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-bottom:16px">Expert WordPress Development for Christchurch Businesses</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">WordPress powers more than forty percent of all websites globally, and its market share in New Zealand is equally significant. For many Christchurch businesses, WordPress remains a practical and powerful platform for managing web content. However, a WordPress site is only as good as the development behind it. A poorly built WordPress site can be slow, insecure, and difficult to maintain, while a well-architected WordPress installation can be fast, reliable, and a pleasure to manage.</p>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">At Byte Digital, we bring modern development practices to WordPress. We do not rely on page builders that produce bloated code. We build custom themes with clean, semantic HTML, optimise performance rigorously, and harden security to protect your Christchurch business from threats. When WordPress is the right tool for the job, we make it shine.</p>
+        <h2 class="heading-accent">Expert WordPress Development for Christchurch Businesses</h2>
+        <p>WordPress powers more than forty percent of all websites globally, and its market share in New Zealand is equally significant. For many Christchurch businesses, WordPress remains a practical and powerful platform for managing web content. However, a WordPress site is only as good as the development behind it. A poorly built WordPress site can be slow, insecure, and difficult to maintain, while a well-architected WordPress installation can be fast, reliable, and a pleasure to manage.</p>
+        <p>At Byte Digital, we bring modern development practices to WordPress. We do not rely on page builders that produce bloated code. We build custom themes with clean, semantic HTML, optimise performance rigorously, and harden security to protect your Christchurch business from threats. When WordPress is the right tool for the job, we make it shine.</p>
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Custom WordPress Theme Development</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Unlike agencies still using dated WordPress templates or visual page builders that generate excessive code, we build custom WordPress themes from scratch. Every theme we develop is designed specifically for your Christchurch business, coded to WordPress standards, and optimised for speed and SEO.</p>
-        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
-          <li style="margin-bottom:12px"><strong style="color:#fff">Semantic HTML structure</strong> that ensures accessibility and search engine crawlability</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Custom post types and taxonomies</strong> tailored to your content structure, whether you are a Christchurch real estate agent managing property listings or a restaurant managing menus</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Advanced Custom Fields integration</strong> that gives your team intuitive content editing controls without the overhead of page builders</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Responsive design</strong> that works flawlessly across phones, tablets, and desktops</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Gutenberg compatibility</strong> with custom block patterns and templates that make content creation efficient</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Performance optimisation</strong> including lazy loading, image optimisation, minimal CSS and JavaScript, and efficient database queries</li>
+        <h2 class="heading-accent">Custom WordPress Theme Development</h2>
+        <p>Unlike agencies still using dated WordPress templates or visual page builders that generate excessive code, we build custom WordPress themes from scratch. Every theme we develop is designed specifically for your Christchurch business, coded to WordPress standards, and optimised for speed and SEO.</p>
+        <h3>Custom Theme Features</h3>
+        <ul>
+          <li><strong>Semantic HTML structure</strong> that ensures accessibility and search engine crawlability</li>
+          <li><strong>Custom post types and taxonomies</strong> tailored to your content structure, whether you are a Christchurch real estate agent managing property listings or a restaurant managing menus</li>
+          <li><strong>Advanced Custom Fields integration</strong> that gives your team intuitive content editing controls without the overhead of page builders</li>
+          <li><strong>Responsive design</strong> that works flawlessly across phones, tablets, and desktops</li>
+          <li><strong>Gutenberg compatibility</strong> with custom block patterns and templates that make content creation efficient</li>
+          <li><strong>Performance optimisation</strong> including lazy loading, image optimisation, minimal CSS and JavaScript, and efficient database queries</li>
         </ul>
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Custom Plugin Development</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">When existing WordPress plugins do not meet your requirements, we develop custom solutions. Off-the-shelf plugins often include features you do not need, creating unnecessary bloat and potential security vulnerabilities. Our custom plugins are lean, purpose-built, and designed to do exactly what your Christchurch business needs.</p>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We have built custom WordPress plugins for a wide range of functions including booking and scheduling systems, membership and user management platforms, data import and export tools, integration with third-party APIs and CRMs, custom calculators and quoting tools, and <a href="/services/ecommerce" style="color:var(--secondary)">eCommerce</a> functionality extensions. Every plugin follows WordPress coding standards and is fully documented for future maintainability.</p>
+        <h2 class="heading-accent">Custom Plugin Development</h2>
+        <p>When existing WordPress plugins do not meet your requirements, we develop custom solutions. Off-the-shelf plugins often include features you do not need, creating unnecessary bloat and potential security vulnerabilities. Our custom plugins are lean, purpose-built, and designed to do exactly what your Christchurch business needs.</p>
+        <p>We have built custom WordPress plugins for a wide range of functions including booking and scheduling systems, membership and user management platforms, data import and export tools, integration with third-party APIs and CRMs, custom calculators and quoting tools, and <a href="/services/ecommerce">eCommerce</a> functionality extensions. Every plugin follows WordPress coding standards and is fully documented for future maintainability.</p>
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">WordPress Performance Optimisation</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">WordPress has a reputation for being slow, but this is almost always the result of poor development, excessive plugins, and inadequate hosting, not the platform itself. We specialise in diagnosing and resolving WordPress performance issues for Christchurch businesses.</p>
-        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
-          <li style="margin-bottom:12px"><strong style="color:#fff">Plugin audit:</strong> Identifying and replacing resource-heavy plugins with lighter alternatives or custom code</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Database optimisation:</strong> Cleaning post revisions, transients, spam comments, and optimising database tables</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Caching configuration:</strong> Page caching, object caching with Redis, browser caching, and CDN integration</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Image optimisation:</strong> Automatic compression, WebP conversion, lazy loading, and responsive image handling</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Code optimisation:</strong> Minifying CSS and JavaScript, eliminating render-blocking resources, and deferring non-critical scripts</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Hosting evaluation:</strong> Recommending NZ-based hosting providers configured for optimal WordPress performance</li>
+        <h2 class="heading-accent">WordPress Performance Optimisation</h2>
+        <p>WordPress has a reputation for being slow, but this is almost always the result of poor development, excessive plugins, and inadequate hosting, not the platform itself. We specialise in diagnosing and resolving WordPress performance issues for Christchurch businesses.</p>
+        <h3>Performance Optimisation Steps</h3>
+        <ul>
+          <li><strong>Plugin audit:</strong> Identifying and replacing resource-heavy plugins with lighter alternatives or custom code</li>
+          <li><strong>Database optimisation:</strong> Cleaning post revisions, transients, spam comments, and optimising database tables</li>
+          <li><strong>Caching configuration:</strong> Page caching, object caching with Redis, browser caching, and CDN integration</li>
+          <li><strong>Image optimisation:</strong> Automatic compression, WebP conversion, lazy loading, and responsive image handling</li>
+          <li><strong>Code optimisation:</strong> Minifying CSS and JavaScript, eliminating render-blocking resources, and deferring non-critical scripts</li>
+          <li><strong>Hosting evaluation:</strong> Recommending NZ-based hosting providers configured for optimal WordPress performance</li>
         </ul>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Our WordPress performance work consistently achieves sub-two-second load times, even for content-rich sites with thousands of pages.</p>
+        <p>Our WordPress performance work consistently achieves sub-two-second load times, even for content-rich sites with thousands of pages.</p>
 
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">WordPress Security Hardening</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">WordPress is the most targeted content management system by hackers simply because of its market share. However, the vast majority of WordPress compromises are the result of outdated software, weak passwords, and poor server configuration, all of which are preventable.</p>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Our WordPress security service implements multiple layers of protection:</p>
-        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
-          <li style="margin-bottom:12px"><strong style="color:#fff">Login hardening:</strong> Rate limiting, two-factor authentication, and hiding the admin login URL</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">File integrity monitoring:</strong> Alerts when core files, themes, or plugins are modified unexpectedly</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Malware scanning:</strong> Regular automated scans that detect and alert on malicious code</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Firewall configuration:</strong> Web application firewall rules that block common attack patterns</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Automatic updates:</strong> Core, theme, and plugin updates applied promptly after testing</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Automated backups:</strong> Daily off-site backups with one-click restoration capability</li>
-        </ul>
-
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">WordPress Migration Services</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">If your existing WordPress site is on poor hosting, using an outdated theme, or has become unmaintainable, we can migrate it to a modern, high-performance setup. We handle the entire migration process including setting up a new hosting environment, migrating all content, media, and database records, reconfiguring email and DNS, implementing a new custom theme, testing every page and function, and redirecting old URLs to preserve your SEO rankings.</p>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">For businesses that have outgrown WordPress entirely, we also offer migration to modern platforms like Astro or Next.js with a headless CMS. We preserve your content, maintain your SEO authority, and deliver a significantly faster, more secure website.</p>
-
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">WordPress vs Modern Frameworks: When to Use What</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We are committed to recommending the best platform for your specific situation, even if that means recommending something other than WordPress. Here is our honest assessment:</p>
-        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
-          <li style="margin-bottom:12px"><strong style="color:#fff">Choose WordPress when:</strong> You need a content-heavy site with multiple content types, your team is comfortable with the WordPress admin, you need extensive plugin ecosystem access, or you require multisite capabilities</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Choose a modern framework when:</strong> Performance is a top priority, you need advanced interactive features, your site is primarily a marketing or lead generation tool, or you want to minimise security maintenance overhead</li>
-        </ul>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">We will never push WordPress simply because it generates more ongoing <a href="/services/website-maintenance" style="color:var(--secondary)">maintenance</a> revenue. Our recommendation is always based on what serves your Christchurch business best.</p>
-
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">WordPress for eCommerce (WooCommerce)</h2>
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">WooCommerce transforms WordPress into a fully functional eCommerce platform. We build WooCommerce stores with custom product types, advanced filtering, NZ payment gateway integration, shipping configuration, and optimised checkout flows. WooCommerce is particularly well-suited for Christchurch businesses that need tight integration between their online store and their content or blog.</p>
-
-        <h2 style="color:#fff;font-weight:700;font-size:28px;margin-top:48px;margin-bottom:16px">Why Choose Byte Digital for WordPress in Christchurch</h2>
-        <ul style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8;padding-left:24px">
-          <li style="margin-bottom:12px"><strong style="color:#fff">Modern development practices:</strong> Clean code, no page builder dependency, performance-first approach</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Honest platform recommendations:</strong> We recommend WordPress only when it genuinely is the best choice</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Custom development:</strong> Themes and plugins built specifically for your business, not modified templates</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Security expertise:</strong> Comprehensive hardening and ongoing monitoring</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Performance focus:</strong> Sub-two-second load times, not the four to six seconds common with poorly built WordPress sites</li>
-          <li style="margin-bottom:12px"><strong style="color:#fff">Local Christchurch support:</strong> Direct communication with your development team, no overseas ticket systems</li>
+        <h2 class="heading-accent">WordPress Security Hardening</h2>
+        <p>WordPress is the most targeted content management system by hackers simply because of its market share. However, the vast majority of WordPress compromises are the result of outdated software, weak passwords, and poor server configuration, all of which are preventable.</p>
+        <p>Our WordPress security service implements multiple layers of protection:</p>
+        <h3>Security Protection Layers</h3>
+        <ul>
+          <li><strong>Login hardening:</strong> Rate limiting, two-factor authentication, and hiding the admin login URL</li>
+          <li><strong>File integrity monitoring:</strong> Alerts when core files, themes, or plugins are modified unexpectedly</li>
+          <li><strong>Malware scanning:</strong> Regular automated scans that detect and alert on malicious code</li>
+          <li><strong>Firewall configuration:</strong> Web application firewall rules that block common attack patterns</li>
+          <li><strong>Automatic updates:</strong> Core, theme, and plugin updates applied promptly after testing</li>
+          <li><strong>Automated backups:</strong> Daily off-site backups with one-click restoration capability</li>
         </ul>
 
-        <p style="color:var(--text-secondary);margin-bottom:20px;line-height:1.8">Whether you need a new WordPress site, want to improve an existing one, or are considering migrating to a modern platform, we can help. Contact us for a free consultation about your WordPress project.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <div class="service-content">
+
+        <h2 class="heading-accent">WordPress Migration Services</h2>
+        <p>If your existing WordPress site is on poor hosting, using an outdated theme, or has become unmaintainable, we can migrate it to a modern, high-performance setup. We handle the entire migration process including setting up a new hosting environment, migrating all content, media, and database records, reconfiguring email and DNS, implementing a new custom theme, testing every page and function, and redirecting old URLs to preserve your SEO rankings.</p>
+        <p>For businesses that have outgrown WordPress entirely, we also offer migration to modern platforms like Astro or Next.js with a headless CMS. We preserve your content, maintain your SEO authority, and deliver a significantly faster, more secure website.</p>
+
+        <h2 class="heading-accent">WordPress vs Modern Frameworks: When to Use What</h2>
+        <p>We are committed to recommending the best platform for your specific situation, even if that means recommending something other than WordPress. Here is our honest assessment:</p>
+        <h3>WordPress vs Modern Frameworks</h3>
+        <ul>
+          <li><strong>Choose WordPress when:</strong> You need a content-heavy site with multiple content types, your team is comfortable with the WordPress admin, you need extensive plugin ecosystem access, or you require multisite capabilities</li>
+          <li><strong>Choose a modern framework when:</strong> Performance is a top priority, you need advanced interactive features, your site is primarily a marketing or lead generation tool, or you want to minimise security maintenance overhead</li>
+        </ul>
+        <p>We will never push WordPress simply because it generates more ongoing <a href="/services/website-maintenance">maintenance</a> revenue. Our recommendation is always based on what serves your Christchurch business best.</p>
+
+        <h2 class="heading-accent">WordPress for eCommerce (WooCommerce)</h2>
+        <p>WooCommerce transforms WordPress into a fully functional eCommerce platform. We build WooCommerce stores with custom product types, advanced filtering, NZ payment gateway integration, shipping configuration, and optimised checkout flows. WooCommerce is particularly well-suited for Christchurch businesses that need tight integration between their online store and their content or blog.</p>
+
+        <h2 class="heading-accent">Why Choose Byte Digital for WordPress in Christchurch</h2>
+        <IconList title="Why Byte Digital for WordPress" items={[
+          { highlight: 'Modern development practices:', text: ' Clean code, no page builder dependency, performance-first approach' },
+          { highlight: 'Honest platform recommendations:', text: ' We recommend WordPress only when it genuinely is the best choice' },
+          { highlight: 'Custom development:', text: ' Themes and plugins built specifically for your business, not modified templates' },
+          { highlight: 'Security expertise:', text: ' Comprehensive hardening and ongoing monitoring' },
+          { highlight: 'Performance focus:', text: ' Sub-two-second load times, not the four to six seconds common with poorly built WordPress sites' },
+          { highlight: 'Local Christchurch support:', text: ' Direct communication with your development team, no overseas ticket systems' },
+        ]} />
+
+        <CalloutBox type="highlight" title="Free Consultation">
+          <p>Whether you need a new WordPress site, want to improve an existing one, or are considering migrating to a modern platform, we can help. Contact us for a free consultation about your WordPress project.</p>
+        </CalloutBox>
 
       </div>
     </div>

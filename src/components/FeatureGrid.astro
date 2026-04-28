@@ -1,0 +1,23 @@
+---
+export interface Props {
+  items: Array<{
+    icon: string;
+    title: string;
+    description: string;
+    color?: 'purple' | 'mint' | 'white';
+  }>;
+  columns?: number;
+}
+
+const { items, columns = 3 } = Astro.props;
+---
+
+<div class="feature-grid" style={`grid-template-columns:repeat(${columns},1fr)`}>
+  {items.map(item => (
+    <div class={"feature-grid-card glass " + (item.color || 'purple') + "-hover"}>
+      <div class={"feature-grid-icon " + (item.color || 'purple')} set:html={item.icon} />
+      <h3>{item.title}</h3>
+      <p>{item.description}</p>
+    </div>
+  ))}
+</div>

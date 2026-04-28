@@ -2,3 +2,5 @@ node_modules/
 dist/
 .astro/
 .playwright-mcp/
+worker/node_modules/
+nul

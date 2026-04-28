@@ -9,7 +9,7 @@ interface AnimStyle {
 export function initScrollVideo(): void {
   const canvas = document.getElementById('frame-canvas') as HTMLCanvasElement | null;
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { alpha: false });
   if (!ctx) return;
 
   const section = document.getElementById('scroll-video');
@@ -21,6 +21,8 @@ export function initScrollVideo(): void {
 
   canvas.width = 1920;
   canvas.height = 1080;
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'medium';
 
   const images: HTMLImageElement[] = [];
   let loaded = 0;
@@ -44,7 +46,6 @@ export function initScrollVideo(): void {
     if (idx === curFrame || idx < 0 || idx >= TOTAL) return;
     if (!images[idx] || !images[idx].complete) return;
     curFrame = idx;
-    ctx.clearRect(0, 0, 1920, 1080);
     ctx.drawImage(images[idx], 0, 0, 1920, 1080);
   }
 
@@ -81,8 +82,27 @@ export function initScrollVideo(): void {
     return t * t * t;
   }
 
+  let cachedVh = window.innerHeight;
+  let cachedOffsetHeight = section ? section.offsetHeight : 0;
+  let cachedSectionTop = section ? section.offsetTop : 0;
+
+  function recalcLayout(): void {
+    cachedVh = window.innerHeight;
+    if (section) {
+      cachedOffsetHeight = section.offsetHeight;
+      cachedSectionTop = section.offsetTop;
+    }
+  }
+
+  window.addEventListener('resize', () => {
+    recalcLayout();
+  }, { passive: true });
+
+  const prevOpacity = new Float32Array(cards.length).fill(-1);
+
   function updateCards(progress: number): void {
     let anyVisible = false;
+
     for (let i = 0; i < cards.length; i++) {
       const seg = segments[i];
       const anim = animStyles[i];
@@ -90,16 +110,13 @@ export function initScrollVideo(): void {
       if (!el || !seg || !anim) continue;
 
       let opacity = 0;
-      let tx = 0,
-        ty = 0,
-        s = 1;
+      let tx = 0, ty = 0, s = 1;
 
       if (progress >= seg.start && progress <= seg.end) {
         anyVisible = true;
         const range = seg.end - seg.start;
         const local = (progress - seg.start) / range;
-        const midStart = 0.3,
-          midEnd = 0.7;
+        const midStart = 0.3, midEnd = 0.7;
 
         if (local < midStart) {
           const t = easeOutCubic(local / midStart);
@@ -109,9 +126,6 @@ export function initScrollVideo(): void {
           s = anim.enter.scale + (1 - anim.enter.scale) * t;
         } else if (local <= midEnd) {
           opacity = 1;
-          ty = 0;
-          tx = 0;
-          s = 1;
         } else {
           const t2 = easeInCubic((local - midEnd) / (1 - midEnd));
           opacity = 1 - t2;
@@ -121,8 +135,20 @@ export function initScrollVideo(): void {
         }
       }
 
-      el.style.opacity = Math.max(0, Math.min(1, opacity)).toFixed(3);
-      el.style.transform = `translate(${tx.toFixed(1)}px,${ty.toFixed(1)}px) scale(${s.toFixed(3)})`;
+      opacity = Math.max(0, Math.min(1, opacity));
+
+      if (opacity === 0 && prevOpacity[i] === 0) continue;
+
+      prevOpacity[i] = opacity;
+
+      if (opacity === 0) {
+        el.style.opacity = '0';
+        el.style.transform = 'translate3d(0,0,0) scale(1)';
+        continue;
+      }
+
+      el.style.opacity = opacity.toFixed(3);
+      el.style.transform = `translate3d(${tx.toFixed(1)}px,${ty.toFixed(1)}px,0) scale(${s.toFixed(3)})`;
     }
 
     if (darkOverlay) {
@@ -132,10 +158,10 @@ export function initScrollVideo(): void {
 
   function onScroll(): void {
     if (!section) return;
-    const rect = section.getBoundingClientRect();
-    const top = rect.top;
-    const vh = window.innerHeight;
-    const scrollable = section.offsetHeight - vh;
+
+    const scrollY = window.scrollY;
+    const top = cachedSectionTop - scrollY;
+    const scrollable = cachedOffsetHeight - cachedVh;
 
     if (top > 0) {
       draw(0);
@@ -180,6 +206,7 @@ export function initScrollVideo(): void {
   );
 
   loadAll().then(() => {
+    recalcLayout();
     draw(0);
     onScroll();
   });

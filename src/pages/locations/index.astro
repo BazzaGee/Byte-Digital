@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import FAQAccordion from '../../components/FAQAccordion.astro';
 import CTASection from '../../components/CTASection.astro';
 import PageHero from '../../components/PageHero.astro';
+import SectionAccent from '../../components/SectionAccent.astro';
 
 const suburbs = [
   { name: 'Addington', href: '/locations/addington', tagline: 'Near Christchurch Hospital & Showgrounds' },
@@ -77,7 +78,7 @@ const jsonLd = {
     subtitle="We help businesses in 20+ Christchurch suburbs build websites that rank, convert, and grow revenue. Whether you are in Riccarton, Halswell, or Sumner — we know your local market."
   />
 
-  <section class="section reveal" style="padding-top:0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+  <section class="section reveal dm-edge-top" style="padding-top:0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
     <div class="container">
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px">
         {suburbs.map(suburb => (
@@ -97,8 +98,12 @@ const jsonLd = {
     </div>
   </section>
 
-  <section style="background:var(--bg-dark);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
-    <div class="container">
+  <SectionAccent wide />
+
+  <section class="section reveal section-glow" style="background:var(--bg-dark);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
+    <div class="glow-orb purple bottom-left"></div>
+    <div class="glow-orb mint top-right"></div>
+    <div class="container" style="position:relative;z-index:1">
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:32px;padding:64px 0">
         <div>
           <h3 style="font-size:20px;font-weight:600;margin:0 0 12px">Our Local Advantage</h3>
