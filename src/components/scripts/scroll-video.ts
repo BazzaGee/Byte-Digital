@@ -141,6 +141,10 @@ export function initScrollVideo(): void {
 
       opacity = Math.max(0, Math.min(1, opacity));
 
+      if (mq.matches && progress < 0.05) {
+        opacity = 0;
+      }
+
       if (opacity === 0 && prevOpacity[i] === 0) continue;
 
       prevOpacity[i] = opacity;
