@@ -86,7 +86,7 @@ import PageHero from '../components/PageHero.astro';
                 successEl.style.display = 'none';
                 errorEl.style.display = 'none';
 
-                fetch('/api/contact', {
+                fetch((location.hostname === 'bytedigital.co.nz' || location.hostname === 'www.bytedigital.co.nz' || location.hostname === 'byte-digital.pages.dev') ? '/api/contact' : 'https://bytedigital.co.nz/api/contact', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify(data)

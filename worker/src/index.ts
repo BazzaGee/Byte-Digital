@@ -13,8 +13,17 @@ function sanitize(input: string): string {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
+    const origin = request.headers.get("Origin") || "";
+    const allowedOrigins = [
+      "https://bytedigital.co.nz",
+      "https://www.bytedigital.co.nz",
+      "https://byte-digital.pages.dev",
+      "https://staging.byte-digital.pages.dev",
+    ];
+    const allowOrigin = allowedOrigins.includes(origin) ? origin : allowedOrigins[0];
+
     const corsHeaders = {
-      "Access-Control-Allow-Origin": "https://bytedigital.co.nz",
+      "Access-Control-Allow-Origin": allowOrigin,
       "Access-Control-Allow-Methods": "POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
     };

@@ -8,7 +8,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check"
+    "check": "astro check",
+    "deploy:staging": "wrangler pages deploy dist --branch=staging",
+    "deploy:production": "wrangler pages deploy dist"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",

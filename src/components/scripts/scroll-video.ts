@@ -1,5 +1,7 @@
 const TOTAL = 145;
 const DIR = '/frames/';
+const FRAME_W = 1920;
+const FRAME_H = 1080;
 
 interface AnimStyle {
   enter: { y?: number; x?: number; scale: number };
@@ -13,14 +15,16 @@ export function initScrollVideo(): void {
   if (!ctx) return;
 
   const section = document.getElementById('scroll-video');
+  const sticky = document.querySelector('.scroll-sticky') as HTMLElement | null;
+  const mq = window.matchMedia('(max-width: 768px)');
   const progressFill = document.getElementById('progress-fill');
   const frameCounter = document.getElementById('frame-counter');
   const scrollHint = document.getElementById('scroll-hint');
   const scrollIndicator = document.getElementById('scroll-indicator');
   const darkOverlay = document.getElementById('dark-overlay');
 
-  canvas.width = 1920;
-  canvas.height = 1080;
+  canvas.width = FRAME_W;
+  canvas.height = FRAME_H;
   ctx.imageSmoothingEnabled = true;
   ctx.imageSmoothingQuality = 'medium';
 
@@ -46,7 +50,7 @@ export function initScrollVideo(): void {
     if (idx === curFrame || idx < 0 || idx >= TOTAL) return;
     if (!images[idx] || !images[idx].complete) return;
     curFrame = idx;
-    ctx.drawImage(images[idx], 0, 0, 1920, 1080);
+    ctx.drawImage(images[idx], 0, 0, FRAME_W, FRAME_H);
   }
 
   const cards: HTMLElement[] = [];
@@ -170,11 +174,21 @@ export function initScrollVideo(): void {
       if (frameCounter) frameCounter.textContent = '000 / 144';
       if (scrollHint) scrollHint.style.opacity = '';
       if (scrollIndicator) scrollIndicator.style.opacity = '';
+      if (mq.matches && sticky) sticky.classList.remove('is-active');
       return;
     }
 
-    const p = Math.min(1, Math.max(0, -top / scrollable));
+    const rawP = -top / scrollable;
+    const p = Math.min(1, Math.max(0, rawP));
     const fi = Math.min(TOTAL - 1, Math.floor(p * (TOTAL - 1)));
+
+    if (mq.matches && sticky) {
+      if (rawP < 1) {
+        sticky.classList.add('is-active');
+      } else {
+        sticky.classList.remove('is-active');
+      }
+    }
 
     draw(fi);
     if (progressFill) progressFill.style.width = (p * 100).toFixed(1) + '%';
