@@ -9,13 +9,13 @@ const studies = (await getCollection('case-studies')).sort((a, b) => b.data.pubD
 ---
 
 <BaseLayout
-  title="Case Studies - Real Results for Christchurch Businesses"
-  description="See how Byte Digital has transformed websites and digital marketing for businesses across Christchurch and Canterbury. Real results, real growth."
+  title="Example Outcomes - What's Possible for Your Business"
+  description="See the kind of results Christchurch and Canterbury businesses can achieve with a professionally designed, conversion-focused website from Byte Digital."
 >
   <PageHero
-    label="Case Studies"
-    title="Real Results for<br /><span class='gradient-text'>Christchurch Businesses.</span>"
-    subtitle="See how we've helped local businesses across Christchurch and Canterbury transform their online presence and generate more leads."
+    label="Example Outcomes"
+    title="What's <span class='gradient-text'>possible for you.</span>"
+    subtitle="See the kind of results Christchurch and Canterbury businesses can achieve with a professionally designed, conversion-focused website."
   />
   <section class="section reveal" style="padding-top:0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
     <div class="container">
@@ -23,7 +23,7 @@ const studies = (await getCollection('case-studies')).sort((a, b) => b.data.pubD
         {studies.map(study => (
           <a href={`/case-studies/${study.id}`} class="case-item" style="text-decoration:none">
             <div class="case-visual glass" style="background:linear-gradient(135deg,rgba(139,120,230,0.05),transparent);align-items:center;justify-content:center">
-              <span style="color:var(--text-dimmed);font-size:14px">{study.data.client}</span>
+              <span style="color:var(--text-dimmed);font-size:14px">{study.data.industry}</span>
             </div>
             <div>
               <div class="case-badge purple">{study.data.industry}</div>
