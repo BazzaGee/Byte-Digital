@@ -2,7 +2,6 @@
 import SEOHead from '../components/SEOHead.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
-import Preloader from '../components/Preloader.astro';
 import '../styles/global.css';
 
 export interface Props {
@@ -33,7 +32,6 @@ const { title, description, canonicalURL, ogImage, ogType, noindex, jsonLd, page
   />
 </head>
 <body class={pageClass}>
-  <Preloader />
   <Navigation />
   <main>
     <slot />

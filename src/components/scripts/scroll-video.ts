@@ -1,7 +1,10 @@
 const TOTAL = 145;
 const DIR = '/frames/';
+const EXT = '.webp';
 const FRAME_W = 1920;
 const FRAME_H = 1080;
+const CHUNK_SIZE = 25;
+const PREFETCH_COUNT = 30;
 
 interface AnimStyle {
   enter: { y?: number; x?: number; scale: number };
@@ -28,29 +31,57 @@ export function initScrollVideo(): void {
   ctx.imageSmoothingEnabled = true;
   ctx.imageSmoothingQuality = 'medium';
 
-  const images: HTMLImageElement[] = [];
-  let loaded = 0;
+  const images: (HTMLImageElement | null)[] = new Array(TOTAL).fill(null);
   let curFrame = -1;
+  let highestLoaded = -1;
 
-  function loadAll(): Promise<void> {
+  function loadRange(from: number, to: number): Promise<number> {
     return new Promise((resolve) => {
-      for (let i = 0; i < TOTAL; i++) {
+      const clampedTo = Math.min(to, TOTAL - 1);
+      let count = 0;
+      const total = clampedTo - from + 1;
+      if (total <= 0) { resolve(from); return; }
+      for (let i = from; i <= clampedTo; i++) {
+        if (images[i]) { count++; if (count === total) resolve(clampedTo); continue; }
         const img = new Image();
-        img.src = DIR + 'frame_' + String(i).padStart(4, '0') + '.jpg';
+        img.src = DIR + 'frame_' + String(i).padStart(4, '0') + EXT;
         img.onload = img.onerror = () => {
-          loaded++;
-          if (loaded === TOTAL) resolve();
+          if (i > highestLoaded) highestLoaded = i;
+          count++;
+          if (count === total) resolve(clampedTo);
         };
         images[i] = img;
       }
     });
   }
 
+  function ensureLoaded(idx: number): void {
+    if (images[idx] && images[idx]!.complete) return;
+    const chunkStart = Math.floor(idx / CHUNK_SIZE) * CHUNK_SIZE;
+    const chunkEnd = Math.min(chunkStart + CHUNK_SIZE - 1, TOTAL - 1);
+    loadRange(chunkStart, chunkEnd);
+  }
+
+  async function loadProgressive(): Promise<void> {
+    const initialEnd = Math.min(PREFETCH_COUNT - 1, TOTAL - 1);
+    await loadRange(0, initialEnd);
+    draw(0);
+    onScroll();
+    for (let start = PREFETCH_COUNT; start < TOTAL; start += CHUNK_SIZE) {
+      const end = Math.min(start + CHUNK_SIZE - 1, TOTAL - 1);
+      await loadRange(start, end);
+    }
+  }
+
   function draw(idx: number): void {
     if (idx === curFrame || idx < 0 || idx >= TOTAL) return;
-    if (!images[idx] || !images[idx].complete) return;
+    const img = images[idx];
+    if (!img || !img.complete) {
+      ensureLoaded(idx);
+      return;
+    }
     curFrame = idx;
-    ctx.drawImage(images[idx], 0, 0, FRAME_W, FRAME_H);
+    ctx.drawImage(img, 0, 0, FRAME_W, FRAME_H);
   }
 
   const cards: HTMLElement[] = [];
@@ -223,9 +254,6 @@ export function initScrollVideo(): void {
     { passive: true }
   );
 
-  loadAll().then(() => {
-    recalcLayout();
-    draw(0);
-    onScroll();
-  });
+  recalcLayout();
+  loadProgressive();
 }
