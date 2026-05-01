@@ -209,7 +209,7 @@ export function initScrollVideo(): void {
       if (frameCounter) frameCounter.textContent = '000 / 144';
       if (scrollHint) scrollHint.style.opacity = '';
       if (scrollIndicator) scrollIndicator.style.opacity = '';
-      if (mq.matches && sticky) sticky.classList.remove('is-active');
+      if (sticky) sticky.classList.remove('is-active');
       return;
     }
 
@@ -217,7 +217,7 @@ export function initScrollVideo(): void {
     const p = Math.min(1, Math.max(0, rawP));
     const fi = Math.min(TOTAL - 1, Math.floor(p * (TOTAL - 1)));
 
-    if (mq.matches && sticky) {
+    if (sticky) {
       if (rawP < 1) {
         sticky.classList.add('is-active');
       } else {
