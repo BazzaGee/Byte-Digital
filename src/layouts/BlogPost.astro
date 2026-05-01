@@ -14,9 +14,10 @@ export interface Props {
   category?: string;
   tags?: string[];
   slug?: string;
+  image?: string;
 }
 
-const { title, description, pubDate, updatedDate, author = 'Byte Digital', category, tags = [], slug } = Astro.props;
+const { title, description, pubDate, updatedDate, author = 'Byte Digital', category, tags = [], slug, image } = Astro.props;
 
 const formatDate = (date: Date) => {
   return date.toLocaleDateString('en-NZ', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -73,6 +74,15 @@ const relatedPosts = slug
       {updatedDate && <><span style="color:var(--border-medium)">·</span><span>Updated {formatDate(updatedDate)}</span></>}
     </div>
   </PageHero>
+  {image && (
+    <section class="section reveal" style="padding-top:0;padding-bottom:0;background:var(--bg-darker)">
+      <div class="container">
+        <div class="blog-hero-image-wrapper">
+          <img src={image} alt={title} class="blog-hero-image" loading="eager" />
+        </div>
+      </div>
+    </section>
+  )}
   <Divider />
   <article class="section dm-edge-top section-glow">
     <div class="glow-orb purple top-left"></div>

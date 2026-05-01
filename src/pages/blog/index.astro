@@ -38,6 +38,7 @@ const categories = [...new Set(allPosts.map(p => p.data.category))].filter(Boole
               category={post.data.category}
               slug={post.id}
               pubDate={post.data.pubDate}
+              image={post.data.image}
             />
           </div>
         ))}

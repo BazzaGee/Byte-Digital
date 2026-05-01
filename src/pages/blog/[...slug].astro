@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
@@ -11,7 +11,8 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { title, description, pubDate, updatedDate, author, category, tags } = post.data;
+const { title, description, pubDate, updatedDate, author, category, tags, image } = post.data;
+const { Content } = await render(post);
 ---
 
 <BlogPost
@@ -23,6 +24,7 @@ const { title, description, pubDate, updatedDate, author, category, tags } = pos
   category={category}
   tags={tags}
   slug={post.id}
+  image={image}
 >
-  <slot />
+  <Content />
 </BlogPost>
