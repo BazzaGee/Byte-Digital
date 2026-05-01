@@ -1,7 +1,0 @@
-name = "byte-digital-contact"
-main = "src/index.ts"
-compatibility_date = "2025-12-01"
-
-[[routes]]
-pattern = "bytedigital.co.nz/api/contact"
-zone_name = "bytedigital.co.nz"

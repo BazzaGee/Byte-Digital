@@ -12,11 +12,20 @@ pnpm build && pnpm deploy:production
 ```
 Live at: https://bytedigital.co.nz
 
-## Contact Form Worker
-Only needed if you change `worker/src/index.ts`:
+## Contact Form
+The contact form uses a Cloudflare Pages Function (`functions/api/contact.ts`).
+It deploys automatically with every `wrangler pages deploy` — no separate step needed.
+
+### Secrets
+If you need to rotate the Resend API key:
 ```bash
-cd worker && wrangler deploy && cd ..
+wrangler pages secret put RESEND_API_KEY --project-name byte-digital          # production
+wrangler pages secret put RESEND_API_KEY --project-name byte-digital --env preview  # staging/previews
 ```
+
+### From address
+Currently sends from `onboarding@resend.dev` (test domain).
+Once `bytedigital.co.nz` is verified on Resend, update the `from` field in `functions/api/contact.ts`.
 
 ## Git (Backup)
 ```bash
