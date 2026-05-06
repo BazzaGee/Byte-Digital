@@ -138,6 +138,7 @@ const resources = [
         {servicesMarketing.map(s => <a href={s.href}>{s.label}</a>)}
       </div>
     </div>
+    <div class="mobile-nav-divider"></div>
     <div class="mobile-nav-section">
       <button class="mobile-nav-toggle" data-section="mobile-resources">
         <span>Resources</span>
@@ -147,10 +148,10 @@ const resources = [
         {resources.map(r => <a href={r.href}>{r.label}</a>)}
       </div>
     </div>
-    <a href="/case-studies">Work</a>
-    <a href="/locations">Locations</a>
-    <a href="/about">About</a>
-    <a href="/contact" class="btn-cta" style="display:block;text-align:center;padding:14px 24px;margin-top:12px;font-size:15px;">Get Free Quote</a>
+    <a href="/case-studies" class="mobile-nav-link">Work</a>
+    <a href="/locations" class="mobile-nav-link">Locations</a>
+    <a href="/about" class="mobile-nav-link">About</a>
+    <a href="/contact" class="mobile-cta">Get Free Quote</a>
   </div>
 </nav>
 
