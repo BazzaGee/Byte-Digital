@@ -127,31 +127,29 @@ const resources = [
   </div>
 
   <div class="nav-mobile-menu" id="nav-mobile-menu">
-    <div class="mobile-nav-section">
-      <button class="mobile-nav-toggle" data-section="mobile-services">
-        <span>Services</span>
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="mobile-nav-sub" id="mobile-services">
-        {servicesDesign.map(s => <a href={s.href}>{s.label}</a>)}
-        {servicesDev.map(s => <a href={s.href}>{s.label}</a>)}
-        {servicesMarketing.map(s => <a href={s.href}>{s.label}</a>)}
+    <div class="mobile-menu-scroll">
+      <div class="mobile-menu-header">Services</div>
+      <div class="mobile-menu-group">
+        <div class="mobile-menu-group-label">Design</div>
+        {servicesDesign.map(s => <a href={s.href} class="mobile-menu-item">{s.label}</a>)}
       </div>
-    </div>
-    <div class="mobile-nav-divider"></div>
-    <div class="mobile-nav-section">
-      <button class="mobile-nav-toggle" data-section="mobile-resources">
-        <span>Resources</span>
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="mobile-nav-sub" id="mobile-resources">
-        {resources.map(r => <a href={r.href}>{r.label}</a>)}
+      <div class="mobile-menu-group">
+        <div class="mobile-menu-group-label">Development</div>
+        {servicesDev.map(s => <a href={s.href} class="mobile-menu-item">{s.label}</a>)}
       </div>
+      <div class="mobile-menu-group">
+        <div class="mobile-menu-group-label">Marketing</div>
+        {servicesMarketing.map(s => <a href={s.href} class="mobile-menu-item">{s.label}</a>)}
+      </div>
+      <div class="mobile-menu-separator"></div>
+      <div class="mobile-menu-header">Resources</div>
+      {resources.map(r => <a href={r.href} class="mobile-menu-item">{r.label}</a>)}
+      <div class="mobile-menu-separator"></div>
+      <a href="/case-studies" class="mobile-menu-page-link">Work</a>
+      <a href="/locations" class="mobile-menu-page-link">Locations</a>
+      <a href="/about" class="mobile-menu-page-link">About</a>
+      <a href="/contact" class="mobile-menu-cta">Get Free Quote</a>
     </div>
-    <a href="/case-studies" class="mobile-nav-link">Work</a>
-    <a href="/locations" class="mobile-nav-link">Locations</a>
-    <a href="/about" class="mobile-nav-link">About</a>
-    <a href="/contact" class="mobile-cta">Get Free Quote</a>
   </div>
 </nav>
 
@@ -170,15 +168,6 @@ mobileMenu?.querySelectorAll('a').forEach(link => {
     hamburger?.classList.remove('open');
     mobileMenu?.classList.remove('open');
     document.body.style.overflow = '';
-  });
-});
-
-document.querySelectorAll('.mobile-nav-toggle').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const sectionId = btn.getAttribute('data-section');
-    const sub = document.getElementById(sectionId!);
-    const isOpen = btn.classList.toggle('open');
-    if (sub) sub.classList.toggle('open');
   });
 });
 
