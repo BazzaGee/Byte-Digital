@@ -7,31 +7,35 @@ const businessName = 'Brooklyn Services';
 const faqItems = [
   {
     question: 'Why am I seeing this page?',
-    answer: "You're seeing this page because a complete website has been custom-built for Brooklyn Services — with professional design, SEO optimisation, and tailored content — but it hasn't been claimed yet. Right now the site isn't working for your business. Get in touch with Byte Digital to activate it and start getting found online.",
+    answer: "You're seeing this page because a complete website has been custom-built for Brooklyn Services — a full digital asset with 23 live pages, professional design, SEO optimisation, and tailored content targeting Christchurch plumbing and drainage searches. It's ready to start working for your business. Get in touch with Byte Digital to activate it.",
   },
   {
-    question: 'How do I claim my website?',
-    answer: "Simply fill out the contact form, send us an email at barry@bytedigital.co.nz, or visit bytedigital.co.nz/contact. We'll get your website fully active on your domain — no technical work needed on your end.",
+    question: 'What exactly comes with the website?',
+    answer: "A complete digital asset: 4 service pages (Plumbing, Drainage, Leak Detection, Utility Locating), 6 location pages covering Christchurch and Canterbury towns, 5 keyword-targeted blog posts, a projects showcase, full SEO infrastructure (schema markup, sitemap, meta tags), professional photography, mobile-first responsive design, and a blazing fast Astro build on Cloudflare CDN. Everything a Christchurch plumbing business needs to be found online.",
   },
   {
-    question: "What's included with my website?",
-    answer: "Your website comes fully complete — professional design, SEO-optimised content, mobile-responsive layout, fast performance, and everything needed to start attracting customers online. It's a complete package, ready to go.",
+    question: 'How is this different from building a new website?',
+    answer: "Every other agency will start from zero — quoting you per page for design, content, and SEO setup. This website already exists. 23 pages are already live, already optimised, already targeting the exact search terms your potential customers are typing into Google every day. You're not paying to build something. You're starting from ahead.",
   },
   {
-    question: 'How much does it cost?',
-    answer: "Get in touch and we'll provide a clear, straightforward quote for your complete website package. No hidden fees, no surprises.",
+    question: 'What does the ongoing partnership cover?',
+    answer: "SEO monitoring and optimisation, monthly reporting showing exactly what's ranking and what traffic is coming in, conversion rate improvement, data-driven content updates (we watch what search terms bring people in, then build more of what works), new blog posts, maintenance, security, and hosting. Everything is included — nothing billed separately. Get in touch to discuss the details.",
   },
   {
-    question: 'Can I make changes to my website?',
-    answer: "Absolutely. If there's anything you'd like adjusted — colours, content, additional pages, or new features — we can discuss those during your consultation.",
+    question: 'How do we get started?',
+    answer: "Simply fill out the contact form below, send us an email at barry@bytedigital.co.nz, or visit bytedigital.co.nz/contact. We'll get your website fully active on your domain and start the conversation about how to grow it from there.",
+  },
+  {
+    question: 'Can I make changes to the website?',
+    answer: "Absolutely. If there's anything you'd like adjusted — colours, content, additional pages, new features, or anything specific to how you want to present Brooklyn Services — we can discuss those during your consultation. This is your asset, built for your business.",
   },
 ];
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Claim Your Website — Brooklyn Services | Byte Digital",
-  "description": "A complete, SEO-optimised website has been custom-built for Brooklyn Services with professional design, content, and performance. Contact Byte Digital to claim it.",
+  "name": "The Digital Edge — Brooklyn Services | Byte Digital",
+  "description": "A complete digital asset already built and optimised for Brooklyn Services. 23 live pages, 4 service pages, 6 location pages, 5 blog posts — ready to bring Christchurch plumbing and drainage work to you.",
   "url": "https://bytedigital.co.nz/reclaim-brooklyn",
   "mainEntity": {
     "@type": "FAQPage",
@@ -48,49 +52,49 @@ const jsonLd = {
 ---
 
 <BaseLayout
-  title={`Claim Your Website — ${businessName} | Byte Digital`}
-  description={`A complete, SEO-optimised website has been custom-built for ${businessName} with professional design, content, and performance. Contact Byte Digital to claim it.`}
+  title={`The Digital Edge — ${businessName} | Byte Digital`}
+  description={`A complete digital asset already built and optimised for ${businessName}. 23 live pages targeting Christchurch plumbing and drainage searches. Contact Byte Digital to activate it.`}
   canonicalURL="https://bytedigital.co.nz/reclaim-brooklyn"
   jsonLd={jsonLd}
 >
   <PageHero
-    label="Your Website Is Ready"
-    title={`Claim Your Website<br /><span class='gradient-text'>${businessName}</span>`}
-    subtitle={`A complete, SEO-optimised website has been custom-built for ${businessName} — fully designed, with professional content, ready to attract customers. All it needs is for you to claim it.`}
+    label="Built to Perform"
+    title={`The Digital<br /><span class='gradient-text'>Edge</span>`}
+    subtitle="This isn't a website being built from scratch. It's a complete digital asset — already live, already optimised, already working to bring Christchurch plumbing and drainage work to you. Here's exactly what that means for your business."
   />
 
-  <section class="section section-glow" style="padding-top:0">
-    <div class="glow-orb purple top-left"></div>
-    <div class="glow-orb mint bottom-right"></div>
-    <div class="container" style="position:relative;z-index:1">
+  <div class="section-accent" style="background:var(--bg-darker)">
+    <div class="section-accent-track"></div>
+  </div>
 
-      <div class="glass" style="padding:40px;border-radius:28px;margin-bottom:48px">
-        <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
-          <div style="width:48px;height:48px;border-radius:50%;background:rgba(251,191,36,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="24" height="24" fill="none" stroke="#fbbf24" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          </div>
-          <div>
-            <h3 style="font-size:20px;font-weight:700;color:#fff;margin:0">Website Status: Ready to Launch</h3>
-            <p style="color:var(--text-muted);font-size:14px;margin:0">Your website is built, optimised, and waiting to go live for your business</p>
-          </div>
+  <!-- Stats Bar -->
+  <div class="stats-bar reveal">
+    <div class="container">
+      <div class="stats-grid" style="grid-template-columns:repeat(4,1fr)">
+        <div class="stat-item">
+          <h3 class="gradient-text">23</h3>
+          <p>Live Pages</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
-          <div style="padding:16px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)">
-            <div style="font-size:12px;font-weight:700;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Business</div>
-            <div style="font-size:15px;color:#fff;font-weight:600">{businessName}</div>
-          </div>
-          <div style="padding:16px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)">
-            <div style="font-size:12px;font-weight:700;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Package</div>
-            <div style="font-size:15px;color:#fff;font-weight:600">Full Website</div>
-          </div>
-          <div style="padding:16px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)">
-            <div style="font-size:12px;font-weight:700;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Status</div>
-            <div style="font-size:15px;color:#fbbf24;font-weight:600">Awaiting Claim</div>
-          </div>
+        <div class="stat-item">
+          <h3 class="gradient-text">6</h3>
+          <p>Location Pages</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="gradient-text">5</h3>
+          <p>Blog Posts</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="gradient-text">0</h3>
+          <p>WordPress Bloat</p>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="glass" style="padding:16px;border-radius:28px;margin-bottom:48px;overflow:hidden">
+  <!-- Website Preview -->
+  <section class="section reveal" style="padding-top:0">
+    <div class="container">
+      <div class="glass" style="padding:16px;border-radius:28px;overflow:hidden">
         <div style="height:36px;background:rgba(255,255,255,0.06);border-radius:12px 12px 0 0;display:flex;align-items:center;padding:0 14px;gap:7px;margin:-16px -16px 12px;border-bottom:1px solid rgba(255,255,255,0.08)">
           <div style="width:10px;height:10px;border-radius:50%;background:#ef4444"></div>
           <div style="width:10px;height:10px;border-radius:50%;background:#fbbf24"></div>
@@ -99,17 +103,490 @@ const jsonLd = {
             <span style="font-size:11px;color:var(--text-dimmed);font-family:'Space Grotesk',sans-serif">master.brooklyn-services.pages.dev</span>
           </div>
         </div>
-        <img src="/images/brooklyn-services-hero.png" alt="Brooklyn Services website hero section screenshot" style="width:100%;border-radius:12px;display:block" loading="lazy" />
+        <img src="/images/brooklyn-services-hero.png" alt="Brooklyn Services website screenshot" style="width:100%;border-radius:12px;display:block" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- The Inventory -->
+  <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:56px">
+        <div class="section-label">The Inventory</div>
+        <h2 class="section-title" style="margin:0 auto 12px">What's Already In <span class="gradient-text">Place</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">This site has 23 pages live right now. Not templates. Not wireframes. Real pages, with real content, targeting real search terms that real people type into Google every day in Christchurch and Canterbury.</p>
       </div>
 
+      <div class="feature-grid" style="grid-template-columns:1fr">
+        <!-- Service Pages -->
+        <div class="glass" style="padding:36px;border-radius:24px;display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap">
+          <div style="min-width:80px;text-align:center">
+            <div style="font-size:48px;font-weight:700" class="gradient-text">4</div>
+            <div class="section-label" style="margin:8px 0 0">Service Pages</div>
+          </div>
+          <div style="flex:1;min-width:280px">
+            <h3 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:8px">Plumbing &middot; Drainage &middot; Leak Detection &middot; Utility Locating</h3>
+            <p style="color:var(--text-muted);font-size:14px;line-height:1.7">Each one targets a specific type of work. When someone searches "plumber Christchurch" or "blocked drain clearing Christchurch" or "leak detection Canterbury", these are the pages that show up. Full descriptions, structured data, keyword-optimised — ready to rank.</p>
+          </div>
+        </div>
+
+        <!-- Location Pages -->
+        <div class="glass" style="padding:36px;border-radius:24px;display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap">
+          <div style="min-width:80px;text-align:center">
+            <div style="font-size:48px;font-weight:700" class="gradient-text">6</div>
+            <div class="section-label" style="margin:8px 0 0">Location Pages</div>
+          </div>
+          <div style="flex:1;min-width:280px">
+            <h3 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:8px">Christchurch &middot; Rolleston &middot; Lincoln &middot; Rangiora &middot; Kaiapoi &middot; Ashburton</h3>
+            <p style="color:var(--text-muted);font-size:14px;line-height:1.7">Six dedicated pages targeting the areas Brooklyn Services actually works in. When someone in Rangiora searches "drainlayer North Canterbury", or someone in Rolleston looks for "plumber near me" — there's a page built specifically for that. Most competitors have one generic contact page. You have six targeted ones.</p>
+          </div>
+        </div>
+
+        <!-- Blog Posts -->
+        <div class="glass" style="padding:36px;border-radius:24px;display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap">
+          <div style="min-width:80px;text-align:center">
+            <div style="font-size:48px;font-weight:700" class="gradient-text">5</div>
+            <div class="section-label" style="margin:8px 0 0">Blog Posts</div>
+          </div>
+          <div style="flex:1;min-width:280px">
+            <h3 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:8px">Long-form &middot; Keyword-targeted &middot; Question-answering</h3>
+            <p style="color:var(--text-muted);font-size:14px;line-height:1.7">Five different ways for people to find you. Hidden water leak warning signs, hot water system comparisons, annual plumbing maintenance checklists, preventing blocked drains, and a Rinnai vs Rheem breakdown — every question a potential client might type into Google has a blog post answering it. Each one is a hook in the water.</p>
+          </div>
+        </div>
+
+        <!-- Core Pages -->
+        <div class="glass" style="padding:36px;border-radius:24px;display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap">
+          <div style="min-width:80px;text-align:center">
+            <div style="font-size:48px;font-weight:700" class="gradient-text">8</div>
+            <div class="section-label" style="margin:8px 0 0">Core Pages</div>
+          </div>
+          <div style="flex:1;min-width:280px">
+            <h3 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:8px">Home &middot; About &middot; Contact &middot; Services Hub &middot; Areas Hub &middot; Blog Hub &middot; Projects &middot; Thank You</h3>
+            <p style="color:var(--text-muted);font-size:14px;line-height:1.7">The foundation. Homepage designed to convert, about page that tells the Brooklyn Services story, contact page that makes reaching out easy, a projects showcase featuring real work for Summerset Villages and Ryman Healthcare, plus hub pages that organise everything so both people and Google can find exactly what they need.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass" style="padding:36px;border-radius:24px;margin-top:32px;text-align:center">
+        <h3 style="font-size:22px;font-weight:700;color:#fff;margin-bottom:12px">23 Hooks In The Water</h3>
+        <p style="color:var(--text-muted);font-size:15px;line-height:1.7;max-width:700px;margin:0 auto">Think of it like this. Every page is a line cast into Google. Right now you've got 23 lines in the water, each one baited with specific keywords and content designed to catch a specific type of search. That's not a small presence — that's a net spread across Christchurch and Canterbury.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What a Client Means -->
+  <section class="section section-glow reveal">
+    <div class="glow-orb purple top-left"></div>
+    <div class="glow-orb mint bottom-right"></div>
+    <div class="container" style="position:relative;z-index:1">
       <div style="text-align:center;margin-bottom:48px">
-        <h2 style="font-size:clamp(24px,4vw,36px);font-weight:700;color:#fff;margin-bottom:12px">Claim Your Website</h2>
+        <div class="section-label">The Numbers</div>
+        <h2 class="section-title" style="margin:0 auto 12px">What 1 or 2 Clients <span class="gradient-text">Means</span></h2>
+      </div>
+      <div style="max-width:700px;margin:0 auto">
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">You know what one client is worth to your business. What that number looks like in dollars. What it means for your month. Only you know that figure — and that's exactly the point.</p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">This website is built with 5 blog posts, 6 location pages, 4 service pages, full SEO markup, and a technical foundation designed to rank in Christchurch. That's 23 pages working around the clock to bring clients to you.</p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">Clients are going to be coming in every month based on how this site is structured and built. Think about what a client is worth to you — then look at what this website is set up to deliver.</p>
+        <div class="glass" style="padding:28px;border-radius:20px;margin-top:32px;text-align:center">
+          <p style="color:var(--text-muted);font-size:14px;line-height:1.7">You don't need a flood of visitors. You don't need thousands of page views. You need the right people finding you when they're looking for a plumber or drainlayer in Christchurch. This website is built to make that happen — consistently, every month.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-accent" style="background:var(--bg-darker)">
+    <div class="section-accent-track"></div>
+  </div>
+
+  <!-- The Agency Comparison -->
+  <section class="section reveal" style="background:var(--bg-dark)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">The Agency Comparison</div>
+        <h2 class="section-title" style="margin:0 auto 12px">What Other Agencies Will <span class="gradient-text">Quote You</span></h2>
+        <p style="color:var(--text-muted);font-size:16px;max-width:600px;margin:0 auto">Other agencies will pitch you a website built from scratch. They'll quote you per page — design fees, content writing, SEO setup. By the time you've paid for a basic site with no blog, no location pages, no optimisation... you're already thousands of dollars in. And then comes the retainer.</p>
+      </div>
+
+      <div style="max-width:700px;margin:0 auto">
+        <div class="glass" style="padding:32px;border-radius:24px;margin-bottom:32px">
+          <h3 style="font-size:18px;font-weight:700;color:#fff;margin-bottom:20px">What Gets Billed Separately</h3>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.03)">
+              <span style="color:var(--text-secondary);font-size:14px;font-weight:500">Website design & build (5-8 pages)</span>
+              <span style="color:var(--text-dimmed);font-size:13px;font-weight:600">Thousands upfront</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.03)">
+              <span style="color:var(--text-secondary);font-size:14px;font-weight:500">Content writing per page</span>
+              <span style="color:var(--text-dimmed);font-size:13px;font-weight:600">Hundreds per page</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.03)">
+              <span style="color:var(--text-secondary);font-size:14px;font-weight:500">SEO setup & configuration</span>
+              <span style="color:var(--text-dimmed);font-size:13px;font-weight:600">Large setup fee</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.03)">
+              <span style="color:var(--text-secondary);font-size:14px;font-weight:500">Monthly SEO retainer</span>
+              <span style="color:var(--text-dimmed);font-size:13px;font-weight:600">Ongoing monthly cost</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.03)">
+              <span style="color:var(--text-secondary);font-size:14px;font-weight:500">Monthly maintenance & hosting</span>
+              <span style="color:var(--text-dimmed);font-size:13px;font-weight:600">Monthly fee</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass callout-box callout-highlight" style="text-align:center;padding:28px;border-radius:20px">
+          <p style="color:var(--text-secondary);font-size:15px;line-height:1.7;margin:0">That's <strong style="color:#fff">starting from zero</strong>. That's catching up. That's a step backwards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Reality -->
+  <section class="section section-glow reveal">
+    <div class="glow-orb purple top-right"></div>
+    <div class="glow-orb mint bottom-left"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">The Reality</div>
+        <h2 class="section-title" style="margin:0 auto 12px">This Site Is <span class="gradient-text">Already Built</span></h2>
+        <p style="color:var(--text-muted);font-size:16px;max-width:600px;margin:0 auto">Every page. Every blog post. Every location. Already live. Already optimised. Already working. 23 pages targeting Christchurch and Canterbury plumbing and drainage searches — right now.</p>
+      </div>
+
+      <div class="feature-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+        <div class="glass" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon purple" style="margin-bottom:16px">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">4 Service Pages</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">Plumbing, Drainage, Leak Detection, Utility Locating — each with full SEO markup, schema data, and keyword targeting.</p>
+        </div>
+
+        <div class="glass" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon mint" style="margin-bottom:16px">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">6 Location Pages</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">Christchurch, Rolleston, Lincoln, Rangiora, Kaiapoi, Ashburton — each targeting local search intent.</p>
+        </div>
+
+        <div class="glass" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon white" style="margin-bottom:16px">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">5 Blog Posts</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">Long-form, keyword-optimised content — water leak signs, hot water systems, maintenance, blocked drains, Rinnai vs Rheem.</p>
+        </div>
+
+        <div class="glass" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon purple" style="margin-bottom:16px">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">Full Schema Markup</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">LocalBusiness, Service, Article, FAQPage, BreadcrumbList — structured data that tells Google exactly what you do and where.</p>
+        </div>
+
+        <div class="glass" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon mint" style="margin-bottom:16px">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">Professional Media</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">Real work photos across plumbing, drainage, leak detection and utility locating — plus client logos from Summerset, Ryman, CCL and more.</p>
+        </div>
+
+        <div class="glass" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon white" style="margin-bottom:16px">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">Technical Foundation</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">Static Astro build, Cloudflare CDN, SSL, security headers, sitemap, robots.txt — blazing fast and secure.</p>
+        </div>
+      </div>
+
+      <div class="glass" style="padding:28px;border-radius:20px;margin-top:32px;text-align:center">
+        <p style="color:var(--text-secondary);font-size:15px;line-height:1.7;margin:0"><strong style="color:#fff">The key difference:</strong> You're not paying to build something. You're paying to perform. Every other quote you get will be selling you a website that doesn't exist yet. This one already does — and it's already working.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Partnership -->
+  <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">Your Investment</div>
+        <h2 class="section-title" style="margin:0 auto 12px">What the Partnership <span class="gradient-text">Covers</span></h2>
+        <p style="color:var(--text-muted);font-size:16px;max-width:600px;margin:0 auto">This isn't a build fee. This isn't a design retainer. This is an ongoing partnership — the things that take a great website and make it actually bring clients to your door. Get in touch to discuss what this looks like.</p>
+      </div>
+
+      <div class="feature-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+        <div class="glass feature-grid-card purple-hover" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon purple">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">SEO Monitoring & Optimisation</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">Tracking what's ranking, what's not, and adjusting strategy to improve your visibility in Christchurch search results.</p>
+        </div>
+
+        <div class="glass feature-grid-card mint-hover" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon mint">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">Monthly Reporting</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">Every month you get a clear report showing which pages and posts are ranking, what traffic they're bringing in, and the trajectory — so you always know what's working.</p>
+        </div>
+
+        <div class="glass feature-grid-card purple-hover" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon purple">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">Conversion Rate Improvement</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">Tracking how many visitors turn into leads, and optimising the site to increase that rate over time.</p>
+        </div>
+
+        <div class="glass feature-grid-card mint-hover" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon mint">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">Data-Driven Growth</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">As traffic comes in, we see exactly what brought them — what they typed into Google, what pages they read, what made them pick up the phone. That data tells us what content to write next and what keywords to target.</p>
+        </div>
+
+        <div class="glass feature-grid-card purple-hover" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon purple">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">Content Updates & New Blog Posts</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">Fresh content targeting new keywords, updating existing posts to maintain rankings, and keeping the site active in Google's eyes.</p>
+        </div>
+
+        <div class="glass feature-grid-card mint-hover" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon mint">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">Maintenance, Security & Hosting</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">Everything technical — CDN hosting, SSL certificates, security updates, performance monitoring, backups. All handled.</p>
+        </div>
+      </div>
+
+      <div class="glass callout-box callout-info" style="margin-top:32px;text-align:center">
+        <p style="color:var(--text-secondary);font-size:15px;line-height:1.7;margin:0">With other agencies, every single item above is a separate line item on a separate invoice. Here, it's all included. <strong style="color:#fff">Everything covered. No surprises, no hidden fees, no "that'll be extra."</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Technical Edge -->
+  <section class="section section-glow reveal">
+    <div class="glow-orb purple top-left"></div>
+    <div class="glow-orb mint bottom-right"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">The Technical Edge</div>
+        <h2 class="section-title" style="margin:0 auto 12px">Built to Beat <span class="gradient-text">Competitors</span></h2>
+        <p style="color:var(--text-muted);font-size:16px;max-width:600px;margin:0 auto">Most Christchurch plumbing companies have a basic website — maybe five pages, maybe a contact form, maybe nothing at all. They're not blogging. They're not targeting specific locations. They're not using structured data. You've got 23 pages doing all of that.</p>
+      </div>
+
+      <div class="process-grid" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">
+        <div class="glass process-step">
+          <div class="process-num purple">01</div>
+          <h3>Keyword-Targeted Blog Posts</h3>
+          <p>5 articles covering every angle — from "hidden water leak signs Christchurch" to "Rinnai vs Rheem hot water" — each one a doorway for potential clients to find you.</p>
+        </div>
+        <div class="glass process-step">
+          <div class="process-num mint">02</div>
+          <h3>Location-Specific Pages</h3>
+          <p>Dedicated pages for Christchurch, Rolleston, Lincoln, Rangiora, Kaiapoi, and Ashburton — each targeting local search intent so you show up when people search in their area.</p>
+        </div>
+        <div class="glass process-step">
+          <div class="process-num purple">03</div>
+          <h3>Schema.org Structured Data</h3>
+          <p>LocalBusiness, Service, Article, FAQPage, BreadcrumbList — all implemented. Most competitors have zero schema markup.</p>
+        </div>
+        <div class="glass process-step">
+          <div class="process-num mint">04</div>
+          <h3>Blazing Fast Performance</h3>
+          <p>Built on Astro (not WordPress), hosted on Cloudflare CDN. No database queries, no plugin bloat, no slow page loads. Google rewards fast sites with higher rankings.</p>
+        </div>
+        <div class="glass process-step">
+          <div class="process-num purple">05</div>
+          <h3>Mobile-First Responsive</h3>
+          <p>Over 60% of local searches happen on mobile. This site is designed mobile-first — fast, clean, easy to navigate on any device.</p>
+        </div>
+        <div class="glass process-step">
+          <div class="process-num mint">06</div>
+          <h3>Complete SEO Infrastructure</h3>
+          <p>Sitemap.xml, robots.txt, Open Graph tags, Twitter Cards, canonical URLs, geo-tags for Christchurch/Canterbury — every technical SEO box checked.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-accent" style="background:var(--bg-darker)">
+    <div class="section-accent-track"></div>
+  </div>
+
+  <!-- The Flywheel -->
+  <section class="section reveal" style="background:var(--bg-dark)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">The Long Game</div>
+        <h2 class="section-title" style="margin:0 auto 12px">It Gets Stronger <span class="gradient-text">Every Month</span></h2>
+        <p style="color:var(--text-muted);font-size:16px;max-width:600px;margin:0 auto">Websites don't peak — they compound. Every month this site is live, it builds more authority in Google's eyes. Every new page gets indexed. Every blog post earns its place. Every keyword that climbs a spot makes the next one easier.</p>
+      </div>
+
+      <div class="process-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));max-width:900px;margin:0 auto">
+        <div style="text-align:center;padding:32px 20px">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(139,120,230,0.15);border:1px solid rgba(139,120,230,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:20px;font-weight:700;color:var(--primary)">1</div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">Traffic Comes In</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.6">People in Christchurch search for plumbing services. Your 23 pages are already live and targeting those searches.</p>
+        </div>
+        <div style="text-align:center;padding:32px 20px">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(94,234,212,0.15);border:1px solid rgba(94,234,212,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:20px;font-weight:700;color:var(--secondary)">2</div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">We Read the Data</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.6">What did they type to find you? What page did they land on? How long did they stay? Every visit leaves a trail.</p>
+        </div>
+        <div style="text-align:center;padding:32px 20px">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(139,120,230,0.15);border:1px solid rgba(139,120,230,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:20px;font-weight:700;color:var(--primary)">3</div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">We Build What Works</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.6">That data tells us exactly what to do next. More content about what's working. New pages for areas getting searches. The data drives the decisions.</p>
+        </div>
+        <div style="text-align:center;padding:32px 20px">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(94,234,212,0.15);border:1px solid rgba(94,234,212,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:20px;font-weight:700;color:var(--secondary)">4</div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">More Traffic, More Calls</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.6">New content ranks. New pages catch new searches. The site goes from 23 pages to 30, to 40, to 50 — each one another hook in the water.</p>
+        </div>
+      </div>
+
+      <div style="max-width:700px;margin:48px auto 0;display:grid;gap:24px">
+        <div class="glass" style="padding:28px;border-radius:20px">
+          <h4 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;font-size:12px">What Most Agencies Do</h4>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin:0">Build a site. Hand it over. Walk away. Maybe check in once a year if you're paying a retainer. The site sits there, static, slowly falling behind competitors who are actively adding content.</p>
+        </div>
+        <div class="glass" style="padding:28px;border-radius:20px;border-color:rgba(94,234,212,0.2)">
+          <h4 style="font-size:15px;font-weight:700;color:var(--secondary);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;font-size:12px">What This Approach Does</h4>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin:0">Watch. Learn. Adapt. Grow. Every month the site gets smarter because we're watching what works and doubling down on it. The data tells the story — we just follow where it leads. Month after month. It compounds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- First Impressions -->
+  <section class="section section-glow reveal">
+    <div class="glow-orb purple top-right"></div>
+    <div class="glow-orb mint bottom-left"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">First Impressions</div>
+        <h2 class="section-title" style="margin:0 auto 12px">Trust Before <span class="gradient-text">The Call</span></h2>
+      </div>
+      <div style="max-width:700px;margin:0 auto">
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">Before you ever pick up the phone, your website has already made the first impression. A potential client is searching for a plumber in Christchurch. They click on your site. What do they see?</p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">Professional photography — real work photos, not stock images. A "Precision Engineered Infrastructure" design language that communicates expertise and reliability. Real client logos — Summerset Villages, Ryman Healthcare, CCL Construction, Fulton Hogan — showing the calibre of work Brooklyn Services delivers.</p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">They see a site that loads fast, looks professional on their phone, and clearly communicates what you do and where you do it. They read blog posts that answer their questions before they even ask.</p>
+        <div class="glass" style="padding:28px;border-radius:20px;margin-top:32px;text-align:center">
+          <p style="color:var(--text-secondary);font-size:15px;line-height:1.7;margin:0">That's trust. And <strong style="color:#fff">trust is what turns a browser into a caller.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Monthly Reporting -->
+  <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">Transparency</div>
+        <h2 class="section-title" style="margin:0 auto 12px">Monthly <span class="gradient-text">Reporting</span></h2>
+        <p style="color:var(--text-muted);font-size:16px;max-width:600px;margin:0 auto">You'll never have to guess what your website is doing. Every month, you get a clear report showing exactly what's happening — no jargon, no vanity metrics, just the numbers that matter.</p>
+      </div>
+
+      <div class="feature-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+        <div class="glass" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon purple" style="margin-bottom:16px">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">Page & Post Rankings</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">Which of your pages and blog posts are showing up in Google, and for what search terms. See exactly where you're appearing.</p>
+        </div>
+        <div class="glass" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon mint" style="margin-bottom:16px">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">Where the Bites Are Coming From</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">What search terms brought people to the site. What pages they spent time on. What they did before they called or filled in the form.</p>
+        </div>
+        <div class="glass" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon white" style="margin-bottom:16px">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">Traffic & Trajectory</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">How many people are visiting, which pages they're looking at, and month-over-month progress tracking so you can see the momentum building.</p>
+        </div>
+        <div class="glass" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon purple" style="margin-bottom:16px">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">Conversion Tracking</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">How many visitors are turning into leads — contact form submissions, phone calls, quote requests. Not just traffic — actual enquiries.</p>
+        </div>
+        <div class="glass" style="padding:28px;border-radius:20px">
+          <div class="feature-grid-icon mint" style="margin-bottom:16px">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">What's Next Month</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0">Clear recommendations — new content opportunities, keyword gaps to fill, pages to build. The report doesn't just tell you what happened. It tells you what's coming next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom Line -->
+  <section class="section section-glow reveal">
+    <div class="glow-orb purple top-left"></div>
+    <div class="glow-orb mint bottom-right"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">The Bottom Line</div>
+        <h2 class="section-title" style="margin:0 auto 12px">You're Not Buying<br /><span class="gradient-text">A Website</span></h2>
+      </div>
+      <div style="max-width:700px;margin:0 auto;text-align:center">
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">You're buying a lead-generation machine that's already running.</p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:20px">Every page is an asset. Every blog post is a doorway. Every location page is a target. Every line of optimised code is working to bring Christchurch plumbing and drainage work to you — 24 hours a day, 7 days a week, whether you're on site or not.</p>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:32px">Other agencies will sell you a promise. This site delivers a reality. Already built. Already optimised. Already working.</p>
+
+        <div class="content-stats" style="max-width:500px;margin:0 auto 32px">
+          <div class="content-stat-item">
+            <div class="content-stat-value">23</div>
+            <div class="content-stat-label">Pages</div>
+          </div>
+          <div class="content-stat-item">
+            <div class="content-stat-value">5</div>
+            <div class="content-stat-label">Blog Posts</div>
+          </div>
+          <div class="content-stat-item">
+            <div class="content-stat-value">100%</div>
+            <div class="content-stat-label">Optimised</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-accent" style="background:var(--bg-darker)">
+    <div class="section-accent-track wide"></div>
+  </div>
+
+  <!-- Contact Form -->
+  <section class="section section-glow reveal">
+    <div class="glow-orb purple top-left"></div>
+    <div class="glow-orb mint bottom-right"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">Get Started</div>
+        <h2 class="section-title" style="margin:0 auto 12px">Let's <span class="gradient-text">Talk</span></h2>
         <p style="color:var(--text-muted);font-size:16px;max-width:600px;margin:0 auto">Get in touch and we'll handle everything. Your website is built, fully optimised, and ready to start working for your business.</p>
       </div>
 
       <div style="display:grid;gap:48px;max-width:900px;margin:0 auto">
         <div class="glass" style="padding:40px;border-radius:28px">
-          <h3 style="font-size:22px;font-weight:700;color:#fff;margin-bottom:24px">Contact Us to Claim Your Website</h3>
+          <h3 style="font-size:22px;font-weight:700;color:#fff;margin-bottom:24px">Contact Us to Get Started</h3>
           <form id="reclaim-form" style="display:flex;flex-direction:column;gap:20px">
             <input type="text" name="website" style="display:none!important;position:absolute!important;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <input type="hidden" name="business" value={businessName} />
@@ -128,19 +605,8 @@ const jsonLd = {
               <input type="tel" name="phone" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;transition:border-color 0.3s" onfocus="this.style.borderColor='#8B78E6'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'" />
             </div>
             <div>
-              <label style="display:block;font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px">What do you need?</label>
-              <select name="service" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:var(--surface);color:var(--text-secondary);font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none">
-                <option value="reclaim" selected>Reclaim My Website</option>
-                <option value="web-design">Web Design</option>
-                <option value="web-development">Web Development</option>
-                <option value="seo">SEO Services</option>
-                <option value="digital-marketing">Digital Marketing</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div>
               <label style="display:block;font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px">Message</label>
-              <textarea name="message" rows="4" placeholder="Tell us about your situation or any questions you have..." style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;resize:vertical;transition:border-color 0.3s" onfocus="this.style.borderColor='#8B78E6'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'"></textarea>
+              <textarea name="message" rows="4" placeholder="Any questions or anything you'd like to discuss..." style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;resize:vertical;transition:border-color 0.3s" onfocus="this.style.borderColor='#8B78E6'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'"></textarea>
             </div>
             <button type="submit" id="reclaim-submit" class="btn-cta" style="align-self:flex-start">Send Request <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></button>
           </form>
@@ -211,7 +677,7 @@ const jsonLd = {
           <div>
             <h4 style="font-size:14px;font-weight:700;color:#fff;margin-bottom:8px">View Your Website</h4>
             <a href="https://master.brooklyn-services.pages.dev/" target="_blank" rel="noopener" style="color:var(--secondary);font-size:16px;font-weight:600">master.brooklyn-services.pages.dev <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align:middle;margin-left:4px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
-            <p style="color:var(--text-muted);font-size:13px;margin:4px 0 0">See the website that's been built and ready for you.</p>
+            <p style="color:var(--text-muted);font-size:13px;margin:4px 0 0">See the 23 pages already built and ready for you.</p>
           </div>
           <div>
             <h4 style="font-size:14px;font-weight:700;color:#fff;margin-bottom:8px">Contact Page</h4>
@@ -231,12 +697,13 @@ const jsonLd = {
     </div>
   </section>
 
+  <!-- FAQ -->
   <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
     <div class="container">
       <div style="text-align:center;margin-bottom:48px">
         <div class="section-label">FAQ</div>
         <h2 style="font-size:clamp(28px,4vw,40px);font-weight:700;color:#fff;margin-bottom:12px">Frequently Asked <span class="gradient-text">Questions</span></h2>
-        <p style="color:var(--text-muted);font-size:16px;max-width:500px;margin:0 auto">Everything you need to know about claiming your website.</p>
+        <p style="color:var(--text-muted);font-size:16px;max-width:500px;margin:0 auto">Everything you need to know about your website and working with Byte Digital.</p>
       </div>
       <div class="faq-list" style="max-width:700px">
         {faqItems.map((item, i) => (
@@ -254,12 +721,13 @@ const jsonLd = {
     </div>
   </section>
 
+  <!-- Final CTA -->
   <section class="section cta-section reveal">
     <div class="container">
       <div class="cta-box">
         <div class="glow-orb mint" style="top:-50%;left:50%;transform:translateX(-50%);opacity:0.08"></div>
-        <h2>Ready to Claim Your <span class="gradient-text">Website?</span></h2>
-        <p>Every day your website isn't live is a day potential customers can't find you. Get in touch now and let's get your business online.</p>
+        <h2>Ready to Activate Your <span class="gradient-text">Digital Edge?</span></h2>
+        <p>Every day your website isn't live is a day potential customers can't find you. 23 pages are already built, already optimised, and ready to start bringing Christchurch plumbing and drainage work to you.</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
           <a href="/contact" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
             Contact Byte Digital
