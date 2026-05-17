@@ -843,6 +843,7 @@ img { max-width: 100%; height: auto; display: block; }
   text-transform: uppercase;
   letter-spacing: 2px;
   white-space: nowrap;
+  min-width: max-content;
   animation: marquee 30s linear infinite;
   will-change: transform;
 }
@@ -926,10 +927,8 @@ img { max-width: 100%; height: auto; display: block; }
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 .scroll-sticky.is-active {
-  opacity: 1;
   visibility: visible;
 }
 @media(max-width:768px) {
@@ -2938,7 +2937,7 @@ img { max-width: 100%; height: auto; display: block; }
   .cta-box { padding: 48px 20px; }
   .mega-grid { grid-template-columns: 1fr; }
   .marquee-content {
-    animation-duration: 10s;
+    animation-duration: 20s;
     gap: 24px;
   }
 }
