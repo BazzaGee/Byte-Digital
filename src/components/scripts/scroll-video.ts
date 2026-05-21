@@ -6,6 +6,12 @@ const FRAME_H = 1080;
 const CHUNK_SIZE = 25;
 const PREFETCH_COUNT = 30;
 
+const STAGE1_END = 0.18;
+const STAGE2_END = 0.33;
+const CARD_GAP = 0.015;
+const MID_ENTER = 0.35;
+const MID_EXIT = 0.65;
+
 interface AnimStyle {
   enter: { y?: number; x?: number; scale: number };
   exit: { y?: number; x?: number; scale: number };
@@ -90,15 +96,14 @@ export function initScrollVideo(): void {
     if (card) cards.push(card);
   }
 
-  const segments = [
-    { start: 0.00, end: 0.13 },
-    { start: 0.13, end: 0.27 },
-    { start: 0.27, end: 0.40 },
-    { start: 0.40, end: 0.53 },
-    { start: 0.53, end: 0.67 },
-    { start: 0.67, end: 0.82 },
-    { start: 0.82, end: 1.00 },
-  ];
+  const cardCount = cards.length;
+  const cardRange = 1 - STAGE2_END;
+  const cardSlot = cardRange / cardCount;
+  const segments = [];
+  for (let i = 0; i < cardCount; i++) {
+    const s = STAGE2_END + i * cardSlot;
+    segments.push({ start: s, end: Math.min(s + cardSlot - CARD_GAP, 1) });
+  }
 
   const animStyles: AnimStyle[] = [
     { enter: { y: 50, scale: 0.92 }, exit: { y: -30, scale: 1.01 } },
@@ -110,11 +115,17 @@ export function initScrollVideo(): void {
     { enter: { scale: 0.85, y: 20 }, exit: { scale: 1.02 } },
   ];
 
+  function easeOutQuart(t: number): number {
+    return 1 - Math.pow(1 - t, 4);
+  }
+  function easeInQuart(t: number): number {
+    return t * t * t * t;
+  }
   function easeOutCubic(t: number): number {
     return 1 - Math.pow(1 - t, 3);
   }
-  function easeInCubic(t: number): number {
-    return t * t * t;
+  function smoothstep(t: number): number {
+    return t * t * (3 - 2 * t);
   }
 
   let cachedVh = window.innerHeight;
@@ -151,18 +162,17 @@ export function initScrollVideo(): void {
         anyVisible = true;
         const range = seg.end - seg.start;
         const local = (progress - seg.start) / range;
-        const midStart = 0.3, midEnd = 0.7;
 
-        if (local < midStart) {
-          const t = easeOutCubic(local / midStart);
+        if (local < MID_ENTER) {
+          const t = easeOutQuart(local / MID_ENTER);
           opacity = t;
           ty = (anim.enter.y || 0) * (1 - t);
           tx = (anim.enter.x || 0) * (1 - t);
           s = anim.enter.scale + (1 - anim.enter.scale) * t;
-        } else if (local <= midEnd) {
+        } else if (local <= MID_EXIT) {
           opacity = 1;
         } else {
-          const t2 = easeInCubic((local - midEnd) / (1 - midEnd));
+          const t2 = easeInQuart((local - MID_EXIT) / (1 - MID_EXIT));
           opacity = 1 - t2;
           ty = (anim.exit.y || 0) * t2;
           tx = (anim.exit.x || 0) * t2;
@@ -191,7 +201,25 @@ export function initScrollVideo(): void {
     }
 
     if (darkOverlay) {
-      darkOverlay.style.opacity = anyVisible ? '1' : '0';
+      const overlayOpacity = progress > STAGE2_END && anyVisible ? '1' : '0';
+      darkOverlay.style.opacity = overlayOpacity;
+    }
+  }
+
+  function updateStickyOpacity(rawP: number): void {
+    if (!sticky) return;
+    if (rawP >= 0 && rawP < 1) {
+      sticky.classList.add('is-active');
+      let fade = 1;
+      if (rawP < 0.08) {
+        fade = easeOutCubic(rawP / 0.08);
+      } else if (rawP > 0.95) {
+        fade = easeOutCubic((1 - rawP) / 0.05);
+      }
+      sticky.style.opacity = fade.toFixed(3);
+    } else {
+      sticky.style.opacity = '0';
+      sticky.classList.remove('is-active');
     }
   }
 
@@ -209,21 +237,22 @@ export function initScrollVideo(): void {
       if (frameCounter) frameCounter.textContent = '000 / 144';
       if (scrollHint) scrollHint.style.opacity = '';
       if (scrollIndicator) scrollIndicator.style.opacity = '';
-      if (sticky) sticky.classList.remove('is-active');
+      updateStickyOpacity(-1);
       return;
     }
 
     const rawP = -top / scrollable;
     const p = Math.min(1, Math.max(0, rawP));
-    const fi = Math.min(TOTAL - 1, Math.floor(p * (TOTAL - 1)));
 
-    if (sticky) {
-      if (rawP < 1) {
-        sticky.classList.add('is-active');
-      } else {
-        sticky.classList.remove('is-active');
-      }
+    let easedP = p;
+    if (p < STAGE2_END) {
+      const stageP = p / STAGE2_END;
+      easedP = smoothstep(stageP) * STAGE2_END;
     }
+
+    const fi = Math.min(TOTAL - 1, Math.floor(easedP * (TOTAL - 1)));
+
+    updateStickyOpacity(rawP);
 
     draw(fi);
     if (progressFill) progressFill.style.width = (p * 100).toFixed(1) + '%';

@@ -58,14 +58,61 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
   <PageHero
-    label="Built to Perform"
-    title={`The Digital<br /><span class='gradient-text'>Edge</span>`}
-    subtitle="This isn't a website being built from scratch. It's a complete digital asset — already live, already optimised, already working to bring Christchurch plumbing and drainage work to you. Here's exactly what that means for your business."
+    label="Your Website Is Ready"
+    title={`Claim Your Website<br /><span class='gradient-text'>${businessName}</span>`}
+    subtitle={`A complete, SEO-optimised website has been custom-built for ${businessName} — fully designed, with professional content, ready to attract customers. All it needs is for you to claim it.`}
   />
 
-  <div class="section-accent" style="background:var(--bg-darker)">
-    <div class="section-accent-track"></div>
-  </div>
+  <section class="section section-glow" style="padding-top:0">
+    <div class="glow-orb purple top-left"></div>
+    <div class="glow-orb mint bottom-right"></div>
+    <div class="container" style="position:relative;z-index:1">
+
+      <div class="glass" style="padding:40px;border-radius:28px;margin-bottom:48px">
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+          <div style="width:48px;height:48px;border-radius:50%;background:rgba(251,191,36,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="24" height="24" fill="none" stroke="#fbbf24" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h3 style="font-size:20px;font-weight:700;color:#fff;margin:0">Website Status: Ready to Launch</h3>
+            <p style="color:var(--text-muted);font-size:14px;margin:0">Your website is built, optimised, and waiting to go live for your business</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+          <div style="padding:16px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)">
+            <div style="font-size:12px;font-weight:700;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Business</div>
+            <div style="font-size:15px;color:#fff;font-weight:600">{businessName}</div>
+          </div>
+          <div style="padding:16px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)">
+            <div style="font-size:12px;font-weight:700;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Package</div>
+            <div style="font-size:15px;color:#fff;font-weight:600">Full Website</div>
+          </div>
+          <div style="padding:16px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)">
+            <div style="font-size:12px;font-weight:700;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Status</div>
+            <div style="font-size:15px;color:#fbbf24;font-weight:600">Awaiting Claim</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass" style="padding:16px;border-radius:28px;margin-bottom:48px;overflow:hidden">
+        <div style="height:36px;background:rgba(255,255,255,0.06);border-radius:12px 12px 0 0;display:flex;align-items:center;padding:0 14px;gap:7px;margin:-16px -16px 12px;border-bottom:1px solid rgba(255,255,255,0.08)">
+          <div style="width:10px;height:10px;border-radius:50%;background:#ef4444"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#fbbf24"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#22c55e"></div>
+          <div style="margin-left:12px;height:20px;background:rgba(255,255,255,0.06);border-radius:6px;flex:1;max-width:300px;display:flex;align-items:center;padding:0 10px">
+            <span style="font-size:11px;color:var(--text-dimmed);font-family:'Space Grotesk',sans-serif">master.brooklyn-services.pages.dev</span>
+          </div>
+        </div>
+        <img src="/images/brooklyn-services-hero.png" alt="Brooklyn Services website hero section screenshot" style="width:100%;border-radius:12px;display:block" loading="lazy" />
+      </div>
+
+      <div style="text-align:center;margin-bottom:16px">
+        <h2 style="font-size:clamp(24px,4vw,36px);font-weight:700;color:#fff;margin-bottom:12px">Claim Your Website</h2>
+        <p style="color:var(--text-muted);font-size:16px;max-width:600px;margin:0 auto">Get in touch and we'll handle everything. Your website is built, fully optimised, and ready to start working for your business.</p>
+      </div>
+
+    </div>
+  </section>
 
   <!-- Stats Bar -->
   <div class="stats-bar reveal">
@@ -90,23 +137,6 @@ const jsonLd = {
       </div>
     </div>
   </div>
-
-  <!-- Website Preview -->
-  <section class="section reveal" style="padding-top:0">
-    <div class="container">
-      <div class="glass" style="padding:16px;border-radius:28px;overflow:hidden">
-        <div style="height:36px;background:rgba(255,255,255,0.06);border-radius:12px 12px 0 0;display:flex;align-items:center;padding:0 14px;gap:7px;margin:-16px -16px 12px;border-bottom:1px solid rgba(255,255,255,0.08)">
-          <div style="width:10px;height:10px;border-radius:50%;background:#ef4444"></div>
-          <div style="width:10px;height:10px;border-radius:50%;background:#fbbf24"></div>
-          <div style="width:10px;height:10px;border-radius:50%;background:#22c55e"></div>
-          <div style="margin-left:12px;height:20px;background:rgba(255,255,255,0.06);border-radius:6px;flex:1;max-width:300px;display:flex;align-items:center;padding:0 10px">
-            <span style="font-size:11px;color:var(--text-dimmed);font-family:'Space Grotesk',sans-serif">master.brooklyn-services.pages.dev</span>
-          </div>
-        </div>
-        <img src="/images/brooklyn-services-hero.png" alt="Brooklyn Services website screenshot" style="width:100%;border-radius:12px;display:block" loading="lazy" />
-      </div>
-    </div>
-  </section>
 
   <!-- The Inventory -->
   <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)">

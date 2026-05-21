@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/extract-content.js && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
@@ -16,6 +16,9 @@
     "@astrojs/mdx": "^5.0.4",
     "@astrojs/sitemap": "^3.7.2",
     "@fontsource/space-grotesk": "^5.2.10",
+    "@langchain/openai": "^1.4.6",
+    "@langchain/textsplitters": "^1.0.1",
+    "@pinecone-database/pinecone": "^7.2.0",
     "astro": "^6.1.9"
   }
 }

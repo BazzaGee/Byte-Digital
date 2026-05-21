@@ -2,6 +2,7 @@
 import SEOHead from '../components/SEOHead.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import ChatWidget from '../components/ChatWidget.astro';
 import '../styles/global.css';
 
 export interface Props {
@@ -13,9 +14,10 @@ export interface Props {
   noindex?: boolean;
   jsonLd?: object;
   pageClass?: string;
+  webhookUrl?: string;
 }
 
-const { title, description, canonicalURL, ogImage, ogType, noindex, jsonLd, pageClass = '' } = Astro.props;
+const { title, description, canonicalURL, ogImage, ogType, noindex, jsonLd, pageClass = '', webhookUrl = '' } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -37,6 +39,12 @@ const { title, description, canonicalURL, ogImage, ogType, noindex, jsonLd, page
     <slot />
   </main>
   <Footer />
+  <ChatWidget
+    webhookUrl={Astro.props.webhookUrl || ''}
+    title="Byte Digital"
+    subtitle="Ask me anything about our services"
+    placeholder="Type your question..."
+  />
 </body>
 </html>
 
