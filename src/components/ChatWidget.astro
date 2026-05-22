@@ -1,5 +1,6 @@
 ---
 const n8nWebhookUrl = Astro.props.webhookUrl || 'https://bazzagee.app.n8n.cloud/webhook/byte-digital-chatbot';
+const n8nVisionUrl = Astro.props.visionUrl || 'https://bazzagee.app.n8n.cloud/webhook/byte-digital-chatbot-vision';
 const chatTitle = Astro.props.title || 'Byte Digital';
 const chatSubtitle = Astro.props.subtitle || 'Ask me anything about our services';
 const inputPlaceholder = Astro.props.placeholder || 'Type your question...';
@@ -29,8 +30,36 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
     --chat--radius: 12px;
     --chat--radius-lg: 20px;
   }
-  .byte-chat-toggle {
+
+  /* Toggle wrapper - groups bubble + label */
+  .byte-chat-toggle-wrapper {
     position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    display: flex; align-items: center; gap: 12px;
+    transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .byte-chat-toggle-wrapper.hidden {
+    opacity: 0; pointer-events: none; transform: translateY(10px) scale(0.95);
+  }
+
+  /* Toggle label */
+  .byte-chat-toggle-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px; font-weight: 500;
+    color: var(--chat--color-font-secondary);
+    background: var(--chat--color-surface);
+    border: 1px solid var(--chat--color-border-strong);
+    padding: 8px 14px; border-radius: 20px;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+  }
+  .byte-chat-toggle-label:hover {
+    border-color: var(--chat--color-primary);
+    color: var(--chat--color-primary-light);
+  }
+
+  /* Toggle button - smooth float animation */
+  .byte-chat-toggle {
     width: 60px; height: 60px; border-radius: 50%;
     background: linear-gradient(135deg, #8B78E6, #5EEAD4);
     border: 4px solid rgba(255,255,255,0.15);
@@ -38,72 +67,108 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 0 30px rgba(139,120,230,0.3), 0 0 60px rgba(94,234,212,0.15);
     transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
-    animation: chat-glow 3s ease-in-out infinite;
+    animation: chat-float 3s ease-in-out infinite;
   }
   .byte-chat-toggle:hover {
     transform: scale(1.1);
     box-shadow: 0 0 40px rgba(139,120,230,0.5), 0 0 80px rgba(94,234,212,0.25);
   }
-  .byte-chat-toggle svg { width: 28px; height: 28px; color: #fff; transition: transform 0.3s ease; }
-  .byte-chat-toggle.active svg { transform: rotate(90deg); }
-  @keyframes chat-glow {
-    0%, 100% { box-shadow: 0 0 30px rgba(139,120,230,0.3), 0 0 60px rgba(94,234,212,0.15); }
-    50% { box-shadow: 0 0 40px rgba(139,120,230,0.4), 0 0 80px rgba(94,234,212,0.2); }
+  .byte-chat-toggle svg { width: 28px; height: 28px; color: #fff; }
+  @keyframes chat-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
   }
-  .byte-chat-overlay {
-    position: fixed; bottom: 0; right: 0; z-index: 9998;
-    width: 100%; max-width: 420px; height: 100vh; max-height: 700px;
-    margin: 0 24px 24px 0; border-radius: var(--chat--radius-lg);
-    overflow: hidden; background: var(--chat--color-background);
-    border: 4px solid rgba(255,255,255,0.1);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 80px rgba(139,120,230,0.08);
+
+  /* Wrapper for animated border */
+  .byte-chat-wrapper {
+    position: fixed; bottom: 96px; right: 24px; z-index: 9998;
+    width: 100%; max-width: 420px;
+    height: auto; max-height: 540px;
+    border-radius: var(--chat--radius-lg);
+    overflow: hidden;
     transform: translateY(20px) scale(0.95); opacity: 0; visibility: hidden;
     transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .byte-chat-wrapper.open {
+    transform: translateY(0) scale(1); opacity: 1; visibility: visible;
+  }
+
+  /* Animated rotating border - uses transform rotate for universal support */
+  .byte-chat-border {
+    position: absolute; inset: -2px;
+    border-radius: var(--chat--radius-lg);
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      transparent 65%,
+      var(--chat--color-primary) 72%,
+      var(--chat--color-secondary) 78%,
+      var(--chat--color-primary-light) 84%,
+      transparent 90%,
+      transparent 100%
+    );
+    animation: border-spin 4s linear infinite;
+    z-index: 0;
+    filter: blur(1.5px);
+    opacity: 0.7;
+  }
+  @keyframes border-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Chat overlay - sits on top of animated border */
+  .byte-chat-overlay {
+    position: relative; z-index: 1;
+    width: 100%; height: 100%; max-height: 540px;
+    overflow: hidden; background: var(--chat--color-background);
+    border-radius: var(--chat--radius-lg);
     display: flex; flex-direction: column;
   }
-  .byte-chat-overlay.open { transform: translateY(0) scale(1); opacity: 1; visibility: visible; }
+
   .byte-chat-header {
-    padding: 16px 20px;
+    padding: 14px 16px;
     background: linear-gradient(135deg, rgba(139,120,230,0.15), rgba(94,234,212,0.08));
     border-bottom: 1px solid var(--chat--color-border);
-    display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+    display: flex; align-items: center; gap: 10px; flex-shrink: 0;
   }
   .byte-chat-header-logo {
-    width: 36px; height: 36px; border-radius: 10px;
+    width: 32px; height: 32px; border-radius: 8px;
     background: linear-gradient(135deg, #8B78E6, #5EEAD4);
     display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 14px; color: #fff; flex-shrink: 0;
+    font-weight: 800; font-size: 12px; color: #fff; flex-shrink: 0;
   }
   .byte-chat-header-text h3 {
-    font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700;
     color: #fff; margin: 0; line-height: 1.2;
   }
   .byte-chat-header-text p {
-    font-family: 'Space Grotesk', sans-serif; font-size: 11px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 10px;
     color: var(--chat--color-font-muted); margin: 0; line-height: 1.2;
   }
   .byte-chat-header-actions {
     margin-left: auto; display: flex; gap: 6px; align-items: center;
   }
   .byte-chat-header-btn {
-    width: 32px; height: 32px; border-radius: 8px;
+    width: 30px; height: 30px; border-radius: 8px;
     background: rgba(255,255,255,0.05); border: 1px solid var(--chat--color-border);
     cursor: pointer; display: flex; align-items: center; justify-content: center;
     color: var(--chat--color-font-muted); transition: all 0.2s ease;
   }
   .byte-chat-header-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
   .byte-chat-messages {
-    flex: 1; overflow-y: auto; padding: 16px;
-    display: flex; flex-direction: column; gap: 12px;
+    flex: 1; overflow-y: auto; padding: 14px;
+    display: flex; flex-direction: column; gap: 10px;
     scroll-behavior: smooth;
+    min-height: 0;
   }
-  .byte-chat-messages::-webkit-scrollbar { width: 6px; }
+  .byte-chat-messages::-webkit-scrollbar { width: 5px; }
   .byte-chat-messages::-webkit-scrollbar-track { background: transparent; }
   .byte-chat-messages::-webkit-scrollbar-thumb { background: var(--chat--color-border-strong); border-radius: 3px; }
   .byte-chat-message {
-    max-width: 85%; padding: 12px 16px; border-radius: var(--chat--radius);
-    font-family: 'Space Grotesk', sans-serif; font-size: 14px;
-    line-height: 1.6; word-wrap: break-word;
+    max-width: 85%; padding: 10px 14px; border-radius: var(--chat--radius);
+    font-family: 'Space Grotesk', sans-serif; font-size: 13px;
+    line-height: 1.5; word-wrap: break-word;
     position: relative;
   }
   .byte-chat-message.user {
@@ -121,19 +186,19 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
   .byte-chat-message.system {
     align-self: center;
     background: rgba(139,120,230,0.08);
-    color: var(--chat--color-font-muted); font-size: 12px;
+    color: var(--chat--color-font-muted); font-size: 11px;
     text-align: center; border: 1px solid rgba(139,120,230,0.15);
   }
   .byte-chat-message img {
-    max-width: 100%; border-radius: 8px; margin-top: 8px;
+    max-width: 100%; border-radius: 8px; margin-top: 6px;
   }
   .byte-chat-message .msg-time {
-    font-size: 10px; color: rgba(255,255,255,0.35);
-    margin-top: 4px; text-align: right; display: block;
+    font-size: 9px; color: rgba(255,255,255,0.35);
+    margin-top: 3px; text-align: right; display: block;
   }
   .byte-chat-message.user .msg-time { color: rgba(255,255,255,0.6); }
   .byte-chat-message .msg-status {
-    font-size: 10px; margin-top: 2px; text-align: right; display: block;
+    font-size: 9px; margin-top: 2px; text-align: right; display: block;
   }
   .byte-chat-message .msg-status.sending { color: var(--chat--color-font-dimmed); }
   .byte-chat-message .msg-status.sent { color: var(--chat--color-secondary); }
@@ -141,35 +206,35 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
   .byte-chat-message .msg-retry {
     display: inline-flex; align-items: center; gap: 4px;
     background: rgba(255,95,87,0.15); border: 1px solid rgba(255,95,87,0.3);
-    color: #ff5f57; font-size: 11px; padding: 4px 10px; border-radius: 6px;
-    cursor: pointer; margin-top: 6px; font-family: 'Space Grotesk', sans-serif;
+    color: #ff5f57; font-size: 10px; padding: 3px 8px; border-radius: 6px;
+    cursor: pointer; margin-top: 4px; font-family: 'Space Grotesk', sans-serif;
     transition: all 0.2s ease;
   }
   .byte-chat-message .msg-retry:hover { background: rgba(255,95,87,0.25); }
-  .byte-chat-message .msg-content p { margin: 0 0 8px 0; }
+  .byte-chat-message .msg-content p { margin: 0 0 6px 0; }
   .byte-chat-message .msg-content p:last-child { margin-bottom: 0; }
   .byte-chat-message .msg-content strong { font-weight: 700; }
   .byte-chat-message .msg-content em { font-style: italic; }
   .byte-chat-message .msg-content ul, .byte-chat-message .msg-content ol {
-    margin: 4px 0; padding-left: 20px;
+    margin: 3px 0; padding-left: 18px;
   }
-  .byte-chat-message .msg-content li { margin-bottom: 4px; }
+  .byte-chat-message .msg-content li { margin-bottom: 3px; }
   .byte-chat-message .msg-content a {
     color: var(--chat--color-secondary); text-decoration: underline;
   }
   .byte-chat-message .msg-content code {
-    background: rgba(139,120,230,0.15); padding: 2px 6px; border-radius: 4px;
-    font-size: 12px; font-family: 'Fira Code', monospace;
+    background: rgba(139,120,230,0.15); padding: 2px 5px; border-radius: 4px;
+    font-size: 11px; font-family: 'Fira Code', monospace;
   }
   .byte-chat-typing {
-    display: flex; gap: 4px; padding: 12px 16px;
+    display: flex; gap: 4px; padding: 10px 14px;
     align-self: flex-start;
     background: var(--chat--color-surface-elevated);
     border: 1px solid var(--chat--color-border);
     border-radius: var(--chat--radius); border-bottom-left-radius: 4px;
   }
   .byte-chat-typing-dot {
-    width: 8px; height: 8px; border-radius: 50%;
+    width: 7px; height: 7px; border-radius: 50%;
     background: var(--chat--color-typing);
     animation: typing-bounce 1.4s ease-in-out infinite;
   }
@@ -177,19 +242,19 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
   .byte-chat-typing-dot:nth-child(3) { animation-delay: 0.4s; }
   @keyframes typing-bounce {
     0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-    30% { transform: translateY(-6px); opacity: 1; }
+    30% { transform: translateY(-5px); opacity: 1; }
   }
   .byte-chat-quick-replies {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    padding: 0 16px 8px;
+    display: flex; flex-wrap: wrap; gap: 6px;
+    padding: 0 14px 6px;
     animation: fadeInUp 0.3s ease;
   }
   .byte-chat-quick-reply {
-    padding: 8px 14px; border-radius: 20px;
+    padding: 6px 12px; border-radius: 16px;
     background: rgba(139,120,230,0.1);
     border: 1px solid rgba(139,120,230,0.25);
     color: var(--chat--color-primary-light);
-    font-family: 'Space Grotesk', sans-serif; font-size: 13px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 12px;
     cursor: pointer; transition: all 0.2s ease;
     white-space: nowrap;
   }
@@ -203,8 +268,8 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
     to { opacity: 1; transform: translateY(0); }
   }
   .byte-chat-scroll-bottom {
-    position: absolute; bottom: 80px; right: 20px;
-    width: 36px; height: 36px; border-radius: 50%;
+    position: absolute; bottom: 72px; right: 20px;
+    width: 32px; height: 32px; border-radius: 50%;
     background: var(--chat--color-surface-elevated);
     border: 1px solid var(--chat--color-border);
     cursor: pointer; display: flex; align-items: center; justify-content: center;
@@ -217,39 +282,39 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
   .byte-chat-scroll-bottom.visible { opacity: 1; visibility: visible; }
   .byte-chat-scroll-bottom:hover { background: rgba(139,120,230,0.15); color: var(--chat--color-primary); }
   .byte-chat-input-area {
-    padding: 12px 16px; border-top: 1px solid var(--chat--color-border);
+    padding: 10px 14px; border-top: 1px solid var(--chat--color-border);
     background: var(--chat--color-surface);
-    display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;
+    display: flex; flex-direction: column; gap: 6px; flex-shrink: 0;
   }
   .byte-chat-input-row {
-    display: flex; gap: 8px; align-items: flex-end;
+    display: flex; gap: 6px; align-items: flex-end;
   }
   .byte-chat-input {
-    flex: 1; padding: 10px 14px; border-radius: var(--chat--radius);
+    flex: 1; padding: 8px 12px; border-radius: var(--chat--radius);
     background: var(--chat--color-surface-elevated);
     border: 1px solid var(--chat--color-border);
     color: var(--chat--color-font);
-    font-family: 'Space Grotesk', sans-serif; font-size: 14px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 13px;
     outline: none; transition: border-color 0.2s ease;
-    resize: none; min-height: 40px; max-height: 120px;
+    resize: none; min-height: 36px; max-height: 100px;
     line-height: 1.4;
   }
   .byte-chat-input:focus { border-color: var(--chat--color-primary); }
   .byte-chat-input::placeholder { color: var(--chat--color-font-dimmed); }
   .byte-chat-actions {
-    display: flex; gap: 6px; align-items: center;
+    display: flex; gap: 5px; align-items: center;
   }
   .byte-chat-upload {
-    width: 40px; height: 40px; border-radius: var(--chat--radius);
+    width: 36px; height: 36px; border-radius: var(--chat--radius);
     background: var(--chat--color-surface-elevated);
     border: 1px solid var(--chat--color-border);
     cursor: pointer; display: flex; align-items: center; justify-content: center;
     color: var(--chat--color-font-muted); transition: all 0.2s ease; flex-shrink: 0;
   }
   .byte-chat-upload:hover { background: rgba(139,120,230,0.1); color: var(--chat--color-primary); border-color: var(--chat--color-primary); }
-  .byte-chat-upload svg { width: 18px; height: 18px; }
+  .byte-chat-upload svg { width: 16px; height: 16px; }
   .byte-chat-send {
-    width: 40px; height: 40px; border-radius: var(--chat--radius);
+    width: 36px; height: 36px; border-radius: var(--chat--radius);
     background: linear-gradient(135deg, #8B78E6, #5EEAD4);
     border: none; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
@@ -257,27 +322,27 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
   }
   .byte-chat-send:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(139,120,230,0.3); }
   .byte-chat-send:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
-  .byte-chat-send svg { width: 18px; height: 18px; }
+  .byte-chat-send svg { width: 16px; height: 16px; }
   .byte-chat-file-preview {
-    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
   }
   .byte-chat-file-preview img {
-    width: 48px; height: 48px; object-fit: cover; border-radius: 8px;
+    width: 40px; height: 40px; object-fit: cover; border-radius: 6px;
     border: 1px solid var(--chat--color-border);
   }
   .byte-chat-file-preview .remove-file {
-    width: 20px; height: 20px; border-radius: 50%;
+    width: 18px; height: 18px; border-radius: 50%;
     background: rgba(255,95,87,0.2); border: 1px solid rgba(255,95,87,0.4);
     color: #ff5f57; cursor: pointer; display: flex; align-items: center; justify-content: center;
-    font-size: 12px; line-height: 1;
+    font-size: 11px; line-height: 1;
   }
   .byte-chat-footer {
-    padding: 10px 16px; text-align: center;
+    padding: 8px 14px; text-align: center;
     border-top: 1px solid var(--chat--color-border);
     background: var(--chat--color-surface); flex-shrink: 0;
   }
   .byte-chat-footer p {
-    font-family: 'Space Grotesk', sans-serif; font-size: 11px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 10px;
     color: var(--chat--color-font-dimmed); margin: 0;
   }
   .byte-chat-footer .powered-by { font-weight: 600; }
@@ -285,73 +350,83 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
   .byte-chat-footer .byte-purple { color: #8B78E6; }
   .byte-chat-footer .byte-mint { color: #5EEAD4; }
   @media (max-width: 480px) {
-    .byte-chat-overlay { max-width: 100%; margin: 0; border-radius: 0; max-height: 100vh; }
-    .byte-chat-toggle { bottom: 16px; right: 16px; }
+    .byte-chat-wrapper { max-width: 100%; right: 0; bottom: 88px; border-radius: 0; max-height: 60vh; }
+    .byte-chat-wrapper.open { border-radius: 0; }
+    .byte-chat-overlay { border-radius: 0; }
+    .byte-chat-border { border-radius: 0; }
+    .byte-chat-toggle-wrapper { bottom: 16px; right: 16px; }
+    .byte-chat-toggle-label { display: none; }
   }
 </style>
 
-<button class="byte-chat-toggle" id="byteChatToggle" aria-label="Open chat">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-  </svg>
-</button>
-
-<div class="byte-chat-overlay" id="byteChatOverlay">
-  <div class="byte-chat-header">
-    <div class="byte-chat-header-logo">BD</div>
-    <div class="byte-chat-header-text">
-      <h3>{chatTitle}</h3>
-      <p>{chatSubtitle}</p>
-    </div>
-    <div class="byte-chat-header-actions">
-      <button class="byte-chat-header-btn" id="byteChatNewChat" aria-label="New chat" title="Start new chat">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 5v14M5 12h14"/>
-        </svg>
-      </button>
-      <button class="byte-chat-header-close" id="byteChatClose" aria-label="Close chat">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"/>
-          <line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-  <div class="byte-chat-messages" id="byteChatMessages">
-    <div class="byte-chat-message system">{welcomeMessage}</div>
-  </div>
-  <button class="byte-chat-scroll-bottom" id="byteChatScrollBottom" aria-label="Scroll to bottom">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="6 9 12 15 18 9"/>
+<div class="byte-chat-toggle-wrapper" id="byteChatToggleWrapper">
+  <span class="byte-chat-toggle-label">Got a question? Ask me anything</span>
+  <button class="byte-chat-toggle" id="byteChatToggle" aria-label="Open chat">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
     </svg>
   </button>
-  <div id="byteChatQuickReplies" class="byte-chat-quick-replies"></div>
-  <div class="byte-chat-input-area">
-    <div class="byte-chat-file-preview" id="byteChatFilePreview"></div>
-    <div class="byte-chat-input-row">
-      <textarea class="byte-chat-input" id="byteChatInput" placeholder={inputPlaceholder} autocomplete="off" rows="1"></textarea>
-      <div class="byte-chat-actions">
-        <label class="byte-chat-upload" id="byteChatUploadLabel" aria-label="Upload image">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+</div>
+
+<div class="byte-chat-wrapper" id="byteChatWrapper">
+  <div class="byte-chat-border"></div>
+  <div class="byte-chat-overlay" id="byteChatOverlay">
+    <div class="byte-chat-header">
+      <div class="byte-chat-header-logo">BD</div>
+      <div class="byte-chat-header-text">
+        <h3>{chatTitle}</h3>
+        <p>{chatSubtitle}</p>
+      </div>
+      <div class="byte-chat-header-actions">
+        <button class="byte-chat-header-btn" id="byteChatNewChat" aria-label="New chat" title="Start new chat">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12h14"/>
           </svg>
-          <input type="file" id="byteChatFileInput" accept="image/*" style="display:none"/>
-        </label>
-        <button class="byte-chat-send" id="byteChatSend" aria-label="Send message">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="22" y1="2" x2="11" y2="13"/>
-            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </button>
+        <button class="byte-chat-header-close" id="byteChatClose" aria-label="Close chat">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
         </button>
       </div>
     </div>
-  </div>
-  <div class="byte-chat-footer">
-    <p>Powered by <span class="powered-by"><span class="byte-name"><span class="byte-purple">BYTE</span><span class="byte-mint">DIGITAL</span></span></span></p>
+    <div class="byte-chat-messages" id="byteChatMessages">
+      <div class="byte-chat-message system">{welcomeMessage}</div>
+    </div>
+    <button class="byte-chat-scroll-bottom" id="byteChatScrollBottom" aria-label="Scroll to bottom">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+    <div id="byteChatQuickReplies" class="byte-chat-quick-replies"></div>
+    <div class="byte-chat-input-area">
+      <div class="byte-chat-file-preview" id="byteChatFilePreview"></div>
+      <div class="byte-chat-input-row">
+        <textarea class="byte-chat-input" id="byteChatInput" placeholder={inputPlaceholder} autocomplete="off" rows="1"></textarea>
+        <div class="byte-chat-actions">
+          <label class="byte-chat-upload" id="byteChatUploadLabel" aria-label="Upload image">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+            </svg>
+            <input type="file" id="byteChatFileInput" accept="image/*" style="display:none"/>
+          </label>
+          <button class="byte-chat-send" id="byteChatSend" aria-label="Send message">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="byte-chat-footer">
+      <p>Powered by <span class="powered-by"><span class="byte-name"><span class="byte-purple">BYTE</span><span class="byte-mint">DIGITAL</span></span></span></p>
+    </div>
   </div>
 </div>
 
-<script define:vars={{ webhookUrl: n8nWebhookUrl }}>
+<script define:vars={{ webhookUrl: n8nWebhookUrl, visionUrl: n8nVisionUrl }}>
   const chatSessionKey = 'sessionId';
   let chatOpen = false;
   let isSending = false;
@@ -376,17 +451,15 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
 
   function toggleChat() {
     chatOpen = !chatOpen;
-    const overlay = document.getElementById('byteChatOverlay');
-    const toggle = document.getElementById('byteChatToggle');
+    const wrapper = document.getElementById('byteChatWrapper');
+    const toggleWrapper = document.getElementById('byteChatToggleWrapper');
     if (chatOpen) {
-      overlay.classList.add('open');
-      toggle.classList.add('active');
-      toggle.setAttribute('aria-label', 'Close chat');
+      wrapper.classList.add('open');
+      toggleWrapper.classList.add('hidden');
       document.getElementById('byteChatInput').focus();
     } else {
-      overlay.classList.remove('open');
-      toggle.classList.remove('active');
-      toggle.setAttribute('aria-label', 'Open chat');
+      wrapper.classList.remove('open');
+      toggleWrapper.classList.remove('hidden');
       if (abortController) {
         abortController.abort();
         abortController = null;
@@ -507,8 +580,8 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
       addMessage('Please upload an image file.', 'system');
       return;
     }
-    if (file.size > 5 * 1024 * 1024) {
-      addMessage('Image must be under 5MB.', 'system');
+    if (file.size > 10 * 1024 * 1024) {
+      addMessage('Image must be under 10MB.', 'system');
       return;
     }
     attachedFile = file;
@@ -543,7 +616,7 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
   function autoResizeTextarea() {
     const input = document.getElementById('byteChatInput');
     input.style.height = 'auto';
-    input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+    input.style.height = Math.min(input.scrollHeight, 100) + 'px';
   }
 
   async function sendMessage(retryData) {
@@ -557,7 +630,7 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
     const sendBtn = document.getElementById('byteChatSend');
     sendBtn.disabled = true;
 
-    const userMsgEl = addMessage(message, 'user', 'sending');
+    const userMsgEl = addMessage(message || 'Please review this image.', 'user', 'sending');
 
     if (file) {
       addImageMessage(retryData ? URL.createObjectURL(file) : URL.createObjectURL(file), 'user');
@@ -575,7 +648,8 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
         formData.append('image', file);
       }
 
-      const response = await fetch(webhookUrl, {
+      const fetchUrl = file ? visionUrl : webhookUrl;
+      const response = await fetch(fetchUrl, {
         method: 'POST',
         body: formData,
         signal: abortController.signal,
@@ -587,12 +661,48 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
         throw new Error('Response not OK');
       }
 
-      const data = await response.json();
-      const reply = data.output || data.text || data.message || data.reply || JSON.stringify(data);
+      // Streaming: parse NDJSON line-by-line
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      let fullText = '';
+      let botMsgEl = addMessage('', 'bot', 'sending');
 
-      userMsgEl.innerHTML = message + '<span class="msg-time">' + formatTime() + '</span><span class="msg-status sent">✓</span>';
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
 
-      addMessage(reply, 'bot');
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (!trimmed) continue;
+          try {
+            const parsed = JSON.parse(trimmed);
+            if (parsed.type === 'item' && parsed.content) {
+              fullText += parsed.content;
+              botMsgEl.innerHTML = '<div class="msg-content">' + renderMarkdown(fullText) + '</div><span class="msg-time">' + formatTime() + '</span>';
+              scrollToBottom();
+            } else if (parsed.type === 'end') {
+              botMsgEl.innerHTML = '<div class="msg-content">' + renderMarkdown(fullText) + '</div><span class="msg-time">' + formatTime() + '</span><span class="msg-status sent">✓</span>';
+            }
+          } catch (e) {
+            // Not valid JSON, skip
+          }
+        }
+      }
+
+      // If streaming produced no output, try JSON fallback
+      if (!fullText) {
+        const data = await response.clone().json();
+        fullText = data.output || data.text || data.message || data.reply || JSON.stringify(data);
+        botMsgEl.innerHTML = '<div class="msg-content">' + renderMarkdown(fullText) + '</div><span class="msg-time">' + formatTime() + '</span><span class="msg-status sent">✓</span>';
+      } else {
+        botMsgEl.innerHTML = '<div class="msg-content">' + renderMarkdown(fullText) + '</div><span class="msg-time">' + formatTime() + '</span><span class="msg-status sent">✓</span>';
+      }
+
       showQuickReplies();
 
       if (!retryData) {
@@ -660,15 +770,15 @@ const welcomeMessage = Astro.props.welcomeMessage || "Welcome! Ask me anything a
 
   let keyboardHeight = 0;
   window.visualViewport?.addEventListener('resize', () => {
-    const overlay = document.getElementById('byteChatOverlay');
-    if (!overlay) return;
+    const wrapper = document.getElementById('byteChatWrapper');
+    if (!wrapper) return;
     const currentHeight = window.visualViewport.height;
     const maxHeight = window.visualViewport.height;
     if (currentHeight < maxHeight * 0.8) {
       keyboardHeight = maxHeight - currentHeight;
-      overlay.style.maxHeight = (maxHeight - keyboardHeight - 24) + 'px';
+      wrapper.style.maxHeight = (maxHeight - keyboardHeight - 100) + 'px';
     } else {
-      overlay.style.maxHeight = '700px';
+      wrapper.style.maxHeight = '540px';
     }
   });
 </script>

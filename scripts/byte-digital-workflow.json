@@ -1,5 +1,4 @@
 {
-  "name": "Byte Digital Business Chatbot",
   "nodes": [
     {
       "id": "webhook-1",
@@ -7,15 +6,18 @@
       "parameters": {
         "httpMethod": "POST",
         "path": "byte-digital-chatbot",
-        "responseMode": "lastNode",
-        "options": {}
+        "responseMode": "streaming",
+        "options": {
+          "allowedOrigins": "*"
+        }
       },
       "position": [
         -816,
         -336
       ],
       "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2
+      "typeVersion": 2,
+      "webhookId": "31a3771d-e365-4a65-8eca-49d5d7f6c156"
     },
     {
       "id": "fetch-content",
@@ -31,7 +33,7 @@
       },
       "executeOnce": true,
       "position": [
-        -640,
+        -480,
         -336
       ],
       "type": "n8n-nodes-base.httpRequest",
@@ -45,7 +47,7 @@
         "jsCode": "const content = $('Fetch Site Content').first().json;\nconst userMessage = $('Webhook').first().json.body.chatInput || '';\n\nconst stopWords = new Set(['the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'shall', 'can', 'need', 'dare', 'ought', 'used', 'to', 'of', 'in', 'for', 'on', 'with', 'at', 'by', 'from', 'as', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'between', 'out', 'off', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 'just', 'because', 'but', 'and', 'or', 'if', 'while', 'about', 'what', 'which', 'who', 'whom', 'this', 'that', 'these', 'those', 'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', 'her', 'hers', 'herself', 'it', 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves', 'am']);\n\nfunction tokenize(text) {\n  return text.toLowerCase()\n    .replace(/[^a-z0-9\\s]/g, ' ')\n    .split(/\\s+/)\n    .filter(w => w.length > 2 && !stopWords.has(w));\n}\n\nconst keywords = tokenize(userMessage);\n\nfunction scoreSection(sectionText, sectionTitle) {\n  sectionTitle = sectionTitle || '';\n  const combined = (sectionTitle + ' ' + sectionText).toLowerCase();\n  let score = 0;\n  for (const kw of keywords) {\n    if (combined.includes(kw)) score++;\n    const partialMatches = keywords.filter(k => k.startsWith(kw) || kw.startsWith(k));\n    score += partialMatches.length * 0.5;\n  }\n  return score;\n}\n\nlet sections = [];\n\nif (content.services) {\n  for (const s of content.services) {\n    const text = s.title + ' ' + (s.description || '');\n    const score = scoreSection(text, s.title);\n    if (score > 0) {\n      sections.push({ type: 'service', title: s.title, content: text, score });\n    }\n  }\n}\n\nif (content.servicePages) {\n  for (const sp of content.servicePages) {\n    const score = scoreSection(sp.content, sp.title);\n    if (score > 0) {\n      sections.push({ type: 'service-page', title: sp.title, content: sp.content.substring(0, 1500), score });\n    }\n  }\n}\n\nif (content.guides) {\n  for (const g of content.guides) {\n    const text = g.title + ' ' + (g.description || '');\n    const score = scoreSection(text, g.title);\n    if (score > 0) {\n      sections.push({ type: 'guide', title: g.title, content: text, score });\n    }\n  }\n}\n\nif (content.guidePages) {\n  for (const gp of content.guidePages) {\n    const score = scoreSection(gp.content, gp.title);\n    if (score > 0) {\n      sections.push({ type: 'guide-page', title: gp.title, content: gp.content.substring(0, 1500), score });\n    }\n  }\n}\n\nif (content.blogPosts) {\n  for (const bp of content.blogPosts) {\n    const text = bp.title + ' ' + (bp.description || '') + ' ' + (bp.content || '');\n    const score = scoreSection(text, bp.title);\n    if (score > 0) {\n      sections.push({ type: 'blog', title: bp.title, content: bp.content.substring(0, 1000), score });\n    }\n  }\n}\n\nif (content.caseStudies) {\n  for (const cs of content.caseStudies) {\n    const text = cs.title + ' ' + (cs.description || '') + ' ' + (cs.content || '');\n    const score = scoreSection(text, cs.title);\n    if (score > 0) {\n      sections.push({ type: 'case-study', title: cs.title, content: cs.content.substring(0, 1000), score });\n    }\n  }\n}\n\nif (content.locations) {\n  for (const loc of content.locations) {\n    const score = scoreSection(loc.text, loc.suburb);\n    if (score > 0) {\n      sections.push({ type: 'location', title: loc.suburb, content: loc.text.substring(0, 500), score });\n    }\n  }\n}\n\nif (content.faq) {\n  for (const faq of content.faq) {\n    const text = faq.question + ' ' + (faq.answer || '');\n    const score = scoreSection(text, faq.question);\n    if (score > 0) {\n      sections.push({ type: 'faq', title: faq.question, content: faq.answer, score });\n    }\n  }\n}\n\nif (content.about && content.about.text) {\n  const score = scoreSection(content.about.text, 'About Byte Digital');\n  if (score > 0) {\n    sections.push({ type: 'about', title: 'About Byte Digital', content: content.about.text.substring(0, 1000), score });\n  }\n}\n\nif (content.business) {\n  const b = content.business;\n  const businessText = b.name + ' ' + b.description + ' ' + b.location + ' ' + (b.founder || '') + ' ' + (b.email || '');\n  const score = scoreSection(businessText, b.name);\n  if (score > 0 || keywords.length === 0) {\n    sections.unshift({ type: 'business-info', title: 'Business Information', content: businessText, score: score || 1 });\n  }\n}\n\nsections.sort((a, b) => b.score - a.score);\n\nconst topSections = sections.slice(0, 5);\n\nlet context = '## Byte Digital Website Content\\n\\n';\nfor (const section of topSections) {\n  context += '### ' + section.title + ' (' + section.type + ')\\n';\n  context += section.content + '\\n\\n';\n}\n\nif (topSections.length === 0) {\n  context = '## Byte Digital Business Information\\n\\n';\n  if (content.business) {\n    const b = content.business;\n    context += b.name + ': ' + b.description + '\\n';\n    context += 'Location: ' + b.location + '\\n';\n    context += 'Email: ' + b.email + '\\n';\n    context += 'Services: ' + (b.services || []).join(', ') + '\\n';\n  }\n}\n\nreturn [{\n  json: {\n    relevantContent: context,\n    userMessage: userMessage,\n    matchedSections: topSections.length,\n  }\n}];\n"
       },
       "position": [
-        -480,
+        -400,
         -336
       ],
       "type": "n8n-nodes-base.code",
@@ -56,11 +58,12 @@
       "name": "AI Agent",
       "parameters": {
         "promptType": "define",
-        "text": "=User: {{ $json.body.chatInput }}\n\nHere is relevant content from the Byte Digital website to help you answer:\n{{ $(\"Find Relevant Content\").item.json.relevantContent }}",
+        "text": "=User: {{ $json.userMessage }}\n\nHere is relevant content from the Byte Digital website:\n{{ $json.relevantContent }}",
         "needsFallback": true,
         "options": {
-          "systemMessage": "You are the sales and customer service assistant for Byte Digital, a premium web design and digital marketing agency based in Christchurch, New Zealand. You are not a generic chatbot — you are the first point of contact and your job is to genuinely help each customer find the right solution while naturally guiding the conversation toward a positive outcome (a booking, purchase, enquiry, or next step).\n\nCOMPANY PROFILE:\n- Founded by Barry Grottis (14+ years experience)\n- Christchurch, Canterbury, New Zealand\n- Premium web design & digital marketing for local businesses\n- Email: barry@bytedigital.co.nz\n- Website: https://bytedigital.co.nz\n\nSERVICES:\n1. Web Design — Custom, conversion-focused websites built from scratch\n2. Web Development — Fast, scalable web applications with modern frameworks\n3. SEO — Rank higher on Google and drive organic traffic\n4. Local SEO — Dominate local search results in Christchurch\n5. eCommerce — Online stores that sell. Built for conversion\n6. WordPress Development — Custom WordPress sites that are fast and secure\n7. Branding — Brand strategy and identity that stands out\n8. Logo Design — Memorable logos that define your brand\n9. Custom Applications — Tailor-made web apps for your business processes\n10. Website Maintenance — Keep your site fast, secure, and up to date\n\nSALES PSYCHOLOGY & SOFT CLOSING:\n- Your mindset: be a trusted advisor, not a salesperson. The best close happens when the customer feels helped, not sold to\n- LISTEN first: before recommending anything, understand the customer's real need — their stated question is often the surface of a deeper problem\n- Match solutions to problems: use what you learn about the customer to frame your recommendation around THEIR specific situation\n- Build value naturally: when mentioning strengths or differentiators, tie them directly to what the customer told you they need\n- Use empathy-first language for concerns: \"I understand that's important to you... here's what we do...\" rather than dismissing\n- SOFT CLOSE every interaction with a gentle next step — never leave a dead end:\n  - \"Would you like me to help you book a free discovery call?\"\n  - \"Shall I get Barry to give you a call about this?\"\n  - \"I can check availability for you if you'd like?\"\n  - \"Would you like more details sent to you?\"\n- Never be pushy — but every response should gently move the conversation forward\n- If a customer shows buying intent (asking about price, availability, timing), lean in: make it easy for them to take the next step\n\nCONVERSATION STAGES:\n1. GREETING — Keep it warm, brief, and human. No robotic scripts. Set up the conversation: \"Hey there! How can I help you today?\" or \"Welcome to Byte Digital! What can I do for you?\"\n2. DISCOVERY — Ask 1-2 targeted questions to understand what the customer actually needs. Don't interrogate — make it feel natural: \"That's a great question. To point you in the right direction, could you tell me a bit more about [relevant context]?\"\n3. SOLUTION — Recommend based on what you learned. Reference specific services by name. Connect their need to your strengths. Use their own words back to them so they feel heard\n4. SOFT CLOSE — Suggest a natural next step. The close should feel like the obvious next thing to do, not a sales pitch. Always give them an easy way to say yes or to keep thinking\n\nPERFORMANCE OPTIMIZATION:\n- For simple queries (hours, location, basic questions), use your existing knowledge FIRST before using the content\n- Only use the website content when you cannot answer from memory or need exact details\n- For basic info requests, respond directly without tool usage to improve speed\n- Keep responses concise — aim for 200-500 tokens for simple queries, up to 800 for detailed recommendations\n\nCLARIFICATION QUESTIONS — ONLY WHEN NEEDED:\n- NEVER ask clarifying questions in initial greetings or without context\n- Only ask questions when the customer provides enough context to warrant them\n- Ask 1-2 targeted questions MAX — not a questionnaire\n- Let the customer's messages guide when clarification is needed\n- Frame every question as being for THEIR benefit: \"Just so I can give you the best answer...\"\n\nSPECIALIST CONNECTION — WHEN TO HAND OFF:\n- You should handle the conversation yourself by default\n- ONLY offer to connect with Barry when:\n  - The customer explicitly asks to speak with someone, OR\n  - The question is beyond what you can answer with your knowledge\n- NEVER proactively offer specialist connection in greetings\n- If a handoff is needed: \"For more detailed advice on this, Barry would be the best person to help. Would you prefer a phone call or email?\"\n\nCONTACT INFORMATION:\n- Email: barry@bytedigital.co.nz\n- Include relevant contact details at the end of responses when it would help the customer take the next step\n- Don't include ALL contact info every time — just the most relevant\n\nSTRICT OUTPUT RULES:\n- Return ONLY the final answer to the user\n- No tool usage descriptions or metadata\n- Keep responses concise and conversational\n- Break long text into short paragraphs\n- Use emojis sparingly (1-2 per response max)\n- Use New Zealand spelling and grammar (e.g., \"colour\" not \"color\", \"personalised\" not \"personalized\")\n",
-          "maxIterations": 3
+          "systemMessage": "You are the sales and customer service assistant for Byte Digital, a premium web design and digital marketing agency based in Christchurch, New Zealand. You are not a generic chatbot \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d you are the first point of contact and your job is to genuinely help each customer find the right solution while naturally guiding the conversation toward a positive outcome (a booking, purchase, enquiry, or next step).\n\nCOMPANY PROFILE:\n- Founded by Barry Grottis (14+ years experience)\n- Christchurch, Canterbury, New Zealand\n- Premium web design & digital marketing for local businesses\n- Email: barry@bytedigital.co.nz\n- Website: https://bytedigital.co.nz\n\nSERVICES:\n1. Web Design \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Custom, conversion-focused websites built from scratch\n2. Web Development \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Fast, scalable web applications with modern frameworks\n3. SEO \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Rank higher on Google and drive organic traffic\n4. Local SEO \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Dominate local search results in Christchurch\n5. eCommerce \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Online stores that sell. Built for conversion\n6. WordPress Development \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Custom WordPress sites that are fast and secure\n7. Branding \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Brand strategy and identity that stands out\n8. Logo Design \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Memorable logos that define your brand\n9. Custom Applications \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Tailor-made web apps for your business processes\n10. Website Maintenance \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Keep your site fast, secure, and up to date\n\nSALES PSYCHOLOGY & SOFT CLOSING:\n- Your mindset: be a trusted advisor, not a salesperson. The best close happens when the customer feels helped, not sold to\n- LISTEN first: before recommending anything, understand the customer's real need \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d their stated question is often the surface of a deeper problem\n- Match solutions to problems: use what you learn about the customer to frame your recommendation around THEIR specific situation\n- Build value naturally: when mentioning strengths or differentiators, tie them directly to what the customer told you they need\n- Use empathy-first language for concerns: \"I understand that's important to you... here's what we do...\" rather than dismissing\n- SOFT CLOSE every interaction with a gentle next step \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d never leave a dead end:\n  - \"Would you like me to help you book a free discovery call?\"\n  - \"Shall I get Barry to give you a call about this?\"\n  - \"I can check availability for you if you'd like?\"\n  - \"Would you like more details sent to you?\"\n- Never be pushy \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d but every response should gently move the conversation forward\n- If a customer shows buying intent (asking about price, availability, timing), lean in: make it easy for them to take the next step\n\nCONVERSATION STAGES:\n1. GREETING \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Keep it warm, brief, and human. No robotic scripts. Set up the conversation: \"Hey there! How can I help you today?\" or \"Welcome to Byte Digital! What can I do for you?\"\n2. DISCOVERY \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Ask 1-2 targeted questions to understand what the customer actually needs. Don't interrogate \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d make it feel natural: \"That's a great question. To point you in the right direction, could you tell me a bit more about [relevant context]?\"\n3. SOLUTION \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Recommend based on what you learned. Reference specific services by name. Connect their need to your strengths. Use their own words back to them so they feel heard\n4. SOFT CLOSE \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d Suggest a natural next step. The close should feel like the obvious next thing to do, not a sales pitch. Always give them an easy way to say yes or to keep thinking\n\nPERFORMANCE OPTIMIZATION:\n- For simple queries (hours, location, basic questions), use your existing knowledge FIRST before using the content\n- Only use the website content when you cannot answer from memory or need exact details\n- For basic info requests, respond directly without tool usage to improve speed\n- Keep responses concise \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d aim for 200-500 tokens for simple queries, up to 800 for detailed recommendations\n\nCLARIFICATION QUESTIONS \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d ONLY WHEN NEEDED:\n- NEVER ask clarifying questions in initial greetings or without context\n- Only ask questions when the customer provides enough context to warrant them\n- Ask 1-2 targeted questions MAX \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d not a questionnaire\n- Let the customer's messages guide when clarification is needed\n- Frame every question as being for THEIR benefit: \"Just so I can give you the best answer...\"\n\nSPECIALIST CONNECTION \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d WHEN TO HAND OFF:\n- You should handle the conversation yourself by default\n- ONLY offer to connect with Barry when:\n  - The customer explicitly asks to speak with someone, OR\n  - The question is beyond what you can answer with your knowledge\n- NEVER proactively offer specialist connection in greetings\n- If a handoff is needed: \"For more detailed advice on this, Barry would be the best person to help. Would you prefer a phone call or email?\"\n\nCONTACT INFORMATION:\n- Email: barry@bytedigital.co.nz\n- Include relevant contact details at the end of responses when it would help the customer take the next step\n- Don't include ALL contact info every time \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\udc9d just the most relevant\n\nSTRICT OUTPUT RULES:\n- Return ONLY the final answer to the user\n- No tool usage descriptions or metadata\n- Keep responses concise and conversational\n- Break long text into short paragraphs\n- Use emojis sparingly (1-2 per response max)\n- Use New Zealand spelling and grammar (e.g., \"colour\" not \"color\", \"personalised\" not \"personalized\")\n",
+          "maxIterations": 3,
+          "enableStreaming": true
         }
       },
       "position": [
@@ -85,7 +88,7 @@
       "typeVersion": 1,
       "credentials": {
         "openRouterApi": {
-          "id": "drTbWKeUCFJ69WvQ",
+          "id": "uSUc5626duAfakQP",
           "name": "OpenRouter account"
         }
       }
@@ -105,7 +108,7 @@
       "typeVersion": 1,
       "credentials": {
         "openRouterApi": {
-          "id": "drTbWKeUCFJ69WvQ",
+          "id": "uSUc5626duAfakQP",
           "name": "OpenRouter account"
         }
       }
@@ -191,8 +194,8 @@
       "typeVersion": 4.6,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "sKGt1IvW53HbDevG",
-          "name": "Google Sheets account"
+          "id": "Vwu7FplYoo7iFM1I",
+          "name": "Google Sheets OAuth2 API"
         }
       }
     },
@@ -213,7 +216,7 @@
         "options": {}
       },
       "position": [
-        32,
+        -80,
         -336
       ],
       "type": "n8n-nodes-base.set",
@@ -226,105 +229,72 @@
         "jsCode": "function unwrap(o) {\n  if (o === null || o === undefined) return '';\n  if (typeof o === 'string') {\n    var s = o.trim();\n    if (s.charAt(0) === '{' && s.charAt(s.length - 1) === '}') {\n      try {\n        var parsed = JSON.parse(s);\n        return unwrap(parsed);\n      } catch (e) {\n        if (s.charAt(0) === '\"' && s.charAt(s.length - 1) === '\"') return s.substring(1, s.length - 1);\n        return s;\n      }\n    }\n    if (s.charAt(0) === '\"' && s.charAt(s.length - 1) === '\"') return s.substring(1, s.length - 1);\n    return s;\n  }\n  if (typeof o === 'object') {\n    var keys = Object.keys(o);\n    if (keys.length === 1) return unwrap(o[keys[0]]);\n    try { return JSON.stringify(o); } catch (e) { return ''; }\n  }\n  return String(o);\n}\n\nvar source = ($json && typeof $json === 'object' && $json.text !== undefined) ? $json.text : $json;\nvar cleaned = unwrap(source);\nreturn { json: { text: cleaned } };\n"
       },
       "position": [
-        240,
+        0,
         -336
       ],
       "type": "n8n-nodes-base.code",
       "typeVersion": 2
+    },
+    {
+      "id": "postgres-memory",
+      "name": "Postgres Chat Memory",
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $(\"Webhook\").item.json.body.sessionId }}",
+        "tableName": "byte_digital_chat_histories",
+        "contextWindowLength": 100
+      },
+      "position": [
+        -480,
+        -144
+      ],
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.4,
+      "credentials": {
+        "postgres": {
+          "id": "lCIezAUu7hMVUYr1",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "id": "file-validator",
+      "name": "File Validator",
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const MAX_FILE_SIZE = 10 * 1024 * 1024;\nconst ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];\n\nif ($binary && Object.keys($binary).length > 0) {\n  const binaryKeys = Object.keys($binary);\n  const validFiles = [];\n  const invalidFiles = [];\n  \n  for (const key of binaryKeys) {\n    const binaryData = $binary[key];\n    const mimeType = binaryData.mimeType || '';\n    const fileSize = binaryData.fileSize || binaryData.size || 0;\n    const fileSizeBytes = typeof fileSize === 'string' ? parseInt(fileSize) : fileSize;\n    \n    let isValid = true;\n    let reason = '';\n    \n    if (!ALLOWED_TYPES.includes(mimeType)) {\n      isValid = false;\n      reason = 'Invalid file type (' + mimeType + '). Only JPG, PNG, GIF, WebP accepted.';\n    } else if (fileSizeBytes > MAX_FILE_SIZE) {\n      isValid = false;\n      const fileSizeMB = (fileSizeBytes / 1024 / 1024).toFixed(2);\n      reason = 'File too large (' + fileSizeMB + 'MB). Maximum is 10MB.';\n    }\n    \n    if (isValid) {\n      validFiles.push(key);\n    } else {\n      invalidFiles.push({ key, reason });\n    }\n  }\n  \n  if (validFiles.length === 0) {\n    const errorMessages = invalidFiles.map(f => '\\u2022 ' + f.key + ': ' + f.reason).join('\\n');\n    return [{\n      json: {\n        output: 'Kia ora! I\\'m sorry. I couldn\\'t process your files:\\n\\n' + errorMessages + '\\n\\nPlease upload valid image files (JPG, PNG, GIF, or WebP) under 10MB.'\n      }\n    }];\n  }\n  \n  if (invalidFiles.length > 0) {\n    const warningMessages = invalidFiles.map(f => '\\u2022 ' + f.key + ': ' + f.reason).join('\\n');\n    return [{\n      json: {\n        ...$json,\n        fileWarning: 'Kia ora! I skipped some files:\\n' + warningMessages + '\\n\\nI\\'ll process the valid files now.'\n      }\n    }];\n  }\n}\n\nreturn $input.all();"
+      },
+      "position": [
+        -640,
+        -336
+      ],
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2
+    },
+    {
+      "id": "file-warning",
+      "name": "File Warning",
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "text",
+              "name": "text",
+              "value": "={{ $json.fileWarning ? $json.fileWarning + '\\n\\n' + $json.chatInput : $json.chatInput }}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "position": [
+        -560,
+        -336
+      ],
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4
     }
   ],
-  "connections": {
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "Fetch Site Content",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Fetch Site Content": {
-      "main": [
-        [
-          {
-            "node": "Find Relevant Content",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Find Relevant Content": {
-      "main": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Agent": {
-      "main": [
-        [
-          {
-            "node": "Chat History",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Chat History": {
-      "main": [
-        [
-          {
-            "node": "Extract Response",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Extract Response": {
-      "main": [
-        [
-          {
-            "node": "Clean Response",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenRouter Primary": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenRouter Fallback": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 1
-          }
-        ]
-      ]
-    }
-  },
   "settings": {
-    "executionOrder": "v1",
-    "binaryMode": "separate"
+    "executionOrder": "v1"
   }
 }
