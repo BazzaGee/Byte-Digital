@@ -40,6 +40,7 @@ export const allServices: ServiceInfo[] = [
   { slug: 'branding', title: 'Branding', href: '/services/branding', icon: '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>', description: 'Brand strategy and identity that stands out.' },
   { slug: 'logo-design', title: 'Logo Design', href: '/services/logo-design', icon: '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>', description: 'Memorable logos that define your brand.' },
   { slug: 'custom-applications', title: 'Custom Applications', href: '/services/custom-applications', icon: '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M20 15h2M9 2v2M9 20v2M2 9h2M20 9h2"/></svg>', description: 'Tailor-made web apps for your business processes.' },
+  { slug: 'mobile-app-development', title: 'Mobile App Development', href: '/services/mobile-app-development', icon: '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>', description: 'Installable PWA & cross-platform mobile apps.' },
   { slug: 'website-maintenance', title: 'Website Maintenance', href: '/services/website-maintenance', icon: '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>', description: 'Keep your site fast, secure, and up to date.' },
 ];
 
@@ -60,7 +61,8 @@ const serviceToBlogTags: Record<string, string[]> = {
   'wordpress-development': ['WordPress', 'comparison'],
   'branding': ['branding'],
   'logo-design': [],
-  'custom-applications': ['AI', 'future-proof', 'booking system', 'quote calculator'],
+  'custom-applications': ['AI', 'future-proof', 'booking system', 'quote calculator', 'custom application', 'web app', 'real-time'],
+  'mobile-app-development': ['mobile app', 'PWA', 'progressive web app', 'real-time', 'react', 'app'],
   'website-maintenance': ['speed', 'performance', 'accessibility', 'WCAG', 'optimization'],
 };
 
@@ -74,6 +76,7 @@ const serviceToGuideSlugs: Record<string, string[]> = {
   'branding': [],
   'logo-design': [],
   'custom-applications': ['digital-transformation', 'website-cost-guide-nz'],
+  'mobile-app-development': ['digital-transformation', 'website-cost-guide-nz'],
   'website-maintenance': ['website-cost-guide-nz', 'web-design-christchurch-2026'],
 };
 
@@ -86,7 +89,8 @@ const serviceToCaseStudyTags: Record<string, string[]> = {
   'wordpress-development': ['WordPress'],
   'branding': [],
   'logo-design': [],
-  'custom-applications': ['booking system', 'quote calculator'],
+  'custom-applications': ['booking system', 'quote calculator', 'custom application', 'web app', 'real-time', 'AI app'],
+  'mobile-app-development': ['mobile app', 'PWA', 'progressive web app', 'real-time', 'react', 'app'],
   'website-maintenance': [],
 };
 

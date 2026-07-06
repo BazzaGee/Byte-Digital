@@ -13,14 +13,58 @@ const studies = (await getCollection('case-studies')).sort((a, b) => b.data.pubD
   description="See the kind of results Christchurch and Canterbury businesses can achieve with a professionally designed, conversion-focused website from Byte Digital."
 >
   <PageHero
-    label="Example Outcomes"
-    title="What's <span class='gradient-text'>possible for you.</span>"
-    subtitle="See the kind of results Christchurch and Canterbury businesses can achieve with a professionally designed, conversion-focused website."
+    label="Our Work"
+    title="Real projects & <span class='gradient-text'>what's possible.</span>"
+    subtitle="From live, in-production applications to the results Christchurch businesses can achieve — see what Byte Digital designs and builds."
   />
-  <section class="section reveal" style="padding-top:0;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+
+  <section class="section" style="padding-top:48px;background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
     <div class="container">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;justify-content:center;flex-wrap:wrap">
+        <div class="section-label" style="margin:0">Featured Project</div>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#34d399;background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.25)">
+          <span style="width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399"></span> Live & In Production
+        </span>
+      </div>
+
+      <div class="glass cooktwo-hero" style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:24px;overflow:hidden;border:1px solid var(--border-subtle)">
+        <div style="padding:48px;display:flex;flex-direction:column;justify-content:center">
+          <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+            <span style="display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--secondary);background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.2)">PWA · HealthTech</span>
+            <span style="display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#c4b5fd;background:rgba(139,120,230,0.08);border:1px solid rgba(139,120,230,0.2)">Real-Time · AI</span>
+          </div>
+          <h2 style="font-size:32px;font-weight:700;margin:0 0 14px;font-family:'Space Grotesk',sans-serif;line-height:1.15">CookTwo — adaptive nutrition app for couples</h2>
+          <p style="color:var(--text-muted);line-height:1.7;margin:0 0 24px;font-size:16px">A real-time, AI-powered progressive web app that lets two partners with different goals cook one meal together, plated two ways. Designed, engineered, and launched end-to-end by Byte Digital — and live today.</p>
+          <div style="display:flex;gap:28px;margin-bottom:28px;flex-wrap:wrap">
+            <div><div style="font-size:26px;font-weight:700;color:#5EEAD4;font-family:'Space Grotesk',sans-serif">100ms</div><div style="font-size:11px;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px">Real-time sync</div></div>
+            <div><div style="font-size:26px;font-weight:700;color:#5EEAD4;font-family:'Space Grotesk',sans-serif">3</div><div style="font-size:11px;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px">AI providers</div></div>
+            <div><div style="font-size:26px;font-weight:700;color:#5EEAD4;font-family:'Space Grotesk',sans-serif">300+</div><div style="font-size:11px;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px">Edge locations</div></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px">
+            <a href="/case-studies/cooktwo" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;font-size:15px;text-decoration:none">View case study</a>
+            <a href="https://cooktwo.com" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;font-size:15px;text-decoration:none">
+              Visit cooktwo.com
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            </a>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#0d0d12,#13131c);display:flex;align-items:center;justify-content:center;padding:40px;gap:16px">
+          <img src="/images/work/cooktwo/02-pantry.webp" alt="CookTwo pantry AI screen" loading="lazy" style="width:43%;border-radius:14px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 20px 50px rgba(0,0,0,0.5)" />
+          <img src="/images/work/cooktwo/03-adaptive-meal.webp" alt="CookTwo adaptive meal screen" loading="lazy" style="width:43%;border-radius:14px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 20px 50px rgba(0,0,0,0.5);transform:translateY(28px)" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" style="padding-top:64px;background:var(--bg-dark)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">Example Outcomes</div>
+        <h2 class="section-title" style="margin:0 auto">What's <span class="gradient-text">possible for you.</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">More examples of the results Christchurch and Canterbury businesses can achieve with a professionally designed, conversion-focused website.</p>
+      </div>
       <div class="case-grid">
-        {studies.map(study => (
+        {studies.filter(s => s.id !== 'cooktwo').map(study => (
           <a href={`/case-studies/${study.id}`} class="case-item" style="text-decoration:none">
             <div class="case-visual glass" style="background:linear-gradient(135deg,rgba(139,120,230,0.05),transparent);align-items:center;justify-content:center">
               <span style="color:var(--text-dimmed);font-size:14px">{study.data.industry}</span>
@@ -47,10 +91,12 @@ const studies = (await getCollection('case-studies')).sort((a, b) => b.data.pubD
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:700px;margin:0 auto">
         <a href="/services/web-design" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Web Design</a>
+        <a href="/services/web-development" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Web Development</a>
+        <a href="/services/mobile-app-development" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Mobile Apps</a>
+        <a href="/services/custom-applications" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Custom Apps</a>
         <a href="/services/seo" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">SEO</a>
         <a href="/services/local-seo" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Local SEO</a>
         <a href="/services/ecommerce" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">eCommerce</a>
-        <a href="/services/web-development" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Web Development</a>
         <a href="/services/wordpress-development" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">WordPress</a>
         <a href="/services/branding" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Branding</a>
         <a href="/services/website-maintenance" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Maintenance</a>
@@ -59,3 +105,9 @@ const studies = (await getCollection('case-studies')).sort((a, b) => b.data.pubD
   </section>
   <CTASection />
 </BaseLayout>
+
+<style>
+  @media (max-width: 860px) {
+    .cooktwo-hero { grid-template-columns: 1fr !important; }
+  }
+</style>

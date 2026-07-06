@@ -52,7 +52,7 @@ function extractFrontmatter(content) {
       } else if (!isNaN(value) && value !== '') {
         value = Number(value);
       }
-      if (value.startsWith('[') && value.endsWith(']')) {
+      if (typeof value === 'string' && value.startsWith('[') && value.endsWith(']')) {
         try {
           data[currentKey] = JSON.parse(value);
         } catch {

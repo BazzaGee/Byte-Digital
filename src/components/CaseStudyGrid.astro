@@ -1,6 +1,28 @@
 ---
 const caseStudies = [
   {
+    badge: 'Live · PWA & HealthTech',
+    badgeColor: 'mint',
+    title: 'CookTwo — Adaptive Nutrition App',
+    slug: 'case-studies/cooktwo',
+    description: 'A real-time, AI-powered progressive web app we designed, engineered, and launched for couples with different dietary goals. One meal, two personalised plates, with sub-100ms live sync and a multi-provider AI chain — live in production today.',
+    features: [
+      'Installable Progressive Web App (PWA)',
+      'Real-time sync under 100ms via WebSockets',
+      'Multi-provider AI with automatic failover',
+      'Edge architecture across 300+ cities',
+    ],
+    gradient: 'rgba(94,234,212,0.05)',
+    visualBg: 'linear-gradient(135deg, #0d1a1a 0%, #0A0A0E 50%, #0f1520 100%)',
+    iconSvg: '<svg width="64" height="64" fill="none" stroke="#5EEAD4" viewBox="0 0 24 24" style="opacity:0.6"><rect x="5" y="2" width="14" height="20" rx="2" stroke-width="1.2"/><line x1="12" y1="18" x2="12" y2="18" stroke-width="1.2"/></svg>',
+    metrics: [
+      { label: 'Sync', value: '100ms' },
+      { label: 'AI', value: '3 providers' },
+    ],
+    reversed: false,
+    live: true,
+  },
+  {
     badge: 'Roofing & Trades',
     badgeColor: 'purple',
     title: 'Lead Generation That Works',
@@ -72,9 +94,9 @@ const dotColor = (color: string) => {
 
 <section id="work" class="section reveal" style="background:#0A0A0E;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)">
   <div class="container">
-    <div class="section-label">Example Outcomes</div>
-    <div class="section-title">What's <span class="gradient-text">possible for you.</span></div>
-    <p class="section-subtitle">See the kind of results Christchurch and Canterbury businesses can achieve with a professionally designed, conversion-focused website.</p>
+    <div class="section-label">Our Work</div>
+    <div class="section-title">Real projects & <span class="gradient-text">what's possible.</span></div>
+    <p class="section-subtitle">From live, in-production applications to the results Christchurch businesses achieve — see what Byte Digital designs and builds.</p>
     <div class="case-grid">
       {caseStudies.map(cs => (
         <a href={`/${cs.slug}`} class="case-item" style={`${cs.reversed ? 'direction:rtl' : ''}text-decoration:none;color:inherit`}>
@@ -95,7 +117,10 @@ const dotColor = (color: string) => {
             </div>
           </div>
           <div style="direction:ltr">
-            <div class={`case-badge ${cs.badgeColor}`}>{cs.badge}</div>
+            <div class={`case-badge ${cs.badgeColor}`}>
+              {cs.live && <span class="live-dot" style={`display:inline-block;width:7px;height:7px;border-radius:50%;background:${dotColor(cs.badgeColor)};margin-right:7px;vertical-align:middle;box-shadow:0 0 8px ${dotColor(cs.badgeColor)}`}></span>}
+              {cs.badge}
+            </div>
             <h3>{cs.title}</h3>
             <p>{cs.description}</p>
             <ul class="case-list">

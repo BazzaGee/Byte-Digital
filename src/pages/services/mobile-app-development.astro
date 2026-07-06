@@ -1,0 +1,271 @@
+---
+import ServicePage from '../../layouts/ServicePage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import RelatedPosts from '../../components/RelatedPosts.astro';
+import RelatedCaseStudies from '../../components/RelatedCaseStudies.astro';
+import RelatedGuides from '../../components/RelatedGuides.astro';
+import RelatedServices from '../../components/RelatedServices.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import CalloutBox from '../../components/CalloutBox.astro';
+import ContentStats from '../../components/ContentStats.astro';
+import { getCollection } from 'astro:content';
+import { getRelatedPosts, getRelatedGuides, getRelatedCaseStudies } from '../../utils/content-relations';
+
+const faqItems = [
+  {
+    question: 'What is a PWA and why would I choose it over a native app?',
+    answer: 'A Progressive Web App (PWA) is a website built with app-like architecture that users can install directly onto their phone or desktop home screen — complete with an icon, full-screen experience, push notifications, and offline access. The major advantage is one codebase that runs on iPhone, Android, and desktop, which dramatically reduces build and maintenance cost compared to developing and supporting three separate native apps. For most business app ideas, a PWA delivers 95% of the native experience at a fraction of the cost, and you avoid app-store approval delays and the 15–30% platform fees on transactions.'
+  },
+  {
+    question: 'Can a PWA really replace a native iOS or Android app?',
+    answer: 'For the majority of business applications — booking systems, portals, dashboards, marketplaces, tools, and consumer apps like CookTwo — yes, absolutely. Modern PWAs support offline storage, background sync, push notifications, camera access, geolocation, and biometric authentication. There are a small number of edge cases (certain background Bluetooth or hardware integrations) where native is still required. We will give you an honest recommendation during discovery about whether PWA or native is the right fit for your specific app.'
+  },
+  {
+    question: 'How long does it take to build a mobile app?',
+    answer: 'A focused single-purpose PWA typically takes eight to twelve weeks from discovery to launch. A feature-rich application with real-time collaboration, AI integration, accounts, and payments — similar in scope to our CookTwo case study — generally takes three to six months. We work in iterative two-week sprints, so you see a working app early and can provide feedback continuously rather than waiting months for a big reveal.'
+  },
+  {
+    question: 'Can you build real-time features like chat, live sync, or collaboration?',
+    answer: 'Yes. We build real-time functionality using WebSockets and edge infrastructure (such as Cloudflare Durable Objects) so that changes appear across devices in under 100 milliseconds. Our CookTwo case study is a live example — two partners share a grocery list and pantry that sync between their phones instantly, even from different locations. If your app needs live collaboration, messaging, or instant updates, this is squarely in our wheelhouse.'
+  },
+  {
+    question: 'Can you integrate AI into my mobile app?',
+    answer: 'Yes. We integrate AI for features like natural-language input, intelligent recommendations, content generation, image recognition, and conversational assistants. We build resilient multi-provider AI chains (for example OpenAI, DeepSeek, Alibaba, and ZAI) with automatic failover, so your app stays intelligent even if one provider has an outage. CookTwo uses exactly this approach for its pantry parsing and AI meal planning.'
+  },
+  {
+    question: 'How much does a mobile app cost to build?',
+    answer: 'Every app is scoped to the specific problem it solves, so there is no fixed price. A focused PWA sits at a different investment level to a complex, multi-feature platform with real-time sync and AI. What we can tell you is that choosing a PWA over separate native iOS and Android builds typically saves 50–70% on development while reaching every device. We provide detailed, phased proposals broken down by feature and milestone. Contact us to discuss your idea and receive a tailored quote.'
+  },
+  {
+    question: 'Will my app work offline?',
+    answer: 'Yes. PWAs can store data locally and queue changes while offline, then automatically sync the moment a connection returns. This is particularly valuable for field-work apps, areas with poor coverage, or any app where users expect it to "just work" regardless of signal. We design offline-first architecture around your actual usage scenarios.'
+  },
+  {
+    question: 'Do I own the app and its source code?',
+    answer: 'Yes. You own the complete source code, documentation, and deployment setup on project completion — full intellectual property, with no vendor lock-in. You are free to engage any developer to maintain or extend your app in the future, and you retain control of your app store listings and hosting accounts.'
+  }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Mobile App Development Christchurch",
+  "description": "Progressive Web App (PWA) and cross-platform mobile app development for Christchurch and NZ businesses. Real-time apps, AI integration, installable mobile experiences by Byte Digital.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressRegion": "Canterbury", "addressCountry": "NZ" }
+  },
+  "areaServed": { "@type": "City", "name": "Christchurch" },
+  "sameAs": []
+};
+
+const allBlogPosts = (await getCollection('blog')).map(p => ({
+  slug: p.id,
+  title: p.data.title,
+  description: p.data.description,
+  category: p.data.category,
+  tags: p.data.tags,
+  pubDate: p.data.pubDate,
+})).sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+
+const allCaseStudies = (await getCollection('case-studies')).map(p => ({
+  slug: p.id,
+  title: p.data.title,
+  client: p.data.client,
+  industry: p.data.industry,
+  description: p.data.description,
+  tags: p.data.tags,
+}));
+
+const relatedPosts = getRelatedPosts('mobile-app-development', allBlogPosts, 3);
+const relatedGuides = getRelatedGuides('mobile-app-development', 2);
+const relatedCaseStudies = getRelatedCaseStudies('mobile-app-development', allCaseStudies, 3);
+---
+
+<ServicePage
+  title="Mobile App Development Christchurch | PWA & Cross-Platform Apps NZ | Byte Digital"
+  description="Byte Digital builds installable Progressive Web Apps and cross-platform mobile apps for Christchurch & NZ businesses. Real-time sync, AI integration, offline-first, one codebase for every device."
+  serviceTitle="Mobile App Development Christchurch"
+  serviceSubtitle="Installable Progressive Web Apps and cross-platform mobile apps that run on every device — from one codebase."
+  jsonLd={jsonLd}
+>
+  <section class="section section-glow dm-edge-top">
+    <div class="glow-orb purple top-left"></div>
+    <div class="glow-orb mint bottom-right"></div>
+    <div class="container">
+      <div class="service-content" style="position:relative;z-index:1">
+
+        <h2 class="heading-accent">Mobile Apps for Christchurch Businesses, Without the Native Price Tag</h2>
+        <p>Most Christchurch businesses assume that "we need an app" means paying for separate iOS and Android development, plus app-store approvals and ongoing platform fees. It doesn't anymore. Modern Progressive Web Apps (PWAs) deliver a genuine native-feeling mobile experience — installable to the home screen, working offline, with push notifications — from a single codebase that also runs on desktop.</p>
+        <p>At Byte Digital, we build mobile apps that your customers install and use like any app store download, but that cost a fraction of native development to build and maintain. Whether you need a booking app, a customer portal, a real-time collaboration tool, or a full consumer product, we design and engineer mobile experiences that work beautifully on every device.</p>
+
+        <h3>What we build</h3>
+        <ul>
+          <li><strong>Installable Progressive Web Apps</strong> — home-screen install, full-screen experience, push notifications, and offline support</li>
+          <li><strong>Real-time mobile apps</strong> — live chat, collaboration, and instant sync across devices in under 100ms</li>
+          <li><strong>AI-powered mobile apps</strong> — natural-language input, smart recommendations, and conversational assistants</li>
+          <li><strong>Customer and member portals</strong> — account management, dashboards, and self-service on mobile</li>
+          <li><strong>Field-service and offline-first apps</strong> — built for areas with poor connectivity, with background sync on reconnect</li>
+          <li><strong>Cross-platform apps</strong> — one build for iPhone, Android, tablet, and desktop</li>
+        </ul>
+
+      </div>
+
+      <div class="service-content-wide" style="position:relative;z-index:1">
+        <FeatureGrid columns={2} items={[
+          {
+            icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>`,
+            title: 'Installable PWA',
+            description: 'Home-screen install, app icon, full-screen UI, and push notifications — no app store required.',
+            color: 'purple'
+          },
+          {
+            icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><polyline points="8 10 11 13 16 8"/></svg>`,
+            title: 'Real-Time Sync',
+            description: 'WebSocket-powered collaboration that syncs across devices in under 100 milliseconds.',
+            color: 'mint'
+          },
+          {
+            icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg>`,
+            title: 'Offline-First',
+            description: 'Works without a connection. Changes queue locally and sync automatically when you reconnect.',
+            color: 'white'
+          },
+          {
+            icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`,
+            title: 'AI Integration',
+            description: 'Natural-language input, smart recommendations, and resilient multi-provider AI chains.',
+            color: 'purple'
+          },
+        ]} />
+      </div>
+
+      <div class="service-content" style="position:relative;z-index:1">
+
+        <h2 class="heading-accent">PWA vs Native Apps — An Honest Comparison</h2>
+        <p>Native iOS and Android apps made sense when the web could not match their capabilities. That gap has largely closed. For most business and consumer app ideas, a PWA is the smarter commercial decision — and we will tell you plainly if your specific case genuinely requires native.</p>
+
+        <ul>
+          <li><strong>One codebase, every device:</strong> a PWA runs on iPhone, Android, tablet, and desktop from a single build, versus maintaining two or three native codebases</li>
+          <li><strong>50–70% lower cost:</strong> build once and ship everywhere, with lower ongoing maintenance</li>
+          <li><strong>No app-store friction:</strong> no approval delays, no 15–30% platform transaction fees, instant updates to all users</li>
+          <li><strong>Discoverable on Google:</strong> your app is also a website, so it ranks in search and is linkable — native apps are invisible to search engines</li>
+          <li><strong>Full device capabilities:</strong> camera, geolocation, push notifications, biometric auth, offline storage, and background sync</li>
+        </ul>
+
+        <p>The result: your customers get a fast, installable, app-like experience, and you get a product that is cheaper to build, faster to update, and easier for new users to find.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">Featured Case Study</div>
+        <h2 class="section-title" style="margin:0 auto">Proof, not <span class="gradient-text">promises.</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">CookTwo is a live, installable mobile app we designed, engineered, and launched — built on the exact stack below.</p>
+      </div>
+
+      <div class="glass cooktwo-feature" style="display:grid;grid-template-columns:1.1fr 1fr;gap:0;border-radius:20px;overflow:hidden;border:1px solid var(--border-subtle)">
+        <div style="padding:40px;display:flex;flex-direction:column;justify-content:center">
+          <div style="display:flex;gap:8px;margin-bottom:16px">
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#34d399;background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.25)"><span style="width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399"></span> Live</span>
+            <span style="display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--secondary);background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.2)">PWA · HealthTech</span>
+          </div>
+          <h3 style="font-size:26px;font-weight:700;margin:0 0 12px;font-family:'Space Grotesk',sans-serif">CookTwo — adaptive nutrition app for couples</h3>
+          <p style="color:var(--text-muted);line-height:1.7;margin:0 0 20px">A real-time, AI-powered app that lets two partners with different goals cook one meal together, plated two ways. WebSocket sync under 100ms, a multi-provider AI chain, and an installable PWA — all live in production.</p>
+          <div style="display:flex;gap:24px;margin-bottom:24px;flex-wrap:wrap">
+            <div><div style="font-size:24px;font-weight:700;color:#5EEAD4;font-family:'Space Grotesk',sans-serif">100ms</div><div style="font-size:11px;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px">Sync latency</div></div>
+            <div><div style="font-size:24px;font-weight:700;color:#5EEAD4;font-family:'Space Grotesk',sans-serif">3</div><div style="font-size:11px;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px">AI providers</div></div>
+            <div><div style="font-size:24px;font-weight:700;color:#5EEAD4;font-family:'Space Grotesk',sans-serif">300+</div><div style="font-size:11px;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px">Edge locations</div></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px">
+            <a href="/case-studies/cooktwo" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:14px;text-decoration:none">Read the case study</a>
+            <a href="https://cooktwo.com" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:14px;text-decoration:none">Visit live app</a>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#0d0d12,#13131c);display:flex;align-items:center;justify-content:center;padding:32px;gap:16px">
+          <img src="/images/work/cooktwo/02-pantry.webp" alt="CookTwo pantry AI screen" loading="lazy" style="width:42%;border-radius:14px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 20px 50px rgba(0,0,0,0.5)" />
+          <img src="/images/work/cooktwo/03-adaptive-meal.webp" alt="CookTwo adaptive meal screen" loading="lazy" style="width:42%;border-radius:14px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 20px 50px rgba(0,0,0,0.5);transform:translateY(24px)" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal dm-edge-bottom">
+    <div class="container">
+      <div class="service-content">
+
+        <h2 class="heading-accent">Our Mobile App Development Process</h2>
+        <p>Building a mobile app is a significant investment. Our process is designed to de-risk it — validating the hardest assumptions early, showing you a working app fast, and shipping in focused iterations.</p>
+
+        <h3>1. Discovery & Product Definition</h3>
+        <p>We start with the human problem your app solves. We map the user journey, define the data model, identify the riskiest technical assumptions (often real-time, AI, or offline behaviour), and prototype those first. The output is a clear product spec and roadmap you sign off before development begins.</p>
+
+        <h3>2. UX & Interaction Design</h3>
+        <p>We design wireframes and interactive prototypes that you can tap through on your own phone before any production code is written. Mobile UX is unforgiving — getting the flow right at this stage is dramatically cheaper than redesigning after build.</p>
+
+        <h3>3. Iterative Engineering</h3>
+        <p>We build in two-week sprints using a modern stack — React, TypeScript, edge serverless functions, and a real-time layer where needed. You see a working app early in the process and can steer priorities as it evolves. Every sprint ends with something you can install and use.</p>
+
+        <h3>4. Testing, Launch & Growth</h3>
+        <p>We test across real devices, handle offline and low-signal scenarios, and deploy with zero-downtime infrastructure. Post-launch we set up analytics, monitoring, and an ongoing enhancement roadmap so your app keeps improving.</p>
+
+        <ContentStats stats={[
+          { value: '8–12 wks', label: 'Typical PWA timeline' },
+          { value: '50–70%', label: 'Saved vs native' },
+          { value: '100%', label: 'Source code ownership' },
+        ]} />
+
+        <CalloutBox type="highlight" title="Free App Discovery Consultation">
+          <p style="margin:0">Got an app idea? Book a free discovery call. We will review your concept, advise honestly on PWA versus native, scope the real-time and AI requirements, and give you a no-obligation phased proposal.</p>
+        </CalloutBox>
+
+        <h2 class="heading-accent">Technology & Approach</h2>
+        <p>We select technology for performance, longevity, and maintainability. Our mobile stack includes <strong>React and PWA architecture</strong> for the installable front-end, <strong>TypeScript</strong> throughout, <strong>Cloudflare Workers and D1</strong> for edge serverless compute and data, <strong>Durable Objects and WebSockets</strong> for real-time collaboration, and <strong>multi-provider AI chains</strong> (OpenAI, DeepSeek, Alibaba, ZAI) for intelligent features. We integrate with <strong>Stripe</strong> for subscriptions and NZ-specific payment, shipping, and accounting platforms where required.</p>
+
+        <h2 class="heading-accent">Why Choose Byte Digital</h2>
+        <ul>
+          <li><strong>Real shipped apps:</strong> CookTwo is live — come kick the tyres, then talk to us</li>
+          <li><strong>PWA specialists:</strong> we know exactly when PWA beats native, and when it doesn't</li>
+          <li><strong>Real-time & AI expertise:</strong> WebSocket sync, offline-first, and multi-provider AI in production</li>
+          <li><strong>Full IP ownership:</strong> you own the code, no lock-in</li>
+          <li><strong>One codebase, every device:</strong> iPhone, Android, tablet, and desktop</li>
+          <li><strong>Ongoing partnership:</strong> maintenance, enhancement, and growth support after launch</li>
+        </ul>
+
+        <p>If your Christchurch business has an app idea, a mobile workflow, or a product that off-the-shelf software cannot serve, let us explore what is possible together.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="related-case-studies">
+    <RelatedCaseStudies studies={relatedCaseStudies} />
+  </Fragment>
+
+  <Fragment slot="related-posts">
+    <RelatedPosts posts={relatedPosts} />
+  </Fragment>
+
+  <Fragment slot="related-guides">
+    <RelatedGuides guides={relatedGuides} />
+  </Fragment>
+
+  <Fragment slot="related-services">
+    <RelatedServices serviceSlug="mobile-app-development" />
+  </Fragment>
+
+  <Fragment slot="faq">
+    <FAQAccordion items={faqItems} />
+  </Fragment>
+</ServicePage>
+
+<style>
+  @media (max-width: 860px) {
+    .cooktwo-feature { grid-template-columns: 1fr !important; }
+  }
+</style>

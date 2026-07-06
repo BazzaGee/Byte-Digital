@@ -4,6 +4,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTASection from '../../components/CTASection.astro';
 import Divider from '../../components/Divider.astro';
 import PageHero from '../../components/PageHero.astro';
+import RelatedServices from '../../components/RelatedServices.astro';
+import { allServices } from '../../utils/content-relations';
 
 export async function getStaticPaths() {
   const studies = await getCollection('case-studies');
@@ -17,7 +19,17 @@ const { study } = Astro.props;
 const { title, client, industry, description, pubDate, tags } = study.data;
 const { Content } = await render(study);
 
-const jsonLd = {
+const liveUrl = study.data.liveUrl;
+const isFlagship = Boolean(liveUrl);
+const results = study.data.results || [];
+const techStack = study.data.techStack || [];
+const screenshots = study.data.screenshots || [];
+const serviceSlugs = study.data.services || [];
+const relatedServices = serviceSlugs
+  .map(slug => allServices.find(s => s.slug === slug))
+  .filter(Boolean);
+
+const baseLd = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": title,
@@ -25,29 +37,182 @@ const jsonLd = {
   "author": { "@type": "Organization", "name": "Byte Digital" },
   "publisher": { "@type": "Organization", "name": "Byte Digital", "url": "https://bytedigital.co.nz" },
   "datePublished": pubDate.toISOString(),
+  "keywords": tags.join(', '),
 };
+
+const flagshipLd = liveUrl ? {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": title,
+  "description": description,
+  "url": liveUrl,
+  "author": { "@type": "Organization", "name": "Byte Digital", "url": "https://bytedigital.co.nz" },
+  "provider": { "@type": "Organization", "name": "Byte Digital" },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": client,
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Web, iOS, Android (PWA)",
+    "url": liveUrl,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  },
+  "datePublished": pubDate.toISOString(),
+  "keywords": tags.join(', '),
+} : null;
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bytedigital.co.nz" },
+    { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://bytedigital.co.nz/case-studies" },
+    { "@type": "ListItem", "position": 3, "name": title },
+  ],
+};
+
+const jsonLd = isFlagship ? [flagshipLd, breadcrumbLd] : [baseLd, breadcrumbLd];
+
+const screenshotCaptions = [
+  'Shared Shopping List — partner colours, auto-categories, live sync',
+  'Pantry-First AI — natural language input, AI sorting',
+  'Adaptive Plating — one meal, two plates, both goals',
+  'Dual Profiles — TDEE per partner, goals, pricing',
+];
 ---
 
-<BaseLayout title={`${title} | Case Study`} description={description} jsonLd={jsonLd}>
+<BaseLayout
+  title={`${title} | Byte Digital Case Study`}
+  description={description}
+  ogType="article"
+  jsonLd={jsonLd}
+>
   <PageHero
+    label={isFlagship ? 'Featured Project' : 'Case Study'}
     title={title}
     breadcrumbs={[
       { label: 'Home', href: '/' },
       { label: 'Case Studies', href: '/case-studies' },
-      { label: title },
+      { label: client },
     ]}
   >
-    <span style="display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--secondary);background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.2);margin-bottom:8px;position:relative;z-index:1">{industry}</span>
-    <p style="font-size:18px;color:var(--text-muted);line-height:1.7;max-width:700px;position:relative;z-index:1">Client: <strong style="color:#fff">{client}</strong></p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;position:relative;z-index:1">
+      <span style="display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--secondary);background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.2)">{industry}</span>
+      {study.data.appType && (
+        <span style="display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#c4b5fd;background:rgba(139,120,230,0.08);border:1px solid rgba(139,120,230,0.2)">{study.data.appType}</span>
+      )}
+      {isFlagship && (
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#34d399;background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.25)">
+          <span style="width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399"></span> Live
+        </span>
+      )}
+    </div>
+    <p style="font-size:18px;color:var(--text-muted);line-height:1.7;max-width:720px;position:relative;z-index:1;margin:0 0 20px">{description}</p>
+    {isFlagship && (
+      <div style="display:flex;flex-wrap:wrap;gap:12px;position:relative;z-index:1">
+        <a href={liveUrl} target="_blank" rel="noopener" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:14px;text-decoration:none">
+          Visit {client}
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+        </a>
+        <a href="/contact" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:14px;text-decoration:none">Build something like this</a>
+      </div>
+    )}
   </PageHero>
+
+  {isFlagship && results.length > 0 && (
+    <section style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);padding:40px 0">
+      <div class="container">
+        <div class="content-stats">
+          {results.map(r => (
+            <div class="content-stat-item">
+              <div class="content-stat-value">{r.value}</div>
+              <div class="content-stat-label">{r.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isFlagship && screenshots.length > 0 && (
+    <section class="section" style="padding-top:56px;padding-bottom:24px">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:32px">
+          <div class="section-label">The Product</div>
+          <h2 class="section-title" style="margin:0 auto">Real screens. <span class="gradient-text">Live product.</span></h2>
+          <p class="section-subtitle" style="margin:0 auto">Not mockups — these are screenshots of {client} running in production today.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px" class="cooktwo-gallery">
+          {screenshots.map((shot, i) => (
+            <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+              <div class="glass" style="border-radius:14px;overflow:hidden;border:1px solid var(--border-subtle);aspect-ratio:9/19;background:#0d0d12">
+                <img src={shot} alt={`${client} — ${screenshotCaptions[i] || 'app screen'}`} loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" />
+              </div>
+              <figcaption style="font-size:12px;color:var(--text-dimmed);text-align:center;line-height:1.4">{screenshotCaptions[i]}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <Divider />
+
   <article class="section" style="padding-top:40px">
     <div class="container">
-      <div class="dm-header">
+      <div class="dm-header service-content">
         <Content />
+
+        {isFlagship && techStack.length > 0 && (
+          <div style="margin-top:48px;padding:32px;border-radius:16px;background:var(--surface);border:1px solid var(--border-subtle)">
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dimmed);margin-bottom:16px">Technology Stack</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px">
+              {techStack.map(tech => (
+                <span style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);font-size:13px;color:var(--text-secondary);font-weight:500">
+                  <span style="width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#8B78E6,#5EEAD4)"></span>
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   </article>
+
+  {isFlagship && (
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div style="position:relative;overflow:hidden;border-radius:20px;padding:48px;text-align:center;background:linear-gradient(135deg,rgba(139,120,230,0.12),rgba(94,234,212,0.08));border:1px solid rgba(139,120,230,0.2)">
+          <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(139,120,230,0.15),transparent 50%),radial-gradient(circle at 70% 80%,rgba(94,234,212,0.12),transparent 50%);pointer-events:none"></div>
+          <div style="position:relative;z-index:1">
+            <h2 style="font-size:30px;font-weight:700;margin:0 0 12px;font-family:'Space Grotesk',sans-serif">See it running for yourself.</h2>
+            <p style="font-size:17px;color:var(--text-muted);max-width:560px;margin:0 auto 24px;line-height:1.6">{client} is live and free to try during beta. Open it on your phone, install it to your home screen, and experience the kind of app Byte Digital can build for you.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+              <a href={liveUrl} target="_blank" rel="noopener" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;font-size:15px;text-decoration:none">
+                Open {client}
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              </a>
+              <a href="/contact" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;font-size:15px;text-decoration:none">Start your project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isFlagship && relatedServices.length > 0 && (
+    <RelatedServices services={relatedServices} title={`Services behind ${client}`} />
+  )}
+
   <Divider />
   <CTASection />
 </BaseLayout>
+
+<style>
+  @media (max-width: 900px) {
+    .cooktwo-gallery { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 520px) {
+    .cooktwo-gallery { grid-template-columns: 1fr !important; }
+  }
+</style>

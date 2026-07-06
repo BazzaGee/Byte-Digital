@@ -35,7 +35,7 @@ const faqItems = [
   },
   {
     question: 'Do you build mobile apps as well as web applications?',
-    answer: 'Our primary focus is web applications that work across all devices through a browser. A responsive web application can eliminate the need for separate iOS and Android apps, reducing development cost and complexity. However, if your project genuinely requires native mobile app development, we can discuss this and recommend appropriate solutions or partners.'
+    answer: 'Yes. We build installable Progressive Web Apps (PWAs) that deliver a native-feeling mobile experience from the same codebase as your web application — installable to the home screen, working offline, with push notifications. Our CookTwo case study is a live example: a real-time, AI-powered PWA running on iPhone, Android, and desktop from one build. This typically saves 50–70% versus separate native iOS and Android development. See our dedicated mobile app development service for more.'
   }
 ];
 
@@ -155,6 +155,40 @@ const relatedCaseStudies = getRelatedCaseStudies('custom-applications', allCaseS
     </div>
   </section>
 
+  <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px">
+        <div class="section-label">Featured Case Study</div>
+        <h2 class="section-title" style="margin:0 auto">A real application, <span class="gradient-text">live in production.</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">CookTwo is a custom web application we designed, engineered, and launched — built on the exact stack we use for our clients.</p>
+      </div>
+
+      <div class="glass cooktwo-feature" style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:20px;overflow:hidden;border:1px solid var(--border-subtle)">
+        <div style="padding:40px;display:flex;flex-direction:column;justify-content:center">
+          <div style="display:flex;gap:8px;margin-bottom:16px">
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#34d399;background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.25)"><span style="width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399"></span> Live</span>
+            <span style="display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--secondary);background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.2)">Custom Web App</span>
+          </div>
+          <h3 style="font-size:26px;font-weight:700;margin:0 0 12px;font-family:'Space Grotesk',sans-serif">CookTwo — real-time, AI-powered adaptive nutrition app</h3>
+          <p style="color:var(--text-muted);line-height:1.7;margin:0 0 20px">A collaborative application with WebSocket real-time sync, a multi-provider AI chain, edge serverless architecture, and an installable PWA — built end-to-end by Byte Digital and live today.</p>
+          <div style="display:flex;gap:24px;margin-bottom:24px;flex-wrap:wrap">
+            <div><div style="font-size:24px;font-weight:700;color:#8B78E6;font-family:'Space Grotesk',sans-serif">100ms</div><div style="font-size:11px;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px">Sync latency</div></div>
+            <div><div style="font-size:24px;font-weight:700;color:#8B78E6;font-family:'Space Grotesk',sans-serif">3</div><div style="font-size:11px;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px">AI providers</div></div>
+            <div><div style="font-size:24px;font-weight:700;color:#8B78E6;font-family:'Space Grotesk',sans-serif">300+</div><div style="font-size:11px;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px">Edge locations</div></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px">
+            <a href="/case-studies/cooktwo" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:14px;text-decoration:none">Read the case study</a>
+            <a href="https://cooktwo.com" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:14px;text-decoration:none">Visit live app</a>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#0d0d12,#13131c);display:flex;align-items:center;justify-content:center;padding:32px;gap:16px">
+          <img src="/images/work/cooktwo/01-shopping.webp" alt="CookTwo shared shopping list screen" loading="lazy" style="width:42%;border-radius:14px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 20px 50px rgba(0,0,0,0.5)" />
+          <img src="/images/work/cooktwo/04-profiles-full.webp" alt="CookTwo partner profiles screen" loading="lazy" style="width:42%;border-radius:14px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 20px 50px rgba(0,0,0,0.5);transform:translateY(24px)" />
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section reveal dm-edge-bottom" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
     <div class="container">
       <div class="service-content">
@@ -210,3 +244,9 @@ const relatedCaseStudies = getRelatedCaseStudies('custom-applications', allCaseS
     <FAQAccordion items={faqItems} />
   </Fragment>
 </ServicePage>
+
+<style>
+  @media (max-width: 860px) {
+    .cooktwo-feature { grid-template-columns: 1fr !important; }
+  }
+</style>

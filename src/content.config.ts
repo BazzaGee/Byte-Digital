@@ -25,6 +25,14 @@ const caseStudyCollection = defineCollection({
     pubDate: z.coerce.date(),
     tags: z.array(z.string()).default([]),
     image: z.string().optional(),
+    liveUrl: z.string().url().optional(),
+    appType: z.string().optional(),
+    techStack: z.array(z.string()).default([]),
+    timeline: z.string().optional(),
+    results: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
+    services: z.array(z.string()).default([]),
+    screenshots: z.array(z.string()).default([]),
+    featured: z.boolean().default(false),
   }),
 });
 
