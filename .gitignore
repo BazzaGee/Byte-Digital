@@ -2,5 +2,7 @@ node_modules/
 dist/
 .astro/
 .playwright-mcp/
+.wrangler/
 worker/node_modules/
 nul
+/*.png
