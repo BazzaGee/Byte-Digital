@@ -14,7 +14,8 @@
     "postdeploy:staging": "node scripts/seo/indexnow-ping.mjs || true",
     "postdeploy:production": "node scripts/seo/indexnow-ping.mjs && node scripts/seo/run-python.mjs scripts/seo/gsc-sitemap-ping.py",
     "seo:ping": "node scripts/seo/indexnow-ping.mjs && node scripts/seo/run-python.mjs scripts/seo/gsc-sitemap-ping.py",
-    "seo:report": "node scripts/seo/run-python.mjs scripts/seo/seo-report.py"
+    "seo:report": "node scripts/seo/run-python.mjs scripts/seo/seo-report.py",
+    "seo:keyevents": "node scripts/seo/run-python.mjs scripts/seo/ga4-keyevents.py"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
