@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Divider from '../../components/Divider.astro';
+import CTASection from '../../components/CTASection.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog'))
+  .filter((p) => p.data.author === 'Barry Gee')
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Barry Gee",
+  "url": "https://bytedigital.co.nz/team/barry/",
+  "email": "barry@bytedigital.co.nz",
+  "jobTitle": "Founder, Byte Digital",
+  "worksFor": { "@type": "Organization", "name": "Byte Digital", "url": "https://bytedigital.co.nz" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressRegion": "Canterbury", "addressCountry": "NZ" },
+};
+---
+
+<BaseLayout
+  title="Barry Gee — Founder, Byte Digital | Web Design & SEO Christchurch"
+  description="Barry Gee is the founder of Byte Digital, a Christchurch web design and SEO studio. Writes about web strategy, local search, and building websites that generate customers."
+  jsonLd={jsonLd}
+>
+  <PageHero
+    label="The Team"
+    title="Barry Gee<br /><span class='gradient-text'>Founder, Byte Digital</span>"
+    subtitle="Christchurch web designer and search marketer. Writes about what actually works for local businesses online — based on live projects, not theory."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'About', href: '/about/' },
+      { label: 'Barry Gee' },
+    ]}
+  />
+
+  <section class="section section-glow dm-edge-top">
+    <div class="glow-orb purple top-left"></div>
+    <div class="glow-orb mint bottom-right"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div class="dm-header" style="max-width:760px;margin:0 auto 48px">
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">
+          Barry runs Byte Digital, a web design, development and SEO studio based in Christchurch, New Zealand. He works with local businesses across Canterbury — and clients throughout NZ — on websites that are built to be found: fast, technically clean, and engineered around how customers actually search.
+        </p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">
+          His background spans design and full-stack engineering — the studio's work includes production web apps like <a href="/case-studies/cooktwo/" style="color:var(--secondary)">CookTwo</a>, a real-time AI-powered PWA, alongside client sites and local search campaigns for Christchurch businesses. That engineering foundation is why the studio builds on modern frameworks and why the <a href="/tools/free-website-audit/" style="color:var(--secondary)">free audit tool</a> runs real performance data instead of guesswork.
+        </p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px">
+          The guides on this site come from that client work: real pricing data, honest platform comparisons, and suburb-level SEO tactics that get tested in competitive local search before they get written about. If you want to talk shop, email <a href="mailto:barry@bytedigital.co.nz" style="color:var(--secondary)">barry@bytedigital.co.nz</a>.
+        </p>
+      </div>
+
+      <h2 style="font-size:24px;font-weight:600;margin-bottom:24px">Articles by Barry</h2>
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+        {allPosts.map((post) => (
+          <a href={`/blog/${post.id}/`} class="glass" style="display:block;padding:24px;border-radius:16px;text-decoration:none;transition:border-color 0.2s">
+            <div style="font-size:16px;font-weight:600;color:#fff;margin-bottom:6px">{post.data.title}</div>
+            <div style="font-size:13px;color:var(--text-muted)">{post.data.pubDate.toLocaleDateString('en-NZ', { year: 'numeric', month: 'long', day: 'numeric' })} · {post.data.category}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+  <CTASection />
+</BaseLayout>

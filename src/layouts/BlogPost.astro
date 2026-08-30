@@ -28,7 +28,9 @@ const jsonLd = {
   "@type": "BlogPosting",
   "headline": title,
   "description": description,
-  "author": { "@type": "Organization", "name": author },
+  "author": author === 'Byte Digital'
+    ? { "@type": "Organization", "name": author }
+    : { "@type": "Person", "name": author, "url": "https://bytedigital.co.nz/team/barry/" },
   "publisher": { "@type": "Organization", "name": "Byte Digital", "url": "https://bytedigital.co.nz" },
   "datePublished": pubDate.toISOString(),
   "dateModified": (updatedDate || pubDate).toISOString(),
@@ -68,7 +70,11 @@ const relatedPosts = slug
       <span style="display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--secondary);background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.2);margin-bottom:16px;position:relative;z-index:1">{category}</span>
     )}
     <div style="display:flex;align-items:center;gap:16px;font-size:14px;color:var(--text-dimmed);position:relative;z-index:1;margin-top:8px">
-      <span>By {author}</span>
+      {author === 'Byte Digital' ? (
+        <span>By {author}</span>
+      ) : (
+        <span>By <a href="/team/barry/" style="color:var(--secondary);text-decoration:none">{author}</a></span>
+      )}
       <span style="color:var(--border-medium)">·</span>
       <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
       {updatedDate && <><span style="color:var(--border-medium)">·</span><span>Updated {formatDate(updatedDate)}</span></>}
