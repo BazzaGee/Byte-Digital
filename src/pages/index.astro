@@ -30,9 +30,9 @@ const latestPosts = (await getCollection('blog'))
   }));
 
 const featuredGuides = [
-  { title: 'Web Design Christchurch 2026', description: 'Everything you need to know about web design trends and best practices for Christchurch businesses.', href: '/guides/web-design-christchurch-2026' },
-  { title: 'Website Investment Guide NZ', description: 'Understand the value and ROI of a professional website investment for New Zealand businesses.', href: '/guides/website-cost-guide-nz' },
-  { title: 'SEO Domination Handbook', description: 'The complete handbook for ranking your business on Google in competitive local markets.', href: '/guides/seo-domination-handbook' },
+  { title: 'Web Design Christchurch 2026', description: 'Everything you need to know about web design trends and best practices for Christchurch businesses.', href: '/guides/web-design-christchurch-2026/' },
+  { title: 'Website Investment Guide NZ', description: 'Understand the value and ROI of a professional website investment for New Zealand businesses.', href: '/guides/website-cost-guide-nz/' },
+  { title: 'SEO Domination Handbook', description: 'The complete handbook for ranking your business on Google in competitive local markets.', href: '/guides/seo-domination-handbook/' },
 ];
 
 const faqItems = [
@@ -126,7 +126,7 @@ const jsonLd = {
         ))}
       </div>
       <div style="text-align:center;margin-top:40px">
-        <a href="/blog" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
+        <a href="/blog/" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
           View All Posts
           <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
         </a>
@@ -151,7 +151,7 @@ const jsonLd = {
         ))}
       </div>
       <div style="text-align:center;margin-top:40px">
-        <a href="/guides/website-cost-guide-nz" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
+        <a href="/guides/website-cost-guide-nz/" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
           View All Guides
           <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
         </a>
@@ -167,7 +167,7 @@ const jsonLd = {
         subtitle="Get instant answers about your website's potential cost, ROI, and performance."
       />
       <div class="tools-grid">
-        <a href="/tools/website-cost-calculator" class="tool-card glass">
+        <a href="/tools/website-cost-calculator/" class="tool-card glass">
           <div class="tool-card-icon purple">
             <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           </div>
@@ -178,7 +178,7 @@ const jsonLd = {
             <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
           </span>
         </a>
-        <a href="/tools/free-website-audit" class="tool-card glass">
+        <a href="/tools/free-website-audit/" class="tool-card glass">
           <div class="tool-card-icon mint">
             <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
@@ -189,7 +189,7 @@ const jsonLd = {
             <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
           </span>
         </a>
-        <a href="/tools/seo-roi-calculator" class="tool-card glass">
+        <a href="/tools/seo-roi-calculator/" class="tool-card glass">
           <div class="tool-card-icon purple">
             <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
           </div>
@@ -210,21 +210,21 @@ const jsonLd = {
       <div class="section-title">Serving businesses across <span class="gradient-text">Christchurch.</span></div>
       <p class="section-subtitle" style="margin-bottom:48px">Local knowledge. Local results. We build websites that dominate in your suburb.</p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:32px">
-        <a href="/locations/riccarton" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Riccarton</a>
-        <a href="/locations/papanui" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Papanui</a>
-        <a href="/locations/halswell" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Halswell</a>
-        <a href="/locations/merivale" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Merivale</a>
-        <a href="/locations/sumner" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Sumner</a>
-        <a href="/locations/linwood" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Linwood</a>
-        <a href="/locations/fendalton" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Fendalton</a>
-        <a href="/locations/new-brighton" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">New Brighton</a>
-        <a href="/locations/cashmere" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Cashmere</a>
-        <a href="/locations/st-albans" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">St Albans</a>
-        <a href="/locations/sydenham" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Sydenham</a>
-        <a href="/locations/wigram" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Wigram</a>
+        <a href="/locations/riccarton/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Riccarton</a>
+        <a href="/locations/papanui/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Papanui</a>
+        <a href="/locations/halswell/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Halswell</a>
+        <a href="/locations/merivale/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Merivale</a>
+        <a href="/locations/sumner/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Sumner</a>
+        <a href="/locations/linwood/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Linwood</a>
+        <a href="/locations/fendalton/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Fendalton</a>
+        <a href="/locations/new-brighton/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">New Brighton</a>
+        <a href="/locations/cashmere/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Cashmere</a>
+        <a href="/locations/st-albans/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">St Albans</a>
+        <a href="/locations/sydenham/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Sydenham</a>
+        <a href="/locations/wigram/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Wigram</a>
       </div>
       <div style="text-align:center">
-        <a href="/locations" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
+        <a href="/locations/" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
           All 20 Service Areas
           <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
         </a>

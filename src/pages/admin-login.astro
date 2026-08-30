@@ -160,7 +160,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     });
 
     if (resp.ok) {
-      window.location.href = '/chatbot-dashboard';
+      window.location.href = '/chatbot-dashboard/';
     } else {
       err.classList.add('show');
       btn.disabled = false;

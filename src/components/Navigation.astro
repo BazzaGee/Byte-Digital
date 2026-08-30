@@ -1,28 +1,29 @@
 ---
 const servicesDesign = [
-  { href: '/services/web-design', label: 'Web Design', desc: 'Custom, conversion-focused websites' },
-  { href: '/services/logo-design', label: 'Logo Design', desc: 'Memorable brand marks' },
-  { href: '/services/branding', label: 'Branding', desc: 'Strategy and identity' },
+  { href: '/services/web-design/', label: 'Web Design', desc: 'Custom, conversion-focused websites' },
+  { href: '/services/logo-design/', label: 'Logo Design', desc: 'Memorable brand marks' },
+  { href: '/services/branding/', label: 'Branding', desc: 'Strategy and identity' },
 ];
 
 const servicesDev = [
-  { href: '/services/web-development', label: 'Web Development', desc: 'Fast, scalable applications' },
-  { href: '/services/mobile-app-development', label: 'Mobile Apps', desc: 'Installable PWA & cross-platform' },
-  { href: '/services/wordpress-development', label: 'WordPress', desc: 'Custom WordPress builds' },
-  { href: '/services/ecommerce', label: 'eCommerce', desc: 'Online stores that convert' },
-  { href: '/services/custom-applications', label: 'Custom Apps', desc: 'Tailor-made solutions' },
+  { href: '/services/web-development/', label: 'Web Development', desc: 'Fast, scalable applications' },
+  { href: '/services/mobile-app-development/', label: 'Mobile Apps', desc: 'Installable PWA & cross-platform' },
+  { href: '/services/wordpress-development/', label: 'WordPress', desc: 'Custom WordPress builds' },
+  { href: '/services/ecommerce/', label: 'eCommerce', desc: 'Online stores that convert' },
+  { href: '/services/custom-applications/', label: 'Custom Apps', desc: 'Tailor-made solutions' },
 ];
 
 const servicesMarketing = [
-  { href: '/services/seo', label: 'SEO', desc: 'Rank higher on Google' },
-  { href: '/services/local-seo', label: 'Local SEO', desc: 'Dominate Christchurch search' },
-  { href: '/services/website-maintenance', label: 'Maintenance', desc: 'Secure and up to date' },
+  { href: '/services/seo/', label: 'SEO', desc: 'Rank higher on Google' },
+  { href: '/services/local-seo/', label: 'Local SEO', desc: 'Dominate Christchurch search' },
+  { href: '/services/digital-marketing/', label: 'Digital Marketing', desc: 'One team for your whole funnel' },
+  { href: '/services/website-maintenance/', label: 'Maintenance', desc: 'Secure and up to date' },
 ];
 
 const resources = [
-  { href: '/blog', label: 'Blog', desc: 'Insights, guides, and trends' },
-  { href: '/guides/website-cost-guide-nz', label: 'Free Guides', desc: 'In-depth resource library' },
-  { href: '/tools/website-cost-calculator', label: 'Free Tools', desc: 'Calculators and audits' },
+  { href: '/blog/', label: 'Blog', desc: 'Insights, guides, and trends' },
+  { href: '/guides/website-cost-guide-nz/', label: 'Free Guides', desc: 'In-depth resource library' },
+  { href: '/tools/website-cost-calculator/', label: 'Free Tools', desc: 'Calculators and audits' },
 ];
 ---
 
@@ -42,14 +43,14 @@ const resources = [
       <div class="nav-item mega-trigger" data-mega="services">
         <span>Services <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
       </div>
-      <a href="/case-studies">Work</a>
+      <a href="/case-studies/">Work</a>
       <div class="nav-item mega-trigger" data-mega="resources">
         <span>Resources <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
       </div>
-      <a href="/locations">Locations</a>
-      <a href="/about">About</a>
+      <a href="/locations/">Locations</a>
+      <a href="/about/">About</a>
     </div>
-    <a href="/contact" class="btn-cta nav-btn" style="padding:10px 24px;font-size:13px;">Get Free Quote</a>
+    <a href="/contact/" class="btn-cta nav-btn" style="padding:10px 24px;font-size:13px;">Get Free Quote</a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
       <span></span>
       <span></span>
@@ -146,10 +147,10 @@ const resources = [
       <div class="mobile-menu-header">Resources</div>
       {resources.map(r => <a href={r.href} class="mobile-menu-item">{r.label}</a>)}
       <div class="mobile-menu-separator"></div>
-      <a href="/case-studies" class="mobile-menu-page-link">Work</a>
-      <a href="/locations" class="mobile-menu-page-link">Locations</a>
-      <a href="/about" class="mobile-menu-page-link">About</a>
-      <a href="/contact" class="mobile-menu-cta">Get Free Quote</a>
+      <a href="/case-studies/" class="mobile-menu-page-link">Work</a>
+      <a href="/locations/" class="mobile-menu-page-link">Locations</a>
+      <a href="/about/" class="mobile-menu-page-link">About</a>
+      <a href="/contact/" class="mobile-menu-cta">Get Free Quote</a>
     </div>
   </div>
 </nav>

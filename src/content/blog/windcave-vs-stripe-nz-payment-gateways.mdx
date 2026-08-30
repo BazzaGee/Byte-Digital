@@ -1,0 +1,74 @@
+---
+title: "Windcave vs Stripe: Choosing a Payment Gateway for Your NZ Online Store"
+description: "Windcave or Stripe for your New Zealand ecommerce store? Compare fees, settlement times, setup complexity, and supported payment methods — with practical recommendations by business type."
+pubDate: 2026-08-28
+category: "eCommerce"
+tags: ["eCommerce", "payment gateways", "Windcave", "Stripe", "online store", "New Zealand"]
+---
+
+## Introduction
+
+Choosing a payment gateway is one of the most consequential decisions in building a New Zealand online store. It affects your fees on every sale, your cashflow, your checkout abandonment rate, and how much engineering effort your store needs. The two names that come up most often for NZ businesses are Windcave (formerly Payment Express / DPS) and Stripe — and the right answer genuinely depends on your business.
+
+We integrate both gateways regularly as part of our [ecommerce website builds](/services/ecommerce/). Here is the honest comparison we walk our Christchurch clients through.
+
+## The Short Answer
+
+- **New store, simple needs, want to launch fast:** Stripe
+- **Established retailer already on Windcave, or need POLi/account2account:** Windcave
+- **High average order value where card fees hurt:** Windcave (or add account2account to either)
+- **Selling subscriptions:** Stripe
+- **Want buy-now-pay-later (Afterpay/Zip):** both support BNPL options — check current terms for your volume
+
+Now the details behind those recommendations.
+
+## Fees: What You Actually Pay
+
+Stripe uses straightforward published pricing: a flat percentage plus a fixed amount per domestic card transaction, with clear rates for international cards and currency conversion. What you see on the pricing page is what you get.
+
+Windcave pricing is typically structured around a monthly account fee plus per-transaction rates that depend on your plan and negotiation. For established businesses with meaningful volume, those rates can be competitive — sometimes more so than Stripe — especially when adding internet banking payment methods with lower fees on large transactions.
+
+The practical advice: model fees on your real numbers — average order value, monthly volume, and the payment mix your customers actually use. A 1% difference on a $40 order matters far less than on a $400 one.
+
+## Settlement and Cashflow
+
+Stripe settles on a rolling schedule to your bank account, typically every business day or two once your account is established. Windcave settlement times depend on your arrangement and bank, and are generally predictable for established merchants.
+
+If cashflow timing matters to your business — and for most small businesses it does — ask both providers to confirm settlement timing for your specific setup before committing. The difference of a few days across hundreds of orders is real money.
+
+## Payment Methods Your Customers Expect
+
+This is where the choice gets interesting for New Zealand:
+
+- **Cards (Visa/Mastercard, Amex):** both support them, both support Apple Pay and Google Pay wallets.
+- **POLi and internet banking:** Windcave has deep roots here, which is why many established NZ retailers stay. Bank-transfer style payments can reduce fees on high-value orders.
+- **Afterpay / Zip (BNPL):** New Zealand shoppers increasingly expect buy-now-pay-later, particularly in fashion and homeware. Both ecosystems can support BNPL — we configure this alongside the primary gateway.
+- **Subscriptions and recurring billing:** Stripe's tooling here is more mature out of the box. If you sell on a subscription basis, this alone often decides it.
+
+## Setup and Engineering Effort
+
+Stripe is developer-friendly: clean APIs, excellent documentation, and hosted checkout options that can be live in hours. Windcave integration is well-documented but typically involves more configuration — PX Post or PX Pay setup, 3D Secure settings, and hosted payment page branding. On a build with us this is handled for you either way; if you are DIY-ing with a generic platform plugin, Stripe generally gets you live faster.
+
+One often-overlooked factor: **checkout experience**. A poorly branded, unfamiliar payment page increases abandonment. Whichever gateway you choose, configure hosted payment pages to match your store, or use embedded checkout so customers never feel like they have left your site.
+
+## Compliance, Security, and Support
+
+Both providers are PCI DSS compliant, which keeps card data off your servers and dramatically simplifies your compliance burden. Both offer 3D Secure (which shifts fraud liability away from you). For disputes and chargebacks, both provide dashboards — Stripe's is self-serve and instantaneous; Windcave support is more traditional, with New Zealand-based phone support that some established merchants genuinely value.
+
+## Our Recommendations by Business Type
+
+- **Startup or first online store:** Start with Stripe. Fastest path to launch, predictable fees, excellent wallets and subscriptions support.
+- **Established retailer already processing with Windcave:** Stay with Windcave for cards, and evaluate adding Stripe-style wallets or BNPL on top. Switching providers is rarely worth the disruption when rates are competitive.
+- **High-value goods (furniture, jewellery, machinery):** Either, plus account2account or POLi — cutting card fees on large orders is where internet banking payments shine.
+- **Subscription business:** Stripe, without hesitation.
+- **Unsure:** Build the store gateway-agnostic. Modern integrations let you add or swap gateways later without rebuilding checkout.
+
+## How We Set This Up for Clients
+
+Every store we build includes full gateway integration configured for NZD and GST: [Windcave](/services/ecommerce/) PX Post/PX Pay setup with 3D Secure and branded hosted payment pages, or Stripe with wallets, BNPL, and webhook-driven order updates. Payment is not a plug-in decision made at the last minute — it is part of the checkout design from day one, because it is where revenue is won or lost.
+
+## Conclusion
+
+Windcave and Stripe are both excellent choices for New Zealand online stores — they simply optimise for different situations. Model fees on your real volumes, match the payment methods to your customers, and factor in setup effort and settlement timing.
+
+If you want a recommendation specific to your store, [get in touch](/contact/) for a free consultation. We build ecommerce sites for Christchurch and NZ businesses with either gateway — and we will show you real fee maths rather than marketing material. For the bigger picture on launching a store, read our [ecommerce web design guide for Christchurch](/blog/ecommerce-web-design-christchurch-guide/).

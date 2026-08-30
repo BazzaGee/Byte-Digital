@@ -23,10 +23,37 @@ const { title, description, suburb, jsonLd } = Astro.props;
     subtitle={`Byte Digital provides premium web design, SEO, and digital marketing services to businesses in ${suburb}, Christchurch. We help local businesses dominate online search and convert more visitors into customers.`}
     breadcrumbs={[
       { label: 'Home', href: '/' },
-      { label: `Web Design ${suburb}` },
+      { label: 'Locations', href: '/locations/' },
+      { label: suburb },
     ]}
   />
   <slot />
+
+  <section class="section reveal" style="background:var(--bg-dark)">
+    <div class="container">
+      <h2 style="font-size:24px;font-weight:600;margin:0 0 8px;font-family:'Space Grotesk',sans-serif">Our Services in {suburb}</h2>
+      <p style="color:var(--text-muted);margin:0 0 28px;font-size:15px">Everything your {suburb} business needs to win online, from one local team.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+        <a href="/services/web-design/" class="glass" style="display:block;padding:24px;border-radius:16px;text-decoration:none;transition:border-color 0.2s">
+          <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:6px">Web Design in {suburb}</div>
+          <div style="font-size:13px;color:var(--text-muted)">Custom, conversion-focused websites built for local customers.</div>
+        </a>
+        <a href="/services/seo/" class="glass" style="display:block;padding:24px;border-radius:16px;text-decoration:none;transition:border-color 0.2s">
+          <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:6px">SEO for {suburb} Businesses</div>
+          <div style="font-size:13px;color:var(--text-muted)">Rank higher in Google and turn searches into enquiries.</div>
+        </a>
+        <a href="/services/local-seo/" class="glass" style="display:block;padding:24px;border-radius:16px;text-decoration:none;transition:border-color 0.2s">
+          <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:6px">Local SEO &amp; Google Maps</div>
+          <div style="font-size:13px;color:var(--text-muted)">Dominate the map pack when {suburb} locals search.</div>
+        </a>
+        <a href="/services/digital-marketing/" class="glass" style="display:block;padding:24px;border-radius:16px;text-decoration:none;transition:border-color 0.2s">
+          <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:6px">Digital Marketing in {suburb}</div>
+          <div style="font-size:13px;color:var(--text-muted)">Ads, email and automation — measured and reported monthly.</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <SectionAccent wide />
   <section class="section reveal section-glow" style="background:var(--bg-dark);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
     <div class="glow-orb purple bottom-left"></div>
@@ -37,29 +64,29 @@ const { title, description, suburb, jsonLd } = Astro.props;
           <h2 style="font-size:24px;font-weight:600;margin:0;font-family:'Space Grotesk',sans-serif">Also Serving Nearby Areas</h2>
           <p style="color:var(--text-muted);margin:6px 0 0;font-size:15px">We provide web design and SEO services across Christchurch and Canterbury.</p>
         </div>
-        <a href="/locations" class="btn-cta" style="text-decoration:none;padding:10px 24px;font-size:14px">All Service Areas</a>
+        <a href="/locations/" class="btn-cta" style="text-decoration:none;padding:10px 24px;font-size:14px">All Service Areas</a>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:10px">
-        <a href="/locations/addington" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Addington</a>
-        <a href="/locations/cashmere" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Cashmere</a>
-        <a href="/locations/fendalton" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Fendalton</a>
-        <a href="/locations/ferrymead" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Ferrymead</a>
-        <a href="/locations/halswell" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Halswell</a>
-        <a href="/locations/linwood" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Linwood</a>
-        <a href="/locations/merivale" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Merivale</a>
-        <a href="/locations/mount-pleasant" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Mount Pleasant</a>
-        <a href="/locations/new-brighton" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">New Brighton</a>
-        <a href="/locations/papanui" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Papanui</a>
-        <a href="/locations/redcliffs" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Redcliffs</a>
-        <a href="/locations/riccarton" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Riccarton</a>
-        <a href="/locations/richmond" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Richmond</a>
-        <a href="/locations/somerfield" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Somerfield</a>
-        <a href="/locations/spreydon" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Spreydon</a>
-        <a href="/locations/st-albans" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">St Albans</a>
-        <a href="/locations/sumner" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Sumner</a>
-        <a href="/locations/sydenham" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Sydenham</a>
-        <a href="/locations/wigram" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Wigram</a>
-        <a href="/locations/woolston" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Woolston</a>
+        <a href="/locations/addington/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Addington</a>
+        <a href="/locations/cashmere/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Cashmere</a>
+        <a href="/locations/fendalton/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Fendalton</a>
+        <a href="/locations/ferrymead/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Ferrymead</a>
+        <a href="/locations/halswell/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Halswell</a>
+        <a href="/locations/linwood/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Linwood</a>
+        <a href="/locations/merivale/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Merivale</a>
+        <a href="/locations/mount-pleasant/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Mount Pleasant</a>
+        <a href="/locations/new-brighton/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">New Brighton</a>
+        <a href="/locations/papanui/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Papanui</a>
+        <a href="/locations/redcliffs/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Redcliffs</a>
+        <a href="/locations/riccarton/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Riccarton</a>
+        <a href="/locations/richmond/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Richmond</a>
+        <a href="/locations/somerfield/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Somerfield</a>
+        <a href="/locations/spreydon/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Spreydon</a>
+        <a href="/locations/st-albans/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">St Albans</a>
+        <a href="/locations/sumner/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Sumner</a>
+        <a href="/locations/sydenham/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Sydenham</a>
+        <a href="/locations/wigram/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Wigram</a>
+        <a href="/locations/woolston/" style="padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:13px;transition:border-color 0.2s">Woolston</a>
       </div>
     </div>
   </section>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTASection from '../../components/CTASection.astro';
+import Divider from '../../components/Divider.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { allServices } from '../../utils/content-relations';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Byte Digital Services",
+  "itemListElement": allServices.map((s, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": s.title,
+    "url": `https://bytedigital.co.nz${s.href}`
+  }))
+};
+---
+
+<BaseLayout
+  title="Web Design, SEO & Digital Marketing Services Christchurch | Byte Digital"
+  description="Explore Byte Digital's services for Christchurch businesses: web design, web development, SEO, local SEO, digital marketing, ecommerce, WordPress, branding, and ongoing maintenance."
+  jsonLd={jsonLd}
+>
+  <PageHero
+    label="Our Services"
+    title="Everything your business needs<br /><span class='gradient-text'>to dominate online.</span>"
+    subtitle="From your first logo to a full digital marketing engine — one specialist team for your entire online presence."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Services' },
+    ]}
+  />
+
+  <section class="section dot-pattern" style="padding-top:0">
+    <div class="container">
+      <div class="services-grid">
+        {allServices.map(service => (
+          <ServiceCard
+            icon={service.icon}
+            iconColor={service.slug === 'seo' || service.slug === 'digital-marketing' || service.slug === 'local-seo' ? 'mint' : 'purple'}
+            title={service.title}
+            description={service.description}
+            href={service.href}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+  <CTASection />
+</BaseLayout>

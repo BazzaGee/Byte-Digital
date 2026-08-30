@@ -1036,7 +1036,7 @@ async function fetchDashboard() {
         : 'No activity yet';
     } else if (resp.status === 401) {
       el.textContent = 'Session expired — redirecting...';
-      setTimeout(() => { window.location.href = '/admin-login'; }, 1500);
+      setTimeout(() => { window.location.href = '/admin-login/'; }, 1500);
     } else {
       el.textContent = 'Error ' + resp.status;
     }

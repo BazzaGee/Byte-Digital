@@ -1,0 +1,150 @@
+---
+import ServicePage from '../../layouts/ServicePage.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import RelatedPosts from '../../components/RelatedPosts.astro';
+import RelatedCaseStudies from '../../components/RelatedCaseStudies.astro';
+import RelatedGuides from '../../components/RelatedGuides.astro';
+import RelatedServices from '../../components/RelatedServices.astro';
+import IconList from '../../components/IconList.astro';
+import CalloutBox from '../../components/CalloutBox.astro';
+import { getCollection } from 'astro:content';
+import { getRelatedPosts, getRelatedGuides, getRelatedCaseStudies } from '../../utils/content-relations';
+
+const faqItems = [
+  {
+    question: 'What does a digital marketing agency in Christchurch actually do?',
+    answer: 'A digital marketing agency helps your business get found, get chosen, and get repeat customers online. At Byte Digital, that covers search engine optimisation so you appear when Christchurch customers search, Google Ads for immediate visibility, social media marketing to build audience, email marketing and automation to nurture leads, and conversion rate optimisation so more of your visitors become enquiries. Everything is tied together with analytics and monthly reporting so you can see exactly what is working.'
+  },
+  {
+    question: 'How much should a Christchurch business spend on digital marketing?',
+    answer: 'It depends on your goals, your industry, and how competitive your market is. As a rule of thumb, most small to medium Christchurch businesses invest between $1,000 and $5,000 per month across channels. Rather than spreading that budget thin across every platform, we recommend starting with the one or two channels most likely to reach your specific customers — often local SEO and Google Ads — proving the return, then expanding. Our free consultation will give you a realistic budget range for your situation.'
+  },
+  {
+    question: 'How long before I see results from digital marketing?',
+    answer: 'Paid channels like Google Ads and social media advertising can generate enquiries within days of launch. SEO and content marketing take longer — typically three to six months to build meaningful momentum — but they compound over time and deliver the lowest cost per lead in the long run. A well-structured strategy uses both: paid channels for immediate pipeline while the organic foundations are built.'
+  },
+  {
+    question: 'Do you offer ecommerce digital marketing in Christchurch?',
+    answer: 'Yes. We help online stores grow through a combination of ecommerce SEO, Google Shopping and search campaigns, social commerce, email flows for cart abandonment and repeat purchases, and conversion rate optimisation of the store itself. Because we also build ecommerce websites, we can fix conversion problems at the source rather than just driving more traffic to a leaky funnel. See our ecommerce website services for details.'
+  },
+  {
+    question: 'Why choose Byte Digital over larger Christchurch marketing agencies?',
+    answer: 'You work directly with the people doing the work — no account manager telephone game. We are a specialist web and digital studio, which means your marketing, your website, and your conversion funnel are handled by one team with one set of goals. Every campaign is backed by transparent monthly reporting, and we do not lock clients into long contracts. Our results, including live projects like the CookTwo app, speak for themselves.'
+  },
+  {
+    question: 'Can you fix a website that gets traffic but no enquiries?',
+    answer: 'Yes — this is one of the most common problems we solve. Traffic without enquiries usually points to conversion rate optimisation issues: unclear messaging, weak calls to action, slow load times, or a poor mobile experience. We start with a conversion audit of your site, identify where visitors drop off, and make targeted changes that turn existing traffic into leads before spending more on attracting new visitors.'
+  }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Digital Marketing Christchurch",
+  "description": "Digital marketing services for Christchurch businesses: SEO, Google Ads, social media marketing, email automation, and conversion rate optimisation by Byte Digital.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Byte Digital",
+    "url": "https://bytedigital.co.nz",
+    "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressRegion": "Canterbury", "addressCountry": "NZ" }
+  },
+  "areaServed": { "@type": "City", "name": "Christchurch" },
+  "sameAs": []
+};
+
+const allBlogPosts = (await getCollection('blog')).map(p => ({
+  slug: p.id,
+  title: p.data.title,
+  description: p.data.description,
+  category: p.data.category,
+  tags: p.data.tags,
+  pubDate: p.data.pubDate,
+})).sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+
+const allCaseStudies = (await getCollection('case-studies')).map(p => ({
+  slug: p.id,
+  title: p.data.title,
+  client: p.data.client,
+  industry: p.data.industry,
+  description: p.data.description,
+  tags: p.data.tags,
+}));
+
+const relatedPosts = getRelatedPosts('digital-marketing', allBlogPosts, 3);
+const relatedGuides = getRelatedGuides('digital-marketing', 2);
+const relatedCaseStudies = getRelatedCaseStudies('digital-marketing', allCaseStudies, 2);
+---
+
+<ServicePage
+  title="Digital Marketing Christchurch | SEO, Ads & Automation | Byte Digital"
+  description="Digital marketing for Christchurch businesses that want measurable growth: SEO, Google Ads, social media, email automation, and conversion optimisation — all under one roof."
+  serviceTitle="Digital Marketing Christchurch"
+  serviceSubtitle="One team for your whole digital presence. Strategy, traffic, and conversions — measured, reported, and grown every month."
+  jsonLd={jsonLd}
+>
+  <section class="section section-glow dm-edge-top">
+    <div class="container">
+      <div class="service-content">
+
+        <h2 class="heading-accent">Digital Marketing That Starts With Strategy, Not Channels</h2>
+        <p>Most Christchurch businesses do not need "more marketing" — they need the right marketing, aimed at the right customers, with the waste cut out. That starts with understanding three things: who your most valuable customers are, how they search and decide, and what it costs to acquire them profitably. Only then do we choose channels.</p>
+        <p>Because Byte Digital is both a web studio and a marketing partner, we look at your entire funnel: how people find you, what they see when they arrive, and what makes them enquire or buy. Marketing that sends traffic to a slow, confusing, or outdated website is money straight down the drain. We fix the full picture — and we measure everything.</p>
+
+        <h2 class="heading-accent">Search Engine Optimisation: The Foundation of Growth</h2>
+        <p>SEO is the channel that compounds. When your business ranks on page one for the searches your customers make, every month of work keeps paying you back. Our <a href="/services/seo/">search engine optimisation services</a> cover technical SEO, keyword research targeted at Christchurch search behaviour, content strategy, and authority building — everything needed to turn Google into a consistent lead source.</p>
+        <p>For businesses that serve customers across the city, our <a href="/services/local-seo/">local SEO services</a> add Google Business Profile optimisation, local citations, review strategy, and suburb-level targeting so you appear in map results and "near me" searches from Riccarton to New Brighton.</p>
+
+        <h2 class="heading-accent">Google Ads: Enquiries This Week, Not This Quarter</h2>
+        <p>Sometimes you need the phone to ring now. Google Ads puts your business in front of customers at the exact moment they search for what you sell. We build and manage search, shopping, and performance max campaigns with a focus on return on ad spend — tight keyword targeting, compelling ad copy, and landing pages designed to convert the click.</p>
+        <p>What we do not do is "set and forget". Campaigns are reviewed weekly, negative keywords are pruned continuously, and budgets are shifted toward what is actually generating enquiries. You see the same data we do, in plain-English monthly reports.</p>
+
+        <h2 class="heading-accent">Social Media and Email: Stay in Front of the Customers You Have Won</h2>
+        <p>Social media marketing keeps your brand present between purchases — particularly powerful for hospitality, retail, and lifestyle businesses in Christchurch's vibrant local scene. We plan content, manage campaigns, and build audiences that translate into foot traffic and online sales.</p>
+        <p>Email marketing and automation quietly deliver some of the highest ROI in digital marketing. Quote follow-ups, cart abandonment sequences, review requests, and repeat-purchase campaigns all run on autopilot — turning one-time buyers into regulars and enquiries into bookings without you lifting a finger.</p>
+
+        <h2 class="heading-accent">Conversion Rate Optimisation: More Leads From the Traffic You Already Have</h2>
+        <p>Doubling a website's conversion rate has exactly the same effect as doubling its traffic — at a fraction of the cost. We analyse where visitors drop off, test improvements to headlines, layouts, forms, and calls to action, and measure the impact. For ecommerce stores, this includes checkout optimisation, trust signals, and cart recovery. See our <a href="/services/web-design/">conversion-focused web design</a> approach, or start with our <a href="/tools/free-website-audit/">free website audit tool</a> to get an instant baseline score.</p>
+
+        <h2 class="heading-accent">Analytics, Reporting, and Honest Numbers</h2>
+        <p>Every engagement includes proper measurement: Google Analytics 4 configured with real conversion tracking, Google Search Console monitoring, and call or form tracking so you know exactly where each lead came from. Monthly reports show leads generated, cost per lead, rankings, and what we will do next. If something is not working, you will hear it from us first — along with the plan to fix it.</p>
+
+        <h2 class="heading-accent">Why Christchurch Businesses Choose Byte Digital</h2>
+        <IconList title="What Sets Us Apart" items={[
+          { highlight: 'Full-funnel capability:', text: 'Strategy, website, SEO, ads, and automation from one specialist team — no gaps between agencies' },
+          { highlight: 'Direct access:', text: 'You work with the people doing the work, not a chain of account managers' },
+          { highlight: 'Local market knowledge:', text: 'We understand Christchurch search behaviour, suburbs, and the Canterbury business landscape' },
+          { highlight: 'Transparent reporting:', text: 'Plain-English monthly reports with real numbers: leads, cost per lead, and revenue impact' },
+          { highlight: 'No lock-in contracts:', text: 'We earn your business every month through results, not paperwork' },
+          { highlight: 'Proven delivery:', text: 'Live production projects — not just slideshows — including the CookTwo AI app' },
+        ]} />
+
+        <CalloutBox type="highlight" title="Free Digital Marketing Consultation">
+          <p>Not sure which channel deserves your budget first? Book a free, no-obligation consultation. We will review your current presence, estimate realistic costs and timelines for your market, and outline a plan — whether you work with us or not.</p>
+        </CalloutBox>
+
+        <p>Ready to turn your online presence into a consistent source of enquiries? Whether you need a complete <a href="/services/ecommerce/">ecommerce marketing strategy</a> or local lead generation for a service business, let's talk about what growth looks like for your Christchurch business.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="related-case-studies">
+    <RelatedCaseStudies studies={relatedCaseStudies} />
+  </Fragment>
+
+  <Fragment slot="related-posts">
+    <RelatedPosts posts={relatedPosts} />
+  </Fragment>
+
+  <Fragment slot="related-guides">
+    <RelatedGuides guides={relatedGuides} />
+  </Fragment>
+
+  <Fragment slot="related-services">
+    <RelatedServices serviceSlug="digital-marketing" />
+  </Fragment>
+
+  <Fragment slot="faq">
+    <FAQAccordion items={faqItems} />
+  </Fragment>
+</ServicePage>

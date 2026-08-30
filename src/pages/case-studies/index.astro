@@ -41,7 +41,7 @@ const studies = (await getCollection('case-studies')).sort((a, b) => b.data.pubD
             <div><div style="font-size:26px;font-weight:700;color:#5EEAD4;font-family:'Space Grotesk',sans-serif">300+</div><div style="font-size:11px;color:var(--text-dimmed);text-transform:uppercase;letter-spacing:1px">Edge locations</div></div>
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:12px">
-            <a href="/case-studies/cooktwo" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;font-size:15px;text-decoration:none">View case study</a>
+            <a href="/case-studies/cooktwo/" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;font-size:15px;text-decoration:none">View case study</a>
             <a href="https://cooktwo.com" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;font-size:15px;text-decoration:none">
               Visit cooktwo.com
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
@@ -65,7 +65,7 @@ const studies = (await getCollection('case-studies')).sort((a, b) => b.data.pubD
       </div>
       <div class="case-grid">
         {studies.filter(s => s.id !== 'cooktwo').map(study => (
-          <a href={`/case-studies/${study.id}`} class="case-item" style="text-decoration:none">
+          <a href={`/case-studies/${study.id}/`} class="case-item" style="text-decoration:none">
             <div class="case-visual glass" style="background:linear-gradient(135deg,rgba(139,120,230,0.05),transparent);align-items:center;justify-content:center">
               <span style="color:var(--text-dimmed);font-size:14px">{study.data.industry}</span>
             </div>
@@ -90,16 +90,16 @@ const studies = (await getCollection('case-studies')).sort((a, b) => b.data.pubD
         <p class="section-subtitle" style="margin:0 auto">Every service is designed to help your Christchurch business grow.</p>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:700px;margin:0 auto">
-        <a href="/services/web-design" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Web Design</a>
-        <a href="/services/web-development" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Web Development</a>
-        <a href="/services/mobile-app-development" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Mobile Apps</a>
-        <a href="/services/custom-applications" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Custom Apps</a>
-        <a href="/services/seo" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">SEO</a>
-        <a href="/services/local-seo" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Local SEO</a>
-        <a href="/services/ecommerce" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">eCommerce</a>
-        <a href="/services/wordpress-development" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">WordPress</a>
-        <a href="/services/branding" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Branding</a>
-        <a href="/services/website-maintenance" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Maintenance</a>
+        <a href="/services/web-design/" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Web Design</a>
+        <a href="/services/web-development/" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Web Development</a>
+        <a href="/services/mobile-app-development/" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Mobile Apps</a>
+        <a href="/services/custom-applications/" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Custom Apps</a>
+        <a href="/services/seo/" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">SEO</a>
+        <a href="/services/local-seo/" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Local SEO</a>
+        <a href="/services/ecommerce/" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">eCommerce</a>
+        <a href="/services/wordpress-development/" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">WordPress</a>
+        <a href="/services/branding/" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Branding</a>
+        <a href="/services/website-maintenance/" class="btn-ghost" style="padding:10px 24px;font-size:13px;text-decoration:none">Maintenance</a>
       </div>
     </div>
   </section>

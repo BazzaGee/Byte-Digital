@@ -95,6 +95,12 @@ import PageHero from '../components/PageHero.astro';
                 .then(function(res) { return res.json(); })
                 .then(function(result) {
                   if (result.success) {
+                    if (typeof gtag === 'function') {
+                      gtag('event', 'generate_lead', {
+                        form_type: 'contact',
+                        service: data.service || 'unspecified'
+                      });
+                    }
                     form.style.display = 'none';
                     successEl.style.display = 'block';
                   } else {

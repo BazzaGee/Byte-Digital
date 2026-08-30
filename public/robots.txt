@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin-login
+Disallow: /chatbot-dashboard
 
 Sitemap: https://bytedigital.co.nz/sitemap-index.xml

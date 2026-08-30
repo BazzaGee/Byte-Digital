@@ -15,7 +15,7 @@ import PageHero from '../../components/PageHero.astro';
     subtitle="Enter your URL and get an instant health check. Find out what's holding your site back."
     breadcrumbs={[
       { label: 'Home', href: '/' },
-      { label: 'Tools', href: '/tools' },
+      { label: 'Tools', href: '/tools/' },
       { label: 'Free Website Audit' },
     ]}
   />
@@ -67,7 +67,7 @@ import PageHero from '../../components/PageHero.astro';
             <div style="margin-top:32px;padding:28px;border-radius:24px;background:rgba(19,19,26,0.75);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.08);text-align:center">
               <h3 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:8px">Want a comprehensive audit?</h3>
               <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px">This quick scan covers the basics. Our real audit dives into 50+ data points with a personalised action plan.</p>
-              <a href="/contact" class="btn-cta" style="font-size:14px">Get a Full Website Audit</a>
+              <a href="/contact/" class="btn-cta" style="font-size:14px">Get a Full Website Audit</a>
             </div>
           </div>
         </div>
@@ -276,6 +276,10 @@ const auditSteps = [
 
   const scores = categories.map(cat => randomBetween(cat.minScore, cat.maxScore));
   const overallScore = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+
+  if (typeof (window as any).gtag === 'function') {
+    (window as any).gtag('event', 'tool_used', { tool: 'free-website-audit', score: overallScore });
+  }
 
   (document.getElementById('overall-score') as HTMLElement).textContent = overallScore.toString();
   (document.getElementById('audit-url-display') as HTMLElement).textContent = url;
