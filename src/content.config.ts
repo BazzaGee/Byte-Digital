@@ -32,6 +32,10 @@ const caseStudyCollection = defineCollection({
     results: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
     services: z.array(z.string()).default([]),
     screenshots: z.array(z.string()).default([]),
+    desktopShots: z.array(z.string()).default([]),
+    ogImage: z.string().optional(),
+    canonicalOverride: z.string().optional(),
+    faq: z.array(z.object({ question: z.string(), answer: z.string() })).default([]),
     featured: z.boolean().default(false),
   }),
 });

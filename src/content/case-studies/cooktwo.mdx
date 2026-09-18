@@ -1,10 +1,10 @@
 ---
-title: "CookTwo Case Study: The AI Nutrition PWA Byte Digital Built & Shipped"
+title: "CookTwo: AI Meal Planning App for Couples — Built by Byte Digital"
 client: "CookTwo"
 industry: "Mobile App / HealthTech"
-description: "How Byte Digital designed, engineered and launched CookTwo — a real-time AI nutrition PWA for couples. 100ms sync, multi-provider AI failover, edge architecture. Live in production today."
+description: "How Byte Digital designed, built and shipped CookTwo — a real-time AI meal planning PWA for couples. One recipe, two plates, 100ms sync, multi-provider AI, edge architecture. Live in production."
 pubDate: 2026-07-01
-tags: ["progressive web app", "PWA", "mobile app", "real-time", "AI app", "react", "cloudflare", "web app", "custom application"]
+tags: ["CookTwo app", "meal planning app for couples", "AI nutrition app", "progressive web app", "PWA", "mobile app development", "real-time app", "AI app", "react", "cloudflare", "custom application development", "app development agency"]
 liveUrl: "https://cooktwo.com"
 appType: "Progressive Web App (PWA)"
 techStack: ["React 19", "Cloudflare Workers", "Cloudflare D1", "Durable Objects", "WebSockets", "Multi-Provider AI", "PWA", "TypeScript", "Stripe"]
@@ -15,6 +15,23 @@ screenshots:
   - "/images/work/cooktwo/02-pantry.webp"
   - "/images/work/cooktwo/03-adaptive-meal.webp"
   - "/images/work/cooktwo/04-profiles-full.webp"
+ogImage: "/images/work/cooktwo/og-cooktwo.png"
+canonicalOverride: "https://bytedigital.co.nz/case-studies/cooktwo/"
+faq:
+  - question: "What is the CookTwo app?"
+    answer: "CookTwo is a collaborative adaptive nutrition app for couples — a shared kitchen operating system with one grocery list, one pantry, and one meal plan, but personalised portions for each partner. Cook one meal together, plate it two different ways based on each person's dietary goals."
+  - question: "Is CookTwo free to use?"
+    answer: "Yes. The free tier includes the shared grocery list, pantry, real-time sync, partner profiles and 10 AI requests per day shared between the couple. Premium is US$4.99/month or US$44.99/year per household and raises the shared daily AI quota from 10 to 70 requests."
+  - question: "Do both partners need the same dietary goals?"
+    answer: "No — that is the whole point. One partner can be losing weight while the other is building muscle, and they can be on completely different diets (e.g. one vegan, one omnivore). CookTwo handles the maths automatically."
+  - question: "Is CookTwo a native app?"
+    answer: "CookTwo is a Progressive Web App (PWA). You install it directly from the browser with no App Store required. On iOS 16.4+ and Android it works like a native app with its own icon, splash screen and full-screen experience."
+  - question: "How fast is the real-time sync?"
+    answer: "Under 100 milliseconds. Both partners connect via WebSocket to a Cloudflare Durable Object — a per-household server that broadcasts changes instantly. Add milk at home and your partner sees it at the store before they reach the dairy aisle."
+  - question: "Who built the CookTwo app?"
+    answer: "Byte Digital — a Christchurch-based digital agency — designed, engineered and launched CookTwo end-to-end, covering product strategy, UX design, React frontend, Cloudflare Workers backend, multi-provider AI integration and Stripe billing."
+  - question: "What technology stack does CookTwo use?"
+    answer: "React 19 with Vite on Cloudflare Pages, a Cloudflare Worker (Hono) backend with D1 SQLite and Durable Objects for real-time WebSocket sync, multi-provider AI (DeepSeek, Alibaba Qwen, ZAI) with automatic fallback, and Stripe for subscription billing."
 featured: true
 results:
   - { value: "100ms", label: "Real-time sync latency" }
@@ -23,30 +40,44 @@ results:
   - { value: "300+", label: "Edge locations worldwide" }
 ---
 
-## The project
+## What is the CookTwo app?
 
-CookTwo is a live, production-grade **collaborative adaptive nutrition app** built for couples. The premise is simple and universally relatable: two partners, different goals — one trying to lose weight, the other trying to build muscle — but they still want to cook and eat *together*. CookTwo solves the "what's for dinner?" problem by letting both partners share one kitchen in the app: a synced grocery list, a shared pantry, and AI-generated meals that plate two ways with portions calculated for each partner's body and goals.
+CookTwo is a **collaborative adaptive nutrition app for couples** — a live, production-grade Progressive Web App (PWA) that solves one of the most common friction points in any relationship: *what's for dinner tonight?*
 
-This is not a landing page for an idea. It is a fully functional, installable application — designed, engineered, and launched by Byte Digital, and available to use today at [cooktwo.com](https://cooktwo.com).
+Two partners, different goals. One trying to lose weight, the other trying to build muscle. But they still want to cook and eat together. CookTwo makes that possible by letting both partners share one kitchen in the app: a synced grocery list, a shared pantry, and AI-generated meals that plate two ways with portions calculated for each partner's body composition and dietary goals.
 
-## The challenge
+This is not a concept or a landing page. It is a fully functional, installable application — designed, engineered, and launched by Byte Digital, and available to use today at [cooktwo.com](https://cooktwo.com).
 
-CookTwo required several genuinely difficult engineering problems to be solved simultaneously:
+## Who is CookTwo for?
 
-1. **Real-time collaboration** between two people, on two devices, often in different locations (one at home, one at the supermarket). Edits had to appear on the partner's screen in under 100 milliseconds.
-2. **Adaptive nutrition logic** — the same recipe had to be portioned differently for each partner based on their TDEE (Total Daily Energy Expenditure), body profile, and dietary goal, using validated formulas like Mifflin-St Jeor.
-3. **Natural-language pantry input** — users needed to type "chicken, 2 cups rice, spinach" and have the system parse, categorise, and remember it intelligently.
-4. **Reliable AI meal generation** that draws on whatever is in the pantry and each partner's goals, with graceful behaviour when any single AI provider is unavailable.
-5. **An app-like, installable experience** that works on any device — iPhone, Android, or desktop — without the cost and friction of maintaining three separate native codebases.
+CookTwo is built for couples who:
 
-## What we built
+- Have **different dietary goals** — weight loss vs. muscle building, vegan vs. omnivore, or any combination
+- Want to **cook together** instead of preparing separate meals every night
+- Are tired of the nightly "what should we make?" negotiation
+- Want **AI-powered meal suggestions** based on what is already in their kitchen
+- Need a **shared grocery list** that syncs in real time so nothing gets bought twice
 
-CookTwo ships with five core features, all live and production-tested:
+The app supports omnivore, vegetarian, vegan, pescatarian, keto, paleo, and gluten-free diets, with hard allergen guardrails that block unsafe meals before they are ever shown.
 
-- **Adaptive Shared Cooking** — the signature feature. One recipe, two plates. The app calculates personalised portions and macro targets for each partner automatically, so both partners hit their goals from the same meal cooked in the same pan.
-- **Real-Time Shared Grocery List** — add milk at home, and it appears on your partner's phone at the store in under 100ms. Powered by WebSocket connections, with offline queuing and automatic reconnection.
-- **Pantry-First AI** — type ingredients in natural language and the AI parses, categorises, and stores them, then suggests meals you can make right now with what you already own.
-- **AI Meal Planning** — a conversational AI plans dinner from your pantry, or adds missing ingredients straight to your shared shopping list. Built on a multi-provider chain with automatic fallback so it stays available even when a provider has an outage.
+## How CookTwo works
+
+CookTwo is designed around a simple five-step flow that couples set up once and use daily:
+
+1. **Create your kitchen** — enter your name, dietary preferences, body goals, and what you already have at home. Takes about two minutes.
+2. **Link with your partner** — share a six-digit invite code. Your partner enters it. Instantly connected — one shared kitchen, two profiles.
+3. **Stock your pantry** — type what you have in natural language ("chicken, 2 cups rice, spinach"). The AI parses, categorises, and remembers it.
+4. **Shop together** — one shared grocery list with real-time sync under 100ms. AI auto-categorises items. One tap moves food to the pantry after a shop.
+5. **Cook together** — follow one recipe. The AI gives each partner their own plating — different portions, different macros, same delicious dinner.
+
+## The five core features
+
+CookTwo ships with five features, all live and production-tested:
+
+- **Adaptive Shared Cooking** — the signature feature. One recipe, two plates. The app calculates personalised portions and macro targets for each partner automatically using TDEE (Total Daily Energy Expenditure) and the Mifflin-St Jeor equation.
+- **Real-Time Shared Grocery List** — add milk at home, and it appears on your partner's phone at the store in under 100ms. Powered by WebSocket connections via Cloudflare Durable Objects, with offline queuing and automatic reconnection.
+- **Pantry-First AI** — type ingredients in natural language and the AI parses, categorises, and stores them, then suggests meals you can make right now with what you already own. Reduces food waste and decision fatigue.
+- **AI Meal Planning** — a conversational AI plans dinner from your pantry, or adds missing ingredients straight to your shared shopping list. Built on a multi-provider chain (DeepSeek, Alibaba Qwen, ZAI) with automatic fallback so it stays available even when a provider has an outage.
 - **Real-Time Sync Architecture** — every change across grocery items, pantry, and meal plans syncs instantly between both partners, with offline support that reconciles cleanly on reconnect.
 
 ## The architecture
@@ -58,18 +89,20 @@ We architected CookTwo on a modern edge-first stack chosen specifically to deliv
 - **Cloudflare D1** provides fast SQLite reads at the edge for pantry items, grocery lists, and meal plans.
 - **Durable Objects** act as per-household WebSocket hubs, giving each couple a dedicated real-time room with sub-100ms sync and offline-friendly state.
 - **A multi-provider AI chain** (DeepSeek, Alibaba, and ZAI) provides resilient meal generation and pantry intelligence, automatically failing over between providers.
-- **Stripe** handles subscription billing per household, not per person.
+- **Stripe** handles subscription billing per household, not per person — one payment covers both partners.
 
-The result is an application that feels instant and native, runs on any device, and costs a fraction of a traditional server-based architecture to operate — something we pass directly on to the client and their users.
+The result is an application that feels instant and native, runs on any device, and costs a fraction of a traditional server-based architecture to operate.
 
-## How we approached it
+## How Byte Digital built it
 
-We treat product builds like CookTwo the same way we approach every custom application: start with the real human problem, validate the riskiest assumptions early, and ship in focused iterations.
+We treat product builds like CookTwo the same way we approach every [custom application](/services/custom-application-development/) project: start with the real human problem, validate the riskiest assumptions early, and ship in focused iterations.
 
-1. **Discovery & product definition** — we mapped the user journey for both partners, defined the data model for a shared household, and prototyped the adaptive portion logic before committing to a full build.
-2. **UX & interaction design** — wireframes and interactive prototypes let us test the real-time collaboration model and the dual-plate concept before any production code was written.
-3. **Iterative engineering** — we built in short cycles, shipping each of the five core features behind a working interface, with continuous testing across devices.
-4. **Launch & hardening** — real-time systems, AI failover, and offline reconciliation were stress-tested before going live, with monitoring in place to catch regressions early.
+1. **Discovery and product definition** — we mapped the user journey for both partners, defined the data model for a shared household, and prototyped the adaptive portion logic before committing to a full build.
+2. **UX and interaction design** — wireframes and interactive prototypes let us test the real-time collaboration model and the dual-plate concept before any production code was written.
+3. **Iterative engineering** — we built in short cycles, shipping each of the five core features behind a working interface, with continuous testing across iOS, Android, and desktop.
+4. **Launch and hardening** — real-time systems, AI failover, and offline reconciliation were stress-tested before going live, with monitoring in place to catch regressions early.
+
+This is the same process we bring to every [mobile app development](/services/mobile-app-development/) and [web development](/services/web-development/) engagement — whether the brief is a customer-facing PWA, an internal operational tool, or a complete software product taken from idea to production.
 
 ## What this means for your business
 
