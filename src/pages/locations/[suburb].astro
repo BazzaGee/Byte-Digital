@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Divider from '../../components/Divider.astro';
+import CTASection from '../../components/CTASection.astro';
+import { SUBURBS, type Suburb } from '../../data/locations';
+import { LADDER } from '../../data/ladder';
+
+export function getStaticPaths() {
+  return SUBURBS.map((suburb) => ({
+    params: { suburb: suburb.slug },
+    props: { suburb },
+  }));
+}
+
+const { suburb } = Astro.props as { suburb: Suburb };
+
+const others = SUBURBS.filter((s) => s.slug !== suburb.slug);
+const freeStep = LADDER.find((s) => s.step === 0)!;
+const steps = LADDER.filter((s) => s.step > 0);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `Free concept website for ${suburb.name} businesses`,
+  description: `A free, private concept website built from real public information about your ${suburb.name} business, reviewed on a private link by you.`,
+  provider: {
+    '@type': 'Organization',
+    name: 'Byte Digital',
+    url: 'https://bytedigital.co.nz',
+  },
+  areaServed: {
+    '@type': 'Place',
+    name: `${suburb.name}, Christchurch, New Zealand`,
+  },
+};
+---
+
+<BaseLayout
+  title={suburb.metaTitle}
+  description={suburb.metaDescription}
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern" style="padding-top:80px">
+    <div class="container">
+      <div style="max-width:740px">
+        <a href="/locations/" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);text-decoration:none;margin-bottom:18px">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 19l-7-7 7-7" /></svg>
+          Christchurch areas
+        </a>
+        <div class="hero-badge" style="display:inline-flex">
+          <div class="hero-badge-dot"></div>
+          Free — {suburb.name} businesses
+        </div>
+        <h1 style="margin:24px 0 20px;font-size:clamp(30px,4.6vw,46px);line-height:1.14">
+          Get a free concept website for your <span class="gradient-text">{suburb.name} business.</span>
+        </h1>
+        <p style="font-size:18px;line-height:1.7;color:var(--text-secondary);margin:0 0 28px">
+          I build a working concept of your site from information that is already public, put it on a private
+          link only you can see, and you tell me what to change. No quote, no obligation, and the source files
+          are yours if you want them.
+        </p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href={freeStep.href} class="btn-cta" style="padding:15px 32px;font-size:15px">
+            Get your free concept
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
+          </a>
+          <a href="/tools/free-website-audit/" class="btn-ghost" style="padding:15px 28px;font-size:15px;text-decoration:none">
+            Audit your current site first
+          </a>
+        </div>
+        <p style="margin:22px 0 0;font-size:13px;color:var(--text-muted)">
+          Private link · not published · not in search results · source files on request
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="section">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto">
+        <div class="section-label">Local knowledge</div>
+        <h2 style="font-size:clamp(26px,3.6vw,34px);font-weight:700;margin:10px 0 20px;line-height:1.25">
+          Why {suburb.name} is its own market
+        </h2>
+        <p style="font-size:17px;line-height:1.75;color:var(--text-secondary);margin:0 0 12px">
+          I am based in Christchurch, so this is written from what is actually here rather than from a
+          template with the suburb name swapped in — {suburb.summary.toLowerCase()}.
+        </p>
+        <p style="font-size:15px;line-height:1.75;color:var(--text-muted);margin:0 0 36px">
+          Which matters for the free concept: when I build your site, I use your real location, your real
+          services, and the way people here actually search. A site that talks about a suburb it is not in is
+          worse than no site at all.
+        </p>
+
+        {suburb.sections.map((section) => (
+          <div style="margin-bottom:36px">
+            <h3 style="font-size:22px;font-weight:600;margin:0 0 14px;color:#fff">{section.heading}</h3>
+            {section.paragraphs.map((para) => (
+              <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin:0 0 14px">{para}</p>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="section reveal section-glow" style="background:var(--bg-dark);border-top:1px solid var(--border-subtle)">
+    <div class="glow-orb purple top-right"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div style="max-width:720px;margin:0 auto 40px;text-align:center">
+        <div class="section-label" style="justify-content:center">What happens after</div>
+        <h2 style="font-size:clamp(26px,3.6vw,34px);font-weight:700;margin:10px 0 16px">
+          The free concept is <span class="gradient-text">step zero</span>
+        </h2>
+        <p style="font-size:16px;line-height:1.75;color:var(--text-secondary)">
+          If the concept is right and you want it live, that is where the rest of the work comes in. Each step
+          is separate — take one or take none.
+        </p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px;max-width:640px;margin:0 auto">
+        {steps.map((s) => (
+          <a href={s.href} class="glass" style="padding:15px 20px;border-radius:12px;display:flex;align-items:center;gap:16px;text-decoration:none">
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--text-muted);width:20px;flex-shrink:0">{s.step}</span>
+            <span style="font-size:15px;font-weight:500;flex:1;color:var(--text-secondary)">{s.name}</span>
+            <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;
+              background:{s.status === 'live' ? 'rgba(34,197,94,0.14);color:#4ade80' : s.status === 'in-build' ? 'rgba(234,179,8,0.14);color:#facc15' : 'rgba(107,114,128,0.14);color:#9ca3af'}">
+              {s.status === 'live' ? 'Live' : s.status === 'in-build' ? 'In build' : 'Later'}
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {suburb.faqs.length > 0 && (
+    <>
+      <Divider />
+      <section class="section">
+        <div class="container">
+          <div style="max-width:760px;margin:0 auto">
+            <div class="section-label" style="justify-content:center;text-align:center">Questions</div>
+            <h2 style="font-size:clamp(24px,3.4vw,32px);font-weight:700;margin:10px 0 30px;text-align:center">
+              From {suburb.name} businesses
+            </h2>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              {suburb.faqs.map((faq) => (
+                <div class="glass" style="padding:22px 24px;border-radius:14px">
+                  <h3 style="font-size:16px;font-weight:600;margin:0 0 10px;color:#fff">{faq.question}</h3>
+                  <p style="margin:0;font-size:14px;line-height:1.75;color:var(--text-muted)">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )}
+
+  <Divider />
+
+  <section class="section" style="background:var(--bg-dark)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:28px">
+        <div class="section-label" style="display:inline-flex">Nearby</div>
+        <h2 style="font-size:24px;font-weight:600;margin:10px 0 0">Other Christchurch areas</h2>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+        {others.map((s) => (
+          <a href={`/locations/${s.slug}/`} style="padding:9px 18px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;transition:border-color 0.2s">
+            {s.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CTASection />
+</BaseLayout>

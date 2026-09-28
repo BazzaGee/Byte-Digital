@@ -1,27 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import StatsRow from '../components/StatsRow.astro';
-import MarqueeBanner from '../components/MarqueeBanner.astro';
+import FreeWebsiteExplainer from '../components/FreeWebsiteExplainer.astro';
 import WhyModernWebsite from '../components/WhyModernWebsite.astro';
-import ScrollVideo from '../components/ScrollVideo.astro';
 import Divider from '../components/Divider.astro';
-import StatsBar from '../components/StatsBar.astro';
-import ServicesGrid from '../components/ServicesGrid.astro';
+import LadderGrid from '../components/LadderGrid.astro';
 import ProcessGrid from '../components/ProcessGrid.astro';
-import TestimonialsGrid from '../components/TestimonialsGrid.astro';
-import CaseStudyGrid from '../components/CaseStudyGrid.astro';
+import LiveSystems from '../components/LiveSystems.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 import CTASection from '../components/CTASection.astro';
 import BlogCard from '../components/BlogCard.astro';
-import GuideCard from '../components/GuideCard.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import { getCollection } from 'astro:content';
+import { REAL_PROOF } from '../data/ladder';
 
 const latestPosts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3)
-  .map(p => ({
+  .map((p) => ({
     slug: p.id,
     title: p.data.title,
     description: p.data.description,
@@ -29,106 +25,101 @@ const latestPosts = (await getCollection('blog'))
     pubDate: p.data.pubDate,
   }));
 
-const featuredGuides = [
-  { title: 'Web Design Christchurch 2026', description: 'Everything you need to know about web design trends and best practices for Christchurch businesses.', href: '/guides/web-design-christchurch-2026/' },
-  { title: 'Website Investment Guide NZ', description: 'Understand the value and ROI of a professional website investment for New Zealand businesses.', href: '/guides/website-cost-guide-nz/' },
-  { title: 'SEO Domination Handbook', description: 'The complete handbook for ranking your business on Google in competitive local markets.', href: '/guides/seo-domination-handbook/' },
-];
-
 const faqItems = [
   {
-    question: 'How long does it take to build a website?',
-    answer: "Most projects are completed within 2-4 weeks from the initial design approval. Simple sites can be done in as little as 7 days. We never rush, but we're efficient — you'll have a clear timeline from day one.",
+    question: 'What does "free concept website" actually mean?',
+    answer:
+      'I build a working version of your site using information that is already public about your business, and put it on a private link that only you can see. You tell me what to change, I revise it. If you want the files, they are emailed to you. If you never want to hear from me again, that is a legitimate outcome and I will not chase you.',
   },
   {
-    question: 'What should I invest in a website?',
-    answer: "Every project is custom-scoped to your business goals, so there's no one-size-fits-all answer. What we can tell you is that we focus on delivering genuine return on investment — a well-built website should pay for itself many times over through increased leads, sales, and brand credibility. We start every engagement with a free discovery call to understand your needs, then provide a tailored proposal. Get in touch via our contact form or email barry@bytedigital.co.nz to discuss your project.",
+    question: 'Why would a business give away the first thing?',
+    answer:
+      'Because the first thing is nearly free for me to produce — I built the pipeline that generates these sites, so one costs me some compute and a short review. Spending that to find out whether we are a fit beats a sales call, and it means you are judging real work rather than a promise about work.',
   },
   {
-    question: 'Do you only work with Christchurch businesses?',
-    answer: "Christchurch and Canterbury are our specialty, but we work with businesses across all of New Zealand. Our local focus means we know exactly what works to drive local leads and rankings in the NZ market.",
+    question: 'How long does it take?',
+    answer:
+      'The build is automatic and usually quick. You review a first version, send back what you want changed, and I revise it. Most people are reviewing something within a day or two of asking. If you are in a hurry, say so and I will prioritise it.',
   },
   {
-    question: 'Will my site rank on Google?',
-    answer: "Absolutely. SEO isn't an afterthought for us — it's baked into every site we build. Clean code, fast load times, proper schema markup, and optimized content give you a massive head start in local search rankings.",
+    question: 'Will my concept site end up on Google?',
+    answer:
+      'No. It is generated on a platform subdomain and shared through a private, unlisted link that is excluded from search engines and from my sitemap. Nothing is published, nothing is attached to your business name publicly.',
   },
   {
-    question: 'What if I already have a website?',
-    answer: "Even better — we can audit your current site, identify what's hurting your conversions, and either rebuild it from scratch or optimize what you have. Most businesses see measurable improvements within the first 30-60 days of launching a new website.",
+    question: 'Do I have to buy anything afterwards?',
+    answer:
+      'No, and the free concept exists so that neither of us is committing before you have seen something. If later you want the site live and maintained, want the visibility work, or want something custom built, those are separate conversations with separate quotes. You are never locked in — the domain would be registered in your name and you can take it to another provider whenever you like.',
   },
   {
-    question: 'Do you offer ongoing support?',
-    answer: "Yes. We offer monthly maintenance plans that include updates, security monitoring, performance optimization, content changes, and detailed analytics reports. Your site stays fast, secure, and current.",
+    question: 'Can you get me to the top of Google?',
+    answer:
+      'No, and I would be careful of anyone who says otherwise. What I can do is remove the technical obstacles, make sure your business information is accurate and consistent, write content worth citing, and measure where your traffic actually comes from. Those are the parts you control. Rankings themselves are not something any honest person can guarantee, and I will not pretend otherwise to win the work.',
   },
   {
-    question: 'What technologies do you use?',
-    answer: 'We use modern frameworks like Astro, Next.js, and React for lightning-fast performance. Every site is built with SEO best practices, responsive design, and accessibility standards from the ground up.',
+    question: 'Do you work with businesses outside Christchurch?',
+    answer:
+      'Yes. I am Christchurch-based, which is why the local pages here are genuinely specific instead of generic filler. But the work is entirely remote and I work with businesses across New Zealand.',
   },
   {
-    question: 'Can you help with digital marketing beyond websites?',
-    answer: "Absolutely. We offer full digital marketing services including SEO, Google Ads, email marketing campaigns, chatbots, marketing automation, and social media strategy. We build complete digital systems, not just websites.",
+    question: 'Who actually does the work?',
+    answer:
+      'I do — Barry Grottis, and there is no team behind the website. You talk to the person who designs, builds, and maintains your site. I have been building websites since 2011, and I built the automated pipeline that produces the free concepts.',
   },
 ];
 
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Byte Digital - Christchurch Web Design & Digital Marketing Agency",
-  "description": "Premium web design, SEO, and digital marketing services for businesses in Christchurch, Canterbury, and New Zealand. We build lightning-fast, high-converting websites.",
-  "url": "https://bytedigital.co.nz",
-  "mainEntity": {
-    "@type": "FAQPage",
-    "mainEntity": faqItems.map(item => ({
-      "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.answer,
-      },
-    })),
-  },
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
 };
 ---
 
 <BaseLayout
-  title="Christchurch Web Design & Digital Marketing Agency"
-  description="Premium web design, SEO, and digital marketing for businesses in Christchurch, Canterbury & NZ. Lightning-fast websites, local SEO, digital automation. Free consultation."
+  title="Free Concept Website NZ | Byte Digital"
+  description="Get a free, private concept website for your New Zealand business. Built from your real public information, reviewed on a private link, source files yours to keep. Then hosting, search and AI visibility, and custom software if you want it."
   jsonLd={jsonLd}
 >
   <Hero />
-  <StatsRow />
-  <MarqueeBanner />
+  <FreeWebsiteExplainer />
   <WhyModernWebsite />
-  <ScrollVideo />
   <Divider />
-  <StatsBar />
-  <ServicesGrid />
+  <LadderGrid />
   <ProcessGrid />
-  <TestimonialsGrid />
-  <CaseStudyGrid />
+  <Divider />
+  <LiveSystems />
+  <CTASection />
 
   <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
     <div class="container">
       <SectionHeader
         label="From The Blog"
         title="Latest <span class='gradient-text'>Insights</span>"
-        subtitle="Web design tips, SEO strategies, and digital marketing insights for Christchurch businesses."
+        subtitle="Notes on websites, search, AI visibility, and automation for New Zealand businesses."
       />
-      <div class="blog-card-grid">
-        {latestPosts.map(post => (
-          <BlogCard
-            title={post.title}
-            description={post.description}
-            category={post.category}
-            slug={post.slug}
-            pubDate={post.pubDate}
-          />
-        ))}
-      </div>
+      {latestPosts.length > 0 ? (
+        <div class="blog-card-grid">
+          {latestPosts.map((post) => (
+            <BlogCard
+              title={post.title}
+              description={post.description}
+              category={post.category}
+              slug={post.slug}
+              pubDate={post.pubDate}
+            />
+          ))}
+        </div>
+      ) : (
+        <p style="text-align:center;color:var(--text-muted)">Posts coming soon.</p>
+      )}
       <div style="text-align:center;margin-top:40px">
         <a href="/blog/" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
           View All Posts
-          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
         </a>
       </div>
     </div>
@@ -137,67 +128,42 @@ const jsonLd = {
   <section class="section reveal">
     <div class="container">
       <SectionHeader
-        label="Free Guides"
-        title="In-Depth <span class='gradient-text'>Resources</span>"
-        subtitle="Comprehensive guides to help you make informed decisions about your web presence."
-      />
-      <div class="guide-card-grid">
-        {featuredGuides.map(guide => (
-          <GuideCard
-            title={guide.title}
-            description={guide.description}
-            href={guide.href}
-          />
-        ))}
-      </div>
-      <div style="text-align:center;margin-top:40px">
-        <a href="/guides/website-cost-guide-nz/" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
-          View All Guides
-          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.04)">
-    <div class="container">
-      <SectionHeader
         label="Free Tools"
-        title="Interactive <span class='gradient-text'>Calculators & Audits</span>"
-        subtitle="Get instant answers about your website's potential cost, ROI, and performance."
+        title="Check your site <span class='gradient-text'>before you spend anything</span>"
+        subtitle="Real data, no strings. If something needs fixing, you should know what it is before anyone quotes you."
       />
       <div class="tools-grid">
-        <a href="/tools/website-cost-calculator/" class="tool-card glass">
-          <div class="tool-card-icon purple">
-            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-           <h3>Website ROI Calculator</h3>
-           <p>Estimate the revenue potential a professional website could generate for your business.</p>
-          <span class="tool-card-link">
-            Calculate your ROI
-            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-          </span>
-        </a>
         <a href="/tools/free-website-audit/" class="tool-card glass">
           <div class="tool-card-icon mint">
             <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
           <h3>Free Website Audit</h3>
-          <p>Find out exactly what's holding your website back with a free, comprehensive audit.</p>
+          <p>Real Google PageSpeed data on performance, SEO, and accessibility — plus what to actually fix first.</p>
           <span class="tool-card-link">
-            Get your audit
-            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            Run the audit
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
           </span>
         </a>
-        <a href="/tools/seo-roi-calculator/" class="tool-card glass">
+        <a href="/tools/website-cost-calculator/" class="tool-card glass">
           <div class="tool-card-icon purple">
-            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           </div>
-          <h3>SEO ROI Calculator</h3>
-          <p>Estimate the return on investment from professional SEO services for your business.</p>
+          <h3>Website Cost Calculator</h3>
+          <p>A realistic range for what a website should cost in NZ, and what you should be wary of.</p>
           <span class="tool-card-link">
-            Calculate ROI
-            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            See the range
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
+          </span>
+        </a>
+        <a href="/free-website/" class="tool-card glass">
+          <div class="tool-card-icon mint">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+          </div>
+          <h3>Free Concept Website</h3>
+          <p>Skip the quotes. Get a working concept of your site, privately, with the source files if you want them.</p>
+          <span class="tool-card-link">
+            Start free
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
           </span>
         </a>
       </div>
@@ -206,39 +172,40 @@ const jsonLd = {
 
   <section id="locations" class="section reveal" style="background:#0A0A0E;border-top:1px solid rgba(255,255,255,0.04)">
     <div class="container">
-      <div class="section-label">Our Reach</div>
-      <div class="section-title">Serving businesses across <span class="gradient-text">Christchurch.</span></div>
-      <p class="section-subtitle" style="margin-bottom:48px">Local knowledge. Local results. We build websites that dominate in your suburb.</p>
+      <div class="section-label">Local knowledge</div>
+      <div class="section-title">Based in Christchurch, <span class="gradient-text">working NZ-wide.</span></div>
+      <p class="section-subtitle" style="margin-bottom:40px">
+        I am Christchurch-based, so these pages are written from actual local knowledge rather than a template.
+        That is also why the free concept works the same way whether you are in Riccarton or Ruakura.
+      </p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:32px">
-        <a href="/locations/riccarton/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Riccarton</a>
-        <a href="/locations/papanui/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Papanui</a>
-        <a href="/locations/halswell/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Halswell</a>
-        <a href="/locations/merivale/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Merivale</a>
-        <a href="/locations/sumner/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Sumner</a>
-        <a href="/locations/linwood/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Linwood</a>
-        <a href="/locations/fendalton/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Fendalton</a>
-        <a href="/locations/new-brighton/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">New Brighton</a>
-        <a href="/locations/cashmere/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Cashmere</a>
-        <a href="/locations/st-albans/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">St Albans</a>
-        <a href="/locations/sydenham/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Sydenham</a>
-        <a href="/locations/wigram/" style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">Wigram</a>
+        {[
+          { name: 'Riccarton', slug: 'riccarton' },
+          { name: 'Papanui', slug: 'papanui' },
+          { name: 'Halswell', slug: 'halswell' },
+          { name: 'Merivale', slug: 'merivale' },
+          { name: 'Sumner', slug: 'sumner' },
+          { name: 'Linwood', slug: 'linwood' },
+          { name: 'Fendalton', slug: 'fendalton' },
+          { name: 'New Brighton', slug: 'new-brighton' },
+          { name: 'Cashmere', slug: 'cashmere' },
+          { name: 'St Albans', slug: 'st-albans' },
+          { name: 'Sydenham', slug: 'sydenham' },
+          { name: 'Wigram', slug: 'wigram' },
+        ].map((s) => (
+          <a href={`/locations/${s.slug}/`} style="padding:10px 20px;border-radius:10px;background:var(--surface);border:1px solid var(--border-subtle);color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:border-color 0.2s">
+            {s.name}
+          </a>
+        ))}
       </div>
       <div style="text-align:center">
         <a href="/locations/" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:14px;text-decoration:none">
-          All 20 Service Areas
-          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+          All service areas
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
         </a>
       </div>
     </div>
   </section>
+
   <FAQAccordion items={faqItems} />
-  <CTASection />
 </BaseLayout>
-
-<script>
-import { initCounterAnimation } from '../components/scripts/counter-animation';
-
-document.addEventListener('DOMContentLoaded', () => {
-  initCounterAnimation();
-});
-</script>

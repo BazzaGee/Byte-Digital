@@ -2,30 +2,18 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Divider from '../components/Divider.astro';
 import CTASection from '../components/CTASection.astro';
-import StatsBar from '../components/StatsBar.astro';
-import RelatedCaseStudies from '../components/RelatedCaseStudies.astro';
-import DMDivider from '../components/DMDivider.astro';
 import PageHero from '../components/PageHero.astro';
-import { getCollection } from 'astro:content';
-
-const allCaseStudies = (await getCollection('case-studies')).map(p => ({
-  slug: p.id,
-  title: p.data.title,
-  client: p.data.client,
-  industry: p.data.industry,
-  description: p.data.description,
-  tags: p.data.tags,
-})).slice(0, 3);
+import { REAL_PROOF, FREE_INCLUDES, FREE_EXCLUDES } from '../data/ladder';
 ---
 
 <BaseLayout
-  title="About Byte Digital | Christchurch Web Design Agency"
-  description="Learn about Byte Digital — Christchurch's premium web design and digital marketing agency. Our mission, values, and the technology we use to help local businesses dominate online."
+  title="About Byte Digital | Barry Grottis, Christchurch NZ"
+  description="Byte Digital is Barry Grottis — one person in Christchurch building websites since 2011. The free concept pipeline, custom software, and honest AI visibility work. No agency team, no outsourced work."
 >
   <PageHero
-    label="About Us"
-    title="We build digital engines<br />for <span class='gradient-text'>Christchurch businesses.</span>"
-    subtitle="Byte Digital is a Christchurch-based web design and digital marketing agency on a mission to help local businesses dominate online. We combine cutting-edge technology with deep understanding of the New Zealand market."
+    label="About"
+    title="One person, building<br />since <span class='gradient-text'>2011.</span>"
+    subtitle="Byte Digital is me. I build the systems I need for my own work, then turn them into services. That is the whole company, and it is why the free concept is genuinely free."
     breadcrumbs={[
       { label: 'Home', href: '/' },
       { label: 'About' },
@@ -39,44 +27,95 @@ const allCaseStudies = (await getCollection('case-studies')).map(p => ({
     <div class="glow-orb mint bottom-right"></div>
     <div class="container">
       <div class="service-content" style="position:relative;z-index:1">
-        <div class="section-label">Our Story</div>
-        <h2 class="heading-accent">Built for Christchurch, powered by technology.</h2>
-        <p>Byte Digital was born from a frustration that every Christchurch business owner knows too well. You pay good money for a website, and what do you get? A slow, generic WordPress site that looks like every other website in your industry, ranks nowhere on Google, and generates approximately zero new customers. Meanwhile, your competitors — the ones with the flashy websites and the top Google rankings — are taking the clients that should be yours.</p>
-        <p>We saw this happening to businesses across Christchurch and Canterbury every day. Roofers with 20 years of experience losing jobs to newcomers with better websites. Dental practices with world-class clinical skills invisible online while clinics with inferior services dominated search results. Pool companies, electricians, hair salons, tradies of every kind — all being held back not by the quality of their work, but by the quality of their digital presence.</p>
-        <p>The web design industry in New Zealand had a problem. Most agencies were still building WordPress sites with bloated plugins, page builders, and template themes that produced mediocre results. They charged premium prices for work that was fundamentally outdated, and their clients paid the price in poor performance, low search rankings, and missed opportunities. We knew there had to be a better way.</p>
-        <p>So we built Byte Digital to be the agency we wished existed when we were business owners ourselves. An agency that uses genuinely modern technology. An agency that measures success by leads generated and revenue increased, not just by how pretty a website looks. An agency that understands the Christchurch market intimately — the suburbs, the seasons, the search behaviour, the local competition. An agency that treats your business growth as its own.</p>
-        <p>We are not a large, impersonal agency that hands your project off to a junior developer. We are a focused team of web designers, developers, and digital strategists who work directly with you. When you work with Byte Digital, you work with the same people from your first consultation through to your ongoing optimisation. No account managers passing messages. No overseas call centres. Just direct, honest communication with people who genuinely care about your results.</p>
-        <p>Every industry we serve teaches us something new about what Christchurch and Canterbury businesses need from their digital presence. That cumulative knowledge feeds back into every project we take on, which means you benefit not just from our expertise, but from insights across many local industries. We are not just building websites — we are building a deep, proprietary understanding of the New Zealand digital landscape that no generic agency can match.</p>
+        <div class="section-label">Why this exists</div>
+        <h2 class="heading-accent">Most websites are bought before they are seen.</h2>
+        <p>
+          You pay good money for a website, and what you get is a slow, generic site that looks like everyone
+          else's, ranks nowhere, and produces nothing. The problem is not that the work is bad — the problem is
+          that you committed before you had seen anything.
+        </p>
+        <p>
+          So I reversed it. Rather than asking you to trust a portfolio you have not checked, I build a working
+          concept of your site from information that is already public, put it on a private link, and let you
+          criticise it. Most of the value in that first version is that it shows you exactly what is wrong with
+          your current online presence — which is often more useful than the site itself.
+        </p>
+        <p>
+          I built the pipeline that produces those concepts to run my own work, so generating one costs me very
+          little. That is the entire reason it can be free, and it is why I can offer it without needing to sell
+          you anything afterwards.
+        </p>
+        <p>
+          There is no team here. No account manager, no junior developer you never meet, no overseas call
+          centre. If you work with Byte Digital you work with me, and if something is not right you say so and I
+          fix it.
+        </p>
       </div>
     </div>
   </section>
 
-  <StatsBar />
+  <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:40px">
+        <div class="section-label" style="display:inline-flex">The honest numbers</div>
+        <h2 class="section-title" style="margin:10px auto 0">What is <span class="gradient-text">actually true</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">
+          Every figure on this site is one you could check. No percentages, no industry averages, no invented outcomes.
+        </p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
+        {REAL_PROOF.map((item) => (
+          <div class="glass" style="padding:26px 22px;border-radius:16px;text-align:center">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;background:linear-gradient(135deg,#8B78E6,#5EEAD4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">{item.value}</div>
+            <div style="margin-top:10px;font-size:14px;font-weight:600;color:#fff">{item.label}</div>
+            <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:var(--text-muted)">{item.detail}</p>
+          </div>
+        ))}
+      </div>
+      <p style="text-align:center;margin:28px auto 0;max-width:680px;font-size:14px;line-height:1.7;color:var(--text-muted)">
+        What is <em>not</em> on that list: client testimonials, case study results, years of "team experience",
+        or a success rate. I have not done paid client work yet, and inventing those would be the easiest way to
+        look more impressive than I am.
+      </p>
+    </div>
+  </section>
+
+  <Divider />
 
   <section class="section reveal">
     <div class="container">
       <div class="founder-intro-card glass">
         <div class="founder-intro-grid">
           <div class="founder-intro-image">
-            <img src="/images/founder.jpg" alt="Barry Grottis, Founder & Lead Developer of Byte Digital" />
+            <img src="/images/founder.jpg" alt="Barry Grottis, founder and lead developer at Byte Digital" />
             <div class="founder-intro-glow"></div>
           </div>
           <div class="founder-intro-content">
-            <div class="founder-intro-label">Meet the Founder</div>
+            <div class="founder-intro-label">The person</div>
             <h3 class="founder-intro-name">Barry Grottis</h3>
-            <p class="founder-intro-subtitle">Founder & Lead Developer</p>
+            <p class="founder-intro-subtitle">Founder &amp; Lead Developer</p>
             <p class="founder-intro-text">
-              I've been crafting websites since 2011, which means I've seen the web evolve from simple static pages to the AI-powered, automation-driven landscape we work in today. Over those 14+ years, I've mastered not just web design and development, but the entire digital ecosystem: search engine optimization (SEO), the emerging field of Generative Engine Optimization (GEO) for AI-driven search, and building custom software solutions that automate business processes and drive real results.
+              I have been building websites since 2011. That has meant watching the web move from static pages
+              to frameworks, to the current point where customers increasingly ask an AI assistant which
+              business to use rather than typing a search. Most of my work has come out of building the things I
+              needed myself and then noticing other businesses needed the same thing.
             </p>
             <p class="founder-intro-text">
-              What drives me? Helping local businesses like yours step confidently into the digital age. I believe every Christchurch business deserves a website that works as hard as they do — one that ranks, converts, and grows with them. Beyond the screen, I'm a family man who values staying active and experiencing life (usually involving good food). When you work with Byte Digital, you work directly with me. No middlemen, no outsourcing — just dedicated expertise and honest communication.
+              That is where CookTwo came from, and it is where the website pipeline came from. I built an
+              automated system to generate and check websites, because doing it by hand did not scale. Then it
+              turned out the system was more useful than the sites were — so now it is the thing that generates
+              every free concept on this site.
+            </p>
+            <p class="founder-intro-text">
+              I work with businesses across New Zealand from Christchurch. If you are local, I know the suburbs
+              and the market; if you are not, the work is remote and the process is identical.
             </p>
             <div class="founder-intro-badges">
-              <span class="founder-intro-badge">14+ Years Experience</span>
-              <span class="founder-intro-badge">Web Design & Development</span>
-              <span class="founder-intro-badge">AI Automation</span>
-              <span class="founder-intro-badge">SEO & GEO</span>
-              <span class="founder-intro-badge">Custom Software</span>
+              <span class="founder-intro-badge">Since 2011</span>
+              <span class="founder-intro-badge">Websites &amp; hosting</span>
+              <span class="founder-intro-badge">Search &amp; AI visibility</span>
+              <span class="founder-intro-badge">Custom software</span>
+              <span class="founder-intro-badge">Internal AI</span>
             </div>
           </div>
         </div>
@@ -84,37 +123,95 @@ const allCaseStudies = (await getCollection('case-studies')).map(p => ({
     </div>
   </section>
 
-  <DMDivider id="dm-about-values" />
+  <Divider />
 
-  <section class="section reveal" style="background:var(--bg-dark)">
+  <section class="section reveal" style="background:var(--bg-dark);border-top:1px solid var(--border-subtle)">
     <div class="container">
-      <div style="text-align:center;margin-bottom:48px">
-        <div class="section-label">Our Values</div>
-        <h2 class="section-title" style="margin:0 auto">What drives us.</h2>
+      <div style="max-width:820px;margin:0 auto">
+        <div style="text-align:center;margin-bottom:40px">
+          <div class="section-label" style="display:inline-flex">What I will not do</div>
+          <h2 class="section-title" style="margin:10px auto 0">The <span class="gradient-text">honest limits</span></h2>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          {[
+            {
+              t: 'No invented proof',
+              d: 'I will not manufacture testimonials, awards, client names, or case study results. If a number is not real, it does not go on this site — which is why there are no testimonials here yet.',
+            },
+            {
+              t: 'No invented statistics',
+              d: 'I will not quote a bounce rate, a conversion figure, or a "53% leave after 3 seconds" style statistic to make a case. I would have to believe it was true before I said it.',
+            },
+            {
+              t: 'No guaranteed rankings',
+              d: 'I cannot promise first-page Google or inclusion in AI answers, and neither can anyone who says they can. What I can do is remove the technical obstacles and make your business information accurate and consistent.',
+            },
+            {
+              t: 'No unpaid work dressed up as a case study',
+              d: 'The concept sites on this site are demonstrations, not client work. Presenting them as projects would be dishonest, so they are labelled as what they are.',
+            },
+            {
+              t: 'No lock-in',
+              d: 'Your domain would be registered in your name and you get full access. If you ever want to leave, you can move it without my permission. I would rather earn the work than trap you in it.',
+            },
+            {
+              t: 'No work I cannot do properly',
+              d: 'This is why two of the steps on the site are labelled "in build". I would rather turn something down than take it and let you down six weeks later.',
+            },
+          ].map((item) => (
+            <div class="glass" style="padding:24px 26px;border-radius:16px">
+              <h3 style="font-size:17px;font-weight:600;margin:0 0 10px;color:#fff">{item.t}</h3>
+              <p style="margin:0;font-size:15px;line-height:1.75;color:var(--text-muted)">{item.d}</p>
+            </div>
+          ))}
+        </div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:900px;margin:0 auto">
-        <div class="glass" style="padding:32px;border-radius:28px">
-          <div class="svc-row-icon purple" style="margin-bottom:16px">
-            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
-          </div>
-          <h3 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:12px">Results-Driven</h3>
-          <p style="font-size:14px;color:var(--text-muted);line-height:1.7">
-            A beautiful website that generates no leads is an expensive decoration. We measure our success by the tangible impact on your business — more enquiries, more bookings, more revenue. Every design decision, every line of code, and every SEO strategy is evaluated against a single question: will this help you get more customers? If the answer is no, it doesn't make the cut.
-          </p>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="section reveal">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start" id="free-recap">
+        <div>
+          <div class="section-label">The free concept</div>
+          <h2 style="font-size:28px;font-weight:700;margin:8px 0 20px">What you get, free</h2>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:13px">
+            {FREE_INCLUDES.map((item) => (
+              <li style="display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.6;color:var(--text-secondary)">
+                <svg width="20" height="20" fill="none" stroke="#5EEAD4" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
-        <div class="glass" style="padding:32px;border-radius:28px">
-          <div class="svc-row-icon mint" style="margin-bottom:16px">
-            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-          </div>
-          <h3 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:12px">Transparency</h3>
-          <p style="font-size:14px;color:var(--text-muted);line-height:1.7">
-            No hidden fees, no confusing jargon, no inflated metrics. We tell you exactly what we are doing, why we are doing it, and what results to expect. You get full access to your analytics, ranking reports, and performance data. If something is not working, we will tell you straight away and fix it. We treat every partnership as built on trust and mutual accountability.
+        <div>
+          <div class="section-label" style="color:var(--text-muted)">The honest boundary</div>
+          <h2 style="font-size:28px;font-weight:700;margin:8px 0 16px">What it is not</h2>
+          <p style="font-size:14px;line-height:1.7;color:var(--text-muted);margin:0 0 20px">
+            A concept is a demonstration. Going live properly is a separate piece of work.
           </p>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px">
+            {FREE_EXCLUDES.map((item) => (
+              <li style="display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.6;color:var(--text-muted)">
+                <svg width="20" height="20" fill="none" stroke="#6b7280" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px"><path stroke-linecap="round" stroke-linejoin="round" d="M18 6L6 18M6 6l12 12" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
-        <div class="glass" style="padding:32px;border-radius:28px">
-          <div class="svc-row-icon purple" style="margin-bottom:16px">
-            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
-          </div>
-          <h3 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:12px">Innovation</h3>
-          <p style="font-size:14px;color:var(--text-muted);line-height:1.7">
-            The web moves fast, and we move faster. We adopt new technologies early, test them rigorously,
+      </div>
+    </div>
+  </section>
+  <CTASection />
+</BaseLayout>
+
+<style>
+  @media (max-width: 860px) {
+    #free-recap {
+      grid-template-columns: 1fr !important;
+      gap: 32px !important;
+    }
+  }
+</style>

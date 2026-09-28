@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+import Divider from '../components/Divider.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import { LADDER, JOURNEY, FREE_STEP } from '../data/ladder';
+
+const faqItems = [
+  {
+    question: 'Do I have to buy the whole thing?',
+    answer:
+      'No, and you are not going to be sold the whole thing. The free concept exists precisely so that neither of us is committing before you have seen real work. If all you need is a free concept and the files, that is a complete outcome.',
+  },
+  {
+    question: 'Why would you give the first thing away?',
+    answer:
+      'Because the first thing is nearly free for me to produce. I built the pipeline that generates these sites to run my own work, so a concept costs me some compute and a few minutes of review. Spending that to learn whether we are a fit is a much better use of it than a sales call.',
+  },
+  {
+    question: 'What if I only want one of the later steps?',
+    answer:
+      'That is fine. They are separate services and you can take one on its own. Plenty of people come to me already having a website and only want the visibility work, or already have a CRM and only want the follow-up built.',
+  },
+  {
+    question: 'Is the AI stuff actually ready?',
+    answer:
+      'Some of it is, and some of it is not. The internal assistants and the build pipeline are running now. The website customer-service assistant and the missed-enquiry follow-up system are still being finished, and I label them as in build on this site rather than pretending otherwise. I am looking for one pilot business for each.',
+  },
+  {
+    question: 'Do you work with businesses outside Christchurch?',
+    answer:
+      'Yes. I am Christchurch-based, which is why the local pages here are genuinely specific rather than generic. But the work is remote and I take on businesses across New Zealand. The free concept works exactly the same way regardless of where you are.',
+  },
+];
+---
+
+<BaseLayout
+  title="How It Works — From Free Concept to Working System | Byte Digital"
+  description="Most agencies sell you one thing. This is the whole path: free concept website, launch and care, search and AI visibility, customer service, follow-up, custom software, and internal AI. Honest about what is live and what is not."
+>
+  <section class="section dot-pattern" style="padding-top:80px">
+    <div class="container">
+      <div style="max-width:780px;margin:0 auto;text-align:center">
+        <div class="hero-badge" style="display:inline-flex">
+          <div class="hero-badge-dot"></div>
+          The whole path, in order
+        </div>
+        <h1 style="margin:24px 0 20px;font-size:clamp(32px,5vw,50px);line-height:1.12">
+          Most agencies sell you <span class="gradient-text">one thing.</span>
+        </h1>
+        <p style="font-size:18px;line-height:1.7;color:var(--text-secondary)">
+          A website is a commodity. What makes a business hard to replace is owning the whole path a customer
+          takes — from finding you, to trusting you, to turning up, to coming back. That is what these steps
+          are for, and that is why they run in this order.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="section reveal section-glow" style="background:var(--bg-dark);border-top:1px solid var(--border-subtle)">
+    <div class="glow-orb purple top-right"></div>
+    <div class="glow-orb mint bottom-left"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <SectionHeader
+        label="The customer journey"
+        title="Seven moments that <span class='gradient-text'>decide the sale</span>"
+        subtitle="Almost every lost enquiry fails at one of these. Each step below exists to fix the moment before it becomes a lost customer."
+      />
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px">
+        {JOURNEY.map((item, i) => (
+          <div class="glass" style="padding:24px 22px;border-radius:16px">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:#5EEAD4">0{i + 1}</span>
+              <h3 style="font-size:16px;font-weight:600;margin:0;color:#fff">{item.stage}</h3>
+            </div>
+            <p style="margin:0;font-size:14px;line-height:1.7;color:var(--text-muted)">{item.text}</p>
+          </div>
+        ))}
+      </div>
+      <p style="text-align:center;margin:32px 0 0;font-size:15px;line-height:1.7;color:var(--text-muted);max-width:640px;margin-left:auto;margin-right:auto">
+        Most businesses fix step one and then wonder why nothing changes. Fixing them in sequence is the whole
+        point.
+      </p>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="section">
+    <div class="container">
+      <div style="max-width:720px;margin:0 auto 44px;text-align:center">
+        <div class="section-label" style="justify-content:center">The steps</div>
+        <h2 style="font-size:clamp(28px,4vw,40px);font-weight:700;margin:10px 0 16px;line-height:1.2">
+          What each step <span class="gradient-text">actually does</span>
+        </h2>
+        <p style="font-size:17px;line-height:1.7;color:var(--text-secondary)">
+          I have labelled each one honestly. Where something is still being built, it says so — I would rather
+          turn away work I cannot do properly than take it and disappoint you later.
+        </p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:880px;margin:0 auto">
+        {LADDER.map((s) => {
+          const href = s.href;
+          const isBuilt = s.status !== 'later';
+          return (
+            <div
+              class="glass"
+              style={`padding:28px;border-radius:18px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;${
+                s.step === 0 ? 'border-color:rgba(94,234,212,0.35);background:linear-gradient(135deg,rgba(94,234,212,0.07),rgba(139,120,230,0.07))' : ''
+              }`}
+            >
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;line-height:1;background:linear-gradient(135deg,#8B78E6,#5EEAD4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+                {s.step === 0 ? '0' : s.step}
+              </div>
+              <div style="min-width:0">
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+                  <h3 style="font-size:20px;font-weight:600;margin:0;color:#fff">{s.name}</h3>
+                  <span
+                    style={`padding:4px 11px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:0.02em;${
+                      s.status === 'live'
+                        ? 'background:rgba(34,197,94,0.14);color:#4ade80;border:1px solid rgba(34,197,94,0.32)'
+                        : s.status === 'in-build'
+                          ? 'background:rgba(234,179,8,0.14);color:#facc15;border:1px solid rgba(234,179,8,0.32)'
+                          : 'background:rgba(107,114,128,0.14);color:#9ca3af;border:1px solid rgba(107,114,128,0.3)'
+                    }`}
+                  >
+                    {s.statusLabel}
+                  </span>
+                </div>
+                <p style="margin:0 0 12px;font-size:16px;line-height:1.6;color:var(--text-secondary);font-weight:500">
+                  {s.promise}
+                </p>
+                <p style="margin:0 0 16px;font-size:14px;line-height:1.7;color:var(--text-muted)">{s.description}</p>
+                {isBuilt ? (
+                  <a href={href} style="display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:#5EEAD4;text-decoration:none">
+                    {s.step === 0 ? 'Start with the free concept' : s.status === 'in-build' ? 'Discuss a pilot' : 'See the details'}
+                    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                  </a>
+                ) : (
+                  <p style="margin:0;font-size:13px;color:var(--text-muted);font-style:italic">
+                    Not sold by Byte Digital. Ask me who I would trust to run it.
+                  </p>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div class="glass" style="max-width:880px;margin:28px auto 0;padding:24px 26px;border-radius:16px;border-color:rgba(234,179,8,0.28);background:rgba(234,179,8,0.05)">
+        <p style="margin:0;font-size:14px;line-height:1.7;color:var(--text-secondary)">
+          <strong style="color:#facc15">Why is marketing last?</strong> Because sending paid traffic into a
+          site that cannot answer, cannot capture an enquiry, and cannot follow up just burns the budget. By
+          the time step seven is worth doing, steps zero to four are already working — which is the only
+          reason advertising is worth paying for.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+  <CTASection />
+</BaseLayout>
+
+<style>
+  @media (max-width: 640px) {
+    section .container > div[style*='grid-template-columns:auto'] {
+      grid-template-columns: 1fr !important;
+      gap: 12px !important;
+    }
+  }
+</style>

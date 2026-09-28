@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Divider from '../../components/Divider.astro';
+
+// This site builds to static output, so there is no per-token page to prerender.
+// /c/<token>/ is served from this single shell by the Cloudflare rewrite in
+// public/_redirects (`/c/*  /c/  200`). The shell reads the token back out of
+// the URL at runtime and polls /api/concept-status for it.
+//
+// Consequences that matter:
+//   - noindex here is static and therefore correct for every token under /c/
+//   - the token is never baked into HTML, so there is nothing to scrape
+//   - expiry is enforced server-side in the API, not here
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Your free concept website | Byte Digital"
+  description="Private preview of your free concept website."
+  noindex={true}
+>
+  <section class="section dot-pattern" style="padding-top:64px;padding-bottom:40px">
+    <div class="container">
+      <div style="max-width:760px">
+        <div class="hero-badge" style="display:inline-flex">
+          <div class="hero-badge-dot"></div>
+          Private preview — not published
+        </div>
+        <h1 style="margin:22px 0 16px;font-size:clamp(28px,4.4vw,42px);line-height:1.15">
+          Your concept website is <span class="gradient-text">on its way.</span>
+        </h1>
+        <p style="font-size:18px;line-height:1.7;color:var(--text-secondary);margin:0 0 24px">
+          This private link is where your site appears once the build finishes. Nothing here is published,
+          indexed, or visible to anyone without this link.
+        </p>
+        <p style="font-size:14px;line-height:1.7;color:var(--text-muted);margin:0">
+          It usually takes a few minutes. This page checks on its own — no need to keep refreshing. If nothing
+          has appeared within the hour, look in your spam folder for the confirmation email, or reply to it and
+          I will sort it out.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="section">
+    <div class="container">
+      <div style="max-width:760px" id="concept-status">
+        <div class="glass" style="padding:28px 26px;border-radius:18px">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+            <div
+              id="concept-spinner"
+              style="width:22px;height:22px;border:2px solid rgba(255,255,255,0.1);border-top-color:#5EEAD4;border-radius:50%;animation:concept-spin 0.8s linear infinite;flex-shrink:0"
+            ></div>
+            <div>
+              <h2 style="font-size:18px;font-weight:600;margin:0;color:#fff" id="concept-heading">Building your concept</h2>
+              <p style="font-size:13px;color:var(--text-muted);margin:2px 0 0" id="concept-sub">Checking status...</p>
+            </div>
+          </div>
+
+          <div id="concept-body" style="display:none">
+            <p style="font-size:15px;line-height:1.75;color:var(--text-secondary);margin:0 0 18px">
+              Your concept is ready to review. Have a proper look and tell me what is wrong with it — that is the
+              entire point of doing this before you spend anything.
+            </p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <a
+                id="concept-preview"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                class="btn-cta"
+                style="display:none;padding:13px 28px;font-size:15px"
+              >
+                View your concept site
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
+              </a>
+              <a href="mailto:barry@bytedigital.co.nz?subject=Changes%20to%20my%20concept%20site" class="btn-ghost" style="padding:13px 26px;font-size:15px;text-decoration:none">
+                Request changes
+              </a>
+            </div>
+          </div>
+
+          <div id="concept-missing" style="display:none">
+            <p style="font-size:15px;line-height:1.75;color:var(--text-secondary);margin:0 0 18px">
+              I cannot find a concept at this link. Private links are deleted 30 days after they are created, so
+              this may have expired or been cleaned up.
+            </p>
+            <a href="/free-website/" class="btn-cta" style="display:inline-flex;padding:13px 28px;font-size:15px;text-decoration:none">
+              Request a new one
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="section" style="background:var(--bg-dark)">
+    <div class="container">
+      <div style="max-width:760px">
+        <div class="section-label">While you wait</div>
+        <h2 style="font-size:26px;font-weight:700;margin:8px 0 20px">What to look for in the review</h2>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          {[
+            ['Anything factually wrong', 'Every detail is drawn from public information, and some of it will be wrong or out of date. Finding that out is genuinely useful.'],
+            ['Services that are missing', 'If you do something and it is not on the site, that is a real gap worth fixing.'],
+            ['Words you would never use', 'Local businesses sound like themselves. If the copy does not sound like you, say so.'],
+            ['Questions it should answer', 'Think of the three things a new customer would ask you. If the site does not answer them, it should.'],
+          ].map(([title, text]) => (
+            <div class="glass" style="padding:20px 22px;border-radius:14px">
+              <h3 style="font-size:15px;font-weight:600;margin:0 0 8px;color:#fff">{title}</h3>
+              <p style="margin:0;font-size:14px;line-height:1.7;color:var(--text-muted)">{text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  @keyframes concept-spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
+
+<script>
+  // Reads the token back out of /c/<token>/. Never inline a token into HTML.
+  const TOKEN_RE = /^\/c\/([A-Za-z0-9_-]{40,64})\/?$/;
+  const match = TOKEN_RE.exec(window.location.pathname);
+  const token = match ? match[1] : null;
+
+  const heading = document.getElementById('concept-heading');
+  const sub = document.getElementById('concept-sub');
+  const body = document.getElementById('concept-body');
+  const missing = document.getElementById('concept-missing');
+  const spinner = document.getElementById('concept-spinner');
+  const preview = document.getElementById('concept-preview') as HTMLAnchorElement;
+
+  function showMissing() {
+    if (spinner) spinner.style.display = 'none';
+    if (heading) heading.textContent = 'This link has expired';
+    if (sub) sub.textContent = 'Private links are deleted after 30 days.';
+    if (missing) missing.style.display = 'block';
+  }
+
+  if (!token) {
+    showMissing();
+  } else {
+    let attempts = 0;
+
+    async function check() {
+      // Stop polling after ~15 minutes; the visitor can reload to try again.
+      if (attempts > 60) {
+        if (sub) sub.textContent = 'Still building. Reload this page to check again.';
+        return;
+      }
+      attempts += 1;
+
+      try {
+        const res = await fetch(`/api/concept-status?token=${encodeURIComponent(token)}`, {
+          headers: { Accept: 'application/json' },
+        });
+
+        if (res.status === 404) {
+          showMissing();
+          return;
+        }
+        if (!res.ok) throw new Error(String(res.status));
+
+        const data = await res.json();
+
+        if (data.status === 'ready' || data.status === 'sent') {
+          if (spinner) spinner.style.display = 'none';
+          if (heading) heading.textContent = 'Your concept is ready';
+          if (sub) sub.textContent = 'Take your time — it is yours to criticise.';
+          if (data.previewUrl) {
+            preview.href = data.previewUrl;
+            preview.style.display = 'inline-flex';
+          }
+          if (body) body.style.display = 'block';
+          return;
+        }
+
+        if (data.expired || data.status === 'expired') {
+          showMissing();
+          return;
+        }
+
+        if (sub) sub.textContent = 'Still building. This page updates on its own.';
+        setTimeout(check, 15000);
+      } catch {
+        if (sub) sub.textContent = 'Still working on it. This page checks on its own.';
+        setTimeout(check, 20000);
+      }
+    }
+
+    check();
+  }
+</script>

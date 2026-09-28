@@ -1,43 +1,26 @@
 ---
+import { LADDER } from '../data/ladder';
+
 const currentYear = new Date().getFullYear();
 
-const serviceLinks = [
-  { href: '/services/web-design/', label: 'Web Design' },
-  { href: '/services/seo/', label: 'Local SEO' },
-  { href: '/services/web-development/', label: 'Web Development' },
-  { href: '/services/branding/', label: 'Brand Strategy' },
-  { href: '/services/ecommerce/', label: 'eCommerce' },
-  { href: '/services/local-seo/', label: 'Local SEO Pro' },
-  { href: '/services/wordpress-development/', label: 'WordPress Dev' },
-  { href: '/services/logo-design/', label: 'Logo Design' },
-  { href: '/services/custom-applications/', label: 'Custom Apps' },
-  { href: '/services/website-maintenance/', label: 'Maintenance' },
-];
+const steps = LADDER.filter((s) => s.step > 0);
+const freeStep = LADDER.find((s) => s.step === 0)!;
 
 const companyLinks = [
-  { href: '/about/', label: 'About Us' },
-  { href: '/case-studies/', label: 'Case Studies' },
+  { href: '/about/', label: 'About Barry' },
+  { href: '/how-it-works/', label: 'How it works' },
   { href: '/blog/', label: 'Blog' },
-  { href: '/guides/web-design-christchurch-2026/', label: 'Free Guides' },
-  { href: '/contact/', label: 'Contact' },
-];
-
-const areasLinks = [
-  { href: '/locations/', label: 'All Service Areas' },
-  { href: '/locations/riccarton/', label: 'Riccarton' },
-  { href: '/locations/papanui/', label: 'Papanui' },
-  { href: '/locations/halswell/', label: 'Halswell' },
-  { href: '/locations/linwood/', label: 'Linwood' },
-  { href: '/locations/merivale/', label: 'Merivale' },
-  { href: '/locations/sumner/', label: 'Sumner' },
+  { href: '/locations/', label: 'Christchurch areas' },
+  { href: '/contact/', label: 'Get in touch' },
 ];
 
 const toolsLinks = [
-  { href: '/tools/website-cost-calculator/', label: 'ROI Calculator' },
   { href: '/tools/free-website-audit/', label: 'Free Website Audit' },
-  { href: '/tools/seo-roi-calculator/', label: 'SEO ROI Calculator' },
-  { href: '/contact/', label: 'Free Consultation' },
+  { href: '/tools/website-cost-calculator/', label: 'Website Cost Guide' },
 ];
+
+const statusColor = (status: string) =>
+  status === 'live' ? '#4ade80' : status === 'in-build' ? '#facc15' : '#9ca3af';
 ---
 
 <footer class="footer">
@@ -47,31 +30,38 @@ const toolsLinks = [
         <div class="nav-logo" style="font-size:22px;margin-bottom:12px">
           <span style="color:#8B78E6">BYTE</span><span style="color:#5EEAD4">DIGITAL</span>
         </div>
-        <p>Premium web design &amp; digital marketing for local businesses who want to dominate their market. Christchurch, Canterbury, New Zealand.</p>
+        <p>Free concept websites for New Zealand businesses, then the system that makes them work. Built by one person in Christchurch since 2011.</p>
         <p style="margin-top:12px">
           <a href="mailto:barry@bytedigital.co.nz" style="color:var(--text-muted);text-decoration:none">barry@bytedigital.co.nz</a>
         </p>
       </div>
       <div>
-        <h4>Services</h4>
-        <ul style="column-count:2;column-gap:8px;list-style:none;padding:0;margin:0">
-          {serviceLinks.map(link => (
-            <li style="break-inside:avoid;margin-bottom:4px"><a href={link.href} style="font-size:13px">{link.label}</a></li>
+        <h4>Start Free</h4>
+        <ul>
+          <li><a href={freeStep.href} style="color:#5EEAD4">Free Concept Website</a></li>
+          <li><a href="/tools/free-website-audit/">Free Website Audit</a></li>
+          <li><a href="/how-it-works/">How it works</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>The Path</h4>
+        <ul>
+          {steps.map((s) => (
+            <li>
+              <a href={s.href}>
+                {s.step}. {s.shortName}
+                <span style="font-size:9px;font-weight:700;color:{statusColor(s.status)};text-transform:uppercase;letter-spacing:0.04em;margin-left:4px">
+                  {s.status === 'live' ? 'Live' : s.status === 'in-build' ? 'In build' : 'Later'}
+                </span>
+              </a>
+            </li>
           ))}
         </ul>
       </div>
       <div>
-        <h4>Company</h4>
+        <h4>More</h4>
         <ul>
-          {companyLinks.map(link => (
-            <li><a href={link.href}>{link.label}</a></li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h4>Areas We Serve</h4>
-        <ul>
-          {areasLinks.map(link => (
+          {companyLinks.map((link) => (
             <li><a href={link.href}>{link.label}</a></li>
           ))}
         </ul>
@@ -79,7 +69,7 @@ const toolsLinks = [
       <div>
         <h4>Free Tools</h4>
         <ul>
-          {toolsLinks.map(link => (
+          {toolsLinks.map((link) => (
             <li><a href={link.href}>{link.label}</a></li>
           ))}
         </ul>
@@ -97,12 +87,12 @@ const toolsLinks = [
 
 <div class="footer-brand">
   <div class="mini-logo-grid">
-    <div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.1s"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.2s"></div><div class="mini-dot-blank"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.1s"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.2s"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div>
-    <div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.3s"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.4s"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.3s"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.4s"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div>
-    <div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.5s"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.6s"></div><div class="mini-dot-blank"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.5s"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.6s"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div>
-    <div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.7s"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.8s"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.7s"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.8s"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div>
-    <div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.9s"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:1.0s"></div><div class="mini-dot-blank"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.9s"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:2.0s"></div><div class="mini-dot-blank"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div>
+    <div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.1s"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.2s"></div><div class="mini-dot-blank"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.1s"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.2s"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-blank"></div>
+    <div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.3s"></div><div class="mini-dot-blank"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.3s"></div><div class="mini-dot-blank"></div><div class="mini-dot-blank"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div>
+    <div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.5s"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.6s"></div><div class="mini-dot-blank"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.5s"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.6s"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div>
+    <div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.7s"></div><div class="mini-dot-blank"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.7s"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.8s"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div>
+    <div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:0.9s"></div><div class="mini-dot-active" style="--active-color:#8B78E6;animation-delay:1.0s"></div><div class="mini-dot-blank"></div><div class="mini-dot-blank"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:1.9s"></div><div class="mini-dot-active" style="--active-color:#5EEAD4;animation-delay:2.0s"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div><div class="mini-dot-faint"></div>
   </div>
   <div class="brand-text">Made with <span class="heart">&#10084;&#65039;</span> by <span class="brand-name"><span style="color:#8B78E6">BYTE</span><span style="color:#5EEAD4">DIGITAL</span></span></div>
-  <div class="brand-sub">Premium web design for local businesses. Christchurch, New Zealand.</div>
+  <div class="brand-sub">Free concept websites first. Christchurch, New Zealand.</div>
 </div>

@@ -1,0 +1,135 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import Divider from '../../components/Divider.astro';
+import PageHero from '../../components/PageHero.astro';
+import WebsiteFunnelPopup from '../../components/WebsiteFunnelPopup.astro';
+
+export async function getStaticPaths() {
+  const sites = await getCollection('websites', ({ data }) => !data.draft);
+  return sites.map(site => ({
+    params: { slug: site.id },
+    props: { site },
+  }));
+}
+
+const { site } = Astro.props;
+const { title, category, blurb, description, liveUrl, screenshot, dateAdded } = site.data;
+const { Content } = await render(site);
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bytedigital.co.nz" },
+      { "@type": "ListItem", "position": 2, "name": "Websites", "item": "https://bytedigital.co.nz/websites/" },
+      { "@type": "ListItem", "position": 3, "name": title },
+    ],
+  },
+  ...(liveUrl ? [{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": title,
+    "description": description,
+    "url": liveUrl,
+    "datePublished": dateAdded.toISOString(),
+    "author": { "@type": "Organization", "name": "Byte Digital", "url": "https://bytedigital.co.nz" },
+  }] : []),
+];
+---
+
+<BaseLayout
+  title={`${title} | Byte Digital Website`}
+  description={description}
+  ogImage={screenshot || undefined}
+  ogType="article"
+  jsonLd={jsonLd}
+>
+  <PageHero
+    label="Concept Site"
+    title={title}
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Websites', href: '/websites/' },
+      { label: title },
+    ]}
+  >
+    <div class="glass" style="padding:20px 22px;border-radius:14px;border-color:rgba(234,179,8,0.32);background:rgba(234,179,8,0.05);position:relative;z-index:1;margin-bottom:20px">
+      <p style="margin:0;font-size:14px;line-height:1.7;color:var(--text-secondary)">
+        <strong style="color:#facc15">This is a free concept, not client work.</strong> It was generated
+        automatically from publicly available information about {title}. That business did not commission it,
+        has not approved it, and is not affiliated with Byte Digital. Details may be incomplete or wrong, and
+        the site is not maintained. If that is your business and you want this taken down, email
+        <a href="mailto:barry@bytedigital.co.nz" style="color:var(--secondary)">barry@bytedigital.co.nz</a>.
+      </p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;position:relative;z-index:1">
+      {category && (
+        <span style="display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--secondary);background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.2)">{category}</span>
+      )}
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#34d399;background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.25)">
+        <span style="width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399"></span> Live
+      </span>
+    </div>
+    <p style="font-size:18px;color:var(--text-muted);line-height:1.7;max-width:720px;position:relative;z-index:1;margin:0 0 20px">{blurb || description}</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;position:relative;z-index:1">
+      {liveUrl && (
+        <a href={liveUrl} target="_blank" rel="noopener" class="btn-cta" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:14px;text-decoration:none">
+          Visit live website
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+        </a>
+      )}
+      <a href="/contact/" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:14px;text-decoration:none">Build something like this</a>
+    </div>
+  </PageHero>
+
+  <div
+    id="website-detail-root"
+    data-slug={site.id}
+    data-title={title}
+    data-url={liveUrl || ''}
+    data-category={category}
+  >
+    <WebsiteFunnelPopup
+      slug={site.id}
+      businessName={title}
+      category={category}
+      liveUrl={liveUrl || ''}
+    />
+  </div>
+
+  <section class="section" style="padding-top:48px;padding-bottom:16px">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:28px">
+        <div class="section-label">Homepage</div>
+        <h2 class="section-title" style="margin:0 auto">{title}'s <span class="gradient-text">live homepage.</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">A full-page screenshot of the website as it appears in production today.</p>
+      </div>
+      <div class="glass" style="border-radius:20px;overflow:hidden;border:1px solid var(--border-subtle);background:#0d0d12">
+        {screenshot ? (
+          <img src={screenshot} alt={`${title} homepage screenshot`} style="width:100%;height:auto;display:block" />
+        ) : (
+          <div style="aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;color:var(--text-dimmed);font-size:15px">Homepage screenshot coming soon</div>
+        )}
+      </div>
+      {liveUrl && (
+        <p style="text-align:center;margin-top:16px;font-size:14px;color:var(--text-dimmed)">
+          <a href={liveUrl} target="_blank" rel="noopener" style="color:var(--secondary);text-decoration:none">{liveUrl.replace(/^https?:\/\//, '')} ↗</a>
+        </p>
+      )}
+    </div>
+  </section>
+
+  <article class="section" style="padding-top:24px">
+    <div class="container">
+      <div class="service-content" style="max-width:800px;margin:0 auto">
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  <Divider />
+  <CTASection />
+</BaseLayout>

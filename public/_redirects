@@ -1,0 +1,33 @@
+https://www.bytedigital.co.nz/*  https://bytedigital.co.nz/:splat  301!
+http://www.bytedigital.co.nz/*   https://bytedigital.co.nz/:splat  301!
+
+# --- Private concept wrappers ----------------------------------------------
+# The site is a static build, so there is no per-token page. Serve the single
+# noindex shell for every /c/<token>/ and let it read the token from the URL.
+# 200 = rewrite (serve the shell), not a redirect. The visitor's URL is unchanged.
+/c/*                            /c/                            200
+
+# --- Retired service taxonomy -> the ladder ---------------------------------
+# The old /services/* pages were a generic agency taxonomy. They are now the
+# 7-step path. Each old URL maps to the ladder step that actually covers it.
+/services/web-design/            /free-website/              301
+/services/                       /how-it-works/              301
+/services/website-maintenance/   /steps/launch-and-care/     301
+/services/seo/                   /steps/search-ai-visibility/ 301
+/services/local-seo/             /steps/search-ai-visibility/ 301
+/services/digital-marketing/     /how-it-works/              301
+/services/web-development/      /steps/custom-software/     301
+/services/custom-applications/   /steps/custom-software/     301
+/services/mobile-app-development/ /steps/custom-software/    301
+/services/wordpress-development/ /steps/custom-software/     301
+/services/ecommerce/             /steps/custom-software/     301
+/services/logo-design/           /about/                     301
+/services/branding/              /about/                     301
+
+# --- Illustrative case studies, removed as fabricated ----------------------
+# Archived, not deleted. CookTwo is the only real one and is retained.
+/case-studies/apex-prime-roofing/       /case-studies/  301
+/case-studies/cantebury-electrical-services/ /case-studies/ 301
+/case-studies/cleanpro-pool-services/   /case-studies/  301
+/case-studies/lumina-dental-care/       /case-studies/  301
+/case-studies/southern-hair-studio/     /case-studies/  301

@@ -6,34 +6,38 @@ import CTASection from '../../components/CTASection.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = (await getCollection('blog'))
-  .filter((p) => p.data.author === 'Barry Gee')
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Barry Gee",
-  "url": "https://bytedigital.co.nz/team/barry/",
-  "email": "barry@bytedigital.co.nz",
-  "jobTitle": "Founder, Byte Digital",
-  "worksFor": { "@type": "Organization", "name": "Byte Digital", "url": "https://bytedigital.co.nz" },
-  "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressRegion": "Canterbury", "addressCountry": "NZ" },
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Barry Grottis',
+  url: 'https://bytedigital.co.nz/team/barry/',
+  email: 'barry@bytedigital.co.nz',
+  jobTitle: 'Founder, Byte Digital',
+  worksFor: { '@type': 'Organization', name: 'Byte Digital', url: 'https://bytedigital.co.nz' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Christchurch',
+    addressRegion: 'Canterbury',
+    addressCountry: 'NZ',
+  },
 };
 ---
 
 <BaseLayout
-  title="Barry Gee — Founder, Byte Digital | Web Design & SEO Christchurch"
-  description="Barry Gee is the founder of Byte Digital, a Christchurch web design and SEO studio. Writes about web strategy, local search, and building websites that generate customers."
+  title="Barry Grottis — Founder, Byte Digital | Christchurch NZ"
+  description="Barry Grottis is the founder of Byte Digital, building websites from Christchurch since 2011. Writes about websites, search, AI visibility, and automation for New Zealand businesses."
   jsonLd={jsonLd}
 >
   <PageHero
-    label="The Team"
-    title="Barry Gee<br /><span class='gradient-text'>Founder, Byte Digital</span>"
-    subtitle="Christchurch web designer and search marketer. Writes about what actually works for local businesses online — based on live projects, not theory."
+    label="The person"
+    title="Barry Grottis<br /><span class='gradient-text'>Founder, Byte Digital</span>"
+    subtitle="Building websites from Christchurch since 2011. One person, no account manager, and a pipeline that generates every free concept site on bytedigital.co.nz."
     breadcrumbs={[
       { label: 'Home', href: '/' },
       { label: 'About', href: '/about/' },
-      { label: 'Barry Gee' },
+      { label: 'Barry Grottis' },
     ]}
   />
 
@@ -43,22 +47,33 @@ const jsonLd = {
     <div class="container" style="position:relative;z-index:1">
       <div class="dm-header" style="max-width:760px;margin:0 auto 48px">
         <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">
-          Barry runs Byte Digital, a web design, development and SEO studio based in Christchurch, New Zealand. He works with local businesses across Canterbury — and clients throughout NZ — on websites that are built to be found: fast, technically clean, and engineered around how customers actually search.
+          I run Byte Digital from Christchurch, working with businesses across New Zealand. I have been building
+          websites since 2011, which means I have watched the web move from static pages through frameworks to
+          the current point where people ask an AI assistant for a recommendation instead of typing a search.
         </p>
         <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">
-          His background spans design and full-stack engineering — the studio's work includes production web apps like <a href="/case-studies/cooktwo/" style="color:var(--secondary)">CookTwo</a>, a real-time AI-powered PWA, alongside client sites and local search campaigns for Christchurch businesses. That engineering foundation is why the studio builds on modern frameworks and why the <a href="/tools/free-website-audit/" style="color:var(--secondary)">free audit tool</a> runs real performance data instead of guesswork.
+          Most of what I build came out of needing it myself. <a href="/case-studies/cooktwo/" style="color:var(--secondary)">CookTwo</a> is a real-time AI-powered PWA for couples cooking with different nutrition goals. The website pipeline that produces the free concept sites is the other big one — built because doing it by hand did not scale, and then it turned out to be more useful than the sites it made.
+        </p>
+        <p style="color:var(--text-secondary);line-height:1.8;font-size:16px;margin-bottom:16px">
+          Because it is automated, producing a concept site costs me very little, which is the only honest reason
+          the free offer exists. It is not a discount and it is not a trial that expires — you can take the
+          source files and walk away.
         </p>
         <p style="color:var(--text-secondary);line-height:1.8;font-size:16px">
-          The guides on this site come from that client work: real pricing data, honest platform comparisons, and suburb-level SEO tactics that get tested in competitive local search before they get written about. If you want to talk shop, email <a href="mailto:barry@bytedigital.co.nz" style="color:var(--secondary)">barry@bytedigital.co.nz</a>.
+          The guides and posts on this site come from building those systems, not from a content calendar. Where
+          I do not have evidence, I say so rather than filling the gap. If you want to talk shop, email
+          <a href="mailto:barry@bytedigital.co.nz" style="color:var(--secondary)">barry@bytedigital.co.nz</a>.
         </p>
       </div>
 
-      <h2 style="font-size:24px;font-weight:600;margin-bottom:24px">Articles by Barry</h2>
+      <h2 style="font-size:24px;font-weight:600;margin-bottom:24px">Posts and guides</h2>
       <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
         {allPosts.map((post) => (
           <a href={`/blog/${post.id}/`} class="glass" style="display:block;padding:24px;border-radius:16px;text-decoration:none;transition:border-color 0.2s">
             <div style="font-size:16px;font-weight:600;color:#fff;margin-bottom:6px">{post.data.title}</div>
-            <div style="font-size:13px;color:var(--text-muted)">{post.data.pubDate.toLocaleDateString('en-NZ', { year: 'numeric', month: 'long', day: 'numeric' })} · {post.data.category}</div>
+            <div style="font-size:13px;color:var(--text-muted)">
+              {post.data.pubDate.toLocaleDateString('en-NZ', { year: 'numeric', month: 'long', day: 'numeric' })} · {post.data.category}
+            </div>
           </a>
         ))}
       </div>

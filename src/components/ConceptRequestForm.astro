@@ -1,0 +1,201 @@
+---
+---
+
+<div class="glass" id="concept-request" style="padding:32px 30px;border-radius:20px;max-width:720px;margin:0 auto">
+  <div id="concept-form-state">
+    <h2 style="font-size:24px;font-weight:700;margin:0 0 8px;color:#fff">Request your free concept</h2>
+    <p style="font-size:15px;line-height:1.7;color:var(--text-muted);margin:0 0 24px">
+      I need almost nothing from you. If you have a website or social page, that is the fastest route — I will
+      build from what is already public.
+    </p>
+
+    <form id="concept-form" novalidate>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="concept-grid">
+        <div style="grid-column:1/-1">
+          <label for="cr-name" style="display:block;font-size:13px;font-weight:600;color:#fff;margin-bottom:6px">
+            Business name <span style="color:#f87171">*</span>
+          </label>
+          <input
+            type="text"
+            id="cr-name"
+            name="businessName"
+            required
+            autocomplete="organization"
+            placeholder="e.g. Hayton G C"
+            style="width:100%;padding:13px 15px;border-radius:11px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:#fff;font-family:inherit;font-size:15px;outline:none"
+          />
+        </div>
+
+        <div style="grid-column:1/-1">
+          <label for="cr-url" style="display:block;font-size:13px;font-weight:600;color:#fff;margin-bottom:6px">
+            Your website or Facebook page <span style="color:var(--text-muted);font-weight:400">(optional, but faster)</span>
+          </label>
+          <input
+            type="text"
+            id="cr-url"
+            name="website"
+            autocomplete="url"
+            placeholder="https://... or just the name"
+            style="width:100%;padding:13px 15px;border-radius:11px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:#fff;font-family:inherit;font-size:15px;outline:none"
+          />
+        </div>
+
+        <div style="grid-column:1/-1">
+          <label for="cr-email" style="display:block;font-size:13px;font-weight:600;color:#fff;margin-bottom:6px">
+            Where should I send the preview link? <span style="color:#f87171">*</span>
+          </label>
+          <input
+            type="email"
+            id="cr-email"
+            name="email"
+            required
+            autocomplete="email"
+            placeholder="you@yourbusiness.co.nz"
+            style="width:100%;padding:13px 15px;border-radius:11px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:#fff;font-family:inherit;font-size:15px;outline:none"
+          />
+        </div>
+
+        <div style="grid-column:1/-1">
+          <label for="cr-message" style="display:block;font-size:13px;font-weight:600;color:#fff;margin-bottom:6px">
+            Anything I should know? <span style="color:var(--text-muted);font-weight:400">(optional)</span>
+          </label>
+          <textarea
+            id="cr-message"
+            name="message"
+            rows="3"
+            placeholder="What you do, what you are unhappy with, anything at all."
+            style="width:100%;padding:13px 15px;border-radius:11px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:#fff;font-family:inherit;font-size:15px;outline:none;resize:vertical"></textarea>
+        </div>
+
+        <div style="grid-column:1/-1;position:absolute;left:-9999px;opacity:0" aria-hidden="true">
+          <label for="cr-hp">Company website</label>
+          <input type="text" id="cr-hp" name="companyWebsite" tabindex="-1" autocomplete="off" />
+        </div>
+      </div>
+
+      <label style="display:flex;gap:10px;align-items:flex-start;margin:20px 0 0;font-size:13px;line-height:1.6;color:var(--text-muted);cursor:pointer">
+        <input type="checkbox" id="cr-consent" name="consentEmail" style="margin-top:2px;flex-shrink:0" />
+        <span>Email me about this concept. I will not add you to anything you did not ask for, and there is a one-click unsubscribe in every email.</span>
+      </label>
+
+      <p id="cr-error" style="display:none;margin:16px 0 0;padding:12px 14px;border-radius:10px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);font-size:14px;color:#fca5a5"></p>
+
+      <button type="submit" id="cr-submit" class="btn-cta" style="margin-top:22px;width:100%;justify-content:center;padding:15px;font-size:15px">
+        Build my free concept
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
+      </button>
+
+      <p style="margin:16px 0 0;font-size:12px;line-height:1.6;color:var(--text-muted);text-align:center">
+        Private link · not published · not indexed · deleted after 30 days · no payment details needed
+      </p>
+    </form>
+  </div>
+
+  <div id="concept-done" style="display:none;text-align:center">
+    <div style="width:52px;height:52px;border-radius:50%;background:rgba(94,234,212,0.14);border:2px solid rgba(94,234,212,0.4);display:flex;align-items:center;justify-content:center;margin:0 auto 18px">
+      <svg width="26" height="26" fill="none" stroke="#5EEAD4" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+    </div>
+    <h2 style="font-size:24px;font-weight:700;margin:0 0 10px;color:#fff">Requested — check your email</h2>
+    <p style="font-size:15px;line-height:1.75;color:var(--text-secondary);margin:0 auto 20px;max-width:520px">
+      I have your request. When the build finishes you will get a private link, and I have also put one here in
+      case the email gets lost.
+    </p>
+    <a id="cr-preview" href="#" class="btn-cta" style="display:inline-flex;padding:14px 30px;font-size:15px;text-decoration:none">
+      Open my private preview
+      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
+    </a>
+    <p style="margin:20px 0 0;font-size:13px;color:var(--text-muted)">
+      It usually takes a few minutes. The page updates on its own — you can close this tab.
+    </p>
+  </div>
+</div>
+
+<style>
+  @media (max-width: 640px) {
+    .concept-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('concept-form') as HTMLFormElement;
+  const formState = document.getElementById('concept-form-state');
+  const done = document.getElementById('concept-done');
+  const errorEl = document.getElementById('cr-error');
+  const submit = document.getElementById('cr-submit') as HTMLButtonElement;
+  const previewLink = document.getElementById('cr-preview') as HTMLAnchorElement;
+
+  function showError(message: string) {
+    if (!errorEl) return;
+    errorEl.textContent = message;
+    errorEl.style.display = 'block';
+  }
+
+  function trackEvent(name: string, params: Record<string, unknown> = {}) {
+    const gtag = (window as any).gtag;
+    if (typeof gtag === 'function') gtag('event', name, params);
+  }
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (errorEl) errorEl.style.display = 'none';
+
+    const data = new FormData(form);
+    const businessName = String(data.get('businessName') || '').trim();
+    const email = String(data.get('email') || '').trim();
+
+    if (!businessName) {
+      showError('Please enter your business name.');
+      return;
+    }
+    if (!email) {
+      showError('Please enter an email address so I can send you the preview link.');
+      return;
+    }
+
+    submit.disabled = true;
+    const originalLabel = submit.innerHTML;
+    submit.textContent = 'Requesting...';
+    trackEvent('free_concept_start', { has_website: Boolean(data.get('website')) });
+
+    try {
+      const res = await fetch('/api/concept-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          businessName,
+          email,
+          website: data.get('website'),
+          message: data.get('message'),
+          consentEmail: data.get('consentEmail') === 'on',
+          companyWebsite: data.get('companyWebsite'),
+          source: 'free-website',
+          pageUrl: window.location.href,
+        }),
+      });
+
+      const payload = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        showError(payload.error || 'Something went wrong. Please try again, or email me directly.');
+        submit.disabled = false;
+        submit.innerHTML = originalLabel;
+        return;
+      }
+
+      trackEvent('free_concept_requested', { has_website: Boolean(data.get('website')) });
+
+      if (payload.previewUrl) {
+        previewLink.href = payload.previewUrl;
+      }
+      if (formState) formState.style.display = 'none';
+      if (done) done.style.display = 'block';
+      done?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch {
+      showError('Could not reach the server. Check your connection, or email barry@bytedigital.co.nz and I will sort it out.');
+      submit.disabled = false;
+      submit.innerHTML = originalLabel;
+    }
+  });
+</script>

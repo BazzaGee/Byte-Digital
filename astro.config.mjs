@@ -7,8 +7,19 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [
     sitemap({
-      filter: (page) =>
-        !page.includes('/admin-login') && !page.includes('/chatbot-dashboard'),
+      // NOTE: the `page` arg is an absolute URL, not a path. Matching it against
+      // path prefixes silently matches nothing, so parse the pathname first.
+      filter: (page) => {
+        const { pathname } = new URL(page);
+        const PRIVATE_PATHS = [
+          '/admin-login/',
+          '/chatbot-dashboard/',
+          '/c/',
+        ];
+        return !PRIVATE_PATHS.some(
+          (path) => pathname === path || pathname.startsWith(path),
+        );
+      },
     }),
     mdx(),
   ],

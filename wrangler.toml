@@ -1,3 +1,8 @@
 name = "byte-digital"
 pages_build_output_dir = "dist"
 compatibility_date = "2026-05-28"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bytedigital-funnel"
+database_id = "6f759b0c-d414-412a-8ff3-b1e07552d722"

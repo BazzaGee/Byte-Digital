@@ -1,0 +1,64 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import { LADDER } from '../data/ladder';
+---
+
+<section class="section">
+  <div class="container">
+    <div style="max-width:720px;margin:0 auto 44px;text-align:center">
+      <div class="section-label" style="justify-content:center">The path</div>
+      <h2 style="font-size:clamp(28px,4vw,40px);font-weight:700;margin:10px 0 16px;line-height:1.2">
+        From a free concept to a <span class="gradient-text">working system</span>
+      </h2>
+      <p style="font-size:17px;line-height:1.7;color:var(--text-secondary)">
+        Each step is the next natural move, and they run in a deliberate order. Where something is still
+        being built, I say so — I would rather turn work away than take it and let you down.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px">
+      {LADDER.map((s) => {
+        const href = s.href;
+        return (
+          <a
+            href={href}
+            class="glass"
+            style={`display:flex;flex-direction:column;padding:26px 24px;border-radius:18px;text-decoration:none;transition:transform 0.2s,border-color 0.2s;${
+              s.step === 0 ? 'border-color:rgba(94,234,212,0.35);background:linear-gradient(150deg,rgba(94,234,212,0.07),rgba(139,120,230,0.07))' : ''
+            }`}
+          >
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;line-height:1;background:linear-gradient(135deg,#8B78E6,#5EEAD4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+                {s.step === 0 ? '0' : s.step}
+              </span>
+              <span
+                style={`padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:0.02em;white-space:nowrap;${
+                  s.status === 'live'
+                    ? 'background:rgba(34,197,94,0.14);color:#4ade80;border:1px solid rgba(34,197,94,0.3)'
+                    : s.status === 'in-build'
+                      ? 'background:rgba(234,179,8,0.14);color:#facc15;border:1px solid rgba(234,179,8,0.3)'
+                      : 'background:rgba(107,114,128,0.14);color:#9ca3af;border:1px solid rgba(107,114,128,0.3)'
+                }`}
+              >
+                {s.status === 'live' ? (s.step === 0 ? 'Free' : 'Live') : s.status === 'in-build' ? 'In build' : 'Later'}
+              </span>
+            </div>
+            <h3 style="font-size:17px;font-weight:600;margin:0 0 8px;color:#fff">{s.name}</h3>
+            <p style="margin:0;font-size:14px;line-height:1.65;color:var(--text-muted);flex:1">{s.promise}</p>
+            <span style="display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-size:13px;font-weight:600;color:#5EEAD4">
+              {s.step === 0 ? 'Start free' : s.status === 'in-build' ? 'Discuss a pilot' : s.status === 'later' ? 'Read more' : 'See the details'}
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </span>
+          </a>
+        );
+      })}
+    </div>
+
+    <div style="text-align:center;margin-top:36px">
+      <a href="/how-it-works/" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-size:14px;text-decoration:none">
+        See the full path explained
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
+      </a>
+    </div>
+  </div>
+</section>

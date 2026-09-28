@@ -1,0 +1,506 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Divider from '../../components/Divider.astro';
+import { LADDER } from '../../data/ladder';
+
+export function getStaticPaths() {
+  return LADDER.filter((s) => s.step > 0).map((step) => ({
+    params: { step: step.slug },
+    props: { step },
+  }));
+}
+
+const { step } = Astro.props;
+const siblings = LADDER.filter((s) => s.step > 0);
+const nextStep = siblings.find((s) => s.step === step.step + 1);
+const prevStep = siblings.find((s) => s.step === step.step - 1);
+
+const isInBuild = step.status === 'in-build';
+
+const CONTENT: Record<
+  string,
+  { whatItDoes: string[]; included: string[]; forWhom: string[]; faq: { question: string; answer: string }[] }
+> = {
+  'launch-and-care': {
+    whatItDoes: [
+      'Puts the site live on managed hosting with a domain registered in your name, not mine — you can move it to another provider at any time without asking me.',
+      'Keeps the platform, its dependencies, and any server-side software patched and current, which is where most small business sites quietly break.',
+      'Takes scheduled backups so a bad update or a bad host cannot take your business offline permanently.',
+      'Handles ongoing content changes: new pages, updated prices, changed hours, new photos, corrected details.',
+      'Keeps an eye on speed and uptime, because a site that is down when someone is trying to buy from you is worse than no site at all.',
+    ],
+    included: [
+      'Managed hosting and a domain in your name',
+      'Security updates and platform patches',
+      'Scheduled backups with restore testing',
+      'Ongoing content and detail changes',
+      'Uptime and performance monitoring',
+      'A plain-language monthly summary of what changed',
+    ],
+    forWhom: [
+      'Anyone who has just had a site built and does not want to think about maintaining it.',
+      'Businesses that would rather not deal with a host, a plugin, or a security warning on a Sunday.',
+      'Owners who have been burned before by a site that went offline and nobody could tell them why.',
+    ],
+    faq: [
+      {
+        question: 'Do I own the domain and the site?',
+        answer:
+          'Yes. The domain is registered in your name and you get full access. If you ever want to leave, you can move it to another host yourself without needing permission from me. I would rather you stay because the work is good than because you are locked in.',
+      },
+      {
+        question: 'What does care actually cover?',
+        answer:
+          'Updates, security patches, backups, monitoring, and content changes. If something breaks, I fix it. It does not include building new features — that is quoted separately and only if you want it.',
+      },
+      {
+        question: 'Can you take over a site someone else built?',
+        answer:
+          'Usually yes. I will look at what is there first, tell you honestly whether it is worth keeping or whether the underlying platform is the reason it is slow or insecure, and give you the options. Some of these turn out to be a hosting problem rather than a build problem, and that is a much cheaper fix.',
+      },
+    ],
+  },
+  'search-ai-visibility': {
+    whatItDoes: [
+      'Fixes the technical foundations that decide whether a search engine or an AI assistant can read your site at all — much of "invisible" content is a technical fault, not a content problem.',
+      'Makes sure your business name, address, phone, services, and hours are stated the same way everywhere they appear online, because inconsistent information is a common reason assistants get a business wrong or leave it out.',
+      'Writes factual pages about what you actually do, aimed at the questions customers genuinely ask, with nothing invented and no claims that cannot be substantiated.',
+      'Gives search engines and AI crawlers legitimate access, and makes sure nothing important is hidden behind things they cannot read.',
+      'Measures where visitors actually come from, including the AI assistants that are starting to send a small but real share of referrals, so you can see what is working rather than guessing.',
+    ],
+    included: [
+      'Technical audit and fixes: crawlability, indexation, speed, structure, schema',
+      'Consistent business information across your own site and profiles',
+      'Honest, factual content built around real customer questions',
+      'AI crawler access configured and verified',
+      'Reporting on search and AI referral traffic',
+      'Clear advice on what is worth doing next, including what is not',
+    ],
+    forWhom: [
+      'Businesses whose website gets traffic but almost no enquiries — usually a conversion problem, not a ranking problem, and worth diagnosing before spending anything.',
+      'Anyone who has been told they "need more content" without being told what problem that content was supposed to solve.',
+      'Businesses whose details are wrong or inconsistent somewhere online, which is more common than people realise.',
+    ],
+    faq: [
+      {
+        question: 'Can you get me into Google AI answers?',
+        answer:
+          'No, and anyone who guarantees it is either lying or will get your domain sanctioned. What I can do is make sure your site is technically readable, your business facts are accurate and consistent, and your content is genuinely worth citing. Those are the parts you control. Whether a particular assistant chooses to mention you on a given day is not something anybody can promise.',
+      },
+      {
+        question: 'How long before this shows anything?',
+        answer:
+          'Technical fixes often show up within weeks because they are just removing obstacles. Content and authority take much longer — months, realistically, and I will not put a figure on it that I cannot stand behind. If anyone promises you page one in thirty days, ask what they are actually doing.',
+      },
+      {
+        question: 'Is this just SEO with a new name?',
+        answer:
+          'Some of it is the same work. The difference is that I also look at how AI assistants and answer engines read your business, which is a genuinely different surface with different failure modes, and which very few New Zealand agencies are looking at at all.',
+      },
+    ],
+  },
+  'ai-customer-service': {
+    whatItDoes: [
+      'Puts an assistant on your own website that answers the questions people ask most often — hours, location, services, pricing approach, what you actually do.',
+      'Captures the details of people who are ready to talk, in a structured way, so nothing is lost in a contact form nobody reads.',
+      'Hands over to a human at the right moment instead of bluffing, and tells you exactly what was asked so you know what to answer.',
+      'Keeps the conversation consistent with what you actually sell, because it is trained on your own material rather than generic sales copy.',
+    ],
+    included: [
+      'Assistant trained on your real services, location, and FAQs',
+      'Enquiry capture with structured details',
+      'Sensible handover to a human',
+      'A log of questions people asked that you could not answer',
+      'Setup, testing on real devices, and a walkthrough',
+    ],
+    forWhom: [
+      'Businesses losing enquiries outside business hours who do not want to staff a phone line overnight.',
+      'Owners who get the same twelve questions by email every single day.',
+      'Anyone whose contact form is essentially a black hole.',
+    ],
+    faq: [
+      {
+        question: 'Will it sound like a robot?',
+        answer:
+          'If it is set up badly, yes. It should not be, but I am not going to pretend this is a solved problem across every industry. Part of the pilot is finding out honestly whether it suits your business before you rely on it.',
+      },
+      {
+        question: 'Can it book appointments itself?',
+        answer:
+          'It can be connected to a booking system once one exists, and booking capability is part of what the pilot is for. I would rather prove the capture and handover works before adding a calendar that can double-book someone.',
+      },
+      {
+        question: 'Why is this still in build?',
+        answer:
+          'Because I have a working version but not yet one that has run for months inside a real business. I would rather label it honestly and take two pilot businesses than present it as finished and have it fall over during a busy week.',
+      },
+    ],
+  },
+  'missed-enquiry-follow-up': {
+    whatItDoes: [
+      'Acknowledges every enquiry quickly, including the ones that arrive at 9pm on a Sunday when nobody is awake to reply.',
+      'Qualifies the enquiry against what you actually have capacity for, so you stop booking jobs you cannot service.',
+      'Carries the conversation through to an actual booking, rather than leaving it at "thanks for getting in touch".',
+      'Sends the reminders and confirmations that reduce the no-shows that quietly cost small businesses more than they realise.',
+      'Re-engages the people who enquired and went quiet — a genuinely warm list that most businesses never work at all.',
+      'Tells you where people are dropping out, so the leak is visible instead of guessed at.',
+    ],
+    included: [
+      'Instant acknowledgement on every channel you use',
+      'Qualification and routing so enquiries reach the right person',
+      'Booking flow and confirmations',
+      'Automated reminders that reduce no-shows',
+      'A re-engagement sequence for quiet enquiries',
+      'A clear picture of where people drop off',
+    ],
+    forWhom: [
+      'Trades and service businesses losing work purely because nobody replied in time.',
+      'Anyone with a healthy enquiry volume and an alarming no-show rate.',
+      'Businesses that know exactly which jobs are worth chasing and have no system to chase them.',
+    ],
+    faq: [
+      {
+        question: 'Is this just an autoresponder?',
+        answer:
+          'No, and an autoresponder is where most people stop. The value is in what happens after the reply: qualifying, booking, reminding, and chasing the ones that went quiet. Anyone can send a "thanks for your email" — that is not a system.',
+      },
+      {
+        question: 'Will customers find it annoying?',
+        answer:
+          'It depends entirely on the tone and the timing, and that is something we tune during the pilot with real enquiry data. Pushy follow-up damages a business; a single useful message at the right moment is usually welcome.',
+      },
+      {
+        question: 'Does it work without a new system?',
+        answer:
+          'Often, yes. If you already take enquiries by email or text, I can build the follow-up on top of what you have rather than asking you to change everything first. That is usually the cheaper and faster route.',
+      },
+    ],
+  },
+  'custom-software': {
+    whatItDoes: [
+      'Builds the specific thing your business needs when no off-the-shelf product fits — a customer portal, a staff dashboard, a mobile app, a booking system, an internal tool.',
+      'Connects the systems you already use so data does not have to be retyped between them, which is where most small business admin time disappears.',
+      'Builds mobile apps that install to a home screen and work like normal apps, without the cost and review process of an app store release.',
+      'Designs around how your staff actually work, including the awkward edge cases nobody mentions until the thing is nearly finished.',
+    ],
+    included: [
+      'A scope agreed in writing before anything is built',
+      'Design that accounts for how your people work, not how the software works',
+      'Integrations with the tools you already use',
+      'Installable mobile app or web app where it makes sense',
+      'Documentation, a walkthrough, and a handover session',
+      'A maintenance option once it is live',
+    ],
+    forWhom: [
+      'Businesses where the software is the bottleneck — the work gets done, but the admin around it does not.',
+      'Anyone whose team retypes the same information between three systems.',
+      'Service businesses that need a client-facing portal but have been told enterprise software is "overkill" or out of budget.',
+    ],
+    faq: [
+      {
+        question: 'Is this cheaper than hiring an agency?',
+        answer:
+          'For a well-scoped project, usually — because there is one of me rather than a team plus account management. For something genuinely large or requiring accreditation, contractors, or a support desk, I will tell you honestly that an agency is the better call and who to talk to.',
+      },
+      {
+        question: 'What happens when it breaks?',
+        answer:
+          'You get the source code and the documentation, and a maintenance option if you want me to stay involved. I do not hold projects hostage — if you want to take it to another developer, that is your right and I will help you do it cleanly.',
+      },
+      {
+        question: 'Can you see an example?',
+        answer:
+          'CookTwo is the honest example — a membership and booking platform with a customer app and a staff dashboard. It is a real working system rather than a concept, though I would describe it as a live product rather than a proven business.',
+      },
+    ],
+  },
+  'internal-ai-assistants': {
+    whatItDoes: [
+      'Automates the research, reporting, and document work that currently eats a particular person’s week.',
+      'Searches across your own material so the answer to a question already exists somewhere in your files.',
+      'Runs on a schedule and delivers results where you already work, rather than adding another place to check.',
+      'Connects steps that were previously manual — extract, summarise, check, file, notify.',
+      'Is the same kind of system that generates the free concept sites on this site, so it is not a theory.',
+    ],
+    included: [
+      'A clear look at what is actually worth automating first',
+      'The assistant or automation itself, built to your process',
+      'Scheduling and delivery into your existing tools',
+      'Testing against your real data, not sample data',
+      'Documentation and a walkthrough for whoever inherits it',
+      'A maintenance option',
+    ],
+    forWhom: [
+      'Small teams where one person is doing three jobs and the admin is the part that never gets finished.',
+      'Anyone who has bought a subscription for an AI tool and quietly stopped using it in week two.',
+      'Businesses with a lot of documents and not enough hours.',
+    ],
+    faq: [
+      {
+        question: 'Is this just ChatGPT with a different name?',
+        answer:
+          'No. A chatbot you have to go and open is a worse version of the thing you already have. The value is in it running by itself on your data and putting results where the work happens.',
+      },
+      {
+        question: 'What should we automate first?',
+        answer:
+          'Usually the most boring repeatable task that currently takes the longest and is easiest to check the output of. I would rather automate one thing properly than five things badly, and I will tell you when the honest answer is that nothing should be automated yet.',
+      },
+      {
+        question: 'Where does our data go?',
+        answer:
+          'That is a fair question and you should get a straight answer before anything is built. It depends on the tools involved, it is covered in writing before we start, and I will not build a system that quietly sends your client data somewhere you would not want it.',
+      },
+    ],
+  },
+  marketing: {
+    whatItDoes: [
+      'Would be step seven, and it is deliberately not a service I sell directly.',
+      'Only makes sense once the site can answer, capture an enquiry, and follow up — otherwise the spend pays for traffic you cannot convert.',
+      'Would be targeted campaigns, run by a partner I trust, against the same honesty standard as everything else here.',
+    ],
+    included: [
+      'A referral to a partner I have actually worked alongside',
+      'The prerequisite check: if steps zero to four are not working, the answer is no',
+      'No retainer, no management fee, no pretending to be an ads agency',
+    ],
+    forWhom: [
+      'Businesses whose site is genuinely ready to receive paid traffic.',
+      'Nobody else, yet — which is the point.',
+    ],
+    faq: [
+      {
+        question: 'Why not just run ads yourself?',
+        answer:
+          'I do not have a track record in ad management that I am willing to put my name against, so selling it would be the same overclaiming I am trying to avoid on this whole site. What I will do is make sure the site is ready to receive the traffic, and tell you who I would trust to run it.',
+      },
+      {
+        question: 'So what should I do first?',
+        answer:
+          'Start with the free concept at the free website page, then work up the steps in order. Ads are a rounding error until the first four are working, and I would rather you spend nothing on them until then.',
+      },
+    ],
+  },
+};
+
+const content = CONTENT[step.slug] ?? CONTENT['custom-software'];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: step.name,
+  description: step.promise,
+  provider: {
+    '@type': 'Organization',
+    name: 'Byte Digital',
+    url: 'https://bytedigital.co.nz',
+  },
+};
+---
+
+<BaseLayout title={`${step.name} NZ | Byte Digital`} description={step.promise} jsonLd={jsonLd}>
+  <section class="section dot-pattern" style="padding-top:80px">
+    <div class="container">
+      <div style="max-width:760px">
+        <a
+          href="/how-it-works/"
+          style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);text-decoration:none;margin-bottom:18px"
+        >
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 19l-7-7 7-7" /></svg>
+          All steps
+        </a>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.1em;color:#5EEAD4">
+            STEP {step.step} · {step.journeyStage.toUpperCase()}
+          </span>
+          <span
+            style={`padding:4px 11px;border-radius:999px;font-size:11px;font-weight:700;${
+              step.status === 'live'
+                ? 'background:rgba(34,197,94,0.14);color:#4ade80;border:1px solid rgba(34,197,94,0.32)'
+                : step.status === 'in-build'
+                  ? 'background:rgba(234,179,8,0.14);color:#facc15;border:1px solid rgba(234,179,8,0.32)'
+                  : 'background:rgba(107,114,128,0.14);color:#9ca3af;border:1px solid rgba(107,114,128,0.3)'
+            }`}
+          >
+            {step.statusLabel}
+          </span>
+        </div>
+        <h1 style="margin:0 0 20px;font-size:clamp(32px,5vw,48px);line-height:1.12">
+          {step.name}
+        </h1>
+        <p style="font-size:19px;line-height:1.65;color:var(--text-secondary);margin:0 0 28px">
+          {step.promise}
+        </p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          {isInBuild ? (
+            <a href="/contact/" class="btn-cta" style="padding:14px 30px;font-size:15px">Discuss a pilot</a>
+          ) : step.status === 'later' ? (
+            <a href="/contact/" class="btn-cta" style="padding:14px 30px;font-size:15px">Ask me about it</a>
+          ) : (
+            <a href="/contact/" class="btn-cta" style="padding:14px 30px;font-size:15px">Get started</a>
+          )}
+          <a href="/free-website/" class="btn-ghost" style="padding:14px 26px;font-size:15px">Start free instead</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {isInBuild && (
+    <div class="container" style="padding-bottom:8px">
+      <div class="glass" style="padding:24px 26px;border-radius:16px;border-color:rgba(234,179,8,0.3);background:rgba(234,179,8,0.05)">
+        <p style="margin:0;font-size:15px;line-height:1.7;color:var(--text-secondary)">
+          <strong style="color:#facc15">This step is in build, not finished.</strong> I have a working
+          version but not one that has run for months inside a live business. I am taking a small number of
+          pilot businesses at a reduced rate in exchange for honest feedback. If that sounds useful, get in
+          touch — and if it does not, the free concept still works with no commitment.
+        </p>
+      </div>
+    </div>
+  )}
+
+  {step.status === 'later' && (
+    <div class="container" style="padding-bottom:8px">
+      <div class="glass" style="padding:24px 26px;border-radius:16px;border-color:rgba(107,114,128,0.3);background:rgba(107,114,128,0.06)">
+        <p style="margin:0;font-size:15px;line-height:1.7;color:var(--text-secondary)">
+          <strong>Not sold by Byte Digital.</strong> I do not have an ad management track record I would
+          put my name against, so offering it would be the same overclaiming I am avoiding everywhere else on
+          this site. What I will do is make sure your site is ready to receive paid traffic, and point you at
+          someone I trust.
+        </p>
+      </div>
+    </div>
+  )}
+
+  <Divider />
+
+  <section class="section">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:44px;align-items:start" id="detail">
+        <div>
+          <div class="section-label">What it does</div>
+          <h2 style="font-size:28px;font-weight:700;margin:8px 0 24px">The actual work</h2>
+          <div style="display:flex;flex-direction:column;gap:18px">
+            {content.whatItDoes.map((item) => (
+              <div style="display:flex;gap:14px;align-items:flex-start">
+                <svg width="20" height="20" fill="none" stroke="#5EEAD4" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:3px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                <p style="margin:0;font-size:15px;line-height:1.75;color:var(--text-secondary)">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div class="glass" style="padding:28px 26px;border-radius:18px">
+            <h3 style="font-size:18px;font-weight:600;margin:0 0 18px;color:#fff">What's included</h3>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px">
+              {content.included.map((item) => (
+                <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.6;color:var(--text-muted)">
+                  <span style="color:#8B78E6;flex-shrink:0">—</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="glass" style="padding:28px 26px;border-radius:18px;margin-top:20px">
+            <h3 style="font-size:18px;font-weight:600;margin:0 0 18px;color:#fff">Who it suits</h3>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px">
+              {content.forWhom.map((item) => (
+                <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.6;color:var(--text-muted)">
+                  <span style="color:#8B78E6;flex-shrink:0">—</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="section reveal section-glow" style="background:var(--bg-dark);border-top:1px solid var(--border-subtle)">
+    <div class="glow-orb purple top-left"></div>
+    <div class="container" style="position:relative;z-index:1;max-width:780px">
+      <div class="section-label" style="justify-content:center">Questions</div>
+      <h2 style="font-size:clamp(26px,3.6vw,34px);font-weight:700;margin:10px 0 32px;text-align:center">
+        Things people <span class="gradient-text">actually ask</span>
+      </h2>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        {content.faq.map((item) => (
+          <div class="glass" style="padding:22px 24px;border-radius:14px">
+            <h3 style="font-size:16px;font-weight:600;margin:0 0 10px;color:#fff">{item.question}</h3>
+            <p style="margin:0;font-size:14px;line-height:1.75;color:var(--text-muted)">{item.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="section">
+    <div class="container">
+      <div style="max-width:820px;margin:0 auto">
+        <div class="section-label" style="justify-content:center">Where this sits</div>
+        <h2 style="font-size:clamp(24px,3.4vw,32px);font-weight:700;margin:10px 0 28px;text-align:center">
+          The path, in <span class="gradient-text">order</span>
+        </h2>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          {LADDER.map((s) => {
+            const isCurrent = s.step === step.step;
+            const href = s.href;
+            return (
+              <a
+                href={href}
+                class="glass"
+                style={`padding:16px 20px;border-radius:12px;display:flex;align-items:center;gap:16px;text-decoration:none;${
+                  isCurrent ? 'border-color:rgba(94,234,212,0.4);background:linear-gradient(90deg,rgba(94,234,212,0.08),transparent)' : ''
+                }`}
+              >
+                <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:{isCurrent ? '#5EEAD4' : 'var(--text-muted)'};width:22px;flex-shrink:0">
+                  {s.step}
+                </span>
+                <span style={`font-size:15px;font-weight:500;flex:1;color:${isCurrent ? '#fff' : 'var(--text-secondary)'}`}>
+                  {s.name}
+                </span>
+                <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;
+                  background:{s.status === 'live' ? 'rgba(34,197,94,0.14);color:#4ade80' : s.status === 'in-build' ? 'rgba(234,179,8,0.14);color:#facc15' : 'rgba(107,114,128,0.14);color:#9ca3af'}">
+                  {s.status === 'live' ? 'Live' : s.status === 'in-build' ? 'In build' : 'Later'}
+                </span>
+              </a>
+            );
+          })}
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:12px;margin-top:28px;flex-wrap:wrap">
+          {prevStep ? (
+            <a href={prevStep.href} class="btn-ghost" style="padding:12px 24px;font-size:14px;text-decoration:none">
+              ← {prevStep.shortName}
+            </a>
+          ) : (
+            <a href="/free-website/" class="btn-ghost" style="padding:12px 24px;font-size:14px;text-decoration:none">
+              ← Free concept
+            </a>
+          )}
+          {nextStep ? (
+            <a href={nextStep.href} class="btn-ghost" style="padding:12px 24px;font-size:14px;text-decoration:none">
+              {nextStep.shortName} →
+            </a>
+          ) : (
+            <a href="/contact/" class="btn-cta" style="padding:12px 24px;font-size:14px;text-decoration:none">
+              Get in touch
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  @media (max-width: 900px) {
+    #detail {
+      grid-template-columns: 1fr !important;
+      gap: 32px !important;
+    }
+  }
+</style>

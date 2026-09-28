@@ -1,0 +1,21 @@
+---
+interface Props {
+  slug: string;
+  businessName: string;
+  category?: string;
+  liveUrl?: string;
+}
+
+const { slug, businessName, category = '', liveUrl = '' } = Astro.props;
+---
+
+<script
+  is:inline
+  src="/funnel/prospect-funnel.js"
+  data-bd-funnel
+  data-context="showcase"
+  data-slug={slug}
+  data-business={businessName}
+  data-category={category}
+  data-live-url={liveUrl}
+></script>

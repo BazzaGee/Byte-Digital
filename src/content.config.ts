@@ -40,7 +40,22 @@ const caseStudyCollection = defineCollection({
   }),
 });
 
+const websiteCollection = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/websites' }),
+  schema: z.object({
+    title: z.string(),
+    category: z.string().default(''),
+    blurb: z.string().default(''),
+    description: z.string(),
+    liveUrl: z.string().url().optional(),
+    screenshot: z.string().default(''),
+    dateAdded: z.coerce.date(),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   'case-studies': caseStudyCollection,
+  websites: websiteCollection,
 };

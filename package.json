@@ -8,6 +8,7 @@
     "build": "node scripts/extract-content.js && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "sync:websites": "node scripts/sync-websites.mjs",
     "check": "astro check",
     "deploy:staging": "wrangler pages deploy dist --branch=staging",
     "deploy:production": "wrangler pages deploy dist",

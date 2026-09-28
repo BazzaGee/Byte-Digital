@@ -5,26 +5,30 @@ const steps = [
   {
     number: 1,
     color: 'purple' as const,
-    title: 'Discovery Call',
-    description: "We learn your business, goals, audience, and competitors in Christchurch. This free 30-minute call shapes your entire digital strategy.",
+    title: 'You tell me the business',
+    description:
+      'Name, and a website or social page if you have one. There is no long brief and no discovery call before you see something.',
   },
   {
     number: 2,
     color: 'mint' as const,
-    title: 'Design & Prototype',
-    description: 'We design your site in Figma with your feedback loop. You approve every pixel before a single line of code is written.',
+    title: 'I build a real concept',
+    description:
+      'From public information only. No invented testimonials, no made-up contact details, no filler — and I check it on mobile before you see it.',
   },
   {
     number: 3,
     color: 'purple' as const,
-    title: 'Build & Optimize',
-    description: 'We develop your site with clean code, blazing speed, and SEO best practices baked in from day one. No bloat, no compromises.',
+    title: 'You tell me what is wrong',
+    description:
+      'It is a working site, not a mockup. Say what is inaccurate, missing, or badly worded and I revise it based on what you actually said.',
   },
   {
     number: 4,
     color: 'mint' as const,
-    title: 'Launch & Grow',
-    description: 'We launch, monitor performance, and iterate. Ongoing support means your site keeps getting better and generating more leads.',
+    title: 'Files, or we keep going',
+    description:
+      'Take the source files and stop there, or talk about putting it live properly. Either answer is fine and neither is a trap.',
   },
 ];
 ---
@@ -32,13 +36,13 @@ const steps = [
 <section id="process" class="section reveal" style="background:#0A0A0E;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)">
   <div class="container">
     <div style="text-align:center;margin-bottom:16px">
-      <div class="section-label" style="display:inline-flex">How We Work</div>
+      <div class="section-label" style="display:inline-flex">The Free Concept</div>
     </div>
     <div class="section-title" style="text-align:center">
-      From concept to launch<br />in <span class="gradient-text">four simple steps.</span>
+      Four steps, and you see<br /><span class="gradient-text">something real at the end.</span>
     </div>
     <p class="section-subtitle" style="text-align:center;margin:0 auto">
-      We've streamlined our process to get you online fast without sacrificing quality.
+      The whole process is designed so you are judging actual work rather than a promise about work.
     </p>
     <div class="process-grid">
       {steps.map(step => (

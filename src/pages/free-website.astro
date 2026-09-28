@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+import ConceptRequestForm from '../components/ConceptRequestForm.astro';
+import Divider from '../components/Divider.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import { FREE_INCLUDES, FREE_EXCLUDES, REAL_PROOF } from '../data/ladder';
+
+const faqItems = [
+  {
+    question: 'Is it really free, or is there a catch?',
+    answer:
+      'It is genuinely free. The reason is that I built the pipeline that generates these sites, so producing one costs me almost nothing. You get a working concept and the source files either way. If you later want it live and maintained, that is a separate conversation and a separate quote — but nothing about the concept requires you to do anything.',
+  },
+  {
+    question: 'What do you need from me?',
+    answer:
+      'Just your business name and ideally your website or social page, so I can work from real public information. There is no long brief, no questionnaire, and no discovery call before you see something. If I need to check a detail, I will ask you a single specific question rather than a form full of blanks.',
+  },
+  {
+    question: 'Will my concept website go live on the internet?',
+    answer:
+      'No. It is generated on a platform subdomain and shared with you through a private, unlisted link that is excluded from search engines. Nothing is published, nothing is attached to your business name publicly, and no one finds it by searching.',
+  },
+  {
+    question: 'What if I already have a website?',
+    answer:
+      'Then the concept is genuinely useful — it is a second opinion, built fresh, on what your site says today rather than what you wish it said. Some people keep it purely as a reference. Some decide to replace what they have.',
+  },
+  {
+    question: 'What happens if I do not want it?',
+    answer:
+      'Nothing happens. No follow-up sequence, no pressure. If you ask for the source files, they are emailed to you and that is the end of it. I would rather have built you something genuinely useful than have chased you for work you did not want.',
+  },
+  {
+    question: 'How long does it take?',
+    answer:
+      'The build itself is automatic and usually completes quickly. You review it, send back what you want changed, and I revise it. Most people are reviewing a first version within a day or two of asking.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+---
+
+<BaseLayout
+  title="Free Concept Website NZ | Byte Digital"
+  description="Get a free, private concept website for your New Zealand business. Built from your real public information, reviewed on a private link, with source files if you want them. No commitment."
+  jsonLd={jsonLd}
+>
+  <section class="section dot-pattern" style="padding-top:80px">
+    <div class="container">
+      <div style="max-width:760px;margin:0 auto;text-align:center">
+        <div class="hero-badge" style="display:inline-flex">
+          <div class="hero-badge-dot"></div>
+          Free — and the files are yours
+        </div>
+        <h1 style="margin:24px 0 20px;font-size:clamp(34px,5.5vw,56px);line-height:1.1">
+          A concept website,<br /><span class="gradient-text">free, before you spend anything.</span>
+        </h1>
+        <p style="font-size:18px;line-height:1.7;color:var(--text-secondary);margin-bottom:32px">
+          Most agencies quote before you have seen anything. I build it first. Tell me your business, and I
+          will put a working version of your site on a private link so you can judge the work rather than the
+          pitch.
+        </p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px">
+          <a href="#request" class="btn-cta" style="padding:15px 34px;font-size:15px">
+            Request your free concept
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
+          </a>
+          <a href="#how" class="btn-ghost" style="padding:15px 30px;font-size:15px">See how it works</a>
+        </div>
+        <p style="font-size:13px;color:var(--text-muted)">
+          Private link · not published · not in search results · source files on request
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--bg-dark);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px">
+        {REAL_PROOF.map((item) => (
+          <div class="glass" style="padding:26px 22px;border-radius:16px">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;background:linear-gradient(135deg,#8B78E6,#5EEAD4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">{item.value}</div>
+            <div style="margin-top:10px;font-size:14px;font-weight:600;color:#fff">{item.label}</div>
+            <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:var(--text-muted)">{item.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="section dot-pattern" id="request" style="background:var(--bg-dark);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
+    <div class="container">
+      <ConceptRequestForm />
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="section">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start" id="what-you-get">
+        <div>
+          <div class="section-label">Included</div>
+          <h2 style="font-size:28px;font-weight:700;margin:8px 0 20px">What the free concept includes</h2>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px">
+            {FREE_INCLUDES.map((item) => (
+              <li style="display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.6;color:var(--text-secondary)">
+                <svg width="20" height="20" fill="none" stroke="#5EEAD4" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <div class="section-label" style="color:var(--text-muted)">Not included</div>
+          <h2 style="font-size:28px;font-weight:700;margin:8px 0 20px">What it doesn't cover</h2>
+          <p style="font-size:14px;line-height:1.7;color:var(--text-muted);margin:0 0 20px">
+            Being straight about this matters more than making the list look longer. The concept is a
+            demonstration, not a production system.
+          </p>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px">
+            {FREE_EXCLUDES.map((item) => (
+              <li style="display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.6;color:var(--text-muted)">
+                <svg width="20" height="20" fill="none" stroke="#6b7280" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px"><path stroke-linecap="round" stroke-linejoin="round" d="M18 6L6 18M6 6l12 12" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="section reveal section-glow" id="how" style="background:var(--bg-dark);border-top:1px solid var(--border-subtle)">
+    <div class="glow-orb purple bottom-left"></div>
+    <div class="glow-orb mint top-right"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <SectionHeader
+        label="How it works"
+        title="Four steps, <span class='gradient-text'>no sales call</span>"
+        subtitle="The whole process is designed so you see something real before anyone asks you for money."
+      />
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px">
+        {[
+          { n: '01', t: 'Tell me your business', d: 'Your name, and your website or social page if you have one. That is the whole brief.' },
+          { n: '02', t: 'I build a working concept', d: 'From public information only — no invented details, no made-up testimonials, no fake contact details.' },
+          { n: '03', t: 'You review a private link', d: 'Not published, not indexed, visible only to you. Tell me what is wrong with it.' },
+          { n: '04', t: 'Files to you either way', d: 'Want the source files? They are emailed to you. That is the end of it if you stop there.' },
+        ].map((step) => (
+          <div class="glass" style="padding:28px 24px;border-radius:16px">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.1em;color:#5EEAD4">{step.n}</div>
+            <h3 style="font-size:18px;font-weight:600;margin:10px 0 10px;color:#fff">{step.t}</h3>
+            <p style="margin:0;font-size:14px;line-height:1.7;color:var(--text-muted)">{step.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Divider />
+
+  <section class="section">
+    <div class="container">
+      <div style="max-width:780px;margin:0 auto">
+        <SectionHeader
+          label="Honest rules"
+          title="What I will <span class='gradient-text'>never do</span>"
+          subtitle="The reason to believe anything a site builder tells you is whether they will name the things they are not doing."
+        />
+        <div style="display:flex;flex-direction:column;gap:14px">
+          {[
+            'I will not invent reviews, testimonials, awards, client names, or results. If a number is not real, it does not go on the site.',
+            'I will not generate statistics to make a case. If I do not have the evidence, I will tell you that instead of estimating.',
+            'I will not promise first-page rankings or a specific return on investment. Nobody can honestly promise either.',
+            'I will not build you a site for a real business and leave it publicly visible without your explicit go-ahead.',
+          ].map((rule) => (
+            <div class="glass" style="padding:20px 22px;border-radius:14px;display:flex;gap:14px;align-items:flex-start">
+              <svg width="22" height="22" fill="none" stroke="#8B78E6" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" /></svg>
+              <p style="margin:0;font-size:15px;line-height:1.7;color:var(--text-secondary)">{rule}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion items={faqItems} />
+  <CTASection />
+</BaseLayout>
+
+<style>
+  @media (max-width: 768px) {
+    #what-you-get {
+      grid-template-columns: 1fr !important;
+      gap: 32px !important;
+    }
+  }
+</style>

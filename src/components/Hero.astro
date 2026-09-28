@@ -1,4 +1,5 @@
 ---
+import { REAL_PROOF } from '../data/ladder';
 ---
 
 <section class="hero dot-pattern" id="hero">
@@ -9,56 +10,55 @@
       <div>
         <div class="hero-badge">
           <div class="hero-badge-dot"></div>
-          Christchurch's Premier Digital Agency
+          Free concept website — no commitment
         </div>
         <h1 style="margin:24px 0 20px">
-          We build websites<br />that <span class="gradient-text">dominate.</span>
+          Get a free <span class="gradient-text">concept website</span><br />for your business.
         </h1>
-        <p>Stop losing customers to competitors with better websites. Byte Digital brings cutting-edge web technology to local businesses across Christchurch and Canterbury. We build lightning-fast, high-converting sites that act as your 24/7 salesperson.</p>
+        <p>
+          I build a working concept of your site from information that is already public, put it on a private
+          link, and you tell me what to change. No quote, no obligation. If you like it, I build the rest of
+          the system around it — and if you don't, you keep the files.
+        </p>
         <div class="hero-btns">
-          <a href="/#contact" class="btn-cta">
-            Start Growing Today
-            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+          <a href="/free-website/" class="btn-cta">
+            Get your free concept
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
           </a>
-          <a href="/#scroll-video" class="btn-ghost">See It In Action</a>
+          <a href="/how-it-works/" class="btn-ghost">See how it works</a>
         </div>
-        <div class="hero-checks">
-          <span>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            Mobile Optimized
-          </span>
-          <span>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            SEO Ready
-          </span>
-          <span>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            Lightning Fast
-          </span>
-          <span>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            AI Optimized
-          </span>
+        <div class="hero-proof">
+          {REAL_PROOF.map((item) => (
+            <div class="hero-proof-item">
+              <div class="hero-proof-value">{item.value}</div>
+              <div class="hero-proof-label">{item.label}</div>
+            </div>
+          ))}
         </div>
       </div>
       <div class="hero-visual">
         <div class="founder-card glass">
           <div class="founder-card-photo">
-            <img src="/images/founder.jpg" alt="Barry Grottis, Founder & Lead Developer of Byte Digital" />
+            <img src="/images/founder.jpg" alt="Barry Grottis, founder and lead developer at Byte Digital" />
             <div class="founder-card-photo-glow"></div>
           </div>
           <div class="founder-card-info">
             <h3 class="founder-card-name">Barry Grottis</h3>
-            <p class="founder-card-title">Founder & Lead Developer</p>
+            <p class="founder-card-title">Founder &amp; Lead Developer</p>
+            <p class="founder-card-bio">
+              I built the systems I need for my own work — the website pipeline, the AI assistant, the
+              internal automation — then turned them into services. That's why the free concept is genuinely
+              free.
+            </p>
             <div class="founder-card-tags">
-              <span>Web Design</span>
-              <span>AI Automation</span>
-              <span>SEO & GEO</span>
-              <span>Custom Software</span>
+              <span>Websites</span>
+              <span>Search &amp; AI visibility</span>
+              <span>Custom software</span>
+              <span>Internal AI</span>
             </div>
-            <a href="/#contact" class="founder-card-cta">
-              Work With Me
-              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            <a href="/about/" class="founder-card-cta">
+              More about me
+              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
             </a>
           </div>
         </div>
@@ -66,3 +66,48 @@
     </div>
   </div>
 </section>
+
+<style>
+  .hero-proof {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .hero-proof-item {
+    min-width: 0;
+  }
+  .hero-proof-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #8b78e6, #5eead4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-proof-label {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--text-muted);
+  }
+  .founder-card-bio {
+    margin: 12px 0 14px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+  @media (max-width: 768px) {
+    .hero-proof {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px 12px;
+    }
+    .hero-proof-value {
+      font-size: 21px;
+    }
+  }
+</style>
