@@ -101,6 +101,12 @@ import { REAL_PROOF } from '../data/ladder';
     line-height: 1.6;
     color: var(--text-muted);
   }
+  /* Hero copy is the one text block that sits directly on the video rather
+     than on a panel, so it gets a lighter tone than the muted colour used
+     elsewhere. Keeps AA against the scrim behind it. */
+  .hero p {
+    color: var(--text-secondary);
+  }
   @media (max-width: 768px) {
     .hero-proof {
       grid-template-columns: repeat(2, minmax(0, 1fr));

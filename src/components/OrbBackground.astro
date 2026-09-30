@@ -1,0 +1,100 @@
+---
+/**
+ * Fixed, scroll-scrubbed background layer. Rendered once per page from
+ * BaseLayout so every route gets it.
+ */
+---
+
+<div class="orb-bg" aria-hidden="true">
+  <canvas id="orb-bg-canvas" class="orb-bg-canvas"></canvas>
+  <div class="orb-bg-poster"></div>
+  <div class="orb-bg-scrim"></div>
+  <div class="orb-bg-AAfter"></div>
+</div>
+
+<style>
+  .orb-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: var(--bg-darker);
+  }
+
+  .orb-bg-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* The brief: visible as atmosphere, never competing with text. The panels
+       are 92% opaque, so this only ever shows through the gutters. */
+    opacity: 0.6;
+    /* Orbs are soft-focus gradients; a touch of blur hides the 512x288
+       upscale entirely and removes any hint of tiling. */
+    filter: blur(2px) saturate(1.15);
+  }
+
+  /* Poster sits under the canvas and is what shows before the first sheet
+     decodes, if JS is off, or under prefers-reduced-motion. */
+  .orb-bg-poster {
+    position: absolute;
+    inset: 0;
+    background-image: url('/orbs/poster.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6;
+    filter: blur(2px) saturate(1.15);
+  }
+
+  /* Light scrim. Its only job is to stop the brightest orb cores from
+     punching through the gutter between panels; a heavy one would flatten the
+     whole effect, which is what makes the video read as "not there". */
+  .orb-bg-scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(140% 90% at 50% 0%, rgba(5, 5, 7, 0.15) 0%, rgba(5, 5, 7, 0.45) 100%),
+      linear-gradient(180deg, rgba(5, 5, 7, 0.2) 0%, rgba(5, 5, 7, 0.35) 100%);
+  }
+
+  /* The hero is the only place body text sits directly on the video instead
+     of on a 92%-opaque panel, and against a full-brightness orb core the
+     muted body colour measured 1.6:1 -- well under WCAG AA.
+
+     Rather than darken the whole page (which flattens the effect everywhere
+     else), this is a left-weighted wash matching the hero's two-column
+     layout: strong under the copy column on the left, fading out toward the
+     right where the founder card panel already provides its own opaque
+     backdrop. The right half of the video stays fully visible. */
+  .orb-bg-AAfter {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      rgba(5, 5, 7, 0.88) 0%,
+      rgba(5, 5, 7, 0.8) 34%,
+      rgba(5, 5, 7, 0.45) 58%,
+      rgba(5, 5, 7, 0.12) 78%,
+      rgba(5, 5, 7, 0.05) 100%
+    );
+    /* Only while the hero is on screen -- once it scrolls past, the wash
+       would otherwise darken panel gutters for no reason. */
+    opacity: 1;
+    transition: opacity 0.4s linear;
+  }
+  .orb-bg.aa-off .orb-bg-AAfter { opacity: 0; }
+
+  /* Inner pages use PageHero, whose copy sits in a centred column rather than
+     a left-hand one, so it needs a uniform wash instead of the gradient above.
+     Same strength at the text, but it doesn't leave the right half of the
+     video dark for no reason. */
+  .orb-bg.aa-centered .orb-bg-AAfter {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 5, 7, 0.35) 0%,
+      rgba(5, 5, 7, 0.8) 45%,
+      rgba(5, 5, 7, 0.84) 100%
+    );
+  }
+</style>

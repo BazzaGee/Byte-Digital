@@ -228,12 +228,16 @@ img { max-width: 100%; height: auto; display: block; }
   max-width: 600px;
 }
 
-.reveal {
+/* Same progressive-enhancement treatment as the panels: the hidden start
+   state only applies once JS has confirmed it can reveal again. This also
+   covers `.reveal` on cards (BlogCard, GuideCard), which previously left
+   whole blog and guide listings invisible if the script didn't run. */
+.js .reveal {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }
-.reveal.visible {
+.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -906,288 +910,6 @@ img { max-width: 100%; height: auto; display: block; }
 .svc-row-icon svg { width: 28px; height: 28px; }
 .svc-row-card h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 10px; }
 .svc-row-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
-
-/* ============================================
-   11. SCROLL VIDEO SECTION
-   ============================================ */
-.scroll-section { position: relative; }
-.scroll-spacer { height: 900vh; pointer-events: none; }
-.scroll-sticky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: var(--bg-darker);
-  z-index: 50;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-.scroll-sticky.is-active {
-  visibility: visible;
-}
-@media(max-width:768px) {
-  .scroll-sticky {
-    width: 100vw;
-    height: 100dvh;
-  }
-  .scroll-spacer {
-    height: 1000vh;
-  }
-}
-#frame-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  will-change: transform;
-  contain: strict;
-}
-@media(max-width:768px) {
-  #frame-canvas {
-    inset: unset;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(100vw, 177.78vh);
-    height: min(100vh, 56.25vw);
-  }
-}
-.vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 30%, rgba(5,5,7,0.85) 100%);
-  pointer-events: none;
-  z-index: 2;
-}
-.dark-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(5,5,7,0.3);
-  pointer-events: none;
-  z-index: 2;
-  transition: opacity 0.3s;
-}
-.content-layer {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.scroll-card {
-  position: absolute;
-  text-align: center;
-  max-width: 680px;
-  width: 90vw;
-  padding: 40px 48px;
-  opacity: 0;
-  will-change: transform, opacity;
-  background: rgba(10, 10, 16, 0.92);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 24px;
-  box-shadow: 0 0 60px rgba(0,0,0,0.5), 0 0 120px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06), 0 0 80px rgba(94,234,212,0.04);
-}
-@media(max-width:768px) {
-  .scroll-card {
-    padding: 28px 20px;
-    max-width: 90vw;
-    width: 90vw;
-  }
-  .scroll-card .icon-row {
-    gap: 10px;
-  }
-  .scroll-card .icon-item {
-    padding: 10px 14px;
-  }
-}
-
-.scroll-card .card-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  border-radius: var(--radius-full);
-  background: rgba(94,234,212,0.08);
-  border: 1px solid rgba(94,234,212,0.25);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--secondary);
-  margin-bottom: 20px;
-}
-.scroll-card .card-tag .pulse-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--secondary);
-  animation: pulse-dot 1.5s ease-in-out infinite;
-}
-.scroll-card h2 {
-  font-size: clamp(28px, 5vw, 56px);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: #fff;
-  margin-bottom: 16px;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
-}
-.scroll-card h2 .gradient {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.scroll-card .card-desc {
-  font-size: clamp(15px, 1.8vw, 19px);
-  color: var(--text-secondary);
-  line-height: 1.65;
-  max-width: 480px;
-  margin: 0 auto;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
-}
-.scroll-card .stat-number {
-  font-size: clamp(56px, 9vw, 110px);
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: 8px;
-  background: linear-gradient(135deg, #8B78E6 0%, #5EEAD4 60%, #fff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: none;
-  filter: drop-shadow(0 4px 20px rgba(94,234,212,0.2));
-}
-.scroll-card .stat-label {
-  font-size: clamp(14px, 1.5vw, 18px);
-  color: var(--text-secondary);
-  font-weight: 500;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
-}
-.scroll-card .icon-row {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  margin-top: 24px;
-}
-.scroll-card .icon-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 18px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-.scroll-card .icon-item svg { width: 24px; height: 24px; color: var(--secondary); }
-.scroll-card .icon-item span { font-size: 12px; color: var(--text-muted); font-weight: 500; }
-.scroll-card .cta-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 32px;
-  border-radius: var(--radius-full);
-  background: linear-gradient(135deg, #5EEAD4, #fff);
-  color: #050507;
-  font-weight: 700;
-  font-size: 16px;
-  pointer-events: auto;
-  transition: transform 0.3s, box-shadow 0.3s;
-  margin-top: 8px;
-}
-.scroll-card .cta-pill:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 30px rgba(94,234,212,0.4);
-}
-
-.progress-track {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px;
-  height: 2px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 2px;
-  overflow: hidden;
-  z-index: 10;
-}
-.progress-fill {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(to right, var(--primary), var(--secondary));
-  border-radius: 2px;
-}
-.frame-counter {
-  position: absolute;
-  top: 28px;
-  right: 32px;
-  z-index: 10;
-  font-size: 11px;
-  color: rgba(255,255,255,0.12);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 2px;
-  pointer-events: none;
-}
-.scroll-hint-text {
-  position: absolute;
-  bottom: 56px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 11px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.2);
-  z-index: 10;
-  animation: hint-breathe 2.5s ease-in-out infinite;
-  pointer-events: none;
-  transition: opacity 0.4s;
-}
-@keyframes hint-breathe {
-  0%,100% { opacity: .2; }
-  50% { opacity: .5; }
-}
-.scroll-indicator {
-  position: absolute;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  pointer-events: none;
-  transition: opacity 0.4s;
-}
-.scroll-indicator .mouse {
-  width: 24px;
-  height: 38px;
-  border: 2px solid rgba(255,255,255,0.2);
-  border-radius: 12px;
-  position: relative;
-}
-.scroll-indicator .mouse .wheel {
-  width: 3px;
-  height: 8px;
-  border-radius: 2px;
-  background: rgba(255,255,255,0.3);
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scroll-wheel 1.8s ease-in-out infinite;
-}
-@keyframes scroll-wheel {
-  0% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(12px); }
-}
 
 /* ============================================
    12. SERVICES GRID
@@ -2427,7 +2149,9 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .page-hero-subtitle {
   font-size: clamp(16px, 1.5vw, 20px);
-  color: var(--text-muted);
+  /* Inner-page hero copy sits on the video rather than on a panel, so it uses
+     the lighter tone (hero copy does the same) to hold WCAG AA. */
+  color: var(--text-secondary);
   line-height: 1.6;
   max-width: 600px;
   margin-top: 8px;
@@ -2941,3 +2665,199 @@ img { max-width: 100%; height: auto; display: block; }
     gap: 24px;
   }
 }
+
+/* ============================================
+   22. ORB BACKGROUND + PANEL SYSTEM
+   ============================================ */
+
+/* The background canvas is fixed at z-index 0, so all page content must sit
+   above it. Anything still painting an opaque background at this level would
+   hide the video entirely. */
+body { position: relative; }
+main, .nav, .footer { position: relative; z-index: 1; }
+
+/* Sections stop being opaque blocks. The video is only visible in the gaps
+   between panels, so the section itself must be transparent. */
+.section,
+.svc-row,
+.footer {
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+/* The dot grid was the old way of giving the page texture. The video does
+   that job now, and two textures compete. */
+.section.dot-pattern,
+.svc-row.dot-pattern,
+.cta-section.dot-pattern {
+  background-image: none !important;
+}
+
+/* Panels need somewhere to sit, so sections shrink to a gutter. */
+.section,
+.svc-row {
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+/* --- The panel ---------------------------------------------------------
+   Applied to the container rather than the section so that this is a single
+   CSS rule covering every page and component, instead of ~90 hand edits that
+   would silently drift out of sync. The container is the full content column
+   on every layout, so it is also exactly the right width for a panel. */
+.section > .container,
+.svc-row > .container {
+  position: relative;
+  max-width: 1180px;
+  background: rgba(5, 5, 7, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-section);
+  padding: clamp(28px, 4.5vw, 60px) clamp(20px, 4vw, 56px);
+  /* Outer glow lifts the panel off the background without adding a second
+     visual element. */
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.02),
+    0 24px 60px -20px rgba(0, 0, 0, 0.85),
+    0 0 80px -30px rgba(139, 120, 230, 0.35);
+}
+
+/* The section-level reveal is replaced by the panel pop-up below, so the two
+   don't animate the same block at once. */
+.section.reveal,
+.svc-row.reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* A gradient hairline along the top edge. Reads as a light source above the
+   panel and is what stops the flat border looking like a plain div. */
+.section > .container::before,
+.svc-row > .container::before,
+.footer > .container::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 120, 230, 0.55),
+    rgba(94, 234, 212, 0.45),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.section > .container > :first-child,
+.svc-row > .container > :first-child { margin-top: 0; }
+.section > .container > :last-child,
+.svc-row > .container > :last-child { margin-bottom: 0; }
+
+
+/* Full-bleed variant for narrow single-column content (FAQ, CTA, footer). */
+.panel-flush { padding: clamp(24px, 4vw, 40px); }
+
+/* --- Pop-up reveal ----------------------------------------------------
+   The panel is what animates, not the section. Scale is deliberately tiny
+   (0.985) -- anything larger reads as a transition effect rather than as
+   content settling into place.
+
+   The hidden start state is scoped to `html.js`. Without JS these blocks are
+   simply visible, so a script failure or a JS-disabled visitor gets the full
+   page rather than a blank one. `js` is added by BaseLayout's init. */
+.js .section > .container,
+.js .svc-row > .container {
+  opacity: 0;
+  transform: translateY(30px) scale(0.985);
+  transition:
+    opacity 0.75s var(--ease-out),
+    transform 0.75s var(--ease-out);
+}
+.js .section > .container.panel-in,
+.js .svc-row > .container.panel-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Border draws itself in from the horizontal centre once the panel has
+   settled. Driven by clip-path so it costs one composited property rather
+   than animating width on four edges. */
+.section > .container::after,
+.svc-row > .container::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out);
+  background: linear-gradient(
+    180deg,
+    rgba(139, 120, 230, 0.6),
+    rgba(94, 234, 212, 0.3) 45%,
+    rgba(255, 255, 255, 0.08)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.section > .container.panel-in::after,
+.svc-row > .container.panel-in::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .section > .container,
+  .js .svc-row > .container,
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .section > .container::after,
+  .svc-row > .container::after { display: none; }
+}
+
+/* Inner-page hero: same rationale as the homepage hero -- transparent so the
+   video shows through, and the dot grid is dropped because the video is now
+   the page's texture. */
+.page-hero {
+  background-image: none !important;
+}
+
+/* Footer: same panel treatment, but flush padding since it's dense. */
+.footer { padding: 28px 0 28px; }
+.footer > .container {
+  position: relative;
+  max-width: 1180px;
+  background: rgba(5, 5, 7, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-section);
+  padding: clamp(28px, 4vw, 48px);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.85);
+}
+
+/* Hero sits above the background without a panel -- it is the one place the
+   video should read clearly, since there's no competing content around it. */
+.hero {
+  background: transparent !important;
+  min-height: auto;
+  padding-top: 90px;
+  padding-bottom: 28px;
+}
+.hero .container { max-width: 1180px; }
+
+/* Decorative per-section glows were drawn against opaque section fills.
+   Over a transparent section they would float unattached, so they go. */
+.section-glow .glow-orb,
+.section-glow .section-glow { display: none; }
+
+@media (max-width: 768px) {
+  .section, .svc-row { padding-top: 16px; padding-bottom: 16px; }
+  .section > .container,
+  .svc-row > .container,
+  .footer > .container { border-radius: var(--radius-xl); }
+}
+
