@@ -90,7 +90,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   // Honeypot. A real person never fills a field they cannot see. Respond 200 so
   // the bot gets no signal that it was detected.
   if (typeof body.companyWebsite === "string" && body.companyWebsite.trim() !== "") {
-    return Response.json({ success: true }, { status: 200, headers });
+  return Response.json({ success: true, startedAt }, { status: 200, headers });
   }
 
   const sourceRaw = cleanString(body.source, 20).toLowerCase();
@@ -150,6 +150,11 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   }
 
   const designWishesJson = JSON.stringify({ picks: designPicks, note: designWishes });
+
+  // Anchors the visitor's build timeline. The wizard stores it and runs the
+  // stage animation from it, so a skewed device clock cannot make the progress
+  // read nonsense.
+  const startedAt = Date.now();
 
   try {
     await env.DB.prepare(

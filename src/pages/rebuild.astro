@@ -103,6 +103,14 @@ import RebuildWizard from '../components/RebuildWizard.astro';
     text-align: center;
   }
 
+  /* Once the brief is in, the wizard is the whole show: the intro copy ("six
+     quick questions") is no longer true, and the vertical space belongs to
+     the build animation. */
+  .rb-building .rb-intro,
+  .rb-building .rb-footnote {
+    display: none;
+  }
+
   .rb-exit {
     position: absolute;
     top: clamp(10px, 1.8vh, 18px);

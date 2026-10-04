@@ -1,3 +1,7 @@
+---
+import BuildStageMachine from './BuildStageMachine.astro';
+---
+
 <div class="rb-shell" id="rb-wizard">
   <div class="rb-card glass" id="rb-card">
     <div class="rb-head" id="rb-head">
@@ -110,14 +114,35 @@
         <p class="rb-error" data-rb-error hidden></p>
       </section>
 
-      <section class="rb-step rb-success" id="rb-success" hidden>
-        <div class="rb-success-icon" aria-hidden="true">
-          <svg width="30" height="30" fill="none" stroke="#5EEAD4" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+      <section class="rb-step rb-build" id="rb-build" data-rb-step="7" hidden>
+        <BuildStageMachine />
+
+        <div class="rb-build-copy">
+          <div class="rb-build-kicker" id="rb-build-kicker">Building your website</div>
+          <h2 class="rb-title rb-build-title" id="rb-build-title" aria-live="polite">Reading your brief</h2>
+          <p class="rb-build-detail" id="rb-build-detail">Going back over everything you told me.</p>
+          <p class="rb-build-aside" id="rb-build-aside">The fun bit starts now.</p>
         </div>
-        <h2 class="rb-title">You're in<span id="rb-success-name"></span>!</h2>
-        <p class="rb-lede">Your brief is with me. I will email <strong id="rb-success-email"></strong> as soon as your website is ready to look at — no calls, no pressure.</p>
-        <p class="rb-free-final">And to be clear: this has cost you nothing. There is no invoice, no payment and nothing to pay now or later. I built the pipeline that produces these sites, so the rebuild is genuinely free.</p>
-        <p class="rb-fine">If you later want me to put it live and maintain it for you, that is a separate conversation and a separate quote — but nothing about your free rebuild depends on it.</p>
+
+        <ul class="rb-ticker" id="rb-ticker" aria-hidden="true"></ul>
+
+        <div class="rb-build-foot">
+          <p class="rb-build-tagline">This may take a while.</p>
+          <p class="rb-build-sub">A couple of hours is normal. You do not need to stay on this page — I will email you the moment it is done.</p>
+          <div class="rb-build-bar" id="rb-build-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="rb-progress-track">
+              <div class="rb-progress-fill rb-build-fill" id="rb-build-fill" style="width:0%"></div>
+            </div>
+            <span class="rb-build-time" id="rb-build-time">Just started</span>
+          </div>
+          <p class="rb-build-email" id="rb-build-email">I will email you the moment it is ready.</p>
+          <p class="rb-build-fine">Free means free — no invoice, no card, ever.</p>
+          <div class="rb-build-actions">
+            <button type="button" class="rb-build-toggle" id="rb-build-toggle">Show me more</button>
+            <button type="button" class="rb-build-leave" id="rb-build-leave">Leave this page</button>
+            <button type="button" class="rb-build-new" id="rb-build-new">Start a different brief</button>
+          </div>
+        </div>
       </section>
     </div>
 
@@ -492,21 +517,224 @@
     cursor: default;
   }
 
-  .rb-success {
+  /* --- Build step ---------------------------------------------------------
+     Shown after the brief is submitted. The graphic, the copy, the ticker and
+     the bar are one grid that always fits the card, so the step never scrolls
+     — especially on a phone. */
+  .rb-build {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    justify-items: center;
+    gap: clamp(10px, 1.8vh, 18px);
+    min-height: 46vh;
     text-align: center;
-    padding: 40px 8px;
   }
 
-  .rb-success-icon {
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    background: rgba(94, 234, 212, 0.14);
-    border: 2px solid rgba(94, 234, 212, 0.4);
+  .rb-build-copy {
+    max-width: 460px;
+  }
+
+  .rb-build-kicker {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: 6px;
+  }
+
+  .rb-build-title {
+    margin: 0 0 6px;
+    font-size: clamp(20px, 3vh, 26px);
+  }
+
+  .rb-build-detail {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+
+  .rb-build-aside {
+    margin: 6px 0 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--secondary);
+    opacity: 0.85;
+  }
+
+  /* Decorative pipeline chatter. Texture, not information. */
+  .rb-ticker {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 3.4em;
+    overflow: hidden;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: var(--text-dimmed);
+    opacity: 0.8;
+    width: min(100%, 340px);
+  }
+
+  .rb-ticker li {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    animation: rb-ticker-in 0.45s var(--ease);
+  }
+
+  .rb-ticker li::before {
+    content: '> ';
+    color: rgba(94, 234, 212, 0.55);
+  }
+
+  @keyframes rb-ticker-in {
+    from {
+      opacity: 0;
+      transform: translateY(7px);
+    }
+  }
+
+  .rb-build-foot {
+    width: 100%;
+    max-width: 460px;
+  }
+
+  .rb-build-tagline {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .rb-build-sub {
+    margin: 4px 0 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  .rb-build-bar {
     display: flex;
     align-items: center;
+    gap: 12px;
+    margin-top: clamp(10px, 1.6vh, 16px);
+  }
+
+  .rb-build-bar .rb-progress-track {
+    height: 8px;
+  }
+
+  .rb-build-fill {
+    transition: width 1.6s linear;
+  }
+
+  .rb-build-time {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .rb-build-email {
+    margin: 10px 0 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #a7f3d0;
+    overflow-wrap: anywhere;
+  }
+
+  .rb-build-fine {
+    margin: 6px 0 0;
+    font-size: 11.5px;
+    color: var(--text-dimmed);
+  }
+
+  .rb-build-actions {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: 0 auto 20px;
+    align-items: center;
+    gap: 8px;
+    margin-top: clamp(10px, 1.6vh, 16px);
+  }
+
+  .rb-build-actions button {
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+
+  .rb-build-toggle {
+    color: var(--secondary);
+    background: rgba(94, 234, 212, 0.08);
+    border: 1px solid rgba(94, 234, 212, 0.28);
+  }
+
+  .rb-build-leave {
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .rb-build-new {
+    color: var(--text-dimmed);
+    background: none;
+    border: none;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .rb-build-new:hover {
+    color: var(--text-muted);
+  }
+
+  /* Compact: the full animation yields to a small inline badge. */
+  .rb-build--compact {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: center;
+    justify-items: start;
+    column-gap: 14px;
+    row-gap: 10px;
+    min-height: 0;
+    text-align: left;
+  }
+
+  .rb-build--compact .rb-build-copy {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .rb-build--compact .rb-build-title {
+    font-size: 18px;
+  }
+
+  .rb-build--compact .rb-build-detail,
+  .rb-build--compact .rb-build-aside,
+  .rb-build--compact .rb-ticker,
+  .rb-build--compact .rb-build-fine {
+    display: none;
+  }
+
+  .rb-build--compact .rb-build-foot {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .rb-build--compact .rb-build-bar {
+    margin-top: 0;
+  }
+
+  .rb-build--compact .rb-build-email {
+    margin-top: 8px;
   }
 
   /* The free promise. Only on the opening and closing steps — saying "free" six
@@ -520,31 +748,6 @@
     font-size: 13.5px;
     line-height: 1.5;
     color: #a7f3d0;
-  }
-
-  .rb-free-final {
-    margin: 0 auto 12px;
-    max-width: 460px;
-    padding: 14px 16px;
-    border-radius: 14px;
-    background: rgba(94, 234, 212, 0.07);
-    border: 1px solid rgba(94, 234, 212, 0.22);
-    font-size: 15px;
-    line-height: 1.6;
-    font-weight: 600;
-    color: #a7f3d0;
-  }
-
-  .rb-fine {
-    margin: 0 auto;
-    max-width: 460px;
-    font-size: 12.5px;
-    line-height: 1.55;
-    color: var(--text-dimmed);
-  }
-
-  .rb-success .rb-lede strong {
-    color: var(--text-primary);
   }
 
   /* Short viewports: tighten every vertical rhythm so all six steps still fit
@@ -606,15 +809,6 @@
       margin: -8px 0 14px;
       padding: 8px 11px;
       font-size: 12.5px;
-    }
-
-    .rb-free-final {
-      padding: 11px 13px;
-      font-size: 14px;
-    }
-
-    .rb-fine {
-      font-size: 11.5px;
     }
 
     .rb-error {
@@ -685,15 +879,6 @@
       font-size: 12.5px;
     }
 
-    .rb-free-final {
-      padding: 12px 13px;
-      font-size: 14px;
-    }
-
-    .rb-fine {
-      font-size: 11.5px;
-    }
-
     .rb-two .rb-label {
       margin-top: 6px;
     }
@@ -747,9 +932,65 @@
       grid-template-columns: 1fr;
     }
   }
+
+  /* The build step on a short viewport: drop the texture first, then tighten.
+     The tagline, the bar and the email promise always survive. */
+  @media (max-height: 700px) {
+    .rb-build {
+      gap: 8px;
+      min-height: 40vh;
+    }
+
+    .rb-build-aside {
+      display: none;
+    }
+
+    .rb-build-sub {
+      font-size: 12px;
+    }
+
+    .rb-build-email {
+      margin-top: 8px;
+    }
+
+    .rb-build-fine {
+      display: none;
+    }
+  }
+
+  /* iPhone SE height and below: the ticker is the next thing to go. */
+  @media (max-height: 600px) {
+    .rb-ticker {
+      display: none;
+    }
+  }
+
+  /* Landscape phones. The graphic is the first thing to go. */
+  @media (max-height: 520px) {
+    .rb-build {
+      min-height: 0;
+    }
+
+    .rb-build-detail {
+      display: none;
+    }
+
+    .rb-build-bar {
+      margin-top: 8px;
+    }
+  }
 </style>
 
 <script>
+  import {
+    BUILD_STAGES,
+    BUILD_TOTAL_MS,
+    BUILD_COMPACT_AFTER_MS,
+    progressAt,
+    remainingMs,
+    formatDuration,
+  } from './scripts/build-timeline';
+
   type LeadSource = 'live' | 'showcase' | 'site';
 
   interface UploadedAsset {
@@ -781,7 +1022,21 @@
   const backButton = document.getElementById('rb-back') as HTMLButtonElement;
   const progressFill = document.getElementById('rb-progress-fill') as HTMLElement;
   const progressLabel = document.getElementById('rb-progress-label') as HTMLElement;
-  const success = document.getElementById('rb-success') as HTMLElement;
+
+  const buildStep = document.getElementById('rb-build') as HTMLElement;
+  const buildFill = document.getElementById('rb-build-fill') as HTMLElement;
+  const buildBar = document.getElementById('rb-build-bar') as HTMLElement;
+  const buildTime = document.getElementById('rb-build-time') as HTMLElement;
+  const buildKicker = document.getElementById('rb-build-kicker') as HTMLElement;
+  const buildTitle = document.getElementById('rb-build-title') as HTMLElement;
+  const buildDetail = document.getElementById('rb-build-detail') as HTMLElement;
+  const buildAside = document.getElementById('rb-build-aside') as HTMLElement;
+  const buildEmail = document.getElementById('rb-build-email') as HTMLElement;
+  const buildToggle = document.getElementById('rb-build-toggle') as HTMLButtonElement;
+  const buildLeave = document.getElementById('rb-build-leave') as HTMLButtonElement;
+  const buildNew = document.getElementById('rb-build-new') as HTMLButtonElement;
+  const ticker = document.getElementById('rb-ticker') as HTMLElement;
+  const vizStages = Array.from(document.querySelectorAll<HTMLElement>('.rb-viz-stage'));
 
   const businessInput = document.getElementById('rb-business') as HTMLInputElement;
   const currentInput = document.getElementById('rb-current') as HTMLInputElement;
@@ -841,7 +1096,6 @@
     });
     head.hidden = false;
     nav.hidden = false;
-    success.hidden = true;
     progressFill.style.width = `${(step / TOTAL_STEPS) * 100}%`;
     progressLabel.textContent = `Step ${step} of ${TOTAL_STEPS}`;
     backButton.hidden = step <= 1;
@@ -1019,6 +1273,202 @@
     if (files && files.length) void uploadFiles(files);
   });
 
+  // --- Build step -----------------------------------------------------------
+  // The timeline is illustrative: the pipeline exposes no public status, so the
+  // wall clock drives the stages. It is seeded at submit time (server-assisted)
+  // and kept in localStorage so a reload resumes rather than restarting.
+
+  const BUILD_KEY = 'rb-build-started';
+  const ARC_LENGTH = 2 * Math.PI * 52;
+  const WELCOME_BACK_MS = 15 * 60_000;
+
+  let buildStartedAt = 0;
+  let buildTimer: number | null = null;
+  let tickerTimer: number | null = null;
+  let compactTimer: number | null = null;
+  let activeStageIndex = -1;
+  let tickerIndex = 0;
+  let tickerLines: string[] = [];
+  let userExpanded = false;
+
+  function readBuildSeed(): number {
+    try {
+      const raw = localStorage.getItem(BUILD_KEY);
+      const value = raw ? Number(raw) : NaN;
+      return Number.isFinite(value) && value > 0 ? value : 0;
+    } catch {
+      return 0;
+    }
+  }
+
+  function writeBuildSeed(value: number) {
+    try {
+      localStorage.setItem(BUILD_KEY, String(value));
+    } catch {
+      /* private mode — the step still works, it just will not resume */
+    }
+  }
+
+  function clearBuildSeed() {
+    try {
+      localStorage.removeItem(BUILD_KEY);
+    } catch {
+      /* ignore */
+    }
+  }
+
+  function makeTickerLine(text: string): HTMLLIElement {
+    const item = document.createElement('li');
+    item.textContent = text;
+    return item;
+  }
+
+  function pushTickerLine() {
+    if (document.hidden || !tickerLines.length) return;
+    if (buildStep.classList.contains('rb-build--compact')) return;
+    const item = makeTickerLine(tickerLines[tickerIndex % tickerLines.length]);
+    tickerIndex += 1;
+    ticker.appendChild(item);
+    while (ticker.children.length > 3) ticker.firstElementChild?.remove();
+  }
+
+  function startTicker(lines: string[]) {
+    tickerLines = lines;
+    tickerIndex = 0;
+    ticker.innerHTML = '';
+    if (tickerTimer !== null) window.clearInterval(tickerTimer);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      lines.slice(0, 3).forEach((line) => ticker.appendChild(makeTickerLine(line)));
+      return;
+    }
+    pushTickerLine();
+    pushTickerLine();
+    pushTickerLine();
+    tickerTimer = window.setInterval(pushTickerLine, 1800);
+  }
+
+  function setCompact(on: boolean) {
+    buildStep.classList.toggle('rb-build--compact', on);
+    buildToggle.textContent = on ? 'Show me more' : 'Collapse';
+  }
+
+  function renderBuild(initial: boolean) {
+    const elapsed = Math.max(0, Date.now() - buildStartedAt);
+    const { pct, stageIndex, stageProgress } = progressAt(elapsed);
+    const stage = BUILD_STAGES[stageIndex];
+
+    buildFill.style.width = `${pct}%`;
+    buildBar.setAttribute('aria-valuenow', String(Math.round(pct)));
+    buildBar.setAttribute('aria-valuetext', `${stage.title} — ${formatDuration(remainingMs(elapsed))} to go`);
+
+    if (stageIndex !== activeStageIndex) {
+      activeStageIndex = stageIndex;
+      buildTitle.textContent = stage.title;
+      buildDetail.textContent = stage.detail;
+      buildAside.textContent = stage.aside;
+      vizStages.forEach((node, index) => {
+        if (index === stageIndex) node.setAttribute('data-active', '');
+        else node.removeAttribute('data-active');
+        const arc = node.querySelector<SVGCircleElement>('[data-build-arc]');
+        if (arc) arc.style.strokeDasharray = `0 ${ARC_LENGTH}`;
+      });
+      startTicker(stage.logs);
+    }
+
+    const activeArc = vizStages[stageIndex]?.querySelector<SVGCircleElement>('[data-build-arc]');
+    if (activeArc) activeArc.style.strokeDasharray = `${stageProgress * ARC_LENGTH} ${ARC_LENGTH}`;
+
+    const remaining = remainingMs(elapsed);
+    if (elapsed < 45_000) {
+      buildTime.textContent = `Just started · about ${formatDuration(remaining)} to go`;
+    } else if (remaining <= 0) {
+      buildTime.textContent = 'Any minute now — check your inbox';
+    } else {
+      buildTime.textContent = `${formatDuration(elapsed)} in · about ${formatDuration(remaining)} to go`;
+    }
+
+    if (initial) {
+      buildKicker.textContent = elapsed > WELCOME_BACK_MS ? 'Still going — welcome back' : 'Building your website';
+    }
+  }
+
+  function showBuild(startedAt: number, email: string, fresh: boolean) {
+    currentStep = 7;
+    buildStartedAt = startedAt;
+    nextButton.disabled = false;
+    steps.forEach((node) => {
+      node.hidden = node.getAttribute('data-rb-step') !== '7';
+    });
+    head.hidden = true;
+    nav.hidden = true;
+    buildStep.hidden = false;
+    document.body.classList.add('rb-building');
+    if (email) buildEmail.textContent = `I will email ${email} the moment it is ready.`;
+
+    activeStageIndex = -1;
+    renderBuild(true);
+
+    if (buildTimer !== null) window.clearInterval(buildTimer);
+    buildTimer = window.setInterval(() => renderBuild(false), 1000);
+
+    if (fresh) track('rebuild_build_started', { source });
+
+    const elapsed = Date.now() - buildStartedAt;
+    if (compactTimer !== null) window.clearTimeout(compactTimer);
+    if (elapsed > BUILD_COMPACT_AFTER_MS || window.matchMedia('(max-height: 520px)').matches) {
+      setCompact(true);
+    } else {
+      setCompact(false);
+      compactTimer = window.setTimeout(() => {
+        if (!userExpanded) setCompact(true);
+      }, BUILD_COMPACT_AFTER_MS - elapsed);
+    }
+  }
+
+  function stopBuildClock() {
+    if (buildTimer !== null) window.clearInterval(buildTimer);
+    if (tickerTimer !== null) window.clearInterval(tickerTimer);
+    if (compactTimer !== null) window.clearTimeout(compactTimer);
+    buildTimer = null;
+    tickerTimer = null;
+    compactTimer = null;
+    document.body.classList.remove('rb-building');
+  }
+
+  buildToggle.addEventListener('click', () => {
+    const isCompact = buildStep.classList.toggle('rb-build--compact');
+    userExpanded = !isCompact;
+    buildToggle.textContent = isCompact ? 'Show me more' : 'Collapse';
+  });
+
+  buildLeave.addEventListener('click', () => {
+    // Script-opened tabs can be closed; anything else falls back to where the
+    // visitor came from, then to the site home.
+    try {
+      window.close();
+    } catch {
+      /* not script-opened */
+    }
+    window.setTimeout(() => {
+      if (document.hidden) return;
+      if (window.history.length > 1) window.history.back();
+      else window.location.href = '/';
+    }, 250);
+  });
+
+  buildNew.addEventListener('click', () => {
+    stopBuildClock();
+    clearBuildSeed();
+    buildStep.hidden = true;
+    userExpanded = false;
+    nextButton.disabled = false;
+    go(1);
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && buildStartedAt) renderBuild(false);
+  });
+
   async function submit() {
     nextButton.disabled = true;
     const original = nextButton.innerHTML;
@@ -1059,16 +1509,11 @@
       }
 
       track('rebuild_submit', { source, has_assets: assets.length > 0 });
-      const successName = document.getElementById('rb-success-name');
-      const successEmail = document.getElementById('rb-success-email');
-      if (successName) successName.textContent = `, ${payload.firstName}`;
-      if (successEmail) successEmail.textContent = payload.email;
 
-      steps.forEach((node) => (node.hidden = true));
-      head.hidden = true;
-      nav.hidden = true;
-      success.hidden = false;
-      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const startedAt =
+        typeof data.startedAt === 'number' && data.startedAt > 0 ? data.startedAt : Date.now();
+      writeBuildSeed(startedAt);
+      showBuild(startedAt, payload.email, true);
     } catch {
       showError(6, 'Could not reach the server. Please check your connection and try again.');
       nextButton.disabled = false;
@@ -1076,5 +1521,13 @@
     }
   }
 
-  go(1);
+  // A recent build resumes straight to the progress step, so a reload or a
+  // re-opened tab does not dump the visitor back at question one.
+  const seed = readBuildSeed();
+  if (seed && Date.now() - seed < BUILD_TOTAL_MS) {
+    showBuild(seed, '', false);
+  } else {
+    if (seed) clearBuildSeed();
+    go(1);
+  }
 </script>
