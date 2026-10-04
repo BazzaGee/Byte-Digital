@@ -1213,7 +1213,12 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 48px;
 }
 @media(min-width:768px) {
-  .footer-top { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  .footer-top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer-top > :first-child { grid-column: 1 / -1; }
+}
+@media(min-width:1080px) {
+  .footer-top { grid-template-columns: 2fr repeat(4, minmax(0, 1fr)); }
+  .footer-top > :first-child { grid-column: auto; }
 }
 .footer h4 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 16px; }
 .footer p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
@@ -1239,54 +1244,55 @@ img { max-width: 100%; height: auto; display: block; }
 .footer-brand {
   background: var(--bg-deepest);
   border-top: 1px solid rgba(255,255,255,0.04);
-  padding: 40px 0;
+  padding: 48px 0 56px;
   text-align: center;
 }
-.mini-logo-grid {
+.brand-mark {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+}
+.brand-logo-grid {
   display: grid;
-  grid-template-columns: repeat(15, 5px);
-  gap: 2px;
-  justify-content: center;
-  margin-bottom: 16px;
+  grid-template-columns: repeat(7, 9px);
+  gap: 4px;
 }
-.mini-dot-faint {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: rgba(139,120,230,0.12);
-  opacity: 0.15;
-}
-.mini-dot-active {
-  width: 5px;
-  height: 5px;
+.brand-dot-active {
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background-color: #1a1a24;
-  opacity: 0.15;
+  opacity: 0.2;
   animation: logo-populate 4s infinite;
 }
-.mini-dot-blank {
-  width: 5px;
-  height: 5px;
+.brand-dot-blank {
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background-color: transparent;
 }
-.footer-brand .brand-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 6px;
-}
-.footer-brand .brand-text .heart { color: var(--heart-red); font-size: 14px; }
-.footer-brand .brand-name {
+.brand-wordmark {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
   font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  line-height: 1;
 }
-.footer-brand .brand-sub { font-size: 11px; color: var(--text-muted); }
+.brand-tagline {
+  max-width: 480px;
+  margin: 18px auto 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+@media(max-width:520px) {
+  .brand-logo-grid { grid-template-columns: repeat(7, 7px); gap: 3px; }
+  .brand-dot-active, .brand-dot-blank { width: 7px; height: 7px; }
+  .brand-wordmark { font-size: 17px; }
+}
 
 /* ============================================
    20. NAV DOT MATRIX LOGO
@@ -2674,7 +2680,7 @@ img { max-width: 100%; height: auto; display: block; }
    above it. Anything still painting an opaque background at this level would
    hide the video entirely. */
 body { position: relative; }
-main, .nav, .footer { position: relative; z-index: 1; }
+main, .nav, .footer, .footer-brand { position: relative; z-index: 1; }
 
 /* Sections stop being opaque blocks. The video is only visible in the gaps
    between panels, so the section itself must be transparent. */

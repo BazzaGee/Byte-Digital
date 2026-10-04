@@ -72,7 +72,7 @@ const statusColor = (status: string) =>
                   <span style="color:var(--text-muted);font-weight:500;margin-right:6px">{s.step}</span>{s.shortName}
                 </div>
                 <div class="mega-link-desc">
-                  <span style="color:{statusColor(s.status)}">{s.status === 'live' ? 'Live' : s.status === 'in-build' ? 'In build' : 'Later'}</span>
+                  <span style={`color:${statusColor(s.status)}`}>{s.status === 'live' ? 'Live' : s.status === 'in-build' ? 'In build' : 'Later'}</span>
                   {' · '}{s.journeyStage}
                 </div>
               </div>
@@ -129,7 +129,7 @@ const statusColor = (status: string) =>
       {steps.map((s) => (
         <a href={s.href} class="mobile-menu-item" style="display:flex;justify-content:space-between;align-items:center;gap:12px">
           <span>{s.step}. {s.shortName}</span>
-          <span style="font-size:10px;font-weight:700;color:{statusColor(s.status)};text-transform:uppercase;letter-spacing:0.04em">
+          <span style={`font-size:10px;font-weight:700;color:${statusColor(s.status)};text-transform:uppercase;letter-spacing:0.04em`}>
             {s.status === 'live' ? 'Live' : s.status === 'in-build' ? 'In build' : 'Later'}
           </span>
         </a>
