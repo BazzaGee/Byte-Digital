@@ -1,0 +1,79 @@
+---
+import SEOHead from '../components/SEOHead.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonicalURL?: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+  jsonLd?: object;
+}
+
+const { title, description, canonicalURL, ogImage, ogType, noindex, jsonLd } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <SEOHead
+    title={title}
+    description={description}
+    canonicalURL={canonicalURL}
+    ogImage={ogImage}
+    ogType={ogType}
+    noindex={noindex}
+    jsonLd={jsonLd}
+  />
+</head>
+<body class="funnel-page">
+  <slot />
+
+  <script>
+    // The funnel fills the viewport, so the document itself must never scroll:
+    // a scrollbar behind the card is the one thing that tells a visitor they
+    // are on a page rather than in a popup. The content that genuinely cannot
+    // fit scrolls inside the card instead (see RebuildWizard.astro).
+    function lock() {
+      const gap = window.innerWidth - document.documentElement.clientWidth;
+      const previous = document.documentElement.style.paddingRight;
+      document.documentElement.style.overflow = 'hidden';
+      document.documentElement.style.overscrollBehavior = 'none';
+      document.body.style.overflow = 'hidden';
+      document.body.style.overscrollBehavior = 'none';
+      if (gap > 0) document.documentElement.style.paddingRight = `${gap}px`;
+      window.addEventListener(
+        'pagehide',
+        function release() {
+          document.documentElement.style.overflow = '';
+          document.documentElement.style.overscrollBehavior = '';
+          document.documentElement.style.paddingRight = previous;
+          document.body.style.overflow = '';
+          document.body.style.overscrollBehavior = '';
+        },
+        { once: true }
+      );
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', lock, { once: true });
+    } else {
+      lock();
+    }
+  </script>
+</body>
+</html>
+
+<style is:global>
+  .funnel-page {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background:
+      radial-gradient(ellipse 60% 45% at 50% -8%, rgba(139, 120, 230, 0.26), transparent 70%),
+      radial-gradient(ellipse 45% 35% at 85% 105%, rgba(94, 234, 212, 0.12), transparent 70%),
+      linear-gradient(180deg, #15151d 0%, #0d0d13 100%);
+  }
+</style>

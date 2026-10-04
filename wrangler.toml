@@ -6,3 +6,7 @@ compatibility_date = "2026-05-28"
 binding = "DB"
 database_name = "bytedigital-funnel"
 database_id = "6f759b0c-d414-412a-8ff3-b1e07552d722"
+
+[[r2_buckets]]
+binding = "REBUILD_ASSETS"
+bucket_name = "bytedigital-rebuilds"

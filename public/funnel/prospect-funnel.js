@@ -15,6 +15,23 @@
     }
   }
 
+  /**
+   * Absolute URL for a Byte Digital page, resolved against the script's own
+   * origin so dev/staging keep working and live-site embeds never resolve
+   * against the prospect's domain.
+   */
+  function pageFor(tag, path) {
+    var fallback = 'https://bytedigital.co.nz' + path;
+    var src = tag.getAttribute('src') || '';
+    if (!src) return fallback;
+    try {
+      var resolved = new URL(path, new URL(src, document.baseURI)).href;
+      return /^https?:/i.test(resolved) ? resolved : fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
   var STYLES = [
     '.bdf-overlay{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .35s cubic-bezier(.4,0,.2,1),visibility .35s;font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}',
     '.bdf-overlay.bdf-open{opacity:1;visibility:visible}',
@@ -48,7 +65,6 @@
     '.bdf-list li{display:flex;align-items:flex-start;gap:12px;font-size:14.5px;color:#CBD5E1;line-height:1.5}',
     '.bdf-tick{flex:0 0 auto;width:20px;height:20px;margin-top:1px;border-radius:50%;background:rgba(94,234,212,.12);border:1px solid rgba(94,234,212,.3);position:relative}',
     '.bdf-tick:after{content:"";position:absolute;left:6px;top:4px;width:5px;height:9px;border:solid #5EEAD4;border-width:0 2px 2px 0;transform:rotate(45deg)}',
-    '.bdf-badge{display:inline-block;padding:8px 14px;border-radius:12px;font-size:12.5px;font-weight:600;color:#5EEAD4;background:rgba(94,234,212,.07);border:1px dashed rgba(94,234,212,.3);margin-bottom:22px}',
     '.bdf-form{display:flex;flex-direction:column;gap:12px}',
     '.bdf-input{width:100%;padding:15px 18px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);color:#E2E8F0;font-family:inherit;font-size:15px;transition:border-color .2s,box-shadow .2s;box-sizing:border-box}',
     '.bdf-input::placeholder{color:#64748B}',
@@ -60,10 +76,6 @@
     '.bdf-center .bdf-btn{width:auto;min-width:160px}',
     '.bdf-success{width:68px;height:68px;margin:0 auto 18px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#5EEAD4;background:rgba(94,234,212,.1);border:1px solid rgba(94,234,212,.3);box-shadow:0 0 40px rgba(94,234,212,.25)}',
     '.bdf-success svg{width:34px;height:34px}',
-    '.bdf-build{margin:6px 0 4px}',
-    '.bdf-build-bar{height:8px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}',
-    '.bdf-build-fill{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#8B78E6,#5EEAD4);transition:width .6s ease}',
-    '.bdf-build-status{margin-top:12px;font-size:13.5px;color:#94A3B8}',
     '.bdf-pill{position:fixed;right:16px;bottom:16px;z-index:2147482999;display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,#5EEAD4,#fff);color:#050507;font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:14px;font-weight:700;border:none;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,.45),0 0 24px rgba(94,234,212,.3);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}',
     '.bdf-pill.bdf-show{opacity:1;visibility:visible}',
     '@media(max-width:560px){.bdf-steps{padding:40px 22px 26px}.bdf-modal{border-radius:20px}}'
@@ -143,40 +155,6 @@
             '<p class="bdf-lede" data-bdf="success-files"></p>' +
             '<div class="bdf-actions"><button type="button" class="bdf-btn bdf-btn-primary" data-bdf-close>Got it</button></div>' +
           '</section>' +
-          '<section class="bdf-step" data-step="b1" hidden>' +
-            '<div class="bdf-eyebrow">Free custom redesign</div>' +
-            '<h2 class="bdf-heading"><span>Want something </span><span class="bdf-gradient">bolder?</span></h2>' +
-            '<p class="bdf-lede">Our design team will create a brand-new, premium version of your website \u2014 made just for your business. Completely free, just for you.</p>' +
-            '<div class="bdf-badge">Premium design, professionally built \u2014 100% free</div>' +
-            '<div class="bdf-actions">' +
-              '<button type="button" class="bdf-btn bdf-btn-primary" data-bdf-go="b2">Transform my website \u2014 free' + arrow() + '</button>' +
-            '</div>' +
-            '<button type="button" class="bdf-dismiss" data-bdf-go="choice">\u2190 Back</button>' +
-          '</section>' +
-          '<section class="bdf-step bdf-center" data-step="b2" hidden>' +
-            '<div class="bdf-eyebrow">Please wait</div>' +
-            '<h2 class="bdf-heading"><span>Designing your </span><span class="bdf-gradient">new website\u2026</span></h2>' +
-            '<div class="bdf-build"><div class="bdf-build-bar"><div class="bdf-build-fill" data-bdf="build"></div></div><div class="bdf-build-status" data-bdf="build-status">Getting started\u2026</div></div>' +
-            '<p class="bdf-micro">This usually takes a moment \u2014 sit tight.</p>' +
-          '</section>' +
-          '<section class="bdf-step" data-step="b3" hidden>' +
-            '<div class="bdf-eyebrow">Nearly there</div>' +
-            '<h2 class="bdf-heading">Almost ready \u2014 good things take a moment.</h2>' +
-            '<p class="bdf-lede">Leave your email and we\u2019ll be in touch the second your brand-new website is ready.</p>' +
-            '<form class="bdf-form" data-bdf-form="redesign" novalidate>' +
-              '<input type="email" class="bdf-input" name="email" placeholder="you@yourbusiness.co.nz" autocomplete="email" required>' +
-              '<input type="text" name="website" class="bdf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
-              '<div class="bdf-error" role="alert" hidden></div>' +
-              '<button type="submit" class="bdf-btn bdf-btn-primary">Notify me when it\u2019s ready' + arrow() + '</button>' +
-            '</form>' +
-            '<p class="bdf-micro">No spam \u2014 just a message when it\u2019s ready.</p>' +
-          '</section>' +
-          '<section class="bdf-step bdf-center" data-step="b4" hidden>' +
-            '<div class="bdf-success" aria-hidden="true">' + svg('<path d="M20 6L9 17l-5-5"/>', 34) + '</div>' +
-            '<h2 class="bdf-heading">You\u2019re on the list!</h2>' +
-            '<p class="bdf-lede" data-bdf="success-redesign"></p>' +
-            '<div class="bdf-actions"><button type="button" class="bdf-btn bdf-btn-primary" data-bdf-close>Perfect</button></div>' +
-          '</section>' +
         '</div>' +
       '</div>';
   }
@@ -216,14 +194,11 @@
 
     var steps = Array.prototype.slice.call(overlay.querySelectorAll('.bdf-step'));
     var topbar = overlay.querySelector('[data-bdf="topbar"]');
-    var buildFill = overlay.querySelector('[data-bdf="build"]');
-    var buildStatus = overlay.querySelector('[data-bdf="build-status"]');
-    var progress = { choice: 0, a1: 33, a2: 66, a3: 100, b1: 33, b2: 55, b3: 80, b4: 100 };
+    var progress = { choice: 0, a1: 33, a2: 66, a3: 100 };
     var current = 'choice';
     var opened = false;
     var suppressedFlag = false;
     var completed = false;
-    var buildTimer = null;
     var savedEmail = '';
 
     overlay.querySelector('[data-bdf="h-lead"]').textContent = config.context === 'live' ? copy.lead : copy.lead + config.business + ' a';
@@ -251,13 +226,10 @@
         var input = active.querySelector('.bdf-input');
         if (input) setTimeout(function () { input.focus(); }, 60);
       }
-      if (step === 'b2') startBuild();
-      if (step === 'a3' || step === 'b4') {
-        var line = overlay.querySelector('[data-bdf="' + (step === 'a3' ? 'success-files' : 'success-redesign') + '"]');
+      if (step === 'a3') {
+        var line = overlay.querySelector('[data-bdf="success-files"]');
         if (line) {
-          line.textContent = step === 'a3'
-            ? 'Your website for ' + config.business + ' is on its way to ' + savedEmail + '. Can\u2019t find it? Look in Promotions or spam.'
-            : 'We\u2019ll email ' + savedEmail + ' the moment ' + config.business + '\u2019s brand-new website is ready.';
+          line.textContent = 'Your website for ' + config.business + ' is on its way to ' + savedEmail + '. Can\u2019t find it? Look in Promotions or spam.';
         }
       }
     }
@@ -280,36 +252,8 @@
       overlay.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
       suppress();
-      if (buildTimer) { clearInterval(buildTimer); buildTimer = null; }
       if (completed) return;
       pill.classList.add('bdf-show');
-    }
-
-    function startBuild() {
-      if (buildTimer) clearInterval(buildTimer);
-      var stages = [
-        { at: 0, text: 'Studying your competitors\u2026' },
-        { at: 22, text: 'Designing your custom layout\u2026' },
-        { at: 48, text: 'Writing your words\u2026' },
-        { at: 74, text: 'Adding the finishing touches\u2026' },
-        { at: 90, text: 'Polishing the details\u2026' }
-      ];
-      var progressValue = 0;
-      if (buildFill) buildFill.style.width = '0%';
-      if (buildStatus) buildStatus.textContent = stages[0].text;
-      buildTimer = setInterval(function () {
-        progressValue += Math.random() * 7 + 2;
-        if (progressValue > 92) progressValue = 92;
-        if (buildFill) buildFill.style.width = progressValue + '%';
-        var label = stages[0].text;
-        stages.forEach(function (stage) { if (progressValue >= stage.at) label = stage.text; });
-        if (buildStatus) buildStatus.textContent = label;
-        if (progressValue >= 92) {
-          clearInterval(buildTimer);
-          buildTimer = null;
-          setTimeout(function () { if (current === 'b2') go('b3'); }, 1400);
-        }
-      }, 700);
     }
 
     function setError(form, message) {
@@ -319,7 +263,7 @@
       else { box.textContent = ''; box.setAttribute('hidden', 'hidden'); }
     }
 
-    function send(form, choice) {
+    function send(form) {
       var input = form.querySelector('input[name="email"]');
       var honeypot = form.querySelector('input[name="website"]');
       var button = form.querySelector('button[type="submit"]');
@@ -341,7 +285,7 @@
           businessName: config.business,
           category: config.category,
           liveUrl: config.liveUrl,
-          choice: choice,
+          choice: 'files',
           email: email,
           website: honeypot ? honeypot.value : '',
           pageUrl: window.location.href,
@@ -352,12 +296,24 @@
         savedEmail = email;
         completed = true;
         suppress();
-        go(choice === 'files' ? 'a3' : 'b4');
+        go('a3');
       }).catch(function () {
         setError(form, 'Something went wrong. Please try again.');
         button.disabled = false;
         button.innerHTML = original;
       });
+    }
+
+    // The redesign branch lives on Byte Digital now: a dedicated six-step
+    // brief at /rebuild/, tagged so the lead can be traced back to this site.
+    function redesignUrl() {
+      var parts = ['src=' + encodeURIComponent(config.context === 'live' ? 'live' : 'showcase')];
+      if (config.slug) parts.push('slug=' + encodeURIComponent(config.slug));
+      if (config.business && config.business !== 'your business') {
+        parts.push('business=' + encodeURIComponent(config.business));
+      }
+      if (config.liveUrl) parts.push('live=' + encodeURIComponent(config.liveUrl));
+      return pageFor(tag, '/rebuild/') + '?' + parts.join('&');
     }
 
     overlay.addEventListener('click', function (event) {
@@ -366,13 +322,15 @@
       var nav = target.closest('[data-bdf-go]');
       if (nav) { go(nav.getAttribute('data-bdf-go')); return; }
       var branch = target.closest('[data-bdf-branch]');
-      if (branch) { go(branch.getAttribute('data-bdf-branch') === 'files' ? 'a1' : 'b1'); }
+      if (!branch) return;
+      if (branch.getAttribute('data-bdf-branch') === 'files') { go('a1'); return; }
+      window.location.assign(redesignUrl());
     });
 
     Array.prototype.forEach.call(overlay.querySelectorAll('form.bdf-form'), function (form) {
       form.addEventListener('submit', function (event) {
         event.preventDefault();
-        send(form, form.getAttribute('data-bdf-form'));
+        send(form);
       });
     });
 

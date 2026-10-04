@@ -1,0 +1,1080 @@
+<div class="rb-shell" id="rb-wizard">
+  <div class="rb-card glass" id="rb-card">
+    <div class="rb-head" id="rb-head">
+      <div class="rb-eyebrow">Free rebuild</div>
+      <div class="rb-progress">
+        <div class="rb-progress-track">
+          <div class="rb-progress-fill" id="rb-progress-fill"></div>
+        </div>
+        <div class="rb-progress-label" id="rb-progress-label">Step 1 of 6</div>
+      </div>
+    </div>
+
+    <div class="rb-body">
+      <section class="rb-step" data-rb-step="1">
+        <h2 class="rb-title">First up — who are you?</h2>
+        <p class="rb-lede">Just the basics. If you have a current website or social page, pop it in — it helps me see what you already have.</p>
+        <p class="rb-note">Completely free. No invoice, no payment and no card details — at any point.</p>
+        <label class="rb-label" for="rb-business">Business name <span class="rb-req">*</span></label>
+        <input class="rb-input" id="rb-business" type="text" autocomplete="organization" placeholder="e.g. Beckenham Automotive" />
+        <label class="rb-label" for="rb-current">Current website or Facebook page <span class="rb-opt">(optional)</span></label>
+        <input class="rb-input" id="rb-current" type="text" autocomplete="url" placeholder="https://... or just the name" />
+        <p class="rb-error" data-rb-error hidden></p>
+      </section>
+
+      <section class="rb-step" data-rb-step="2" hidden>
+        <h2 class="rb-title">What do you do?</h2>
+        <p class="rb-lede">Pick anything that applies — these get front and centre. Add your own words at the bottom if you offer something specific.</p>
+        <div class="rb-chips" data-rb-chips="services">
+          <button type="button" class="rb-chip" data-rb-value="Emergency call-outs">Emergency call-outs</button>
+          <button type="button" class="rb-chip" data-rb-value="Free quotes">Free quotes</button>
+          <button type="button" class="rb-chip" data-rb-value="Repairs &amp; maintenance">Repairs &amp; maintenance</button>
+          <button type="button" class="rb-chip" data-rb-value="Installations">Installations</button>
+          <button type="button" class="rb-chip" data-rb-value="Consultations">Consultations</button>
+          <button type="button" class="rb-chip" data-rb-value="Deliveries">Deliveries</button>
+          <button type="button" class="rb-chip" data-rb-value="Online orders">Online orders</button>
+          <button type="button" class="rb-chip" data-rb-value="24/7 service">24/7 service</button>
+          <button type="button" class="rb-chip" data-rb-value="Family owned">Family owned</button>
+          <button type="button" class="rb-chip" data-rb-value="Locally owned &amp; trusted">Locally owned &amp; trusted</button>
+        </div>
+        <label class="rb-label" for="rb-services-other">Anything else you offer that should stand out? <span class="rb-opt">(optional)</span></label>
+        <textarea class="rb-input rb-textarea" id="rb-services-other" rows="3" placeholder="e.g. Same-day call-outs across Christchurch, or free measure and quote"></textarea>
+        <p class="rb-error" data-rb-error hidden></p>
+      </section>
+
+      <section class="rb-step" data-rb-step="3" hidden>
+        <h2 class="rb-title">What makes you different?</h2>
+        <p class="rb-lede">The thing customers say they love, or a service you want to be known for. Plain words are perfect — this shapes the whole site.</p>
+        <label class="rb-label" for="rb-usp">Your unique selling point <span class="rb-opt">(optional, but worth 30 seconds)</span></label>
+        <textarea class="rb-input rb-textarea" id="rb-usp" rows="4" placeholder="e.g. We are the only local team that does X, or customers stay with us because..."></textarea>
+        <p class="rb-error" data-rb-error hidden></p>
+      </section>
+
+      <section class="rb-step" data-rb-step="4" hidden>
+        <h2 class="rb-title">What do you want to see on it?</h2>
+        <p class="rb-lede">What would look great to you? Pick anything that appeals, or describe it your own way — visuals, style, a site you like.</p>
+        <div class="rb-chips" data-rb-chips="design">
+          <button type="button" class="rb-chip" data-rb-value="Photo gallery">Photo gallery</button>
+          <button type="button" class="rb-chip" data-rb-value="Customer reviews">Customer reviews</button>
+          <button type="button" class="rb-chip" data-rb-value="Booking form">Booking form</button>
+          <button type="button" class="rb-chip" data-rb-value="Price list">Price list</button>
+          <button type="button" class="rb-chip" data-rb-value="Before &amp; after">Before &amp; after</button>
+          <button type="button" class="rb-chip" data-rb-value="Video">Video</button>
+          <button type="button" class="rb-chip" data-rb-value="Map &amp; directions">Map &amp; directions</button>
+          <button type="button" class="rb-chip" data-rb-value="Quote request form">Quote request form</button>
+          <button type="button" class="rb-chip" data-rb-value="Online shop">Online shop</button>
+          <button type="button" class="rb-chip" data-rb-value="Team profiles">Team profiles</button>
+        </div>
+        <label class="rb-label" for="rb-design-wishes">Anything visual you have in mind? <span class="rb-opt">(optional)</span></label>
+        <textarea class="rb-input rb-textarea" id="rb-design-wishes" rows="3" placeholder="e.g. Bold and modern, lots of photos of our work, a style like example.co.nz"></textarea>
+        <p class="rb-error" data-rb-error hidden></p>
+      </section>
+
+      <section class="rb-step" data-rb-step="5" hidden>
+        <h2 class="rb-title">Have anything to send me?</h2>
+        <p class="rb-lede">Logo, photos of your work, a brochure — anything helps make it yours. Skip this if you do not have anything handy.</p>
+        <div class="rb-drop" id="rb-drop">
+          <input type="file" id="rb-files" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.svg,.pdf,.zip" hidden />
+          <p class="rb-drop-title"><strong>Drop files here</strong> or <span class="rb-link">choose files</span></p>
+          <p class="rb-drop-hint">Up to 6 files, 8 MB each — photos, logo, PDF or ZIP</p>
+        </div>
+        <ul class="rb-filelist" id="rb-filelist"></ul>
+        <p class="rb-upload" id="rb-upload" hidden>Uploading…</p>
+        <label class="rb-label" for="rb-asset-link">Or paste a link instead <span class="rb-opt">(optional)</span></label>
+        <input class="rb-input" id="rb-asset-link" type="text" placeholder="Google Drive, Dropbox, or your current website" />
+        <p class="rb-error" data-rb-error hidden></p>
+      </section>
+
+      <section class="rb-step" data-rb-step="6" hidden>
+        <h2 class="rb-title">Last one — where do I send it?</h2>
+        <p class="rb-lede">Your first name and email, and that is the whole thing done. I will be in touch as soon as I have looked over your brief.</p>
+        <p class="rb-note">I only need an email to send it to. There is no invoice to pay and I will never ask for card details.</p>
+        <div class="rb-two">
+          <div>
+            <label class="rb-label" for="rb-first">First name <span class="rb-req">*</span></label>
+            <input class="rb-input" id="rb-first" type="text" autocomplete="given-name" placeholder="e.g. Sarah" />
+          </div>
+          <div>
+            <label class="rb-label" for="rb-email">Email <span class="rb-req">*</span></label>
+            <input class="rb-input" id="rb-email" type="email" autocomplete="email" placeholder="you@yourbusiness.co.nz" />
+          </div>
+        </div>
+        <label class="rb-consent">
+          <input type="checkbox" id="rb-consent" />
+          <span>Email me about my website. No spam, and a one-click unsubscribe in every email.</span>
+        </label>
+        <div class="rb-hp" aria-hidden="true">
+          <label for="rb-hp">Company website</label>
+          <input type="text" id="rb-hp" tabindex="-1" autocomplete="off" />
+        </div>
+        <p class="rb-error" data-rb-error hidden></p>
+      </section>
+
+      <section class="rb-step rb-success" id="rb-success" hidden>
+        <div class="rb-success-icon" aria-hidden="true">
+          <svg width="30" height="30" fill="none" stroke="#5EEAD4" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+        </div>
+        <h2 class="rb-title">You're in<span id="rb-success-name"></span>!</h2>
+        <p class="rb-lede">Your brief is with me. I will email <strong id="rb-success-email"></strong> as soon as your website is ready to look at — no calls, no pressure.</p>
+        <p class="rb-free-final">And to be clear: this has cost you nothing. There is no invoice, no payment and nothing to pay now or later. I built the pipeline that produces these sites, so the rebuild is genuinely free.</p>
+        <p class="rb-fine">If you later want me to put it live and maintain it for you, that is a separate conversation and a separate quote — but nothing about your free rebuild depends on it.</p>
+      </section>
+    </div>
+
+    <div class="rb-nav" id="rb-nav">
+      <button type="button" class="rb-back" id="rb-back" hidden>Back</button>
+      <button type="button" class="btn-cta rb-next" id="rb-next">
+        Continue
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  /* The wizard is a popup, not a page: the shell is capped at whatever height
+     the viewport leaves over so the overlay itself never has to scroll. */
+  .rb-shell {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    /* Content height when it fits; shrinks (and scrolls internally) when the
+       viewport is too short, which is what keeps the overlay scroll-free. */
+    flex: 0 1 auto;
+    min-height: 0;
+    max-height: 100%;
+    display: flex;
+  }
+
+  .rb-card {
+    width: 100%;
+    min-height: 0;
+    max-height: 100%;
+    overflow: hidden;
+    border-radius: 22px;
+    padding: clamp(20px, 3vh, 30px) clamp(20px, 3vw, 32px) clamp(18px, 2.4vh, 26px);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 60px rgba(139, 120, 230, 0.1);
+  }
+
+  /* `display` in a class beats the UA stylesheet's [hidden] rule, so the head
+     and nav stayed on screen behind the success panel — leaving a disabled
+     "Sending…" button and a Back button on a step that is already finished. */
+  .rb-head[hidden],
+  .rb-nav[hidden],
+  .rb-step[hidden] {
+    display: none;
+  }
+
+  .rb-head {
+    flex: none;
+    margin-bottom: clamp(12px, 2vh, 20px);
+  }
+
+  .rb-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: 12px;
+  }
+
+  .rb-progress {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .rb-progress-track {
+    flex: 1;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+  }
+
+  .rb-progress-fill {
+    height: 100%;
+    width: 16.6667%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .rb-progress-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  /* The one scrollable region in the whole funnel. The head and the nav are
+     flex:none siblings, so the progress bar and the buttons stay put and only
+     a step that genuinely cannot fit (a phone in landscape, six uploaded files)
+     scrolls. The vh-based floor stops the card resizing between a short step
+     and a tall one, and is small enough never to push the card off-screen. */
+  .rb-body {
+    flex: 1 1 auto;
+    min-height: 30vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+  }
+
+  .rb-body::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .rb-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+  }
+
+  .rb-title {
+    font-size: clamp(22px, 3.4vw, 28px);
+    font-weight: 700;
+    color: #fff;
+    margin: 4px 0 10px;
+  }
+
+  .rb-lede {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin: 0 0 22px;
+  }
+
+  .rb-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 18px 0 6px;
+  }
+
+  .rb-req {
+    color: #f87171;
+  }
+
+  .rb-opt {
+    color: var(--text-dimmed);
+    font-weight: 400;
+  }
+
+  .rb-input {
+    width: 100%;
+    padding: 13px 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .rb-input:focus {
+    border-color: rgba(94, 234, 212, 0.55);
+    box-shadow: 0 0 0 3px rgba(94, 234, 212, 0.12);
+  }
+
+  .rb-textarea {
+    resize: vertical;
+    min-height: 74px;
+    line-height: 1.6;
+  }
+
+  .rb-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .rb-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 6px;
+  }
+
+  .rb-chip {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 9px 16px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+
+  .rb-chip:hover {
+    border-color: rgba(139, 120, 230, 0.6);
+    color: #fff;
+  }
+
+  .rb-chip[aria-pressed='true'] {
+    background: linear-gradient(135deg, rgba(139, 120, 230, 0.3), rgba(94, 234, 212, 0.22));
+    border-color: rgba(94, 234, 212, 0.65);
+    color: #fff;
+  }
+
+  .rb-drop {
+    border: 1.5px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 26px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .rb-drop:hover,
+  .rb-drop.rb-dragover {
+    border-color: rgba(94, 234, 212, 0.6);
+    background: rgba(94, 234, 212, 0.05);
+  }
+
+  .rb-drop-title {
+    margin: 0;
+    font-size: 15px;
+    color: var(--text-secondary);
+  }
+
+  .rb-link {
+    color: var(--secondary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .rb-drop-hint {
+    margin: 8px 0 0;
+    font-size: 12.5px;
+    color: var(--text-dimmed);
+  }
+
+  .rb-filelist {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .rb-filelist li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  .rb-filelist .rb-file-name {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .rb-filelist .rb-file-size {
+    color: var(--text-dimmed);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .rb-filelist .rb-file-tick {
+    color: var(--secondary);
+    font-weight: 700;
+  }
+
+  .rb-filelist .rb-file-remove {
+    background: none;
+    border: none;
+    color: var(--text-dimmed);
+    font-size: 17px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 2px 4px;
+  }
+
+  .rb-filelist .rb-file-remove:hover {
+    color: #f87171;
+  }
+
+  .rb-upload {
+    margin: 12px 0 0;
+    font-size: 13px;
+    color: var(--secondary);
+  }
+
+  .rb-consent {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin: 22px 0 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+
+  .rb-consent input {
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .rb-hp {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .rb-error {
+    margin: 16px 0 0;
+    padding: 11px 14px;
+    border-radius: 10px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    font-size: 14px;
+    color: #fca5a5;
+  }
+
+  .rb-nav {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: clamp(14px, 2vh, 26px);
+    padding-top: clamp(12px, 1.8vh, 20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .rb-back {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px 6px;
+  }
+
+  .rb-back:hover {
+    color: #fff;
+  }
+
+  .rb-next {
+    margin-left: auto;
+    padding: 14px 34px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .rb-next:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .rb-success {
+    text-align: center;
+    padding: 40px 8px;
+  }
+
+  .rb-success-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(94, 234, 212, 0.14);
+    border: 2px solid rgba(94, 234, 212, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+
+  /* The free promise. Only on the opening and closing steps — saying "free" six
+     times would read as a sales pressure tactic rather than a fact. */
+.rb-note {
+    margin: -10px 0 18px;
+    padding: 10px 13px;
+    border-radius: 11px;
+    background: rgba(94, 234, 212, 0.07);
+    border: 1px solid rgba(94, 234, 212, 0.22);
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: #a7f3d0;
+  }
+
+  .rb-free-final {
+    margin: 0 auto 12px;
+    max-width: 460px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(94, 234, 212, 0.07);
+    border: 1px solid rgba(94, 234, 212, 0.22);
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 600;
+    color: #a7f3d0;
+  }
+
+  .rb-fine {
+    margin: 0 auto;
+    max-width: 460px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--text-dimmed);
+  }
+
+  .rb-success .rb-lede strong {
+    color: var(--text-primary);
+  }
+
+  /* Short viewports: tighten every vertical rhythm so all six steps still fit
+     without the step body scrolling. */
+  @media (max-height: 700px) {
+    .rb-card {
+      padding: 16px 20px 14px;
+    }
+
+    .rb-eyebrow {
+      margin-bottom: 8px;
+    }
+
+    .rb-title {
+      font-size: clamp(19px, 4.6vh, 22px);
+      margin: 2px 0 6px;
+    }
+
+    .rb-lede {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    .rb-label {
+      margin: 12px 0 5px;
+    }
+
+    .rb-input {
+      padding: 11px 13px;
+    }
+
+    .rb-textarea {
+      min-height: 60px;
+    }
+
+    .rb-chips {
+      gap: 6px;
+    }
+
+    .rb-chip {
+      font-size: 13px;
+      padding: 6px 11px;
+    }
+
+    .rb-textarea {
+      height: 58px;
+      min-height: 58px;
+    }
+
+    .rb-drop {
+      padding: 18px 16px;
+    }
+
+    .rb-consent {
+      margin-top: 14px;
+    }
+
+    .rb-note {
+      margin: -8px 0 14px;
+      padding: 8px 11px;
+      font-size: 12.5px;
+    }
+
+    .rb-free-final {
+      padding: 11px 13px;
+      font-size: 14px;
+    }
+
+    .rb-fine {
+      font-size: 11.5px;
+    }
+
+    .rb-error {
+      margin: 10px 0 0;
+    }
+
+    .rb-next {
+      padding: 12px 28px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .rb-card {
+      padding: 18px 16px 16px;
+      border-radius: 18px;
+    }
+
+    .rb-two {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .rb-next {
+      padding: 13px 24px;
+    }
+
+    /* The two chip steps are the tallest thing in the funnel — ten chips wrap to
+       six rows on a phone. Tightening the chip and the type above them keeps
+       those steps inside the card without any scrolling. */
+    .rb-title {
+      font-size: 20px;
+      margin: 2px 0 6px;
+    }
+
+    .rb-lede {
+      font-size: 13.5px;
+      line-height: 1.5;
+      margin: 0 0 12px;
+    }
+
+    .rb-label {
+      font-size: 12.5px;
+      margin: 10px 0 4px;
+    }
+
+    .rb-chips {
+      gap: 5px;
+    }
+
+    .rb-chip {
+      font-size: 12.5px;
+      padding: 5px 9px;
+    }
+
+    .rb-textarea {
+      height: 62px;
+      min-height: 62px;
+    }
+
+    .rb-consent {
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    .rb-note {
+      margin: -8px 0 12px;
+      padding: 8px 11px;
+      font-size: 12.5px;
+    }
+
+    .rb-free-final {
+      padding: 12px 13px;
+      font-size: 14px;
+    }
+
+    .rb-fine {
+      font-size: 11.5px;
+    }
+
+    .rb-two .rb-label {
+      margin-top: 6px;
+    }
+  }
+
+  /* The shortest phones (an iPhone SE is 667px tall) are the tightest case in
+     the funnel: the free-note copy took vertical space out of steps 2, 4 and 6,
+     so these are the last few pixels. Nothing scrolls — the page never does. */
+  @media (max-width: 640px) and (max-height: 700px) {
+    .rb-title {
+      font-size: 18px;
+    }
+
+    .rb-lede {
+      margin: 0 0 10px;
+    }
+
+    .rb-chip {
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+
+    .rb-chips {
+      gap: 4px;
+    }
+
+    .rb-textarea {
+      height: 52px;
+      min-height: 52px;
+    }
+
+    .rb-note {
+      margin: -8px 0 10px;
+      padding: 7px 10px;
+      font-size: 12px;
+    }
+
+    .rb-consent {
+      margin-top: 8px;
+      font-size: 12px;
+    }
+
+    .rb-two .rb-label {
+      margin-top: 2px;
+    }
+  }
+
+  /* Below this there is not enough width for two inputs side by side. */
+  @media (max-width: 359px) {
+    .rb-two {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  type LeadSource = 'live' | 'showcase' | 'site';
+
+  interface UploadedAsset {
+    key: string;
+    name: string;
+    size: number;
+    type: string;
+    url: string;
+  }
+
+  const MAX_FILES = 6;
+  const MAX_FILE_BYTES = 8 * 1024 * 1024;
+  const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'pdf', 'zip'];
+  const TOTAL_STEPS = 6;
+
+  const params = new URLSearchParams(window.location.search);
+  const srcParam = params.get('src') || 'site';
+  const source: LeadSource = (['live', 'showcase', 'site'] as const).includes(srcParam as LeadSource)
+    ? (srcParam as LeadSource)
+    : 'site';
+  const slug = params.get('slug') || '';
+  const prefillBusiness = params.get('business') || '';
+  const prefillCurrent = params.get('live') || '';
+
+  const card = document.getElementById('rb-card') as HTMLElement;
+  const head = document.getElementById('rb-head') as HTMLElement;
+  const nav = document.getElementById('rb-nav') as HTMLElement;
+  const nextButton = document.getElementById('rb-next') as HTMLButtonElement;
+  const backButton = document.getElementById('rb-back') as HTMLButtonElement;
+  const progressFill = document.getElementById('rb-progress-fill') as HTMLElement;
+  const progressLabel = document.getElementById('rb-progress-label') as HTMLElement;
+  const success = document.getElementById('rb-success') as HTMLElement;
+
+  const businessInput = document.getElementById('rb-business') as HTMLInputElement;
+  const currentInput = document.getElementById('rb-current') as HTMLInputElement;
+  const servicesOther = document.getElementById('rb-services-other') as HTMLTextAreaElement;
+  const uspInput = document.getElementById('rb-usp') as HTMLTextAreaElement;
+  const designWishes = document.getElementById('rb-design-wishes') as HTMLTextAreaElement;
+  const assetLink = document.getElementById('rb-asset-link') as HTMLInputElement;
+  const firstNameInput = document.getElementById('rb-first') as HTMLInputElement;
+  const emailInput = document.getElementById('rb-email') as HTMLInputElement;
+  const consentInput = document.getElementById('rb-consent') as HTMLInputElement;
+  const honeypot = document.getElementById('rb-hp') as HTMLInputElement;
+  const fileInput = document.getElementById('rb-files') as HTMLInputElement;
+  const dropZone = document.getElementById('rb-drop') as HTMLElement;
+  const fileList = document.getElementById('rb-filelist') as HTMLUListElement;
+  const uploadNote = document.getElementById('rb-upload') as HTMLElement;
+
+  const steps = Array.from(document.querySelectorAll<HTMLElement>('.rb-step[data-rb-step]'));
+  let currentStep = 1;
+  let assets: UploadedAsset[] = [];
+  const picks: Record<string, Set<string>> = { services: new Set(), design: new Set() };
+
+  businessInput.value = prefillBusiness;
+  currentInput.value = prefillCurrent;
+
+  function track(name: string, params: Record<string, unknown> = {}) {
+    const gtag = (window as any).gtag;
+    if (typeof gtag === 'function') gtag('event', name, params);
+  }
+
+  function stepError(step: number): HTMLElement | null {
+    return document.querySelector(`.rb-step[data-rb-step="${step}"] [data-rb-error]`);
+  }
+
+  function clearErrors() {
+    document.querySelectorAll<HTMLElement>('[data-rb-error]').forEach((el) => {
+      el.hidden = true;
+      el.textContent = '';
+    });
+  }
+
+  function showError(step: number, message: string) {
+    const el = stepError(step);
+    if (!el) return;
+    el.textContent = message;
+    el.hidden = false;
+  }
+
+  function collectChips(group: string): string[] {
+    return Array.from(picks[group]);
+  }
+
+  function go(step: number) {
+    clearErrors();
+    currentStep = step;
+    steps.forEach((node) => {
+      node.hidden = Number(node.getAttribute('data-rb-step')) !== step;
+    });
+    head.hidden = false;
+    nav.hidden = false;
+    success.hidden = true;
+    progressFill.style.width = `${(step / TOTAL_STEPS) * 100}%`;
+    progressLabel.textContent = `Step ${step} of ${TOTAL_STEPS}`;
+    backButton.hidden = step <= 1;
+    nextButton.innerHTML =
+      step === TOTAL_STEPS
+        ? 'Send my brief <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>'
+        : 'Continue <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>';
+    track('rebuild_step', { step, source });
+    const focusTarget = document.querySelector<HTMLElement>(
+      `.rb-step[data-rb-step="${step}"] input:not([tabindex="-1"]):not([type="checkbox"]), .rb-step[data-rb-step="${step}"] textarea`
+    );
+    if (focusTarget && window.matchMedia('(min-width: 641px)').matches) focusTarget.focus({ preventScroll: true });
+  }
+
+  function validateStep(step: number): string {
+    if (step === 1 && !businessInput.value.trim()) {
+      return 'Please enter your business name.';
+    }
+    if (step === 2 && picks.services.size === 0 && !servicesOther.value.trim()) {
+      return 'Pick at least one, or describe what you do in your own words.';
+    }
+    if (step === 6) {
+      if (!firstNameInput.value.trim()) return 'Please enter your first name.';
+      const email = emailInput.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return 'Please enter a valid email address.';
+    }
+    return '';
+  }
+
+  function advance() {
+    const problem = validateStep(currentStep);
+    if (problem) {
+      showError(currentStep, problem);
+      return;
+    }
+    if (currentStep < TOTAL_STEPS) {
+      go(currentStep + 1);
+      return;
+    }
+    void submit();
+  }
+
+  nextButton.addEventListener('click', advance);
+  backButton.addEventListener('click', () => {
+    if (currentStep > 1) go(currentStep - 1);
+  });
+
+  card.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter') return;
+    const target = event.target as HTMLElement;
+    if (target.tagName === 'TEXTAREA' || target.tagName === 'BUTTON') return;
+    event.preventDefault();
+    advance();
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-rb-chips]').forEach((group) => {
+    const name = group.getAttribute('data-rb-chips') as string;
+    group.addEventListener('click', (event) => {
+      const chip = (event.target as HTMLElement).closest<HTMLElement>('.rb-chip');
+      if (!chip) return;
+      const value = chip.getAttribute('data-rb-value') || '';
+      const set = picks[name];
+      if (set.has(value)) {
+        set.delete(value);
+        chip.setAttribute('aria-pressed', 'false');
+      } else {
+        set.add(value);
+        chip.setAttribute('aria-pressed', 'true');
+      }
+    });
+  });
+
+  function formatSize(bytes: number): string {
+    if (bytes >= 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+    return `${Math.max(1, Math.round(bytes / 1024))} KB`;
+  }
+
+  function renderFiles() {
+    fileList.innerHTML = '';
+    assets.forEach((asset, index) => {
+      const item = document.createElement('li');
+      const name = document.createElement('span');
+      name.className = 'rb-file-name';
+      name.textContent = asset.name;
+      const size = document.createElement('span');
+      size.className = 'rb-file-size';
+      size.textContent = formatSize(asset.size);
+      const tick = document.createElement('span');
+      tick.className = 'rb-file-tick';
+      tick.textContent = '\u2713';
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'rb-file-remove';
+      remove.setAttribute('aria-label', `Remove ${asset.name}`);
+      remove.textContent = '\u00d7';
+      remove.addEventListener('click', () => {
+        assets.splice(index, 1);
+        renderFiles();
+      });
+      item.append(name, size, tick, remove);
+      fileList.appendChild(item);
+    });
+  }
+
+  function fileProblem(file: File): string {
+    const extension = (file.name.split('.').pop() || '').toLowerCase();
+    if (!ALLOWED_EXTENSIONS.includes(extension)) {
+      return `"${file.name}" is not a supported type. Photos, PDFs and ZIPs only.`;
+    }
+    if (file.size > MAX_FILE_BYTES) {
+      return `"${file.name}" is bigger than 8 MB. Please compress it or paste a link instead.`;
+    }
+    return '';
+  }
+
+  async function uploadFiles(list: FileList | File[]) {
+    const files = Array.from(list);
+    if (assets.length + files.length > MAX_FILES) {
+      showError(5, `That would be more than ${MAX_FILES} files. Please remove some first.`);
+      return;
+    }
+    for (const file of files) {
+      const problem = fileProblem(file);
+      if (problem) {
+        showError(5, problem);
+        return;
+      }
+    }
+
+    clearErrors();
+    const form = new FormData();
+    files.forEach((file) => form.append('files', file));
+
+    uploadNote.hidden = false;
+    uploadNote.textContent = `Uploading ${files.length} file${files.length === 1 ? '' : 's'}\u2026`;
+    fileInput.disabled = true;
+
+    try {
+      const res = await fetch('/api/rebuild-assets', { method: 'POST', body: form });
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        showError(5, payload.error || 'The upload failed. Please try again, or paste a link instead.');
+        return;
+      }
+      assets = assets.concat(payload.files as UploadedAsset[]);
+      renderFiles();
+    } catch {
+      showError(5, 'Could not reach the server. Please try again, or paste a link instead.');
+    } finally {
+      uploadNote.hidden = true;
+      fileInput.disabled = false;
+      fileInput.value = '';
+    }
+  }
+
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files && fileInput.files.length) void uploadFiles(fileInput.files);
+  });
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  ['dragenter', 'dragover'].forEach((name) =>
+    dropZone.addEventListener(name, (event) => {
+      event.preventDefault();
+      dropZone.classList.add('rb-dragover');
+    })
+  );
+  ['dragleave', 'drop'].forEach((name) =>
+    dropZone.addEventListener(name, (event) => {
+      event.preventDefault();
+      dropZone.classList.remove('rb-dragover');
+    })
+  );
+  dropZone.addEventListener('drop', (event) => {
+    const files = (event as DragEvent).dataTransfer?.files;
+    if (files && files.length) void uploadFiles(files);
+  });
+
+  async function submit() {
+    nextButton.disabled = true;
+    const original = nextButton.innerHTML;
+    nextButton.textContent = 'Sending\u2026';
+
+    const payload = {
+      source,
+      slug,
+      businessName: businessInput.value.trim(),
+      currentWebsite: currentInput.value.trim(),
+      services: collectChips('services'),
+      servicesOther: servicesOther.value.trim(),
+      usp: uspInput.value.trim(),
+      designPicks: collectChips('design'),
+      designWishes: designWishes.value.trim(),
+      assets: assets.map(({ key, name, size, type }) => ({ key, name, size, type })),
+      assetLink: assetLink.value.trim(),
+      firstName: firstNameInput.value.trim(),
+      email: emailInput.value.trim(),
+      consent: consentInput.checked,
+      companyWebsite: honeypot.value,
+      pageUrl: window.location.href,
+      referrer: document.referrer || '',
+    };
+
+    try {
+      const res = await fetch('/api/rebuild-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        showError(6, data.error || 'Something went wrong. Please try again.');
+        nextButton.disabled = false;
+        nextButton.innerHTML = original;
+        return;
+      }
+
+      track('rebuild_submit', { source, has_assets: assets.length > 0 });
+      const successName = document.getElementById('rb-success-name');
+      const successEmail = document.getElementById('rb-success-email');
+      if (successName) successName.textContent = `, ${payload.firstName}`;
+      if (successEmail) successEmail.textContent = payload.email;
+
+      steps.forEach((node) => (node.hidden = true));
+      head.hidden = true;
+      nav.hidden = true;
+      success.hidden = false;
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch {
+      showError(6, 'Could not reach the server. Please check your connection and try again.');
+      nextButton.disabled = false;
+      nextButton.innerHTML = original;
+    }
+  }
+
+  go(1);
+</script>
