@@ -3,5 +3,6 @@ Allow: /
 Disallow: /admin-login
 Disallow: /chatbot-dashboard
 Disallow: /c/
+Disallow: /rebuild
 
 Sitemap: https://bytedigital.co.nz/sitemap-index.xml

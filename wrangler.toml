@@ -10,3 +10,12 @@ database_id = "6f759b0c-d414-412a-8ff3-b1e07552d722"
 [[r2_buckets]]
 binding = "REBUILD_ASSETS"
 bucket_name = "bytedigital-rebuilds"
+
+# Cold-arrival briefs are handed to the funnel worker — its own project, its
+# own deploy, kept apart from the build pipeline so the two workflows stay
+# separable. The URL is not secret; INTAKE_SECRET is, and must be set with:
+#   wrangler pages secret put INTAKE_SECRET
+# and kept identical on the funnel worker. With either unset, intake is
+# skipped and the brief still lands in D1 and the notification email.
+[vars]
+INTAKE_URL = "https://bytedigital-funnel.byte-digital.workers.dev/api/intake"

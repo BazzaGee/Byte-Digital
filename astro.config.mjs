@@ -15,6 +15,10 @@ export default defineConfig({
           '/admin-login/',
           '/chatbot-dashboard/',
           '/c/',
+          // The cold-arrival funnel overlay: an unindexable utility page like
+          // /c/, not content worth ranking.
+          '/website/',
+          '/rebuild/',
         ];
         return !PRIVATE_PATHS.some(
           (path) => pathname === path || pathname.startsWith(path),

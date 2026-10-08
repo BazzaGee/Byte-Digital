@@ -1,98 +1,354 @@
 ---
 import BuildStageMachine from './BuildStageMachine.astro';
+import {
+  copyFor,
+  SERVICES_BY_CATEGORY,
+  type FunnelVariant,
+} from '../data/funnel-copy';
+
+interface Props {
+  /** Which world the visitor arrived from. Drives copy, steps and the tag. */
+  variant?: FunnelVariant;
+}
+
+const { variant = 'rebuild' } = Astro.props;
+const copy = copyFor(variant);
+
+// Optional steps are gated on whether the copy supplies them, so the markup,
+// the words and the step order can never disagree with each other.
+const services = copy.services;
+const category = copy.category;
+const shape = copy.shape;
+const capabilities = copy.capabilities;
+const existingSite = copy.business.existingGroup;
+const uspChips = copy.usp.group;
+const design = copy.design;
+
+// Matches the markup below: five sections always render, the rest only when
+// their variant supplies them. The script recomputes the same number from the
+// DOM on load, so this only covers the moment before it runs.
+// business + usp + assets + contact always render; the rest depend on variant.
+const stepCount =
+  4 +
+  (category ? 1 : 0) +
+  (services ? 1 : 0) +
+  (shape ? 1 : 0) +
+  (capabilities ? 1 : 0) +
+  (design ? 1 : 0);
 ---
 
-<div class="rb-shell" id="rb-wizard">
+<div class="rb-shell" id="rb-wizard" data-variant={variant}>
   <div class="rb-card glass" id="rb-card">
     <div class="rb-head" id="rb-head">
-      <div class="rb-eyebrow">Free rebuild</div>
+      <div class="rb-eyebrow">{copy.eyebrow}</div>
       <div class="rb-progress">
         <div class="rb-progress-track">
           <div class="rb-progress-fill" id="rb-progress-fill"></div>
         </div>
-        <div class="rb-progress-label" id="rb-progress-label">Step 1 of 6</div>
+        <div class="rb-progress-label" id="rb-progress-label">Step 1 of {stepCount}</div>
       </div>
     </div>
 
     <div class="rb-body">
-      <section class="rb-step" data-rb-step="1">
-        <h2 class="rb-title">First up — who are you?</h2>
-        <p class="rb-lede">Just the basics. If you have a current website or social page, pop it in — it helps me see what you already have.</p>
-        <p class="rb-note">Completely free. No invoice, no payment and no card details — at any point.</p>
-        <label class="rb-label" for="rb-business">Business name <span class="rb-req">*</span></label>
-        <input class="rb-input" id="rb-business" type="text" autocomplete="organization" placeholder="e.g. Beckenham Automotive" />
-        <label class="rb-label" for="rb-current">Current website or Facebook page <span class="rb-opt">(optional)</span></label>
-        <input class="rb-input" id="rb-current" type="text" autocomplete="url" placeholder="https://... or just the name" />
+      <section class="rb-step" data-rb-kind="business">
+        <h2 class="rb-title">{copy.business.title}</h2>
+        <p class="rb-lede">{copy.business.lede}</p>
+        <p class="rb-note">{copy.business.note}</p>
+
+        <label class="rb-label" for="rb-business">{copy.business.businessLabel} <span class="rb-req">*</span></label>
+        <input class="rb-input" id="rb-business" type="text" autocomplete="organization" placeholder={copy.business.businessPlaceholder} />
+
+        {existingSite && (
+          <div class="rb-fieldset">
+            <span class="rb-label" id="legend-existingSite">
+              {existingSite.legend} <span class="rb-req">*</span>
+            </span>
+            {existingSite.hint && <p class="rb-hint">{existingSite.hint}</p>}
+            <div
+              class="rb-chips"
+              role="group"
+              aria-labelledby="legend-existingSite"
+              data-rb-chips={existingSite.id}
+              data-rb-single="true"
+            >
+              {existingSite.options.map((option) => (
+                <button type="button" class="rb-chip" data-rb-value={option.value} aria-pressed="false">
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <label class="rb-label" for="rb-current">
+          {copy.business.websiteLabel} <span class="rb-opt">(optional)</span>
+        </label>
+        <input class="rb-input" id="rb-current" type="text" autocomplete="url" placeholder={copy.business.websitePlaceholder} />
+
+        {copy.business.contactLabel && (
+          <>
+            <label class="rb-label" for="rb-contact">
+              {copy.business.contactLabel} <span class="rb-opt">(optional)</span>
+            </label>
+            <input class="rb-input" id="rb-contact" type="text" autocomplete="tel" placeholder={copy.business.contactPlaceholder} />
+            <p class="rb-hint">{copy.business.contactHint}</p>
+          </>
+        )}
+
         <p class="rb-error" data-rb-error hidden></p>
       </section>
 
-      <section class="rb-step" data-rb-step="2" hidden>
-        <h2 class="rb-title">What do you do?</h2>
-        <p class="rb-lede">Pick anything that applies — these get front and centre. Add your own words at the bottom if you offer something specific.</p>
-        <div class="rb-chips" data-rb-chips="services">
-          <button type="button" class="rb-chip" data-rb-value="Emergency call-outs">Emergency call-outs</button>
-          <button type="button" class="rb-chip" data-rb-value="Free quotes">Free quotes</button>
-          <button type="button" class="rb-chip" data-rb-value="Repairs &amp; maintenance">Repairs &amp; maintenance</button>
-          <button type="button" class="rb-chip" data-rb-value="Installations">Installations</button>
-          <button type="button" class="rb-chip" data-rb-value="Consultations">Consultations</button>
-          <button type="button" class="rb-chip" data-rb-value="Deliveries">Deliveries</button>
-          <button type="button" class="rb-chip" data-rb-value="Online orders">Online orders</button>
-          <button type="button" class="rb-chip" data-rb-value="24/7 service">24/7 service</button>
-          <button type="button" class="rb-chip" data-rb-value="Family owned">Family owned</button>
-          <button type="button" class="rb-chip" data-rb-value="Locally owned &amp; trusted">Locally owned &amp; trusted</button>
-        </div>
-        <label class="rb-label" for="rb-services-other">Anything else you offer that should stand out? <span class="rb-opt">(optional)</span></label>
-        <textarea class="rb-input rb-textarea" id="rb-services-other" rows="3" placeholder="e.g. Same-day call-outs across Christchurch, or free measure and quote"></textarea>
+      {category && (
+        <section class="rb-step" data-rb-kind="category" hidden>
+          <h2 class="rb-title">{category.title}</h2>
+          <p class="rb-lede">{category.lede}</p>
+
+          <div class="rb-fieldset">
+            <span class="rb-label" id="legend-category">{category.group.legend} <span class="rb-req">*</span></span>
+            <div
+              class="rb-chips"
+              role="group"
+              aria-labelledby="legend-category"
+              data-rb-chips={category.group.id}
+              data-rb-single="true"
+            >
+              {category.group.options.map((option) => (
+                <button type="button" class="rb-chip" data-rb-value={option.value} aria-pressed="false">
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {category.typeLabel && (
+            <>
+              <label class="rb-label" for="rb-category-other">
+                {category.typeLabel} <span class="rb-opt">(optional)</span>
+              </label>
+              <input class="rb-input" id="rb-category-other" type="text" placeholder={category.typePlaceholder} />
+            </>
+          )}
+
+          {category.revealGroup && (
+            <div id="rb-reveal" hidden>
+              <div class="rb-fieldset">
+                <span class="rb-label" id="legend-services">
+                  {category.revealGroup.legend} <span class="rb-req">*</span>
+                </span>
+                <div
+                  class="rb-chips"
+                  role="group"
+                  aria-labelledby="legend-services"
+                  data-rb-chips={category.revealGroup.id}
+                >
+                  {Object.entries(SERVICES_BY_CATEGORY).flatMap(([type, options]) =>
+                    options.map((option) => (
+                      <button
+                        type="button"
+                        class="rb-chip"
+                        data-rb-value={option.value}
+                        data-for-category={type}
+                        aria-pressed="false"
+                        hidden
+                      >
+                        {option.label}
+                      </button>
+                    ))
+                  )}
+                </div>
+              </div>
+
+              <label class="rb-label" for="rb-services-other">
+                {category.otherLabel} <span class="rb-opt">(optional)</span>
+              </label>
+              <textarea class="rb-input rb-textarea" id="rb-services-other" rows="3" placeholder={category.otherPlaceholder}></textarea>
+            </div>
+          )}
+
+          <p class="rb-error" data-rb-error hidden></p>
+        </section>
+      )}
+
+      {services && (
+        <section class="rb-step" data-rb-kind="services" hidden>
+          <h2 class="rb-title">{services.title}</h2>
+          <p class="rb-lede">{services.lede}</p>
+
+          <div class="rb-fieldset">
+            <span class="rb-label" id="legend-services-rebuild">{services.group.legend} <span class="rb-req">*</span></span>
+            <div class="rb-chips" role="group" aria-labelledby="legend-services-rebuild" data-rb-chips={services.group.id}>
+              {services.group.options.map((option) => (
+                <button type="button" class="rb-chip" data-rb-value={option.value} aria-pressed="false">
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <label class="rb-label" for="rb-services-other">
+            {services.otherLabel} <span class="rb-opt">(optional)</span>
+          </label>
+          <textarea class="rb-input rb-textarea" id="rb-services-other" rows="3" placeholder={services.otherPlaceholder}></textarea>
+
+          <p class="rb-error" data-rb-error hidden></p>
+        </section>
+      )}
+
+      <section class="rb-step" data-rb-kind="usp" hidden>
+        <h2 class="rb-title">{copy.usp.title}</h2>
+        <p class="rb-lede">{copy.usp.lede}</p>
+
+        {uspChips && (
+          <div class="rb-fieldset">
+            <span class="rb-label" id="legend-usp">{uspChips.legend}</span>
+            <div class="rb-chips" role="group" aria-labelledby="legend-usp" data-rb-chips={uspChips.id}>
+              {uspChips.options.map((option) => (
+                <button type="button" class="rb-chip" data-rb-value={option.value} aria-pressed="false">
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <label class="rb-label" for="rb-usp">
+          {copy.usp.label} {copy.usp.labelNote && <span class="rb-opt">({copy.usp.labelNote})</span>}
+        </label>
+        <textarea class="rb-input rb-textarea" id="rb-usp" rows="4" placeholder={copy.usp.placeholder}></textarea>
         <p class="rb-error" data-rb-error hidden></p>
       </section>
 
-      <section class="rb-step" data-rb-step="3" hidden>
-        <h2 class="rb-title">What makes you different?</h2>
-        <p class="rb-lede">The thing customers say they love, or a service you want to be known for. Plain words are perfect — this shapes the whole site.</p>
-        <label class="rb-label" for="rb-usp">Your unique selling point <span class="rb-opt">(optional, but worth 30 seconds)</span></label>
-        <textarea class="rb-input rb-textarea" id="rb-usp" rows="4" placeholder="e.g. We are the only local team that does X, or customers stay with us because..."></textarea>
-        <p class="rb-error" data-rb-error hidden></p>
-      </section>
+      {shape && (
+        <section class="rb-step" data-rb-kind="siteType" hidden>
+          <h2 class="rb-title">{shape.title}</h2>
+          <p class="rb-lede">{shape.lede}</p>
 
-      <section class="rb-step" data-rb-step="4" hidden>
-        <h2 class="rb-title">What do you want to see on it?</h2>
-        <p class="rb-lede">What would look great to you? Pick anything that appeals, or describe it your own way — visuals, style, a site you like.</p>
-        <div class="rb-chips" data-rb-chips="design">
-          <button type="button" class="rb-chip" data-rb-value="Photo gallery">Photo gallery</button>
-          <button type="button" class="rb-chip" data-rb-value="Customer reviews">Customer reviews</button>
-          <button type="button" class="rb-chip" data-rb-value="Booking form">Booking form</button>
-          <button type="button" class="rb-chip" data-rb-value="Price list">Price list</button>
-          <button type="button" class="rb-chip" data-rb-value="Before &amp; after">Before &amp; after</button>
-          <button type="button" class="rb-chip" data-rb-value="Video">Video</button>
-          <button type="button" class="rb-chip" data-rb-value="Map &amp; directions">Map &amp; directions</button>
-          <button type="button" class="rb-chip" data-rb-value="Quote request form">Quote request form</button>
-          <button type="button" class="rb-chip" data-rb-value="Online shop">Online shop</button>
-          <button type="button" class="rb-chip" data-rb-value="Team profiles">Team profiles</button>
-        </div>
-        <label class="rb-label" for="rb-design-wishes">Anything visual you have in mind? <span class="rb-opt">(optional)</span></label>
-        <textarea class="rb-input rb-textarea" id="rb-design-wishes" rows="3" placeholder="e.g. Bold and modern, lots of photos of our work, a style like example.co.nz"></textarea>
-        <p class="rb-error" data-rb-error hidden></p>
-      </section>
+          <div class="rb-fieldset">
+            <span class="rb-label" id="legend-siteType">{shape.siteGroup.legend}</span>
+            <div class="rb-chips" role="group" aria-labelledby="legend-siteType" data-rb-chips={shape.siteGroup.id}>
+              {shape.siteGroup.options.map((option) => (
+                <button type="button" class="rb-chip" data-rb-value={option.value} aria-pressed="false">
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
 
-      <section class="rb-step" data-rb-step="5" hidden>
-        <h2 class="rb-title">Have anything to send me?</h2>
-        <p class="rb-lede">Logo, photos of your work, a brochure — anything helps make it yours. Skip this if you do not have anything handy.</p>
+          <div class="rb-fieldset">
+            <span class="rb-label" id="legend-shape-design">{shape.designGroup.legend}</span>
+            <div class="rb-chips" role="group" aria-labelledby="legend-shape-design" data-rb-chips={shape.designGroup.id}>
+              {shape.designGroup.options.map((option) => (
+                <button type="button" class="rb-chip" data-rb-value={option.value} aria-pressed="false">
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <label class="rb-label" for="rb-shape-other">
+            {shape.label} <span class="rb-opt">(optional)</span>
+          </label>
+          <textarea class="rb-input rb-textarea" id="rb-shape-other" rows="2" placeholder={shape.placeholder}></textarea>
+          <p class="rb-error" data-rb-error hidden></p>
+        </section>
+      )}
+
+      {capabilities && (
+        <section class="rb-step" data-rb-kind="capabilities" hidden>
+          <h2 class="rb-title">{capabilities.title}</h2>
+          <p class="rb-lede">{capabilities.lede}</p>
+
+          <div class="rb-tier rb-tier--in">
+            <div class="rb-tier-legend rb-tier-legend--in">{capabilities.inScope.legend}</div>
+            <p class="rb-tier-body">{capabilities.inScope.body}</p>
+            <div class="rb-chips" role="group" aria-label={capabilities.inScope.legend} data-rb-chips={capabilities.inScope.id}>
+              {capabilities.inScope.options.map((option) => (
+                <button type="button" class="rb-chip" data-rb-value={option.value} aria-pressed="false">
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div class="rb-tier rb-tier--out">
+            <div class="rb-tier-legend rb-tier-legend--out">{capabilities.outScope.legend}</div>
+            <p class="rb-tier-body">{capabilities.outScope.body}</p>
+            <div class="rb-chips" role="group" aria-label={capabilities.outScope.legend} data-rb-chips={capabilities.outScope.id}>
+              {capabilities.outScope.options.map((option) => (
+                <button type="button" class="rb-chip" data-rb-value={option.value} aria-pressed="false">
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div id="rb-integrations-reveal" hidden>
+            <div class="rb-fieldset">
+              <span class="rb-label" id="legend-integrations">{capabilities.integrationLegend}</span>
+              <div class="rb-chips" role="group" aria-labelledby="legend-integrations" data-rb-chips={capabilities.integrationGroup.id}>
+                {capabilities.integrationGroup.options.map((option) => (
+                  <button type="button" class="rb-chip" data-rb-value={option.value} aria-pressed="false">
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <label class="rb-label" for="rb-feature-note">
+            {capabilities.noteLabel} <span class="rb-opt">(optional)</span>
+          </label>
+          <textarea class="rb-input rb-textarea" id="rb-feature-note" rows="2" placeholder={capabilities.notePlaceholder}></textarea>
+
+          <p class="rb-error" data-rb-error hidden></p>
+        </section>
+      )}
+
+      {design && (
+        <section class="rb-step" data-rb-kind="design" hidden>
+          <h2 class="rb-title">{design.title}</h2>
+          <p class="rb-lede">{design.lede}</p>
+
+          <div class="rb-fieldset">
+            <span class="rb-label" id="legend-design">{design.group.legend}</span>
+            <div class="rb-chips" role="group" aria-labelledby="legend-design" data-rb-chips={design.group.id}>
+              {design.group.options.map((option) => (
+                <button type="button" class="rb-chip" data-rb-value={option.value} aria-pressed="false">
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <label class="rb-label" for="rb-design-wishes">
+            {design.label} <span class="rb-opt">(optional)</span>
+          </label>
+          <textarea class="rb-input rb-textarea" id="rb-design-wishes" rows="3" placeholder={design.placeholder}></textarea>
+          <p class="rb-error" data-rb-error hidden></p>
+        </section>
+      )}
+
+      <section class="rb-step" data-rb-kind="assets" hidden>
+        <h2 class="rb-title">{copy.assets.title}</h2>
+        <p class="rb-lede">{copy.assets.lede}</p>
         <div class="rb-drop" id="rb-drop">
           <input type="file" id="rb-files" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.svg,.pdf,.zip" hidden />
-          <p class="rb-drop-title"><strong>Drop files here</strong> or <span class="rb-link">choose files</span></p>
-          <p class="rb-drop-hint">Up to 6 files, 8 MB each — photos, logo, PDF or ZIP</p>
+          <p class="rb-drop-title"><strong>{copy.assets.dropStrong}</strong> or <span class="rb-link">{copy.assets.dropLink}</span></p>
+          <p class="rb-drop-hint">{copy.assets.dropHint}</p>
         </div>
         <ul class="rb-filelist" id="rb-filelist"></ul>
         <p class="rb-upload" id="rb-upload" hidden>Uploading…</p>
-        <label class="rb-label" for="rb-asset-link">Or paste a link instead <span class="rb-opt">(optional)</span></label>
-        <input class="rb-input" id="rb-asset-link" type="text" placeholder="Google Drive, Dropbox, or your current website" />
+        <label class="rb-label" for="rb-asset-link">
+          {copy.assets.linkLabel} <span class="rb-opt">(optional)</span>
+        </label>
+        <input class="rb-input" id="rb-asset-link" type="text" placeholder={copy.assets.linkPlaceholder} />
         <p class="rb-error" data-rb-error hidden></p>
       </section>
 
-      <section class="rb-step" data-rb-step="6" hidden>
-        <h2 class="rb-title">Last one — where do I send it?</h2>
-        <p class="rb-lede">Your first name and email, and that is the whole thing done. I will be in touch as soon as I have looked over your brief.</p>
-        <p class="rb-note">I only need an email to send it to. There is no invoice to pay and I will never ask for card details.</p>
+      <section class="rb-step" data-rb-kind="contact" hidden>
+        <h2 class="rb-title">{copy.contact.title}</h2>
+        <p class="rb-lede">{copy.contact.lede}</p>
+        <p class="rb-note">{copy.contact.note}</p>
         <div class="rb-two">
           <div>
             <label class="rb-label" for="rb-first">First name <span class="rb-req">*</span></label>
@@ -105,7 +361,7 @@ import BuildStageMachine from './BuildStageMachine.astro';
         </div>
         <label class="rb-consent">
           <input type="checkbox" id="rb-consent" />
-          <span>Email me about my website. No spam, and a one-click unsubscribe in every email.</span>
+          <span>{copy.contact.consent}</span>
         </label>
         <div class="rb-hp" aria-hidden="true">
           <label for="rb-hp">Company website</label>
@@ -114,7 +370,7 @@ import BuildStageMachine from './BuildStageMachine.astro';
         <p class="rb-error" data-rb-error hidden></p>
       </section>
 
-      <section class="rb-step rb-build" id="rb-build" data-rb-step="7" hidden>
+      <section class="rb-step rb-build" id="rb-build" hidden>
         <BuildStageMachine />
 
         <div class="rb-build-copy">
@@ -148,8 +404,8 @@ import BuildStageMachine from './BuildStageMachine.astro';
 
     <div class="rb-nav" id="rb-nav">
       <button type="button" class="rb-back" id="rb-back" hidden>Back</button>
-      <button type="button" class="btn-cta rb-next" id="rb-next">
-        Continue
+      <button type="button" class="btn-cta rb-next" id="rb-next" data-submit-label={copy.submitLabel}>
+        {copy.submitLabel}
         <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
       </button>
     </div>
@@ -290,6 +546,23 @@ import BuildStageMachine from './BuildStageMachine.astro';
     font-weight: 400;
   }
 
+  /* Chip group heading plus its chips. The heading sits straight under the
+     lede, so it does not want the full label top margin again. */
+  .rb-fieldset {
+    display: block;
+  }
+
+  .rb-fieldset .rb-label:first-child {
+    margin-top: 4px;
+  }
+
+  .rb-hint {
+    margin: -2px 0 9px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--text-dimmed);
+  }
+
   .rb-input {
     width: 100%;
     padding: 13px 15px;
@@ -340,6 +613,12 @@ import BuildStageMachine from './BuildStageMachine.astro';
     transition: all 0.18s ease;
   }
 
+  /* Chips exist for every business type and are filtered by the one picked, so
+     `[hidden]` has to win over the button's own display. */
+  .rb-chip[hidden] {
+    display: none;
+  }
+
   .rb-chip:hover {
     border-color: rgba(139, 120, 230, 0.6);
     color: #fff;
@@ -349,6 +628,43 @@ import BuildStageMachine from './BuildStageMachine.astro';
     background: linear-gradient(135deg, rgba(139, 120, 230, 0.3), rgba(94, 234, 212, 0.22));
     border-color: rgba(94, 234, 212, 0.65);
     color: #fff;
+  }
+
+  /* The two-tier capability block. Each tier states its boundary before it
+     offers chips, so nobody ticks "cart" believing they are getting one. */
+  .rb-tier {
+    margin-bottom: 16px;
+    padding: 13px 15px 11px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .rb-tier-legend {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #fff;
+    margin-bottom: 7px;
+  }
+
+  .rb-tier-legend--in {
+    color: #a7f3d0;
+  }
+
+  .rb-tier-legend--out {
+    color: #c4b5fd;
+  }
+
+  .rb-tier-body {
+    margin: 0 0 12px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .rb-tier .rb-chips {
+    margin-bottom: 0;
   }
 
   .rb-drop {
@@ -751,14 +1067,25 @@ import BuildStageMachine from './BuildStageMachine.astro';
   }
 
   /* Short viewports: tighten every vertical rhythm so all six steps still fit
-     without the step body scrolling. */
+     without the step body scrolling. The chrome gives up its spacing before the
+     steps do — head, nav and card padding are all padding the visitor never
+     reads. */
   @media (max-height: 700px) {
     .rb-card {
-      padding: 16px 20px 14px;
+      padding: 12px 18px 10px;
+    }
+
+    .rb-head {
+      margin-bottom: 6px;
+    }
+
+    .rb-nav {
+      margin-top: 8px;
+      padding-top: 8px;
     }
 
     .rb-eyebrow {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .rb-title {
@@ -773,6 +1100,11 @@ import BuildStageMachine from './BuildStageMachine.astro';
 
     .rb-label {
       margin: 12px 0 5px;
+    }
+
+    .rb-hint {
+      margin-bottom: 6px;
+      font-size: 12px;
     }
 
     .rb-input {
@@ -790,6 +1122,16 @@ import BuildStageMachine from './BuildStageMachine.astro';
     .rb-chip {
       font-size: 13px;
       padding: 6px 11px;
+    }
+
+    .rb-tier {
+      margin-bottom: 12px;
+      padding: 10px 13px 9px;
+    }
+
+    .rb-tier-body {
+      font-size: 12.5px;
+      margin-bottom: 10px;
     }
 
     .rb-textarea {
@@ -863,9 +1205,25 @@ import BuildStageMachine from './BuildStageMachine.astro';
       padding: 5px 9px;
     }
 
+    .rb-tier {
+      margin-bottom: 10px;
+      padding: 9px 12px 8px;
+      border-radius: 12px;
+    }
+
+    .rb-tier-legend {
+      font-size: 12.5px;
+      margin-bottom: 5px;
+    }
+
+    .rb-tier-body {
+      font-size: 12px;
+      margin-bottom: 9px;
+    }
+
     .rb-textarea {
-      height: 62px;
-      min-height: 62px;
+      height: 56px;
+      min-height: 56px;
     }
 
     .rb-consent {
@@ -907,7 +1265,6 @@ import BuildStageMachine from './BuildStageMachine.astro';
 
     .rb-textarea {
       height: 52px;
-      min-height: 52px;
     }
 
     .rb-note {
@@ -924,6 +1281,43 @@ import BuildStageMachine from './BuildStageMachine.astro';
     .rb-two .rb-label {
       margin-top: 2px;
     }
+
+    /* The capability step carries the two tier panels — they are the first
+       thing to go when vertical space runs out, because the chips underneath
+       are what the brief actually needs. Tier B's prose is the last to go: it
+       is the honesty about what a free build will not do. */
+    .rb-tier-body {
+      display: none;
+    }
+
+    .rb-tier {
+      margin-bottom: 8px;
+      padding: 8px 11px 7px;
+    }
+
+    /* The hint only reworded what "(optional)" already said, and the label
+       system repeats 4× on the opening step — both are the cheapest pixels. */
+    .rb-hint {
+      display: none;
+    }
+
+    .rb-label {
+      margin-top: 9px;
+    }
+
+    /* min-height beats the shorter `height` set further down, so the note box
+       ate 74px on every phone. */
+    .rb-textarea {
+      min-height: 56px;
+    }
+  }
+
+  /* Narrow, but tall enough to hold both panels: keep Tier B's honesty and
+     drop only the Tier A explanation the legend already states. */
+  @media (max-width: 640px) and (min-height: 701px) {
+    .rb-tier--in .rb-tier-body {
+      display: none;
+    }
   }
 
   /* Below this there is not enough width for two inputs side by side. */
@@ -934,7 +1328,7 @@ import BuildStageMachine from './BuildStageMachine.astro';
   }
 
   /* The build step on a short viewport: drop the texture first, then tighten.
-     The tagline, the bar and the email promise always survive. */
+      The tagline, the bar and the email promise always survive. */
   @media (max-height: 700px) {
     .rb-build {
       gap: 8px;
@@ -1004,7 +1398,11 @@ import BuildStageMachine from './BuildStageMachine.astro';
   const MAX_FILES = 6;
   const MAX_FILE_BYTES = 8 * 1024 * 1024;
   const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'pdf', 'zip'];
-  const TOTAL_STEPS = 6;
+
+  const root = document.getElementById('rb-wizard') as HTMLElement;
+  // Server-rendered, never from a query param: the tag has to describe what is
+  // actually on screen, so a hand-edited URL cannot disagree with the copy.
+  const variant: 'rebuild' | 'new-build' = root.dataset.variant === 'new-build' ? 'new-build' : 'rebuild';
 
   const params = new URLSearchParams(window.location.search);
   const srcParam = params.get('src') || 'site';
@@ -1040,9 +1438,16 @@ import BuildStageMachine from './BuildStageMachine.astro';
 
   const businessInput = document.getElementById('rb-business') as HTMLInputElement;
   const currentInput = document.getElementById('rb-current') as HTMLInputElement;
-  const servicesOther = document.getElementById('rb-services-other') as HTMLTextAreaElement;
+  const contactInput = document.getElementById('rb-contact') as HTMLInputElement | null;
+  const servicesOther = document.getElementById('rb-services-other') as HTMLTextAreaElement | null;
+  const categoryOther = document.getElementById('rb-category-other') as HTMLInputElement | null;
+  const featureNote = document.getElementById('rb-feature-note') as HTMLTextAreaElement | null;
   const uspInput = document.getElementById('rb-usp') as HTMLTextAreaElement;
-  const designWishes = document.getElementById('rb-design-wishes') as HTMLTextAreaElement;
+  // Two ids for the same slot: `rebuild` still runs its own design step,
+  // `new-build` folds it into the shape step as one shared box.
+  const designWishes = (document.getElementById('rb-shape-other') ??
+    document.getElementById('rb-design-wishes')) as HTMLTextAreaElement;
+  const integrationsReveal = document.getElementById('rb-integrations-reveal');
   const assetLink = document.getElementById('rb-asset-link') as HTMLInputElement;
   const firstNameInput = document.getElementById('rb-first') as HTMLInputElement;
   const emailInput = document.getElementById('rb-email') as HTMLInputElement;
@@ -1052,22 +1457,43 @@ import BuildStageMachine from './BuildStageMachine.astro';
   const dropZone = document.getElementById('rb-drop') as HTMLElement;
   const fileList = document.getElementById('rb-filelist') as HTMLUListElement;
   const uploadNote = document.getElementById('rb-upload') as HTMLElement;
+  const revealWrap = document.getElementById('rb-reveal') as HTMLElement | null;
+  const serviceChips = Array.from(
+    document.querySelectorAll<HTMLButtonElement>('#rb-reveal .rb-chip[data-for-category]')
+  );
 
-  const steps = Array.from(document.querySelectorAll<HTMLElement>('.rb-step[data-rb-step]'));
-  let currentStep = 1;
+  // Every section is one of these; the build step is tracked separately because
+  // it is not part of the numbered flow.
+  const allSteps = Array.from(document.querySelectorAll<HTMLElement>('.rb-step'));
+  const ordered = allSteps.filter((el) => el.hasAttribute('data-rb-kind'));
+  const TOTAL_STEPS = ordered.length;
+
+  let pos = 0;
   let assets: UploadedAsset[] = [];
-  const picks: Record<string, Set<string>> = { services: new Set(), design: new Set() };
+  const picks: Record<string, Set<string>> = {};
+  document.querySelectorAll<HTMLElement>('[data-rb-chips]').forEach((group) => {
+    const name = group.dataset.rbChips as string;
+    if (!picks[name]) picks[name] = new Set();
+  });
 
   businessInput.value = prefillBusiness;
   currentInput.value = prefillCurrent;
 
-  function track(name: string, params: Record<string, unknown> = {}) {
-    const gtag = (window as any).gtag;
-    if (typeof gtag === 'function') gtag('event', name, params);
+  function chosen(name: string): string[] {
+    return Array.from(picks[name] ?? []);
   }
 
-  function stepError(step: number): HTMLElement | null {
-    return document.querySelector(`.rb-step[data-rb-step="${step}"] [data-rb-error]`);
+  function single(name: string): string {
+    return chosen(name)[0] ?? '';
+  }
+
+  function track(name: string, data: Record<string, unknown> = {}) {
+    const gtag = (window as any).gtag;
+    if (typeof gtag === 'function') gtag('event', name, data);
+  }
+
+  function activeError(): HTMLElement | null {
+    return ordered[pos]?.querySelector<HTMLElement>('[data-rb-error]') ?? null;
   }
 
   function clearErrors() {
@@ -1077,47 +1503,68 @@ import BuildStageMachine from './BuildStageMachine.astro';
     });
   }
 
-  function showError(step: number, message: string) {
-    const el = stepError(step);
+  function showError(message: string) {
+    const el = activeError();
     if (!el) return;
     el.textContent = message;
     el.hidden = false;
   }
 
-  function collectChips(group: string): string[] {
-    return Array.from(picks[group]);
-  }
+  // Read off the DOM so the client bundle never has to import the copy file —
+  // the button already carries the variant's wording.
+  const SUBMIT_LABEL = nextButton.dataset.submitLabel || 'Send my brief';
 
-  function go(step: number) {
+  const ARROW =
+    '<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>';
+  const continueLabel = `Continue ${ARROW}`;
+
+  function go(index: number) {
     clearErrors();
-    currentStep = step;
-    steps.forEach((node) => {
-      node.hidden = Number(node.getAttribute('data-rb-step')) !== step;
+    pos = index;
+    const current = ordered[pos];
+    allSteps.forEach((node) => {
+      node.hidden = node !== current;
     });
     head.hidden = false;
     nav.hidden = false;
-    progressFill.style.width = `${(step / TOTAL_STEPS) * 100}%`;
-    progressLabel.textContent = `Step ${step} of ${TOTAL_STEPS}`;
-    backButton.hidden = step <= 1;
-    nextButton.innerHTML =
-      step === TOTAL_STEPS
-        ? 'Send my brief <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>'
-        : 'Continue <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>';
-    track('rebuild_step', { step, source });
-    const focusTarget = document.querySelector<HTMLElement>(
-      `.rb-step[data-rb-step="${step}"] input:not([tabindex="-1"]):not([type="checkbox"]), .rb-step[data-rb-step="${step}"] textarea`
+    progressFill.style.width = `${((pos + 1) / TOTAL_STEPS) * 100}%`;
+    progressLabel.textContent = `Step ${pos + 1} of ${TOTAL_STEPS}`;
+    backButton.hidden = pos === 0;
+    nextButton.innerHTML = pos === TOTAL_STEPS - 1 ? `${SUBMIT_LABEL} ${ARROW}` : continueLabel;
+    track('rebuild_step', { step: pos + 1, kind: current.dataset.rbKind, source, variant });
+    const focusTarget = current.querySelector<HTMLElement>(
+      'input:not([tabindex="-1"]):not([type="checkbox"]), textarea'
     );
     if (focusTarget && window.matchMedia('(min-width: 641px)').matches) focusTarget.focus({ preventScroll: true });
   }
 
-  function validateStep(step: number): string {
-    if (step === 1 && !businessInput.value.trim()) {
-      return 'Please enter your business name.';
+  function validateStep(kind: string): string {
+    if (kind === 'business') {
+      if (!businessInput.value.trim()) return 'Please enter your business name.';
+      if (picks.existingSite && picks.existingSite.size === 0) return 'Please pick one of these.';
+      return '';
     }
-    if (step === 2 && picks.services.size === 0 && !servicesOther.value.trim()) {
-      return 'Pick at least one, or describe what you do in your own words.';
+    if (kind === 'category') {
+      // Ten chips cannot cover every business — a typed answer is as good as a
+      // tap, and it is the only way through for the visitor none of them fit.
+      if (!picks.category?.size && !categoryOther?.value.trim()) {
+        return 'Pick one, or describe it in your own words below.';
+      }
+      if (!picks.services?.size && !servicesOther?.value.trim()) {
+        return 'Pick at least one, or describe what you do in your own words.';
+      }
+      return '';
     }
-    if (step === 6) {
+    if (kind === 'services') {
+      if (!picks.services?.size && !servicesOther?.value.trim()) {
+        return 'Pick at least one, or describe what you do in your own words.';
+      }
+      return '';
+    }
+    // `siteType` and `capabilities` are deliberately unvalidated: forcing a
+    // pick on either produces answers people did not mean, and the free-text
+    // note underneath always covers what the chips missed.
+    if (kind === 'contact') {
       if (!firstNameInput.value.trim()) return 'Please enter your first name.';
       const email = emailInput.value.trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return 'Please enter a valid email address.';
@@ -1126,13 +1573,13 @@ import BuildStageMachine from './BuildStageMachine.astro';
   }
 
   function advance() {
-    const problem = validateStep(currentStep);
+    const problem = validateStep(ordered[pos].dataset.rbKind as string);
     if (problem) {
-      showError(currentStep, problem);
+      showError(problem);
       return;
     }
-    if (currentStep < TOTAL_STEPS) {
-      go(currentStep + 1);
+    if (pos < TOTAL_STEPS - 1) {
+      go(pos + 1);
       return;
     }
     void submit();
@@ -1140,7 +1587,7 @@ import BuildStageMachine from './BuildStageMachine.astro';
 
   nextButton.addEventListener('click', advance);
   backButton.addEventListener('click', () => {
-    if (currentStep > 1) go(currentStep - 1);
+    if (pos > 0) go(pos - 1);
   });
 
   card.addEventListener('keydown', (event) => {
@@ -1152,21 +1599,57 @@ import BuildStageMachine from './BuildStageMachine.astro';
   });
 
   document.querySelectorAll<HTMLElement>('[data-rb-chips]').forEach((group) => {
-    const name = group.getAttribute('data-rb-chips') as string;
+    const name = group.dataset.rbChips as string;
+    const singleSelect = group.hasAttribute('data-rb-single');
     group.addEventListener('click', (event) => {
       const chip = (event.target as HTMLElement).closest<HTMLElement>('.rb-chip');
-      if (!chip) return;
+      if (!chip || chip.hidden) return;
       const value = chip.getAttribute('data-rb-value') || '';
-      const set = picks[name];
-      if (set.has(value)) {
-        set.delete(value);
+
+      if (singleSelect) {
+        group.querySelectorAll<HTMLElement>('.rb-chip').forEach((other) => {
+          if (other !== chip) other.setAttribute('aria-pressed', 'false');
+        });
+        picks[name].clear();
+        picks[name].add(value);
+        chip.setAttribute('aria-pressed', 'true');
+        if (name === 'category') revealCategory(value);
+        return;
+      }
+
+      if (picks[name].has(value)) {
+        picks[name].delete(value);
         chip.setAttribute('aria-pressed', 'false');
       } else {
-        set.add(value);
+        picks[name].add(value);
         chip.setAttribute('aria-pressed', 'true');
+      }
+
+      // Connections only become a question once the visitor has said they want
+      // something bigger than the free build. Leaving it hidden otherwise keeps
+      // this step to two panels for everyone who just wants the basics.
+      if (name === 'capabilitiesOut' && (picks.capabilitiesOut?.size ?? 0) > 0) {
+        if (integrationsReveal) integrationsReveal.hidden = false;
       }
     });
   });
+
+  /**
+   * The service list belongs to a business type rather than to one fixed set,
+   * so chips for every type ship in the DOM and are filtered to the picked one.
+   * Changing the type clears the old picks — a value picked under one type can
+   * never survive into another.
+   */
+  function revealCategory(type: string) {
+    if (!revealWrap) return;
+    revealWrap.hidden = false;
+    picks.services?.clear();
+    serviceChips.forEach((chip) => {
+      const match = chip.getAttribute('data-for-category') === type;
+      chip.hidden = !match;
+      chip.setAttribute('aria-pressed', 'false');
+    });
+  }
 
   function formatSize(bytes: number): string {
     if (bytes >= 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
@@ -1214,13 +1697,13 @@ import BuildStageMachine from './BuildStageMachine.astro';
   async function uploadFiles(list: FileList | File[]) {
     const files = Array.from(list);
     if (assets.length + files.length > MAX_FILES) {
-      showError(5, `That would be more than ${MAX_FILES} files. Please remove some first.`);
+      showError(`That would be more than ${MAX_FILES} files. Please remove some first.`);
       return;
     }
     for (const file of files) {
       const problem = fileProblem(file);
       if (problem) {
-        showError(5, problem);
+        showError(problem);
         return;
       }
     }
@@ -1237,13 +1720,13 @@ import BuildStageMachine from './BuildStageMachine.astro';
       const res = await fetch('/api/rebuild-assets', { method: 'POST', body: form });
       const payload = await res.json().catch(() => ({}));
       if (!res.ok) {
-        showError(5, payload.error || 'The upload failed. Please try again, or paste a link instead.');
+        showError(payload.error || 'The upload failed. Please try again, or paste a link instead.');
         return;
       }
       assets = assets.concat(payload.files as UploadedAsset[]);
       renderFiles();
     } catch {
-      showError(5, 'Could not reach the server. Please try again, or paste a link instead.');
+      showError('Could not reach the server. Please try again, or paste a link instead.');
     } finally {
       uploadNote.hidden = true;
       fileInput.disabled = false;
@@ -1276,9 +1759,10 @@ import BuildStageMachine from './BuildStageMachine.astro';
   // --- Build step -----------------------------------------------------------
   // The timeline is illustrative: the pipeline exposes no public status, so the
   // wall clock drives the stages. It is seeded at submit time (server-assisted)
-  // and kept in localStorage so a reload resumes rather than restarting.
+  // and kept in localStorage so a reload resumes rather than restarting. The
+  // key is per variant so one flow's timer can never resume inside the other.
 
-  const BUILD_KEY = 'rb-build-started';
+  const BUILD_KEY = `rb-build-started:${variant}`;
   const ARC_LENGTH = 2 * Math.PI * 52;
   const WELCOME_BACK_MS = 15 * 60_000;
 
@@ -1393,15 +1877,14 @@ import BuildStageMachine from './BuildStageMachine.astro';
   }
 
   function showBuild(startedAt: number, email: string, fresh: boolean) {
-    currentStep = 7;
     buildStartedAt = startedAt;
     nextButton.disabled = false;
-    steps.forEach((node) => {
-      node.hidden = node.getAttribute('data-rb-step') !== '7';
+    allSteps.forEach((node) => {
+      node.hidden = node !== buildStep;
     });
+    buildStep.hidden = false;
     head.hidden = true;
     nav.hidden = true;
-    buildStep.hidden = false;
     document.body.classList.add('rb-building');
     if (email) buildEmail.textContent = `I will email ${email} the moment it is ready.`;
 
@@ -1411,7 +1894,7 @@ import BuildStageMachine from './BuildStageMachine.astro';
     if (buildTimer !== null) window.clearInterval(buildTimer);
     buildTimer = window.setInterval(() => renderBuild(false), 1000);
 
-    if (fresh) track('rebuild_build_started', { source });
+    if (fresh) track('rebuild_build_started', { source, variant });
 
     const elapsed = Date.now() - buildStartedAt;
     if (compactTimer !== null) window.clearTimeout(compactTimer);
@@ -1462,7 +1945,7 @@ import BuildStageMachine from './BuildStageMachine.astro';
     buildStep.hidden = true;
     userExpanded = false;
     nextButton.disabled = false;
-    go(1);
+    go(0);
   });
 
   document.addEventListener('visibilitychange', () => {
@@ -1474,15 +1957,28 @@ import BuildStageMachine from './BuildStageMachine.astro';
     const original = nextButton.innerHTML;
     nextButton.textContent = 'Sending\u2026';
 
+    // The USP chips are folded into the one prose field so the brief still
+    // reads as a sentence — and no extra column was needed to store them.
+    const usp = [chosen('usp').join('. '), uspInput.value.trim()].filter(Boolean).join('. ');
+
     const payload = {
+      variant,
       source,
       slug,
       businessName: businessInput.value.trim(),
       currentWebsite: currentInput.value.trim(),
-      services: collectChips('services'),
-      servicesOther: servicesOther.value.trim(),
-      usp: uspInput.value.trim(),
-      designPicks: collectChips('design'),
+      businessContact: contactInput?.value.trim() || '',
+      hasExistingSite: single('existingSite') || 'not-asked',
+      category: single('category'),
+      categoryOther: categoryOther?.value.trim() || '',
+      services: chosen('services'),
+      servicesOther: servicesOther?.value.trim() || '',
+      usp,
+      siteTypes: chosen('siteType'),
+      features: [...chosen('capabilitiesIn'), ...chosen('capabilitiesOut')],
+      featureNote: featureNote?.value.trim() || '',
+      integrationRequests: chosen('integrations'),
+      designPicks: chosen('design'),
       designWishes: designWishes.value.trim(),
       assets: assets.map(({ key, name, size, type }) => ({ key, name, size, type })),
       assetLink: assetLink.value.trim(),
@@ -1492,6 +1988,11 @@ import BuildStageMachine from './BuildStageMachine.astro';
       companyWebsite: honeypot.value,
       pageUrl: window.location.href,
       referrer: document.referrer || '',
+      // Where the visit actually began — the page only ever sees the params it
+      // was opened with, so this is the true arrival, not a later navigation.
+      utmSource: params.get('utm_source') || '',
+      utmMedium: params.get('utm_medium') || '',
+      utmCampaign: params.get('utm_campaign') || '',
     };
 
     try {
@@ -1502,20 +2003,26 @@ import BuildStageMachine from './BuildStageMachine.astro';
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        showError(6, data.error || 'Something went wrong. Please try again.');
+        showError(data.error || 'Something went wrong. Please try again.');
         nextButton.disabled = false;
         nextButton.innerHTML = original;
         return;
       }
 
-      track('rebuild_submit', { source, has_assets: assets.length > 0 });
+      track('rebuild_submit', {
+        source,
+        variant,
+        category: payload.category,
+        scope: data.scope || '',
+        has_assets: assets.length > 0,
+      });
 
       const startedAt =
         typeof data.startedAt === 'number' && data.startedAt > 0 ? data.startedAt : Date.now();
       writeBuildSeed(startedAt);
       showBuild(startedAt, payload.email, true);
     } catch {
-      showError(6, 'Could not reach the server. Please check your connection and try again.');
+      showError('Could not reach the server. Please check your connection and try again.');
       nextButton.disabled = false;
       nextButton.innerHTML = original;
     }
@@ -1528,6 +2035,6 @@ import BuildStageMachine from './BuildStageMachine.astro';
     showBuild(seed, '', false);
   } else {
     if (seed) clearBuildSeed();
-    go(1);
+    go(0);
   }
 </script>

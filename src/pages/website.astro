@@ -1,31 +1,32 @@
 ---
 import FunnelLayout from '../layouts/FunnelLayout.astro';
 import RebuildWizard from '../components/RebuildWizard.astro';
+import { copyFor } from '../data/funnel-copy';
+
+// The cold-arrival flow. Same six-question engine as /rebuild/, but every word
+// assumes a visitor who has never had a website and came from anywhere online.
+const page = copyFor('new-build').page;
 ---
 
-  <FunnelLayout
-  title="Free Website Rebuild — No Payment Needed | Byte Digital"
-  description="Tell me about your business in six quick questions and I will rebuild your website free. No payment, no invoice, no card details, no obligation. Based in Christchurch, New Zealand."
-  noindex={true}
->
+<FunnelLayout title={page.title} description={page.description} noindex={true}>
   <div class="rb-overlay">
-    <a class="rb-exit" href="/" data-rb-exit aria-label="Back to Byte Digital">
+    <a class="rb-exit" href="/" data-rb-exit aria-label={page.exitLabel}>
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M19 12H5M11 18l-6-6 6-6" />
       </svg>
-      <span>Back to Byte Digital</span>
+      <span>{page.exitLabel}</span>
     </a>
 
     <div class="rb-stage">
       <div class="rb-intro">
-        <p class="rb-free">Free rebuild — nothing to pay</p>
-        <h1>Let&rsquo;s rebuild <span class="gradient-text">your website</span>.</h1>
-        <p>Six quick questions — no scrolling, no jargon. Tell me what you do and what you want to see, and I&rsquo;ll do the rest.</p>
+        <p class="rb-free">{page.badge}</p>
+        <h1 set:html={`${page.headingLead}<span class="gradient-text">${page.headingAccent}</span>.`} />
+        <p set:html={page.lede} />
       </div>
 
-      <RebuildWizard />
+      <RebuildWizard variant="new-build" />
 
-      <p class="rb-footnote">Takes about two minutes &middot; no tech skills needed</p>
+      <p class="rb-footnote" set:html={page.footnote} />
     </div>
   </div>
 </FunnelLayout>
@@ -104,7 +105,7 @@ import RebuildWizard from '../components/RebuildWizard.astro';
     text-align: center;
   }
 
-  /* Once the brief is in, the wizard is the whole show: the intro copy ("six
+  /* Once the brief is in, the wizard is the whole show: the intro copy ("nine
      quick questions") is no longer true, and the vertical space belongs to
      the build animation. */
   .rb-building .rb-intro,
@@ -112,6 +113,8 @@ import RebuildWizard from '../components/RebuildWizard.astro';
     display: none;
   }
 
+  /* This page is only ever reached from Byte Digital's own site, so there is
+     no built-site referrer to send the visitor back to — "back" is simply home. */
   .rb-exit {
     position: absolute;
     top: clamp(10px, 1.8vh, 18px);
@@ -148,9 +151,10 @@ import RebuildWizard from '../components/RebuildWizard.astro';
   }
 
   /* Phones: the label would sit across the headline, so the exit collapses to
-     the arrow alone (aria-label keeps the accessible name). The subhead goes
-     too — the free promise and the card's own lede are what matter here, and
-     the vertical space belongs to the step. */
+     the arrow alone (aria-label keeps the accessible name).
+     The whole intro goes as well — the badge and headline are ~100px that the
+     card needs to hold a step without scrolling, and the card carries its own
+     eyebrow and step title, so nothing the visitor needs is lost with them. */
   @media (max-width: 640px) {
     .rb-exit {
       width: 38px;
@@ -162,37 +166,8 @@ import RebuildWizard from '../components/RebuildWizard.astro';
       display: none;
     }
 
-    .rb-intro p:not(.rb-free) {
+    .rb-intro {
       display: none;
-    }
-
-    .rb-free {
-      margin-bottom: 8px;
-      padding: 4px 10px;
-      font-size: 10px;
-      letter-spacing: 1.6px;
     }
   }
 </style>
-
-<script>
-  const exit = document.querySelector<HTMLAnchorElement>('[data-rb-exit]');
-
-  // Arriving from a built site (a *.pages.dev funnel popup) means "back" is the
-  // site they were just reading. Arriving from this site's own nav means "back"
-  // would loop them through the CTA they already clicked, so go home instead.
-  if (exit) {
-    exit.addEventListener('click', (event) => {
-      let fromElsewhere = false;
-      try {
-        fromElsewhere = !!document.referrer && new URL(document.referrer).host !== window.location.host;
-      } catch {
-        fromElsewhere = false;
-      }
-      if (!fromElsewhere) return;
-      event.preventDefault();
-      if (window.history.length > 1) window.history.back();
-      else window.location.href = '/';
-    });
-  }
-</script>
