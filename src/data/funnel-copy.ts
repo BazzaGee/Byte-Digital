@@ -124,6 +124,9 @@ export interface ShapeStep {
   lede: string;
   siteGroup: ChipGroup;
   designGroup: ChipGroup;
+  /** How it should FEEL — deliberately words, never colours, fonts or
+   *  layouts, so the answer guides a design rather than selecting one. */
+  vibeGroup: ChipGroup;
   /** Shared free text — one box instead of two, because both are optional. */
   label: string;
   placeholder: string;
@@ -147,6 +150,8 @@ export interface DesignStep {
   title: string;
   lede: string;
   group: ChipGroup;
+  /** How it should FEEL — see ShapeStep.vibeGroup. */
+  vibeGroup: ChipGroup;
   label: string;
   placeholder: string;
 }
@@ -393,6 +398,30 @@ const NEW_BUILD_DESIGN_OPTIONS: Chip[] = [
   { value: 'Video', label: 'Video' },
 ];
 
+/**
+ * How the site should FEEL. Words only — never a colour, a font, a layout or
+ * a section list, because a picker of those is a template by another name.
+ * Each one hands the design model a direction it has to interpret from the
+ * business itself rather than a preset it can apply verbatim.
+ */
+const AESTHETIC_OPTIONS: Chip[] = [
+  { value: 'Clean and uncluttered', label: 'Clean and uncluttered' },
+  { value: 'Bold and confident', label: 'Bold and confident' },
+  { value: 'Warm and welcoming', label: 'Warm and welcoming' },
+  { value: 'Premium and polished', label: 'Premium and polished' },
+  { value: 'Friendly and approachable', label: 'Friendly and approachable' },
+  { value: 'Hand-made and craft-focused', label: 'Hand-made and craft-focused' },
+  { value: 'Classic and established', label: 'Classic and established' },
+  { value: 'Dark and dramatic', label: 'Dark and dramatic' },
+];
+
+const VIBE_CHIP_GROUP: ChipGroup = {
+  id: 'designVibe',
+  legend: 'How should it feel?',
+  hint: 'Optional — pick any that fit the mood you want.',
+  options: AESTHETIC_OPTIONS,
+};
+
 const USP_CHIP_GROUP: ChipGroup = {
   id: 'usp',
   legend: 'Common picks',
@@ -452,6 +481,7 @@ const REBUILD: FunnelCopy = {
     title: 'What do you want to see on it?',
     lede: 'What would look great to you? Pick anything that appeals, or describe it your own way — visuals, style, a site you like.',
     group: { id: 'design', legend: 'Popular picks', options: REBUILD_DESIGN_OPTIONS },
+    vibeGroup: VIBE_CHIP_GROUP,
     label: 'Anything visual you have in mind?',
     placeholder: 'e.g. Bold and modern, lots of photos of our work, a style like example.co.nz',
   },
@@ -541,9 +571,10 @@ const NEW_BUILD: FunnelCopy = {
   // wearing two hats; splitting them is what made this flow feel like nine.
   shape: {
     title: 'What should it do and look like?',
-    lede: 'Two short lists. Nothing here is required — skip both and just tell me below.',
+    lede: 'Three short lists. Nothing here is required — skip all three and just tell me below.',
     siteGroup: { id: 'siteType', legend: 'The shape of it', options: SITE_TYPE_OPTIONS },
     designGroup: { id: 'design', legend: 'What should be on it', options: NEW_BUILD_DESIGN_OPTIONS },
+    vibeGroup: VIBE_CHIP_GROUP,
     label: 'Anything else about how it should work or look',
     placeholder: 'e.g. A shop with online orders, a page per location, something that feels like example.co.nz',
   },

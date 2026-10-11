@@ -115,6 +115,24 @@ const INTEGRATIONS: Record<string, string> = {
   none: "Nothing yet",
 };
 
+/**
+ * How the visitor wants the site to FEEL. Mirrors `AESTHETIC_OPTIONS` in
+ * src/data/funnel-copy.ts — server-side allow-lists cannot share a bundle
+ * with the page that renders them, because the page is the untrusted side.
+ * A closed list here matters more than for designPicks: this string is handed
+ * straight to the design model, so it is never a free-text passthrough.
+ */
+const AESTHETIC: Record<string, string> = {
+  "Clean and uncluttered": "Clean and uncluttered",
+  "Bold and confident": "Bold and confident",
+  "Warm and welcoming": "Warm and welcoming",
+  "Premium and polished": "Premium and polished",
+  "Friendly and approachable": "Friendly and approachable",
+  "Hand-made and craft-focused": "Hand-made and craft-focused",
+  "Classic and established": "Classic and established",
+  "Dark and dramatic": "Dark and dramatic",
+};
+
 const PUBLIC_BASE = "https://pub-932dca65c7cb44ecaa58f87c3db67040.r2.dev";
 
 const MAX_NAME_LENGTH = 160;
@@ -325,6 +343,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   const servicesOther = cleanString(body.servicesOther, 600);
   const usp = cleanString(body.usp, MAX_TEXT_LENGTH);
   const designPicks = cleanList(body.designPicks, 12, 60);
+  const designVibe = cleanEnumList(body.designVibe, AESTHETIC, 8);
   const designWishes = cleanString(body.designWishes, MAX_TEXT_LENGTH);
   const assetLink = cleanString(body.assetLink, MAX_URL_LENGTH);
   const pageUrl = cleanString(body.pageUrl, MAX_URL_LENGTH);
@@ -396,7 +415,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     });
   }
 
-  const designWishesJson = JSON.stringify({ picks: designPicks, note: designWishes });
+  const designWishesJson = JSON.stringify({ picks: designPicks, note: designWishes, vibe: designVibe });
 
   let leadId: number | null = null;
   try {
@@ -483,6 +502,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
           integrationLabels: labels(integrations, INTEGRATIONS),
           integrationOther: cleanString(body.integrationOther, 400),
           designPicks,
+          designVibe,
           designWishes,
           firstName,
           email,
@@ -516,7 +536,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       : currentWebsite || "";
 
     const servicesLine = [services.join(", "), servicesOther].filter(Boolean).join(" | ");
-    const designLine = [designPicks.join(", "), designWishes].filter(Boolean).join(" | ");
+    const designLine = [designVibe.join(", "), designPicks.join(", "), designWishes].filter(Boolean).join(" | ");
 
     const scopeLabel = scope === "custom-build" ? "CUSTOM BUILD — bigger than the free build" : "Standard free build";
 

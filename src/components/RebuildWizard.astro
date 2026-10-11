@@ -245,6 +245,18 @@ const stepCount =
             </div>
           </div>
 
+          <div class="rb-fieldset">
+            <span class="rb-label" id="legend-shape-vibe">{shape.vibeGroup.legend}</span>
+            {shape.vibeGroup.hint && <p class="rb-hint">{shape.vibeGroup.hint}</p>}
+            <div class="rb-chips" role="group" aria-labelledby="legend-shape-vibe" data-rb-chips={shape.vibeGroup.id}>
+              {shape.vibeGroup.options.map((option) => (
+                <button type="button" class="rb-chip" data-rb-value={option.value} aria-pressed="false">
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <label class="rb-label" for="rb-shape-other">
             {shape.label} <span class="rb-opt">(optional)</span>
           </label>
@@ -313,6 +325,18 @@ const stepCount =
             <span class="rb-label" id="legend-design">{design.group.legend}</span>
             <div class="rb-chips" role="group" aria-labelledby="legend-design" data-rb-chips={design.group.id}>
               {design.group.options.map((option) => (
+                <button type="button" class="rb-chip" data-rb-value={option.value} aria-pressed="false">
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div class="rb-fieldset">
+            <span class="rb-label" id="legend-design-vibe">{design.vibeGroup.legend}</span>
+            {design.vibeGroup.hint && <p class="rb-hint">{design.vibeGroup.hint}</p>}
+            <div class="rb-chips" role="group" aria-labelledby="legend-design-vibe" data-rb-chips={design.vibeGroup.id}>
+              {design.vibeGroup.options.map((option) => (
                 <button type="button" class="rb-chip" data-rb-value={option.value} aria-pressed="false">
                   {option.label}
                 </button>
@@ -1979,6 +2003,7 @@ const stepCount =
       featureNote: featureNote?.value.trim() || '',
       integrationRequests: chosen('integrations'),
       designPicks: chosen('design'),
+      designVibe: chosen('designVibe'),
       designWishes: designWishes.value.trim(),
       assets: assets.map(({ key, name, size, type }) => ({ key, name, size, type })),
       assetLink: assetLink.value.trim(),
