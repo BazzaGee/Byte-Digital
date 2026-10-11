@@ -35,7 +35,20 @@ const fullTitle =
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-6LB0G6RWZ6');
+  // Internal traffic: visit any page with ?internal=1 once to set a 90-day
+  // cookie. While set, events carry traffic_type=internal so the GA4
+  // internal-traffic data filter excludes this browser.
+  (function () {
+    var internal =
+      new URLSearchParams(window.location.search).get('internal') === '1' ||
+      document.cookie.indexOf('ga_internal=1') !== -1;
+    if (internal) {
+      document.cookie = 'ga_internal=1; path=/; max-age=7776000; SameSite=Lax';
+      gtag('config', 'G-6LB0G6RWZ6', { traffic_type: 'internal' });
+    } else {
+      gtag('config', 'G-6LB0G6RWZ6');
+    }
+  })();
 </script>
 
 <title>{fullTitle}</title>
