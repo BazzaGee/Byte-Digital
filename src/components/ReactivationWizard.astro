@@ -1,0 +1,914 @@
+---
+/**
+ * ReactivationWizard — the seven-step intake for /reactivation/.
+ *
+ * Deliberately its own component rather than a variant of RebuildWizard: that
+ * one is a 66KB monolith whose steps (design, capabilities, asset upload) have
+ * nothing to do with reactivation. What IS shared is the visual language —
+ * the rb-* card/chip/input classes below are the same global stylesheet, so
+ * both funnels look identical without either depending on the other.
+ *
+ * The script is a fresh engine: go / validate / advance / submit, no build
+ * animation, no asset upload, no localStorage seed. After submit the received
+ * card replaces the steps and the nav disappears.
+ */
+import { COPY } from '../data/reactivation-copy';
+
+const copy = COPY;
+const stepCount = 7;
+---
+
+<div class="rb-shell" id="rx-wizard">
+  <div class="rb-card glass" id="rx-card">
+    <div class="rb-head" id="rx-head">
+      <div class="rb-eyebrow">{copy.eyebrow}</div>
+      <div class="rb-progress">
+        <div class="rb-progress-track">
+          <div class="rb-progress-fill" id="rx-progress-fill"></div>
+        </div>
+        <div class="rb-progress-label" id="rx-progress-label">Step 1 of {stepCount}</div>
+      </div>
+    </div>
+
+    <div class="rb-body">
+      <!-- Step 1 — the business -->
+      <section class="rb-step" data-rx-kind="business">
+        <h2 class="rb-title">{copy.business.title}</h2>
+        <p class="rb-lede">{copy.business.lede}</p>
+
+        <label class="rb-label" for="rx-business">
+          {copy.business.nameLabel} <span class="rb-req">*</span>
+        </label>
+        <input class="rb-input" id="rx-business" type="text" autocomplete="organization" placeholder={copy.business.namePlaceholder} />
+
+        <label class="rb-label" for="rx-website">
+          {copy.business.websiteLabel} <span class="rb-opt">(optional)</span>
+        </label>
+        <input class="rb-input" id="rx-website" type="text" autocomplete="url" placeholder={copy.business.websitePlaceholder} />
+
+        <div class="rb-fieldset">
+          <span class="rb-label" id="legend-rx-category">
+            {copy.business.group.legend} <span class="rb-req">*</span>
+          </span>
+          <div class="rb-chips" role="group" aria-labelledby="legend-rx-category" data-rx-chips={copy.business.group.id} data-rx-single="true">
+            {copy.business.group.options.map((option) => (
+              <button type="button" class="rb-chip" data-rx-value={option.value} aria-pressed="false">{option.label}</button>
+            ))}
+          </div>
+        </div>
+
+        <p class="rb-error" data-rx-error hidden></p>
+      </section>
+
+      <!-- Step 2 — the list -->
+      <section class="rb-step" data-rx-kind="list" hidden>
+        <h2 class="rb-title">{copy.list.title}</h2>
+        <p class="rb-lede">{copy.list.lede}</p>
+
+        <div class="rb-fieldset">
+          <span class="rb-label" id="legend-rx-listSize">
+            {copy.list.sizeGroup.legend} <span class="rb-req">*</span>
+          </span>
+          <div class="rb-chips" role="group" aria-labelledby="legend-rx-listSize" data-rx-chips={copy.list.sizeGroup.id} data-rx-single="true">
+            {copy.list.sizeGroup.options.map((option) => (
+              <button type="button" class="rb-chip" data-rx-value={option.value} aria-pressed="false">{option.label}</button>
+            ))}
+          </div>
+        </div>
+
+        <div class="rb-fieldset">
+          <span class="rb-label" id="legend-rx-listAge">
+            {copy.list.ageGroup.legend} <span class="rb-req">*</span>
+          </span>
+          {copy.list.ageGroup.hint && <p class="rb-hint">{copy.list.ageGroup.hint}</p>}
+          <div class="rb-chips" role="group" aria-labelledby="legend-rx-listAge" data-rx-chips={copy.list.ageGroup.id} data-rx-single="true">
+            {copy.list.ageGroup.options.map((option) => (
+              <button type="button" class="rb-chip" data-rx-value={option.value} aria-pressed="false">{option.label}</button>
+            ))}
+          </div>
+        </div>
+
+        <div class="rb-fieldset">
+          <span class="rb-label" id="legend-rx-listSource">
+            {copy.list.sourceGroup.legend} <span class="rb-req">*</span>
+          </span>
+          {copy.list.sourceGroup.hint && <p class="rb-hint">{copy.list.sourceGroup.hint}</p>}
+          <div class="rb-chips" role="group" aria-labelledby="legend-rx-listSource" data-rx-chips={copy.list.sourceGroup.id} data-rx-single="true">
+            {copy.list.sourceGroup.options.map((option) => (
+              <button type="button" class="rb-chip" data-rx-value={option.value} aria-pressed="false">{option.label}</button>
+            ))}
+          </div>
+        </div>
+
+        <p class="rb-error" data-rx-error hidden></p>
+      </section>
+
+      <!-- Step 3 — dormant reasons -->
+      <section class="rb-step" data-rx-kind="dormant" hidden>
+        <h2 class="rb-title">{copy.dormant.title}</h2>
+        <p class="rb-lede">{copy.dormant.lede}</p>
+
+        <div class="rb-fieldset">
+          <span class="rb-label" id="legend-rx-dormant">
+            {copy.dormant.group.legend} <span class="rb-req">*</span>
+          </span>
+          <div class="rb-chips" role="group" aria-labelledby="legend-rx-dormant" data-rx-chips={copy.dormant.group.id}>
+            {copy.dormant.group.options.map((option) => (
+              <button type="button" class="rb-chip" data-rx-value={option.value} aria-pressed="false">{option.label}</button>
+            ))}
+          </div>
+        </div>
+
+        <label class="rb-label" for="rx-dormant-note">
+          {copy.dormant.noteLabel} <span class="rb-opt">(optional)</span>
+        </label>
+        <textarea class="rb-input" id="rx-dormant-note" rows="2" placeholder={copy.dormant.notePlaceholder}></textarea>
+
+        <p class="rb-error" data-rx-error hidden></p>
+      </section>
+
+      <!-- Step 4 — the goal -->
+      <section class="rb-step" data-rx-kind="goal" hidden>
+        <h2 class="rb-title">{copy.goal.title}</h2>
+        <p class="rb-lede">{copy.goal.lede}</p>
+
+        <div class="rb-fieldset">
+          <span class="rb-label" id="legend-rx-goal">
+            {copy.goal.group.legend} <span class="rb-req">*</span>
+          </span>
+          <div class="rb-chips" role="group" aria-labelledby="legend-rx-goal" data-rx-chips={copy.goal.group.id} data-rx-single="true">
+            {copy.goal.group.options.map((option) => (
+              <button type="button" class="rb-chip" data-rx-value={option.value} aria-pressed="false">{option.label}</button>
+            ))}
+          </div>
+        </div>
+
+        <label class="rb-label" for="rx-goal-note">
+          {copy.goal.noteLabel} <span class="rb-opt">(optional)</span>
+        </label>
+        <input class="rb-input" id="rx-goal-note" type="text" placeholder={copy.goal.notePlaceholder} />
+
+        <p class="rb-error" data-rx-error hidden></p>
+      </section>
+
+      <!-- Step 5 — the offer -->
+      <section class="rb-step" data-rx-kind="offer" hidden>
+        <h2 class="rb-title">{copy.offer.title}</h2>
+        <p class="rb-lede">{copy.offer.lede}</p>
+        <p class="rb-note">{copy.offer.note}</p>
+
+        <label class="rb-label" for="rx-offer">
+          {copy.offer.label} <span class="rb-req">*</span>
+        </label>
+        <textarea class="rb-input" id="rx-offer" rows="3" placeholder={copy.offer.placeholder}></textarea>
+
+        <div class="rb-fieldset">
+          <span class="rb-label" id="legend-rx-offerArchetype">
+            {copy.offer.group.legend}
+          </span>
+          {copy.offer.group.hint && <p class="rb-hint">{copy.offer.group.hint}</p>}
+          <div class="rb-chips" role="group" aria-labelledby="legend-rx-offerArchetype" data-rx-chips={copy.offer.group.id} data-rx-single="true">
+            {copy.offer.group.options.map((option) => (
+              <button type="button" class="rb-chip" data-rx-value={option.value} aria-pressed="false">{option.label}</button>
+            ))}
+          </div>
+        </div>
+
+        <p class="rb-error" data-rx-error hidden></p>
+      </section>
+
+      <!-- Step 6 — consent basis -->
+      <section class="rb-step" data-rx-kind="consentBasis" hidden>
+        <h2 class="rb-title">{copy.consentBasis.title}</h2>
+        <p class="rb-lede">{copy.consentBasis.lede}</p>
+
+        <div class="rb-fieldset">
+          <span class="rb-label" id="legend-rx-consentBasis">
+            {copy.consentBasis.group.legend} <span class="rb-req">*</span>
+          </span>
+          <div class="rb-chips" role="group" aria-labelledby="legend-rx-consentBasis" data-rx-chips={copy.consentBasis.group.id} data-rx-single="true">
+            {copy.consentBasis.group.options.map((option) => (
+              <button type="button" class="rb-chip" data-rx-value={option.value} aria-pressed="false">{option.label}</button>
+            ))}
+          </div>
+          <p class="rb-hint">{copy.consentBasis.note}</p>
+        </div>
+
+        <p class="rb-error" data-rx-error hidden></p>
+      </section>
+
+      <!-- Step 7 — upload + contact -->
+      <section class="rb-step" data-rx-kind="upload" hidden>
+        <h2 class="rb-title">{copy.upload.title}</h2>
+        <p class="rb-lede">{copy.upload.lede}</p>
+
+        <div class="rb-drop" id="rx-drop">
+          <input type="file" id="rx-file" accept=".csv,text/csv" hidden />
+          <label for="rx-file" class="rb-drop-label">
+            <strong>{copy.upload.dropStrong}</strong>
+            <span>{copy.upload.dropLink}</span>
+          </label>
+          <p class="rb-hint">{copy.upload.dropHint}</p>
+          <p class="rb-upload-count" id="rx-count" hidden></p>
+        </div>
+
+        <label class="rb-label" for="rx-paste">
+          {copy.upload.pasteLabel} <span class="rb-opt">(optional)</span>
+        </label>
+        <textarea class="rb-input" id="rx-paste" rows="4" placeholder={copy.upload.pastePlaceholder}></textarea>
+
+        <label class="rb-label" for="rx-first">
+          {copy.upload.firstNameLabel} <span class="rb-req">*</span>
+        </label>
+        <input class="rb-input" id="rx-first" type="text" autocomplete="given-name" placeholder={copy.upload.firstNamePlaceholder} />
+
+        <label class="rb-label" for="rx-email">
+          {copy.upload.emailLabel} <span class="rb-req">*</span>
+        </label>
+        <input class="rb-input" id="rx-email" type="email" autocomplete="email" placeholder={copy.upload.emailPlaceholder} />
+
+        <label class="rb-check">
+          <input type="checkbox" id="rx-attest" />
+          <span>{copy.upload.attestation}</span>
+        </label>
+
+        <label class="rb-check">
+          <input type="checkbox" id="rx-owner-consent" />
+          <span>{copy.upload.ownerConsent}</span>
+        </label>
+
+        <input type="text" id="rx-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+
+        <p class="rb-error" data-rx-error hidden></p>
+      </section>
+
+      <!-- Received card -->
+      <section class="rb-step" id="rx-received" hidden>
+        <div class="rb-received">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--secondary, #4ECDC4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h2 class="rb-title">{copy.upload.receivedTitle}</h2>
+          <p class="rb-lede">{copy.upload.receivedBody}</p>
+          <p class="rb-note" id="rx-received-email"></p>
+        </div>
+      </section>
+    </div>
+
+    <div class="rb-nav" id="rx-nav">
+      <button type="button" class="rb-back" id="rx-back" hidden>Back</button>
+      <button type="button" class="btn-cta rb-next" id="rx-next" data-submit-label={copy.submitLabel}>
+        {copy.submitLabel}
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  /* rb-* card / chip / input styles — same global sheet as RebuildWizard so
+     both funnels share one visual language. Loaded independently per page;
+     they never coexist in one document. */
+  .rb-shell {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rb-card {
+    background: rgba(18, 21, 32, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: clamp(20px, 3vw, 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-height: 100%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+
+  .rb-head {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .rb-eyebrow {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--secondary, #4ECDC4);
+  }
+
+  .rb-progress-track {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .rb-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary, #8B78E6), var(--secondary, #4ECDC4));
+    border-radius: 999px;
+    transition: width 0.35s ease;
+    width: 14%;
+  }
+
+  .rb-progress-label {
+    font-size: 12px;
+    color: var(--text-dimmed, #6b7280);
+    margin-top: 4px;
+  }
+
+  .rb-body {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .rb-step {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .rb-title {
+    margin: 0;
+    font-size: clamp(18px, 2.2vw, 24px);
+    font-weight: 700;
+    color: var(--text, #e6e9ef);
+    line-height: 1.2;
+  }
+
+  .rb-lede {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--text-secondary, #8b93a5);
+    line-height: 1.5;
+  }
+
+  .rb-note {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-dimmed, #6b7280);
+    line-height: 1.5;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .rb-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary, #8b93a5);
+    margin-bottom: 4px;
+  }
+
+  .rb-req {
+    color: var(--secondary, #4ECDC4);
+  }
+
+  .rb-opt {
+    font-weight: 400;
+    color: var(--text-dimmed, #6b7280);
+  }
+
+  .rb-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: var(--text, #e6e9ef);
+    font: inherit;
+    font-size: 15px;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+
+  .rb-input:focus {
+    outline: none;
+    border-color: var(--secondary, #4ECDC4);
+  }
+
+  .rb-input::placeholder {
+    color: var(--text-dimmed, #6b7280);
+  }
+
+  .rb-hint {
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--text-dimmed, #6b7280);
+  }
+
+  .rb-fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .rb-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .rb-chip {
+    padding: 9px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-secondary, #8b93a5);
+    font: inherit;
+    font-size: 13.5px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    min-height: 38px;
+  }
+
+  .rb-chip:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    color: var(--text, #e6e9ef);
+  }
+
+  .rb-chip[aria-pressed='true'] {
+    background: rgba(139, 120, 230, 0.15);
+    border-color: var(--primary, #8B78E6);
+    color: #fff;
+  }
+
+  .rb-error {
+    margin: 0;
+    font-size: 13px;
+    color: #ff8a8d;
+  }
+
+  .rb-check {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 13.5px;
+    color: var(--text-secondary, #8b93a5);
+    cursor: pointer;
+    line-height: 1.45;
+  }
+
+  .rb-check input[type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    margin: 1px 0 0;
+    accent-color: var(--primary, #8B78E6);
+    flex-shrink: 0;
+  }
+
+  .rb-drop {
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 22px 16px;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .rb-drop.dragover {
+    border-color: var(--secondary, #4ECDC4);
+    background: rgba(78, 205, 196, 0.05);
+  }
+
+  .rb-drop-label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    color: var(--text-secondary, #8b93a5);
+  }
+
+  .rb-drop-label strong {
+    color: var(--text, #e6e9ef);
+    font-size: 15px;
+  }
+
+  .rb-drop-label span {
+    color: var(--primary, #8B78E6);
+    font-size: 14px;
+  }
+
+  .rb-upload-count {
+    margin: 10px 0 0;
+    font-size: 13px;
+    color: var(--secondary, #4ECDC4);
+    font-weight: 600;
+  }
+
+  .rb-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 4px;
+  }
+
+  .rb-back {
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-secondary, #8b93a5);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 44px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .rb-back:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+  }
+
+  .rb-next {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, var(--primary, #8B78E6), var(--secondary, #4ECDC4));
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    min-height: 44px;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .rb-next:hover {
+    transform: translateY(-1px);
+  }
+
+  .rb-next:disabled {
+    opacity: 0.5;
+    cursor: default;
+    transform: none;
+  }
+
+  .rb-received {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    padding: 30px 10px;
+  }
+
+  @media (max-width: 640px) {
+    .rb-card {
+      border-radius: 16px;
+      padding: 18px 16px;
+    }
+
+    .rb-chip {
+      padding: 8px 13px;
+      font-size: 12.5px;
+    }
+  }
+</style>
+
+<script>
+  const businessInput = document.getElementById('rx-business') as HTMLInputElement;
+  const websiteInput = document.getElementById('rx-website') as HTMLInputElement;
+  const dormantNote = document.getElementById('rx-dormant-note') as HTMLTextAreaElement;
+  const goalNote = document.getElementById('rx-goal-note') as HTMLInputElement;
+  const offerInput = document.getElementById('rx-offer') as HTMLTextAreaElement;
+  const pasteInput = document.getElementById('rx-paste') as HTMLTextAreaElement;
+  const firstInput = document.getElementById('rx-first') as HTMLInputElement;
+  const emailInput = document.getElementById('rx-email') as HTMLInputElement;
+  const attestInput = document.getElementById('rx-attest') as HTMLInputElement;
+  const ownerConsentInput = document.getElementById('rx-owner-consent') as HTMLInputElement;
+  const honeypot = document.getElementById('rx-hp') as HTMLInputElement;
+  const fileInput = document.getElementById('rx-file') as HTMLInputElement;
+  const dropZone = document.getElementById('rx-drop') as HTMLElement;
+  const countLabel = document.getElementById('rx-count') as HTMLElement;
+  const receivedSection = document.getElementById('rx-received') as HTMLElement;
+  const receivedEmail = document.getElementById('rx-received-email') as HTMLElement;
+
+  const nav = document.getElementById('rx-nav') as HTMLElement;
+  const nextButton = document.getElementById('rx-next') as HTMLButtonElement;
+  const backButton = document.getElementById('rx-back') as HTMLButtonElement;
+  const progressFill = document.getElementById('rx-progress-fill') as HTMLElement;
+  const progressLabel = document.getElementById('rx-progress-label') as HTMLElement;
+  const head = document.getElementById('rx-head') as HTMLElement;
+
+  const steps = Array.from(document.querySelectorAll<HTMLElement>('.rb-step[data-rx-kind]'));
+  const TOTAL = steps.length;
+
+  let pos = 0;
+  const picks: Record<string, Set<string>> = {};
+  document.querySelectorAll<HTMLElement>('[data-rx-chips]').forEach((group) => {
+    const name = group.dataset.rxChips as string;
+    if (!picks[name]) picks[name] = new Set();
+  });
+
+  // --- chip toggling ---------------------------------------------------------
+  document.querySelectorAll<HTMLElement>('[data-rx-chips]').forEach((group) => {
+    const name = group.dataset.rxChips as string;
+    const single = group.dataset.rxSingle === 'true';
+    group.querySelectorAll<HTMLButtonElement>('.rb-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        const value = chip.dataset.rxValue as string;
+        if (single) {
+          picks[name].clear();
+          picks[name].add(value);
+          group.querySelectorAll('.rb-chip').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+          chip.setAttribute('aria-pressed', 'true');
+        } else {
+          if (picks[name].has(value)) {
+            picks[name].delete(value);
+            chip.setAttribute('aria-pressed', 'false');
+          } else {
+            picks[name].add(value);
+            chip.setAttribute('aria-pressed', 'true');
+          }
+        }
+      });
+    });
+  });
+
+  function chosen(name: string): string[] {
+    return Array.from(picks[name] ?? []);
+  }
+  function single(name: string): string {
+    return chosen(name)[0] ?? '';
+  }
+
+  function activeError(): HTMLElement | null {
+    return steps[pos]?.querySelector<HTMLElement>('[data-rx-error]') ?? null;
+  }
+  function clearErrors() {
+    document.querySelectorAll<HTMLElement>('[data-rx-error]').forEach((el) => {
+      el.hidden = true;
+      el.textContent = '';
+    });
+  }
+  function showError(message: string) {
+    const el = activeError();
+    if (!el) return;
+    el.textContent = message;
+    el.hidden = false;
+  }
+
+  function track(name: string, data: Record<string, unknown> = {}) {
+    const gtag = (window as any).gtag;
+    if (typeof gtag === 'function') gtag('event', name, data);
+  }
+
+  // --- CSV -------------------------------------------------------------------
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const MAX_CONTACTS = 2000;
+
+  interface Contact {
+    email: string;
+    name: string;
+    phone: string;
+  }
+
+  function parseCsv(text: string): Contact[] {
+    const lines = text.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+    if (!lines.length) return [];
+    const cells = (line: string): string[] =>
+      line.split(',').map((c) => c.trim().replace(/^"|"$/g, ''));
+    const first = cells(lines[0]);
+    const looksHeader = first.some((c) => /e-?mail/i.test(c));
+    let iE = 0;
+    let iN = 1;
+    let iP = 2;
+    if (looksHeader) {
+      iE = first.findIndex((c) => /e-?mail/i.test(c));
+      iN = first.findIndex((c) => /\bname\b/i.test(c));
+      iP = first.findIndex((c) => /phone|mobile|tel/i.test(c));
+      lines.shift();
+    }
+    return lines.map((line) => {
+      const c = cells(line);
+      return {
+        email: iE >= 0 ? (c[iE] ?? '') : '',
+        name: iN >= 0 ? (c[iN] ?? '') : '',
+        phone: iP >= 0 ? (c[iP] ?? '') : '',
+      };
+    });
+  }
+
+  function collectContacts(): Contact[] {
+    const seen = new Map<string, Contact>();
+    const add = (rows: Contact[]) => {
+      for (const row of rows) {
+        const email = row.email.toLowerCase();
+        if (!email || !EMAIL_RE.test(email)) continue;
+        if (seen.has(email)) continue;
+        seen.set(email, { email, name: row.name || '', phone: row.phone || '' });
+      }
+    };
+    if (pasteInput.value.trim()) add(parseCsv(pasteInput.value));
+    // The file's contents are held in memory by the change handler.
+    const fileRows = (dropZone as HTMLElement & { __rows?: Contact[] }).__rows;
+    if (fileRows) add(fileRows);
+    return Array.from(seen.values()).slice(0, MAX_CONTACTS);
+  }
+
+  function updateCount() {
+    const n = collectContacts().length;
+    if (n > 0) {
+      countLabel.textContent = `${n} contact${n === 1 ? '' : 's'} ready`;
+      countLabel.hidden = false;
+    } else {
+      countLabel.hidden = true;
+    }
+  }
+
+  async function readFile(file: File) {
+    if (!/\.csv$/i.test(file.name) && file.type !== 'text/csv') {
+      showError('Please upload a CSV file.');
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      showError('That file is too large. Keep it under 5 MB.');
+      return;
+    }
+    const text = await file.text();
+    (dropZone as HTMLElement & { __rows?: Contact[] }).__rows = parseCsv(text);
+    updateCount();
+  }
+
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files?.[0];
+    if (file) readFile(file);
+  });
+
+  dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('dragover');
+  });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    const file = e.dataTransfer?.files?.[0];
+    if (file) readFile(file);
+  });
+
+  pasteInput.addEventListener('input', updateCount);
+
+  // --- navigation --------------------------------------------------------------
+  const ARROW =
+    '<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m-5 5l5-5H6" /></svg>';
+  const SUBMIT_LABEL = nextButton.dataset.submitLabel || 'Build my campaign';
+  const continueLabel = `Continue ${ARROW}`;
+
+  function go(index: number) {
+    clearErrors();
+    pos = index;
+    const current = steps[pos];
+    document.querySelectorAll<HTMLElement>('.rb-step').forEach((node) => {
+      node.hidden = node !== current;
+    });
+    head.hidden = false;
+    nav.hidden = false;
+    progressFill.style.width = `${((pos + 1) / TOTAL) * 100}%`;
+    progressLabel.textContent = `Step ${pos + 1} of ${TOTAL}`;
+    backButton.hidden = pos === 0;
+    nextButton.innerHTML = pos === TOTAL - 1 ? `${SUBMIT_LABEL} ${ARROW}` : continueLabel;
+    track('rx_step', { step: pos + 1, kind: current.dataset.rxKind });
+    const focusTarget = current.querySelector<HTMLElement>(
+      'input:not([tabindex="-1"]):not([type="checkbox"]), textarea'
+    );
+    if (focusTarget && window.matchMedia('(min-width: 641px)').matches) focusTarget.focus({ preventScroll: true });
+  }
+
+  function validateStep(kind: string): string {
+    if (kind === 'business') {
+      if (!businessInput.value.trim()) return 'Please enter your business name.';
+      if (!single('category')) return 'Please pick the type of business.';
+      return '';
+    }
+    if (kind === 'list') {
+      if (!single('listSize')) return 'Please pick a list size.';
+      if (!single('listAge')) return 'Please pick how old the list is.';
+      if (!single('listSource')) return 'Please pick where the contacts came from.';
+      return '';
+    }
+    if (kind === 'dormant') {
+      if (!chosen('dormantReasons').length) return 'Pick at least one reason.';
+      return '';
+    }
+    if (kind === 'goal') {
+      if (!single('goal')) return 'Please pick what a win looks like.';
+      return '';
+    }
+    if (kind === 'offer') {
+      if (!offerInput.value.trim()) return 'Please describe the offer — this is the hook in every email.';
+      return '';
+    }
+    if (kind === 'consentBasis') {
+      if (!single('consentBasis')) return 'Please pick how you got these contacts.';
+      return '';
+    }
+    if (kind === 'upload') {
+      if (!collectContacts().length) return 'Upload a CSV or paste at least one contact with a valid email.';
+      if (!firstInput.value.trim()) return 'Please enter your first name.';
+      const email = emailInput.value.trim();
+      if (!EMAIL_RE.test(email)) return 'Please enter a valid email address.';
+      if (!attestInput.checked) return 'Please confirm the consent statement above.';
+      if (!ownerConsentInput.checked) return 'Please confirm you would like us to email you.';
+      return '';
+    }
+    return '';
+  }
+
+  function advance() {
+    const kind = steps[pos].dataset.rxKind as string;
+    const problem = validateStep(kind);
+    if (problem) {
+      showError(problem);
+      return;
+    }
+    if (pos < TOTAL - 1) go(pos + 1);
+    else submit();
+  }
+
+  nextButton.addEventListener('click', advance);
+  backButton.addEventListener('click', () => {
+    if (pos > 0) go(pos - 1);
+  });
+
+  // --- submit -------------------------------------------------------------------
+  async function submit() {
+    nextButton.disabled = true;
+    const original = nextButton.innerHTML;
+    nextButton.textContent = 'Sending…';
+
+    const payload = {
+      businessName: businessInput.value.trim(),
+      website: websiteInput.value.trim(),
+      category: single('category'),
+      listSize: single('listSize'),
+      listAge: single('listAge'),
+      listSource: single('listSource'),
+      dormantReasons: chosen('dormantReasons'),
+      dormantNote: dormantNote.value.trim(),
+      goal: single('goal'),
+      goalNote: goalNote.value.trim(),
+      offer: offerInput.value.trim(),
+      offerArchetype: single('offerArchetype'),
+      consentBasis: single('consentBasis'),
+      contacts: collectContacts(),
+      firstName: firstInput.value.trim(),
+      email: emailInput.value.trim(),
+      consentAttested: attestInput.checked,
+      consent: ownerConsentInput.checked,
+      faxNumber: honeypot.value,
+      pageUrl: window.location.href,
+      referrer: document.referrer || '',
+      utmSource: new URLSearchParams(window.location.search).get('utm_source') || '',
+      utmMedium: new URLSearchParams(window.location.search).get('utm_medium') || '',
+      utmCampaign: new URLSearchParams(window.location.search).get('utm_campaign') || '',
+    };
+
+    try {
+      const res = await fetch('/api/reactivation-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        showError(data.error || 'Something went wrong. Please try again.');
+        nextButton.disabled = false;
+        nextButton.innerHTML = original;
+        return;
+      }
+
+      track('rx_submit', {
+        category: payload.category,
+        consentBasis: payload.consentBasis,
+        contacts: payload.contacts.length,
+      });
+
+      receivedEmail.textContent = `We will send the plan to ${payload.email}.`;
+      receivedSection.hidden = false;
+      steps.forEach((s) => (s.hidden = true));
+      head.hidden = true;
+      nav.hidden = true;
+    } catch {
+      showError('Could not reach the server. Please check your connection and try again.');
+      nextButton.disabled = false;
+      nextButton.innerHTML = original;
+    }
+  }
+
+  go(0);
+</script>
